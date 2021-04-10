@@ -1,0 +1,48 @@
+[
+  {
+    "bookSourceComment": "",
+    "bookSourceName": "pixiv",
+    "bookSourceType": 0,
+    "bookSourceUrl": "https://www.pixiv.net/novel/",
+    "customOrder": 0,
+    "enabled": true,
+    "enabledExplore": false,
+    "exploreUrl": "",
+    "lastUpdateTime": 1618032338699,
+    "loginUrl": "https://accounts.pixiv.net/login",
+    "ruleBookInfo": {
+      "author": "novels.userName",
+      "coverUrl": "novels.coverUrl",
+      "init": "<js>\n(()=>{\nvar json = result.match('{\\\"time.+}')[0];\njson = JSON.parse(json);\n\nvar novels = (()=>{\r\n    var result = \"\";\r\n    for(var key in json.novel){\r\n        result += JSON.stringify(json.novel[key]);\r\n    }\r\n    return JSON.parse(result);\r\n})();\n\nvar users = (()=>{\r\n    var result = \"\";\r\n    for(var key in json.user){\r\n        result += JSON.stringify(json.user[key]);\r\n    }\r\n    return JSON.parse(result);\r\n})();\n\nvar hasChapters = novels.seriesNavData != null\r\n\r\nvar tocUrl = (()=>{\r\n    if (hasChapters){\r\n        return \"https://www.pixiv.net/ajax/novel/series_content/\"+novels.seriesNavData.seriesId+\"?limit=10&last_order=0&order_by=asc&lang=zh\"\r\n    }else {\r\n        return \"\"\r\n    }\r\n})();\n\nreturn JSON.stringify({novels:novels,users:users,tocUrl:tocUrl});\n})();\n</js>",
+      "intro": "novels.description",
+      "kind": "",
+      "lastChapter": "",
+      "name": "novels.title",
+      "tocUrl": "tocUrl"
+    },
+    "ruleContent": {
+      "content": "<js>\n(()=>{\n\nvar json = result.match('{\\\"time.+}')[0];\njson = JSON.parse(json);\n\nvar novels = (()=>{\r\n    var result = \"\";\r\n    for(var key in json.novel){\r\n        result += JSON.stringify(json.novel[key]);\r\n    }\r\n    return JSON.parse(result);\r\n})();\n\nreturn novels.content;\n\n})();\n</js>",
+      "nextContentUrl": "<js>\n(()=>{\n\nvar json = result.match('{\\\"time.+}')[0];\njson = JSON.parse(json);\n\nvar novels = (()=>{\r\n    var result = \"\";\r\n    for(var key in json.novel){\r\n        result += JSON.stringify(json.novel[key]);\r\n    }\r\n    return JSON.parse(result);\r\n})();\n\nvar nextUrl = (()=>{\n\r\n    var hasNext = novels.seriesNavData != null && novels.seriesNavData.next != null\n\r\n    if (hasNext){\r\n        return \"https://www.pixiv.net/novel/show.php?id=\"+novels.seriesNavData.next.id;\r\n    }else {\r\n        return \"\"\r\n    }\n\r\n})();\n\nreturn nextUrl;\n\n})();\n</js>"
+    },
+    "ruleExplore": {},
+    "ruleSearch": {
+      "author": "$.userName",
+      "bookList": "$.body.novel.data[*]",
+      "bookUrl": "<js>(() =>{\nreturn \"https://www.pixiv.net/novel/show.php?id=\"\n+result.id})();\n</js>",
+      "coverUrl": "$.coverUrl",
+      "intro": "$.description",
+      "kind": "$.tags[*]",
+      "lastChapter": "",
+      "name": "$.title",
+      "wordCount": "$.textCount"
+    },
+    "ruleToc": {
+      "chapterList": "$.body.seriesContents[*]",
+      "chapterName": "$.title",
+      "chapterUrl": "<js>\r\n    (()=>{\r\n        return \"https://www.pixiv.net/novel/show.php?id=\"+result.id;\r\n    })()\r\n</js>",
+      "updateTime": ""
+    },
+    "searchUrl": "https://www.pixiv.net/ajax/search/novels/{{java.encodeURI(key)}}?word={{java.encodeURI(key)}}&order=date_d&mode=all&p={{page}}&s_mode=s_tag&lang=zh",
+    "weight": 0
+  }
+]
