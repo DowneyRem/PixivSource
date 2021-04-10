@@ -7,7 +7,8 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/shareBookSource.js
 (打开阅读-第4屏-书源管理-右上角三点-网络导入)
 
 #### 使用教程
-待写
+[Pixiv 书源的导入与使用](https://telegra.ph/FurryNovelsReading-01-04-07)  
+[Pixiv 書源的導入與使用](https://telegra.ph/FurryNovelsReading-02-04-07)  
 
 
 ### Pixiv 替换净化：
