@@ -57,8 +57,8 @@ function publicFunc() {
     u.urlNovelsDetailed = function (nidList) {
         return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
-    u.urlUserDetailed = function (uidList) {
-        return `https://api.furrynovel.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
+    u.urlUserDetailed = function (nidList) {
+        return `https://api.furrynovel.ink/pixiv/users/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
     u.urlCoverUrl = function (pxImgUrl) {
         return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`

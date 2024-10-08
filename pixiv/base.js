@@ -63,11 +63,11 @@ function publicFunc() {
         // return `https://www.pixiv.net/search_user.php?nick=${encodeURI(username)}&s_mode=s_usr`
         // return `https://www.pixiv.net/search/users?nick=${encodeURI(username)}&s_mode=s_usr`
     }
-    u.urlUserAllWorks = (uid) => {
-        return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`
+    u.urlUserAllWorks = (uesrId) => {
+        return `https://www.pixiv.net/ajax/user/${uesrId}/profile/all?lang=zh`
     }
-    u.urlUserNovels = (uid, nidList) => {
-        return `https://www.pixiv.net/ajax/user/${uid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+    u.urlUserNovels = (nid, nidList) => {
+        return `https://www.pixiv.net/ajax/user/${nid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
 
     u.urlIllustDetailed = (illustId) => {

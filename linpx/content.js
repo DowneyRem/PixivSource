@@ -18,7 +18,7 @@ function objParse(obj) {
     }
 
     // 获取 [uploadedimage:] 的图片链接
-    //将存在的pixiv图片链接替换为可访问的直连
+    // 将存在的 pixiv 图片链接替换为可访问的直连
     if (res.images !== undefined && res.images !== null) {
         Object.keys(res.images).forEach((key) => {
             content = content.replace(`[uploadedimage:${key}]`, `<img src="${util.urlCoverUrl(res.images[key].origin)}">`)
