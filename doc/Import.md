@@ -3,6 +3,7 @@
 ## ⓪ 书源（订阅源）来源
 
 - 官方频道 [@legado_channels](https://t.me/legado_channels)
+- [三千书源](https://shuyuan.yiove.com)
 - [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)
 - [阅读 APP 源](https://legado.aoaostar.com/)  
 - [一程书源/订阅源](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b/)

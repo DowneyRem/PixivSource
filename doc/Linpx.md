@@ -1,7 +1,8 @@
 ## [Linpx 书源的导入与使用](https://telegra.ph/FurryNovelsReading-05-04-07)
-> Linpx 书源的导入与使用（免代理版）
->
-> https://docs.qq.com/doc/DSVBUdWtHc0xQR3F1
+> Linpx 书源的导入与使用
+> https://telegra.ph/FurryNovelsReading-05-04-07
+
+
 
 
 ### [Linpx](http://www.furrynovel.xyz/) 是第三方 免代理 Pixiv 小说镜像站，主要内容为**兽人小说**。
