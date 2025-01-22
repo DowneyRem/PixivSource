@@ -75,7 +75,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 ## 二、添加小说，尽情使用
 ### 1.阅读内部搜索
-支持搜索小说名称、作者名称、小说标签（【曾经支持】现暂未修复）
+支持搜索小说名称、作者名称、小说标签
 ![img](./pic/SearchViaLegado.png)
 
 
@@ -87,15 +87,12 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 
 ### 3.添加网址
-首页打开【添加网址】，粘贴小说链接
+首页打开【添加网址】，粘贴小说链接，可以同时添加多个小说的链接
 ![img](./pic/AddBookViaUrl1.png)
 ![img](./pic/AddBookViaUrl2.png)
 ![img](./pic/AddBookViaUrl3.png)
-此处使用正则匹配网址，相应正则规则如下：
-```
-(https?://)?(api\.|www\.)?(furrynovel\.(ink|xyz))/(pn|pixiv/novel)/\d+(/cache)?
-```
-支持 Linpx 多个格式的网址链接：
+此处使用正则匹配网址，支持 Linpx 多个格式的网址链接：
+
 ```
 Linpx 小说长链接
 https://www.furrynovel.xyz/pixiv/novel/20063566
@@ -105,8 +102,9 @@ Linpx 分享链接
 http://furrynovel.xyz/pn/20063566
 https://furrynovel.ink/pn/20063566
 
-Linpx Api 链接
-https://api.furrynovel.ink/pixiv/novel/20063566/cache
+Linpx 分享信息
+我正在看唐尼瑞姆创作的《测试页面》一起来看吧！
+https://furrynovel.ink/pn/20063566
 ```
 
 

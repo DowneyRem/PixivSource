@@ -24,20 +24,19 @@
 | ------------ | ------------------------------------------------------------------------- |
 | Pixiv 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json  |
 | Linpx 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
-| 通用书源 　　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |
 | btsrk 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
 | books 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
-| import 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json |
 </details>
 
 
-## 源状态、功能
-### 书源
+## 源状态 & 功能
 | 书源       | 状态 | 获取小说 | 支持P站特性 | 实现阅读功能 |
 | --------- | --- | ------ | ---------- | ------------ |
 | Pixiv     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 小说插画 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
 | Linpx     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 小说插画 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
 
+
+<details><summary> 书源功能 </summary>
 
 #### Pixiv 特性：
 - 单篇小说：Pixiv 小说投稿时的【单篇完结作品】，即短篇小说
@@ -49,6 +48,7 @@
   - ✅ 推荐小说（电脑网页）
   - ✅ 发现小说（手机网页）
   - ✅ 收藏小说
+  - ✅ 章节评论
   </details>
 
 - <details><summary> ✅ 小说排行榜 </summary>
@@ -79,10 +79,11 @@
 
 
 #### 阅读功能：
-- 搜索：书架页面，搜索小说，添加小说到书架
-- 发现：发现页面，查看小说，添加小说到书架
-- 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
-- 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
+- ✅ 搜索：书架页面，搜索小说，添加小说到书架
+- ✅ 发现：发现页面，查看小说，添加小说到书架
+- ✅ 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
+- ✅ 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
+</details>
 
 <details><summary> 书源设置 </summary>
 
@@ -108,19 +109,26 @@
 </details>
 
 
-### 订阅源
 | 订阅源 | 状态 | 包含内容 | 订阅源 | 状态 | 包含内容 |
 | ----- | ---- | -------|----- | ---- | ------- |
 | btsrk | ✅ | 1️⃣ [Pixiv 小说](https://www.pixiv.net/novel) <br /> 2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br /> 3️⃣ [兽人控小说站](https://www.furrynovel.com) <br /> 4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br /> 5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br /> 6️⃣ [兽展日历](https://www.furryeventchina.com) <br /> 7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | ✅ | 1️⃣ [Yiove 书源仓库](https://shuyuan.yiove.com) <br/> 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html) <br/> 3️⃣ [阅读 APP 源](https://legado.aoaostar.com) <br/> 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b) <br/> 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/> 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/> 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
 
-- btsrk 订阅源：整合了 Pixiv、Linpx、兽人小说站等网站，旨在快速访问兽人文化网站
-- books 订阅源：整合了多个分享阅读书源、订阅源等的订阅源，旨在快速导入阅读相关资源
 - import 订阅源：一键导入本项目所整理提供的书源、订阅源
 
 
-### 非本项目的其他资源：
-- **[通用书源](https://github.com/bushixuanqi/book-source)** ：是不世玄奇为众多网文网站编写的通用书源，旨在使用搜索引擎获取全网小说资源，建议配合【**聚合搜索**】共同使用
-- **[聚合搜索](https://legado.cn/thread-3723-1-1.html)** ：是不世玄奇制作的多个搜索引擎的聚合入口订阅源，需要配合 **[通用书源/搜索引擎书源](http://yuedu.miaogongzi.net/gx.html)** 使用
+### 非本项目的其他资源
+<details> <summary> 其他资源 </summary>
+
+| 名称          | Github 导入网址                                                            |
+| ------------ | ------------------------------------------------------------------------- |
+| 通用书源(normal 书源)  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |
+| 聚合搜索(books 订阅源)  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
+| 书源订阅(import 订阅源) | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json |
+
+- **[通用书源](https://github.com/bushixuanqi/book-source)** ：是不世玄奇 为网文网站编写的通用书源，旨在用搜索引擎获取全网小说，建议配合【**聚合搜索**】使用
+- **[聚合搜索](https://legado.cn/thread-3723-1-1.html)** ：是不世玄奇 制作的聚合多个搜索引擎的订阅源，需要配合 **[通用书源](http://yuedu.miaogongzi.net/gx.html)** 使用。(集入 books 订阅源)
+- **[书源订阅](https://gitee.com/feiniao6/yd)** ：是Thomas喲 制作的第三方规则订阅，旨在快速导入书源/订阅源。(部分修改)
+</details>
 
 
 ## 使用教程
@@ -138,10 +146,10 @@
 <details><summary> 免责声明 </summary>
 
 1. 开源阅读 Legado 是一个做了很多阅读功能的浏览器
-2. 书源是浏览器向网站请求数据、处理数据的一套方法
+2. 书源(及订阅源)是浏览器向网站请求数据、处理数据的一套方法
 3. 使用开源阅读 Legado 阅读小说，相当于访问相关网页阅读小说
 4. 开源阅读 Legado 内的作品数据均来自书源内的网站，作品版权归原作者或站方所有
-5. 如有版权问题，请找到书源内的网站，向站方提起投诉
+5. 如有版权问题，请找到书源内的网站，向站方投诉
 </details>
 
 # 鸣谢
@@ -175,10 +183,13 @@
 - ✅ Pixiv 系列小说书源 
 - ✅ Pixiv 书源：完善字数统计 https://github.com/windyhusky/PixivSource/issues/18
 - ✅ Pixiv 书源：显示更多信息 https://github.com/windyhusky/PixivSource/issues/17
-- ✅ Pixiv & Linpx 书源：目录页添加小说更新时间
-- ✅ Pixiv 书源：修复搜索作者
-- ✅ Linpx 书源：修复搜索作者
+- ✅ Pixiv & Linpx 书源：添加小说更新时间
+- ✅ Pixiv 书源：搜索作者
+- ✅ Linpx 书源：搜索作者
 - ✅ import 订阅源：导入其他书源、订阅源
-- ✅ Pixiv & Linpx 书源：目录页添加小说字数
+- ✅ Pixiv & Linpx 书源：添加小说章节字数
+- ✅ Pixiv 书源：正文尾部加入小说评论
+- ✅ Pixiv & Linpx 书源：搜索链接
+- ✅ Pixiv & Linpx 书源：添加分享链接
 </details>
 

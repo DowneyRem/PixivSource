@@ -122,7 +122,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 ## 二、添加小说，尽情使用
 ### 1.阅读内部搜索
-支持搜索小说名称、系列小说名称（使用系列小说书源）、作者名称、小说标签
+支持搜索小说名称、系列小说名称、作者名称、小说标签
 ![img](./pic/SearchViaLegado.png)
 
 
@@ -133,27 +133,24 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 ![img](./pic/DiscoverPixivFallowingAuthor.png)
 
 
-### 3.添加网址
-首页打开【添加网址】，粘贴小说链接
+### 3.添加网址【需要代理】
+首页打开【添加网址】，粘贴小说链接，可以同时添加多个小说的链接
 ![img](./pic/AddBookViaUrl1.png)
 ![img](./pic/AddBookViaUrl2.png)
 (这里懒得换图片了)
 ![img](./pic/AddBookViaUrl3.png)
-此处使用正则匹配网址，相应正则规则如下：
-
+此处使用正则匹配网址，支持 Pixiv 多个格式的网址链接：
 ```
-(https?://)?(www\.)?pixiv\.net(/ajax)?/novel/(show\.php\?id=|series/)?\d+
-```
-支持 Pixiv 多个格式的网址链接：
-```
-【需要代理】Pixiv 小说链接
+Pixiv 小说链接
 https://www.pixiv.net/novel/show.php?id=20063566
 
-【需要代理】Pixiv 系列小说链接
+Pixiv 系列小说链接
 https://www.pixiv.net/novel/series/8054073
-
-【需要代理】Pixiv 小说 ajax 请求链接
-https://www.pixiv.net/ajax/novel/20063566
+```
+无法添加的链接：
+```
+Pixiv App 小说分享链接（删掉#号即可正常添加）
+测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=20063566
 ```
 
 
@@ -184,7 +181,7 @@ https://www.pixiv.net/ajax/novel/20063566
 > 详见：[故障排查与处理](./TroubleShoot.md)
 > 
 ### 1.确定书源可以正常使用
-回到主页，点击【******放大镜图标】**，搜索 `R18` 测试书源能否正常使用，以及R18设置是否打开。
+书架页面，点击【**放大镜图标**】，搜索 `R18` 测试书源能否正常使用，以及R18设置是否打开。
 
 #### 如果没有搜索结果，请检查一下内容：
 **⓪检查 Pixiv 书源是否导入**
