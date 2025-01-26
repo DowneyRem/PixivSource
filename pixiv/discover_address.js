@@ -1,6 +1,10 @@
 @js:
-let SHOW_GENERAL_NOVELS_RANK = false
-// 发现：排行榜显示一般小说
+try {
+    settings = JSON.parse(String(source.variableComment).split("//")[0])
+    SHOW_GENERAL_NOVELS_RANK = settings.SHOW_GENERAL_NOVELS_RANK  // 发现：排行榜显示一般小说
+} catch (e) {
+    SHOW_GENERAL_NOVELS_RANK = false
+}
 
 li = [
     {

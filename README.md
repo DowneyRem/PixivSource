@@ -98,14 +98,13 @@
 - 修改时，请修改`true` 为 `false`，或相反
 ```
 {
-  "SHOW_ORIGINAL_NOVEL_LINK": true,
-  "REPLACE_BOOK_TITLE_MARKS": true,
-  "MORE_INFO_IN_DESCRIPTION": false,
-  "DEBUG": false
+    "SHOW_ORIGINAL_NOVEL_LINK": true,
+    "REPLACE_BOOK_TITLE_MARKS": true,
+    "MORE_INFO_IN_DESCRIPTION": false,
+    "SHOW_GENERAL_NOVELS_RANK": false,
+    "DEBUG": false
 }
 ```
-- `SHOW_GENERAL_NOVELS_RANK` 需要在`书源-发现-发现地址规则`修改
-
 </details>
 
 
