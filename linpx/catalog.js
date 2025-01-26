@@ -16,7 +16,7 @@ function oneShotHandler(res) {
     return [{
         title: res.title.replace(RegExp(/^\s+|\s+$/g), ""),
         chapterUrl: util.urlNovel(res.id),
-        updateDate:`${res.updateDate}　　${res.textCount}字`
+        chapterInfo:`${res.updateDate}　　${res.textCount}字`
     }]
 }
 
@@ -29,7 +29,7 @@ function seriesHandler(res) {
         try{
             v.textCount = v.detail.content.length
             v.updateDate = util.timeTextFormat(v.detail.createDate)
-            v.updateDate = `${v.updateDate}　　${v.textCount}字`
+            v.chapterInfo = `${v.updateDate}　　${v.textCount}字`
         } catch (e) {}
         util.debugFunc(() => {
             java.log(`${v.title}`)
