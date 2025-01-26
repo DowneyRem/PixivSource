@@ -13,7 +13,7 @@ function publicFunc() {
     java.log(String(source.bookSourceComment).split("\n")[0]) // 输出书源信息
     java.log(`手动更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
     try {
-        settings = JSON.parse(String(source.variableComment).split("//")[0])
+        settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
         java.log("⚙️ 使用自定义设置")
     } catch (e) {
         settings.SHOW_ORIGINAL_NOVEL_LINK = true

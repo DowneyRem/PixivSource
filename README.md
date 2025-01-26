@@ -32,13 +32,13 @@
 ## 源状态 & 功能
 | 书源       | 状态 | 获取小说 | 支持P站特性 | 实现阅读功能 |
 | --------- | --- | ------ | ---------- | ------------ |
-| Pixiv     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 小说插画 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
-| Linpx     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 小说插画 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
+| Pixiv     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
+| Linpx     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
 
 
-<details><summary> 书源功能 </summary>
+<details><summary> 🔧 书源功能 </summary>
 
-#### Pixiv 特性：
+#### 🅿️ Pixiv 特性：
 - 单篇小说：Pixiv 小说投稿时的【单篇完结作品】，即短篇小说
 - 系列小说：Pixiv 小说投稿时的【连载系列作品】，即长篇小说
 - <details><summary> ✅ 小说功能 </summary>
@@ -55,7 +55,7 @@
   
   - ✅ R18 小说排行榜
   - ✅ 一般小说排行榜 
-    >（默认隐藏，可在`书源-发现-发现地址规则`修改`SHOW_GENERAL_NOVELS_RANK`）
+    >（默认隐藏，可在书源设置中修改`SHOW_GENERAL_NOVELS_RANK`）
   </details>
   
 - <details><summary> ✅ Pixiv 小说工具（标记符号） </summary>
@@ -78,7 +78,7 @@
   </details>
 
 
-#### 阅读功能：
+#### 📖 阅读功能：
 - ✅ 搜索：书架页面，搜索小说，添加小说到书架
 - ✅ 发现：发现页面，查看小说，添加小说到书架
 - ✅ 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
@@ -88,21 +88,21 @@
 
 <details><summary> ⚙️ 书源设置 </summary>
 
-| 书源设置         | 默认状态 | 常量名称                    |
-| -------------- | ------ | -------------------------- |
-| 显示小说源链接　　 | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK` |
-| 恢复被替换的书名号 | ✅ 开启 | `REPLACE_BOOK_TITLE_MARKS` |
-| 简介显示更多信息　 | ⭕ 关闭 | `MORE_INFO_IN_DESCRIPTION` |
-| 显示一般小说排行榜 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_RANK` |
-| 调试模式　　　　　 | ⭕ 关闭 | `DEBUG`                    |
+| 书源设置         | 默认状态 | 常量名称                    | 作用 |
+| -------------- | ------ | -------------------------- | --- |
+| 显示一般小说排行榜 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_RANK` | 发现 |
+| 简介显示更多信息　 | ⭕ 关闭 | `MORE_INFO_IN_DESCRIPTION` | 详情 |
+| 显示小说源链接　　 | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK` | 目录 |
+| 恢复被替换的书名号 | ✅ 开启 | `REPLACE_BOOK_TITLE_MARKS` | 正文 |
+| 调试模式　　　　　 | ⭕ 关闭 | `DEBUG`                    | 全局 |
 - 自定义设置：编辑书源 - 基本 - 变量说明 - 修改并保存
 - 修改时，请修改`true` 为 `false`，或相反
 ```
 {
-    "SHOW_ORIGINAL_NOVEL_LINK": true,
-    "REPLACE_BOOK_TITLE_MARKS": true,
-    "MORE_INFO_IN_DESCRIPTION": false,
     "SHOW_GENERAL_NOVELS_RANK": false,
+    "MORE_INFO_IN_DESCRIPTION": false,
+    "SHOW_ORIGINA4L_NOVEL_LINK": true,
+    "REPLACE_BOOK_TITLE_MARKS": true,
     "DEBUG": false
 }
 ```

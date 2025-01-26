@@ -1,0 +1,25 @@
+⚙️ 自定义书源设置：
+⚙️ 自定义设置：请在基本-变量说明处修改代码
+⚙️ 自定义设置：将 true 改为 false，或相反
+⚠️ 设置源变量【无法】更改书源自定义设置
+⚠️ 注意不要添加或删除尾随逗号","
+⚠️ 发现页需要长按"Pixiv"，手动刷新
+以下内容为书源设置：
+{
+"SHOW_ORIGINAL_NOVEL_LINK": true,
+"MORE_INFO_IN_DESCRIPTION": false,
+"REPLACE_BOOK_TITLE_MARKS": true,
+"DEBUG": false
+}
+
+// SHOW_GENERAL_NOVELS_RANK
+// 发现：显示一般小说排行榜
+// MORE_INFO_IN_DESCRIPTION
+// 详情：书籍简介显示更多信息
+// SHOW_ORIGINAL_NOVEL_LINK
+// 目录：显示源链接，但会增加请求次数
+// REPLACE_BOOK_TITLE_MARKS
+// 正文：注音内容为汉字时，替换为书名号
+// DEBUG
+// 调试模式
+

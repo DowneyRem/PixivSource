@@ -16,6 +16,5 @@ Linpx 书源（更新📆：2024-01-15）
 https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
 https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json
 
-可选设置：
-编辑书源 - 设置源变量 - 复制代码模板 - 修改并保存
-若源变量为空，则使用默认设置（书源 - 基本 - 变量说明）
+⚙️ 书源设置：
+书源管理 - 编辑书源 - 基本 - 变量说明 - 修改并保存

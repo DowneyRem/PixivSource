@@ -159,7 +159,7 @@ function getLinkNovels() {
     novels = novels.concat(getSeries())
     novels = novels.concat(getUserNovels())
     novels = novels.concat(getLinkNovels())
-    java.log(JSON.stringify(novels))
+    // java.log(JSON.stringify(novels))
     // 返回空列表中止流程
     if (novels.length === 0) {
         return []

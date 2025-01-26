@@ -1,0 +1,35 @@
+❤️ 查看他人收藏：
+发现：长按"Pixiv"，编辑，右上角菜单，设置源变量
+设置源变量：输入作者ID，一行一个，可添加作者名，保存
+发现：长按"Pixiv"，刷新，查看他人收藏
+以下内容为源变量模板：
+12345 作者名
+67890 //作者名
+
+
+⚙️ 自定义书源设置：
+⚙️ 自定义设置：请在基本-变量说明处修改代码
+⚙️ 自定义设置：将 true 改为 false，或相反
+⚠️ 设置源变量【无法】更改书源自定义设置
+⚠️ 注意不要添加或删除尾随逗号","
+⚠️ 发现页需要长按"Pixiv"，手动刷新
+以下内容为书源设置：
+{
+"SHOW_GENERAL_NOVELS_RANK": false,
+"MORE_INFO_IN_DESCRIPTION": false,
+"SHOW_ORIGINAL_NOVEL_LINK": true,
+"REPLACE_BOOK_TITLE_MARKS": true,
+"DEBUG": false
+}
+
+// SHOW_GENERAL_NOVELS_RANK
+// 发现：显示一般小说排行榜
+// MORE_INFO_IN_DESCRIPTION
+// 详情：书籍简介显示更多信息
+// SHOW_ORIGINAL_NOVEL_LINK
+// 目录：显示源链接，但会增加请求次数
+// REPLACE_BOOK_TITLE_MARKS
+// 正文：注音内容为汉字时，替换为书名号
+// DEBUG
+// 调试模式
+
