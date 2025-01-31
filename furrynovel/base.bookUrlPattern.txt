@@ -1,0 +1,5 @@
+FN 小说链接
+(https?://)?(www\.)?furrynovel\.com/(zh|en|ja)/novel/\d+(/chapter/d+)?
+
+FN API链接
+(https?://)?(www\.|api\.)?furrynovel\.com(/api)?/(zh|en|ja)/novel/\d+(/chapter/d+)?
