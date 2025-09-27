@@ -516,50 +516,54 @@ export function saveLikeAuthorsMap(likeAuthorsMap: Map<string, string>): void {
  * @param mapObject map 用户ID到用户名的映射
  * @param saveSeconds 缓存时间
  */
-export function putInCacheMap(mapName:String, mapObject: Map<string, string>, saveSeconds?: Number) {
+export function putInCacheMap(
+    mapName: string,
+    mapObject: Map<string, string>,
+    saveSeconds?: number,
+) {
     // @ts-ignore
-    const { cache }: { cache: CacheManager } = this
+    const { cache }: { cache: CacheManager } = this;
     let orderedArray: Array<Record<string, string>> = [];
     mapObject.forEach((value, key) => {
-        const item = {}
-        item[key] = value
-        orderedArray.push(item)
-    })
+        const item: Record<string, string> = {};
+        item[key] = value;
+        orderedArray.push(item);
+    });
     // [{'key1': 'value1'}, {'key2': 'value2'}]
-    if (saveSeconds === undefined) saveSeconds = 0
-    cache.put(mapName, JSON.stringify(orderedArray), saveSeconds)
+    if (saveSeconds === undefined) saveSeconds = 0;
+    cache.put(mapName, JSON.stringify(orderedArray), saveSeconds);
 }
 
 /**
  * 将 Map 转换为有序数组格式并保存到缓存
  * @param mapName 用户ID到用户名的映射
  */
-export function getFromCacheMap(mapName: String) {
+export function getFromCacheMap(mapName: string) {
     // @ts-ignore
-    const { cache }: { cache: CacheManager } = this
-    let cached = cache.get(mapName)
-    let newMap = new Map()
+    const { cache }: { cache: CacheManager } = this;
+    let cached = cache.get(mapName);
+    let newMap = new Map();
     if (cached === null || cached === undefined) {
-        return newMap
+        return newMap;
     }
-    
-    let parsedData
+
+    let parsedData;
     try {
-        parsedData = JSON.parse(cached)
+        parsedData = JSON.parse(cached);
     } catch (e) {
-        return newMap
+        return newMap;
     }
-    
+
     if (Array.isArray(parsedData)) {
         parsedData.forEach(item => {
             for (let key in item) {
-                newMap.set(key, item[key])
+                newMap.set(key, item[key]);
             }
-        })
+        });
     } else {
         for (let key in parsedData) {
-            newMap.set(key, parsedData[key])
+            newMap.set(key, parsedData[key]);
         }
     }
-    return newMap
+    return newMap;
 }
