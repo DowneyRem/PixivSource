@@ -9,10 +9,12 @@ import {
     cacheSaveSeconds,
     getAjaxJson,
     getFromCache,
+    getFromCacheMap,
     getWebViewUA,
     isJsonString,
     isLogin,
     putInCache,
+    putInCacheMap,
     sleep,
     sleepToast,
     urlNovelBookmarkData,
@@ -470,21 +472,28 @@ export function userBlackList() {
 }
 
 export function userBlock() {
-    let authors: number[] = getFromCache("blockAuthorList");
-    const novel = getNovel();
-    if (authors.includes(Number(novel.userId))) {
-        authors = authors.filter(author => author !== Number(novel.userId));
-        sleepToast(
-            `🚫 屏蔽作者\n\n✅ 已取消屏蔽【${novel.userName}】\n现已恢复显示其小说`,
-        );
-    } else if (novel.userId !== undefined && novel.userId !== null) {
-        authors.push(Number(novel.userId));
-        sleepToast(
-            `🚫 屏蔽作者\n\n✅ 本地已屏蔽【${novel.userName}】\n今后不再显示其小说`,
-        );
+    let authors: number[]  = getFromCache("blockAuthorList")
+    let authorsMap: Map<String, String> = getFromCacheMap("blockAuthorMap")
+    if (!authorsMap || authorsMap.size === 0) {
+        authorsMap = new Map()
+        authors.forEach(author => {
+            authorsMap.set(author, getAjaxJson(urlUserDetailed(author)).body.name)
+        })
     }
-    putInCache("blockAuthorList", authors);
-    source.setVariable(authors.toString());
+
+    let novel = getNovel()
+    if (authorsMap.has(String(novel.userId))) {
+        authorsMap.delete(String(novel.userId))
+        sleepToast(`🚫 屏蔽作者\n\n✅ 已取消屏蔽【${novel.userName}】\n现已恢复显示其小说`)
+    } else if (!!novel.userId) {
+        authorsMap.set(String(novel.userId), novel.userName)
+        sleepToast(`🚫 屏蔽作者\n\n✅ 本地已屏蔽【${novel.userName}】\n今后不再显示其小说`)
+    }
+
+    authors = Array.from(authorsMap.keys())
+    putInCache("blockAuthorList", authors)
+    putInCacheMap("blockAuthorMap", authorsMap)
+    // source.setVariable(authors.toString())
     // sleepToast(JSON.stringify(authors))
 }
 

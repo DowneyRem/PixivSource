@@ -509,3 +509,57 @@ export function saveLikeAuthorsMap(likeAuthorsMap: Map<string, string>): void {
 
     cache.put("likeAuthors", JSON.stringify(orderedArray));
 }
+
+/**
+ * 将 Map 转换为有序数组格式并保存到缓存
+ * @param mapName map name
+ * @param mapObject map 用户ID到用户名的映射
+ * @param saveSeconds 缓存时间
+ */
+export function putInCacheMap(mapName:String, mapObject: Map<string, string>, saveSeconds?: Number) {
+    // @ts-ignore
+    const { cache }: { cache: CacheManager } = this
+    let orderedArray: Array<Record<string, string>> = [];
+    mapObject.forEach((value, key) => {
+        const item = {}
+        item[key] = value
+        orderedArray.push(item)
+    })
+    // [{'key1': 'value1'}, {'key2': 'value2'}]
+    if (saveSeconds === undefined) saveSeconds = 0
+    cache.put(mapName, JSON.stringify(orderedArray), saveSeconds)
+}
+
+/**
+ * 将 Map 转换为有序数组格式并保存到缓存
+ * @param mapName 用户ID到用户名的映射
+ */
+export function getFromCacheMap(mapName: String) {
+    // @ts-ignore
+    const { cache }: { cache: CacheManager } = this
+    let cached = cache.get(mapName)
+    let newMap = new Map()
+    if (cached === null || cached === undefined) {
+        return newMap
+    }
+    
+    let parsedData
+    try {
+        parsedData = JSON.parse(cached)
+    } catch (e) {
+        return newMap
+    }
+    
+    if (Array.isArray(parsedData)) {
+        parsedData.forEach(item => {
+            for (let key in item) {
+                newMap.set(key, item[key])
+            }
+        })
+    } else {
+        for (let key in parsedData) {
+            newMap.set(key, parsedData[key])
+        }
+    }
+    return newMap
+}
