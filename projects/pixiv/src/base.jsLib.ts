@@ -517,15 +517,15 @@ export function saveLikeAuthorsMap(likeAuthorsMap: Map<string, string>): void {
  * @param saveSeconds 缓存时间
  */
 export function putInCacheMap(
-    mapName: String,
+    mapName: string,
     mapObject: Map<string, string>,
-    saveSeconds?: Number,
+    saveSeconds?: number,
 ) {
     // @ts-ignore
     const { cache }: { cache: CacheManager } = this;
     let orderedArray: Array<Record<string, string>> = [];
     mapObject.forEach((value, key) => {
-        const item = {};
+        const item: Record<string, string> = {};
         item[key] = value;
         orderedArray.push(item);
     });
@@ -538,7 +538,7 @@ export function putInCacheMap(
  * 将 Map 转换为有序数组格式并保存到缓存
  * @param mapName 用户ID到用户名的映射
  */
-export function getFromCacheMap(mapName: String) {
+export function getFromCacheMap(mapName: string) {
     // @ts-ignore
     const { cache }: { cache: CacheManager } = this;
     let cached = cache.get(mapName);

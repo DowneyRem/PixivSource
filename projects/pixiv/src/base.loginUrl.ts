@@ -478,8 +478,8 @@ export function userBlackList() {
 }
 
 export function userBlock() {
-    let authors: number[] = getFromCache("blockAuthorList");
-    let authorsMap: Map<String, String> = getFromCacheMap("blockAuthorMap");
+    let authors: string[] = getFromCache("blockAuthorList");
+    let authorsMap: Map<string, string> = getFromCacheMap("blockAuthorMap");
     if (!authorsMap || authorsMap.size === 0) {
         authorsMap = new Map();
         authors.forEach(author => {
