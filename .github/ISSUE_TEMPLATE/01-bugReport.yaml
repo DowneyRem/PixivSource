@@ -8,7 +8,7 @@ body:
       label: 确认 / Assignments
       description: 提交issue请确保完成以下前提，否则该issue可能被忽略 / Make sure you read checkboxs below
       options:
-        - label: 阅读[最新测试版](https://github.com/gedoor/legado/actions/workflows/test.yml)依然存在此问题 / Latest beta app does not work
+        - label: 阅读[Beta版本 新共存 最新版](https://miaogongzi.lanzout.com/b01rgkhhe)依然存在此问题 / Latest beta app does not work
           required: true
         - label: 书源[最新版本](https://github.com/DowneyRem/PixivSource/releases/latest)依然存在此问题 / Latest source does not work
           required: true
@@ -19,12 +19,7 @@ body:
 
   - type: textarea
     attributes:
-      label: 问题描述 / Describe Bugs
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: 复现步骤 / How to reproduce
+      label: 问题描述 & 复现步骤 / Describe Bugs & How to reproduce
     validations:
       required: true
   - type: textarea
@@ -62,11 +57,11 @@ body:
       
   - type: input
     attributes:
-      label: 书源版本或更新时间 / Source Version or Update Time
+      label: 书源版本 / Source Version
       description: |
-        书源版本：见 GitHub Release
-        更新时间：发现 - 更新 - 阅读本地版本
-      placeholder: "2.0.0 或 2025/06/01 00:00"
+        书源版本1：发现 - 更新 - 阅读本地版本
+        书源版本2：我的 - 书源管理 - Pixiv书源 - 调试 - 测试页面
+      placeholder: "200 或 2025/06/01"
     validations:
       required: true
       
