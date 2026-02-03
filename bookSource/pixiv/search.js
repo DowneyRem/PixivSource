@@ -255,6 +255,15 @@ function novelFilter(novels) {
     return novels
 }
 
+
+function test() {}
+getUserNovels = profile("getUserNovels", getUserNovels);
+getSeries = profile("getSeries", getSeries);
+getNovels = profile("getNovels", getNovels);
+getConvertNovels = profile("getConvertNovels", getConvertNovels);
+novelFilter = profile("novelFilter", novelFilter);
+
+
 (() => {
     let novels = []
     let keyword = String(java.get("keyword"))

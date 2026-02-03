@@ -235,9 +235,7 @@ function formatComment(item, replyToName = null) {
     return `${name}：${content}(${item.commentDate})${commentId}\n`
 }
 
-function getComment(res, content) {
-    if (!util.settings.SHOW_COMMENTS || res.commentCount === 0) return content
-
+function getComment(res) {
     const limit = 50
     let comments = [], commentUrls = [];
     let maxPage = Math.ceil(res.commentCount / limit)
@@ -268,7 +266,7 @@ function getComment(res, content) {
             commentText += "——————————\n"
         }
     })
-    return content + "\n" + "——————————\n".repeat(2) + commentText
+    return "\n" + "——————————\n".repeat(2) + commentText
 }
 
 function getContent(res) {
@@ -288,7 +286,7 @@ function getContent(res) {
     content = replaceJumpUrl(content)
     content = replaceRb(content)
     content = getPollData(res, content)
-    content = getComment(res, content)
+    if (util.settings.SHOW_COMMENTS) content += getComment(res)
     return content
 }
 
@@ -311,6 +309,19 @@ function checkContent() {
         }
     }
 }
+
+getNovelInfo = profile("getNovelInfo", getNovelInfo);
+getCaptions = profile("getCaptions", getCaptions);
+replaceUploadedImage = profile("replaceUploadedImage", replaceUploadedImage);
+replacePixivImage = profile("replacePixivImage", replacePixivImage);
+replaceNewPage = profile("replaceNewPage", replaceNewPage);
+replaceChapter = profile("replaceChapter", replaceChapter);
+replaceJumpPage = profile("replaceJumpPage", replaceJumpPage);
+replaceJumpUrl = profile("replaceJumpUrl", replaceJumpUrl);
+replaceRb = profile("replaceRb", replaceRb);
+getPollData = profile("getPollData", getPollData);
+getComment = profile("getComment", getComment);
+getContent = profile("getContent", getContent);
 
 (() => {
     return getContent(util.getNovelResFirst(result))

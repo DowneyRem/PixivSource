@@ -24,6 +24,8 @@ function novelHandler(novel){
     return novel
 }
 
+novelHandler = profile("novelHandler", novelHandler);
+
 (() => {
     return novelHandler(util.getNovelResFirst(result))
 })()

@@ -7,7 +7,7 @@ function cacheGetAndSet(key, supplyFunc, forceUpdate) {
     let v = this.getFromCacheObject(key)
     const isExpired = v && (new Date().getTime() >= v.timestamp + cacheTempSeconds)
     const isError = v && (v.error === true) && isExpired
-    forceUpdate = forceUpdate && isExpired
+    // forceUpdate = forceUpdate && isExpired
 
     if (!v || forceUpdate || isError) {
         v = supplyFunc()
@@ -117,6 +117,7 @@ function isLogin() {
 
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
+    java.log(url)
     return this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
     }, forceUpdate)
@@ -522,3 +523,50 @@ function updateSource() {
     java.startBrowser(`data:text/html;charset=utf-8;base64, ${java.base64Encode(htm)}`, '更新书源')
     return []
 }
+
+
+function profile(funcName, func) {
+    return function() {
+        var start = Packages.java.lang.System.currentTimeMillis(); // 使用 Java 底层时间，精度更高
+        try {
+            return result = func.apply(this, arguments);
+        } finally {
+            const {java, cache} = this
+            var end = Packages.java.lang.System.currentTimeMillis();
+            var duration = end - start;
+            if (duration >= 5) { // 过滤掉执行极快的函数，只关注耗时 > 10ms 的
+                java.log("⏱️ [" + funcName + "] 耗时: " + duration + "ms");
+            }
+        }
+    };
+}
+
+// 1. 基础网络与缓存函数
+putInCacheObject = profile("putInCacheObject", putInCacheObject);
+getFromCacheObject = profile("getFromCacheObject", getFromCacheObject);
+
+putInCache = profile("putInCache", putInCache);
+getFromCache = profile("getFromCache", getFromCache);
+
+putInCacheMap= profile("putInCacheMap", putInCacheMap);
+getFromCacheMap = profile("getFromCacheMap", getFromCacheMap);
+
+cacheGetAndSet = profile("cacheGetAndSet", cacheGetAndSet);
+getAjaxJson = profile("getAjaxJson", getAjaxJson);
+getAjaxAllJson = profile("getAjaxAllJson", getAjaxAllJson);
+getWebviewJson = profile("getWebviewJson", getWebviewJson);
+
+
+// 2. URL 拼接与转换（搜索提速的核心观察点）
+urlIP = profile("urlIP", urlIP);
+urlCoverUrl = profile("urlCoverUrl", urlCoverUrl);
+urlIllustOriginal = profile("urlIllustOriginal", urlIllustOriginal);
+
+urlSearchNovel = profile("urlSearchNovel", urlSearchNovel);
+urlSearchUser = profile("urlSearchUser", urlSearchUser);
+
+urlSeriesNovels = profile("urlSeriesNovels", urlSeriesNovels);
+urlUserAllWorks = profile("urlUserAllWorks", urlUserAllWorks);
+
+checkSettings = profile("checkSettings", checkSettings);
+getWebViewUA = profile("getWebViewUA", getWebViewUA);

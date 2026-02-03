@@ -51,12 +51,11 @@ function seriesHandler(res) {
                 v.updateDate = java.timeFormat(v.uploadTimestamp)
                 v.chapterInfo = `${v.updateDate}　　${v.textLength}字`
             }
-            util.debugFunc(() => {
-                java.log(`${v.title}`)
-            })
         })
         return res;
     }
+
+    sendAjaxForGetChapters = profile("sendAjaxForGetChapters", sendAjaxForGetChapters);
 
     if (!util.settings.SHOW_UPDATE_TIME) {
         returnList = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesID)), true).body
@@ -86,6 +85,10 @@ function seriesHandler(res) {
     putInCacheObject("novel", novel)
     return returnList
 }
+
+oneShotHandler = profile("oneShotHandler", oneShotHandler);
+seriesHandler = profile("seriesHandler", seriesHandler);
+
 
 (function (res) {
     res = util.getNovelResSeries(result)

@@ -548,6 +548,22 @@ function publicFunc() {
 
     util = u
     java.put("util", objStringify(u))
+
+    u.test = function(result) {}
+    u.login = profile("u.login", u.login)
+    u.logout = profile("u.logout", u.logout)
+    u.getCookie = profile("u.getCookie", u.getCookie)
+    u.removeCookie = profile("u.removeCookie", u.removeCookie)
+    u.getCsrfToken = profile("u.getCsrfToken", u.getCsrfToken)
+    u.combineNovels = profile("u.combineNovels", u.combineNovels)
+    u.authorFilter = profile("u.authorFilter", u.authorFilter)
+    u.novelFilter = profile("u.novelFilter", u.novelFilter)
+    u.novelFilter2 = profile("u.novelFilter2", u.novelFilter2)
+    u.saveNovels = profile("u.saveNovels", u.saveNovels)
+    u.handNovels = profile("u.handNovels", u.handNovels)
+    u.formatNovels = profile("u.formatNovels", u.formatNovels)
+    u.getNovelResFirst = profile("u.getNovelResFirst", u.getNovelResFirst)
+    u.getNovelResSeries = profile("u.getNovelResSeries", u.getNovelResSeries)
 }
 
 function checkMessageThread(checkTimes) {
@@ -614,6 +630,16 @@ if (result.code() === 200) {
     getPixivUid(); getWebViewUA(); util.getCookie(); util.getCsrfToken(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
+
+function test(){}
+isSourceRead = profile("isSourceRead", isSourceRead)
+isLegadoOfficial = profile("isLegadoOfficial", isLegadoOfficial)
+isLegadoLYC = profile("isLegadoLYC", isLegadoLYC)
+publicFunc = profile("publicFunc", publicFunc)
+checkMessageThread = profile("checkMessageThread", checkMessageThread)
+getPixivUid = profile("getPixivUid", getPixivUid)
+getHeaders = profile("getHeaders", getHeaders)
+
 
 util.debugFunc(() => {
     java.log(`DEBUG = ${util.settings.DEBUG}\n`)
