@@ -267,17 +267,16 @@ novelFilter = profile("novelFilter", novelFilter);
 (() => {
     let novels = []
     let keyword = String(java.get("keyword"))
-    if (keyword.startsWith("@") || keyword.startsWith("＠")) {
+    if (keyword.startsWith("@")) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getUserNovels())
-    } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {
+    } else if (keyword.startsWith("#")) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getSeries())
         novels = novels.concat(getNovels())
     } else {
         novels = novels.concat(getSeries())
         novels = novels.concat(getNovels())
-        if (util.settings.SEARCH_AUTHOR) novels = novels.concat(getUserNovels())
         if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))
