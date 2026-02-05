@@ -124,9 +124,10 @@ function getAjaxJson(url, forceUpdate) {
 }
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
-    return this.cacheGetAndSet(urls, () => {
+    const batchKey = JSON.stringify(urls);
+    return this.cacheGetAndSet(batchKey, () => {
         let results = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
-        this.putInCacheObject(JSON.stringify(urls), results, cacheSaveSeconds)
+        this.putInCacheObject(batchKey, results, cacheSaveSeconds)
         for (let i in urls) this.putInCacheObject(urls[i], results[i], cacheSaveSeconds)
         return results
     }, forceUpdate)
