@@ -35,7 +35,7 @@
         },
         "ruleContent": {
             "content": "@js:\n<JS CODE>",
-            "title": "@js:\nJSON.parse(result).body.title",
+            "title": "",
             "imageStyle": "FULL"
         },
         "ruleExplore": {
