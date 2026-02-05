@@ -1,5 +1,7 @@
+import os from "os"
 import fs from "fs"
 import path from "path"
+import { execSync } from 'node:child_process'
 
 interface BookSource {
     bookSourceComment: string
@@ -222,5 +224,10 @@ function main(test:boolean|number =undefined) {
 }
 
 let delayTime = 2 * 24 * 60 * 60 * 1000
-main(0)
-// main(1)
+// 获取当前 Git 分支名称
+const currentBranch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+if (os.platform() === "win32" && currentBranch === 'main') {
+    main(0)
+} else {
+    main(1)
+}
