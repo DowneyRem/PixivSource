@@ -366,27 +366,24 @@ function urlNotification() {
     return `https://www.pixiv.net/ajax/notification?lang=zh`
 }
 
+function addZero(num) {
+    return String(num).padStart(2, '0')
+}
 function dateFormat(str) {
-    let addZero = function (num) {
-        return num < 10 ? '0' + num : num;
-    }
     let time = new Date(str);
     let Y = time.getFullYear() + "年";
-    let M = addZero(time.getMonth() + 1) + "月";
-    let D = addZero(time.getDate()) + "日";
+    let M = this.addZero(time.getMonth() + 1) + "月";
+    let D = this.addZero(time.getDate()) + "日";
     return Y + M + D;
 }
 function timeFormat(str) {
-    let addZero = function (num) {
-        return num < 10 ? '0' + num : num;
-    }
     let time = new Date(str);
     let YY = time.getFullYear()
-    let MM = addZero(time.getMonth() + 1)
-    let DD = addZero(time.getDate())
-    let hh = addZero(time.getHours())
-    let mm = addZero(time.getMinutes())
-    let ss = addZero(time.getSeconds())
+    let MM = this.addZero(time.getMonth() + 1)
+    let DD = this.addZero(time.getDate())
+    let hh = this.addZero(time.getHours())
+    let mm = this.addZero(time.getMinutes())
+    let ss = this.addZero(time.getSeconds())
     return `${YY}-${MM}-${DD} ${hh}:${mm}:${ss}`
 }
 function timeTextFormat(text) {
