@@ -570,7 +570,7 @@ function profile(funcName, func) {
     return function() {
         var start = Packages.java.lang.System.currentTimeMillis()
         try {
-            return result = func.apply(this, arguments)
+            return func.apply(this, arguments)
         } finally {
             const {java, cache} = this
             var end = Packages.java.lang.System.currentTimeMillis()
