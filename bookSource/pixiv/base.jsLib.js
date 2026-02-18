@@ -2,7 +2,7 @@ var checkTimes = 0
 var cacheSaveSeconds = 30*24*60*60  // 长期缓存 30 天
 var cacheTempSeconds = 10*60*1000   // 冷却时间 10 分钟
 
-function cacheGetAndSet(key, supplyFunc, forceUpdate) {
+function cacheGetAndSet(key, supplyFunc, requestUpdate) {
     const {java, cache} = this
     let timestamp = 0
     let v = this.getFromCacheObject(key)
@@ -18,9 +18,9 @@ function cacheGetAndSet(key, supplyFunc, forceUpdate) {
 
     const isExpired = v && (new Date().getTime() >= timestamp + cacheTempSeconds)
     const isError = v && (v.error === true) && isExpired
-    forceUpdate = forceUpdate && isExpired
+    requestUpdate = requestUpdate && isExpired
 
-    if (!v || forceUpdate || isError) {
+    if (!v || requestUpdate || isError) {
         v = supplyFunc()
         let now = new Date().getTime()
         // getAjaxJson getWebviewJson 时间戳写入对象本身
@@ -133,13 +133,13 @@ function isLogin() {
     return !!this.getFromCache("pixivCsrfToken")
 }
 
-function getAjaxJson(url, forceUpdate) {
+function getAjaxJson(url, requestUpdate) {
     const {java, cache} = this
     return this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
-    }, forceUpdate)
+    }, requestUpdate)
 }
-function getAjaxAllJson(urls, forceUpdate) {
+function getAjaxAllJson(urls, requestUpdate) {
     const {java, cache} = this
     let batchKey = JSON.stringify(urls)
     return this.cacheGetAndSet(batchKey, () => {
@@ -153,21 +153,21 @@ function getAjaxAllJson(urls, forceUpdate) {
             this.putInCacheObject(urls[i], data, cacheSaveSeconds)
         }
         return results
-    }, forceUpdate)
+    }, requestUpdate)
 }
-function getAjaxParseJson(url, parseFunc, forceUpdate) {
+function getAjaxParseJson(url, parseFunc, requestUpdate) {
     const {java, cache} = this
     return this.cacheGetAndSet(url, () => {
         let html = java.ajax(url)
         return JSON.parse(parseFunc(html))
-    }, forceUpdate)
+    }, requestUpdate)
 }
-function getWebviewJson(url, parseFunc, forceUpdate) {
+function getWebviewJson(url, parseFunc, requestUpdate) {
     const {java, cache} = this
     return this.cacheGetAndSet(url, () => {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
-    }, forceUpdate)
+    }, requestUpdate)
 }
 
 function getWebViewUA() {
