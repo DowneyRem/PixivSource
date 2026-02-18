@@ -121,7 +121,8 @@ function isHtmlString(str) {
 }
 function isJsonString(str) {
     try {
-        if (typeof JSON.parse(str) === "object") return true
+        let result = JSON.parse(str)
+        return typeof result === "object" && result !== null
     } catch(e) {
         return false
     }
