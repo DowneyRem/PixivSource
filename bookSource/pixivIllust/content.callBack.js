@@ -42,7 +42,7 @@ function saveRead() {
 }
 
 function startShelfRefresh() {
-    source.putConcurrent("2/2000")
+    source.putConcurrent("18/30000")
 }
 
 function endShelfRefresh() {
