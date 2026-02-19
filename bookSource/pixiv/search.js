@@ -122,7 +122,7 @@ function getUserNovels() {
             seriesNovelIds = getAjaxAllJson(seriesUrls).flatMap(resp => resp.body.map(item => item.id))
         }
 
-        if (globalThis.environment.IS_SOURCE_READ) {
+        if (globalThis.environment.IS_SOURCEREAD) {
             seriesIds.forEach(seriesId => {
                 let novels = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
                 seriesNovelIds.push.apply(seriesNovelIds, novels.map(novel => novel.id))
@@ -145,7 +145,7 @@ function getUserNovels() {
             novels = novels.concat(getAjaxAllJson(novelUrls).map(resp => resp.body))
         }
 
-        if (globalThis.environment.IS_SOURCE_READ) {
+        if (globalThis.environment.IS_SOURCEREAD) {
             novelIds.forEach(novelId => {
                 // java.log(urlIP(urlNovelDetailed(novelId)))
                 let res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
