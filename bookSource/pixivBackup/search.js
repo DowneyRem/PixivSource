@@ -45,60 +45,55 @@ var seriesSet = {
     },
 };
 
-function getUserNovels() {
-    if (!isLogin()) {
-        sleepToast("👤 搜索作者\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
-        util.removeCookie(); util.login()
-        sleepToast("👤 搜索作者\n\n登录成功后，请重新搜索", 2)
-        return []
+function getUserIdCache() {
+    let userId
+    let userName = String(java.get("keyword"))
+    //cache.delete("pixivAuthors")
+    let pixivAuthors = getFromCacheObject("pixivAuthors")
+    // java.log(JSON.stringify(pixivAuthors))
+    if (pixivAuthors) userId = pixivAuthors[userName]
+    if (userId) {
+        java.log(`👤 缓存作者ID：${userId}`)
+        return [userId]
     }
+}
 
-    let uidList = [], novels = []
-    let username = String(java.get("keyword"))
+function getUserIdOnline(full) {
+    let userName = String(java.get("keyword"))
     let page = Number(java.get("page"))
-
-    // cache.delete(username)
-    let userid = getFromCache(username)
-    if (userid !== undefined && userid !== null) {
-        uidList = [userid]
-        java.log(`👤 缓存作者ID：${userid}`)
-    } else {
-        html = java.ajax(urlSearchUser(username))
-        // java.log(html)
-        // 仅匹配有投稿作品的用户
-        let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
-        // java.log(JSON.stringify(match))
-        if (match === null || match.length === 0) {
-            return []
+    let userIds = getAjaxParseJson(urlSearchUser(userName, page, full), html => {
+            let resp = JSON.parse(html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)[1])
+            return resp.props.pageProps.userIds
         }
-
-        match = JSON.stringify(match).replace("\\","").split(",")
-        // java.log(JSON.stringify(match))
-        let regNumber = new RegExp("\\d+")
-        uidList = match.map(v => {
-            return v.match(regNumber)[0]
-        })
-        java.log(`👤 获取作者ID：${JSON.stringify(uidList)}`)
-    }
+    )
 
     let tempUids = []
+    for (let i in userIds) {
+        let userId = userIds[i]
+        let resp = getAjaxJson(urlIP(urlUserAllWorks(userId)), true)
+        // java.log(urlIP(urlUserAllWorks(userId)))
+        if (resp.error === false) {
+            // 仅获取有小说的作者
+            let novelIds = Object.keys(resp.body.novels)
+            // java.log(`${userId}-${novelIds.length}`)
+            if (novelIds.length >= 1) tempUids.push(userId)
+        }
+    }
+    java.log(`👤 获取作者ID：${JSON.stringify(tempUids)}`)
+    return tempUids
+}
+
+function getUserNovels() {
+    let page = Number(java.get("page"))
+    let uidList = getUserIdCache()
+    if (!uidList) uidList = getUserIdOnline()
+    // if (!uidList) uidList = getUserIdOnline(true)
+
+    let novels = []
     for (let i in uidList) {
         let uid = uidList[i]
-        let resp = getAjaxJson(urlIP(urlUserAllWorks(uid)), true)
-        // java.log(urlIP(urlIP(urlUserAllWorks(id))))
-        // java.log(JSON.stringify(resp))
-        if (resp.error === true) {
-            return []
-        }
-
-        // 仅获取前3个有小说的作者
-        let novelIds = Object.keys(resp.body.novels)
-        // java.log(`${uid}-${novelIds.length}`)
-        if (novelIds.length >= 1) tempUids.push(uid)
-        if (tempUids.length === 3) {
-            java.log(`👤 显示作者ID：${JSON.stringify(tempUids)}`)
-            break
-        }
+        let resp = getAjaxJson(urlIP(urlUserAllWorks(uid)))
+        // java.log(urlIP(urlUserAllWorks(id)))
 
         // 获取系列小说，与 util.handnovels 系列详情兼容
         let seriesIds = []
@@ -113,31 +108,37 @@ function getUserNovels() {
 
         // 获取所有系列内部的小说 ID
         let seriesNovelIds = []
-        seriesIds.forEach(seriesId => {
-            let returnList = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
-            returnList.map(novel => {return seriesNovelIds.push(novel.id)})
-        })
+        if (util.environment.IS_LEGADO) {
+            let seriesUrls = seriesIds.map(seriesId => urlIP(urlSeriesNovelsTitles(seriesId)))
+            // let resp = getAjaxAllJson(seriesUrls).map(resp => resp.body)
+            // seriesNovelIds = resp.flat().map(item => item.id)
+            seriesNovelIds = getAjaxAllJson(seriesUrls).flatMap(resp => resp.body.map(item => item.id))
+        }
+
+        if (util.environment.IS_SOURCEREAD) {
+            seriesIds.forEach(seriesId => {
+                let novels = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
+                seriesNovelIds.push.apply(seriesNovelIds, novels.map(novel => novel.id))
+            })
+        }
         // java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
         // java.log(JSON.stringify(seriesNovelIds.length))
 
         // 获取单篇小说
-        if (novelIds.length >= 1 && util.environment.IS_LEGADO) {
-            novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
-            novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
-            // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
-            // java.log(JSON.stringify(novelIds.length))
-            let novelUrls = novelIds.map(novelId => {return urlNovelDetailed(novelId)})
+        let novelIds = Object.keys(resp.body.novels)
+        novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
+        novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
+        // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
+        // java.log(JSON.stringify(novelIds.length))
+
+        if (util.environment.IS_LEGADO) {
+            let novelUrls = novelIds.map(novelId => urlIP(urlNovelDetailed(novelId)))
             // java.log(JSON.stringify(novelUrls))
             // cache.delete(novelUrls)
             novels = novels.concat(getAjaxAllJson(novelUrls).map(resp => resp.body))
         }
 
-        // // 获取单篇小说
-        if (novelIds.length >= 1 && util.environment.IS_SOURCE_READ) {
-            novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
-            // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
-            // java.log(JSON.stringify(novelIds.length))
-            novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
+        if (util.environment.IS_SOURCEREAD) {
             novelIds.forEach(novelId => {
                 // java.log(urlIP(urlNovelDetailed(novelId)))
                 let res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
@@ -186,20 +187,22 @@ function getSeries() {
 
 function getNovels() {
     let name = String(java.get("keyword"))
-    let resp = search(name, "novel", 1)
+    let page = Number(java.get("page"))
+    let resp = search(name, "novel", page)
     return util.combineNovels(resp.data)
 }
 
 function getConvertNovels() {
     let novels = []
-    let novelName = String(java.get("keyword"))
-    let name1 = String(java.s2t(novelName))
-    let name2 = String(java.t2s(novelName))
-    if (name1 !== novelName) novels = novels.concat(search(name1, "novel", 1).data)
-    if (name2 !== novelName) novels = novels.concat(search(name2, "novel", 1).data)
+    let name = String(java.get("keyword"))
+    let page = Number(java.get("page"))
+    let name1 = String(java.s2t(name))
+    let name2 = String(java.t2s(name))
+    if (name1 !== name) novels = novels.concat(search(name1, "novel", page).data)
+    if (name2 !== name) novels = novels.concat(search(name2, "novel", page).data)
     novels = util.combineNovels(novels)
-    if (name1 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
-    if (name2 !== novelName) novels = novels.concat(search(name2, "series", 1).data)
+    if (name1 !== name) novels = novels.concat(search(name1, "series", page).data)
+    if (name2 !== name) novels = novels.concat(search(name2, "series", page).data)
     return novels
 }
 
@@ -249,7 +252,7 @@ function novelFilter(novels) {
         // })
         novels = novels.filter(novel => novel.userName.includes(inputAuthor))
         let novels2 = novels.map(novel => novel.id)
-        java.log(`👤 过滤作者：${tags.join("、")}`)
+        java.log(`👤 过滤作者：${inputAuthor.join("、")}`)
         java.log(`👤 过滤作者：过滤前${novels0.length}；过滤后${novels2.length}`)
     }
     return novels
@@ -258,14 +261,20 @@ function novelFilter(novels) {
 (() => {
     let novels = []
     let keyword = String(java.get("keyword"))
-    if (keyword.startsWith("@") || keyword.startsWith("＠")) {
+    if (keyword.startsWith("@")) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getUserNovels())
-    } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {
+    } else if (keyword.startsWith("#")) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getSeries())
         novels = novels.concat(getNovels())
     } else {
+        if (!isLogin()) {
+            sleepToast("🔍 搜索小说\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
+            util.removeCookie(); util.login()
+            sleepToast("🔍 搜索小说\n\n登录成功后，请重新搜索", 2)
+            return []
+        }
         novels = novels.concat(getSeries())
         novels = novels.concat(getNovels())
         if (util.settings.SEARCH_AUTHOR) novels = novels.concat(getUserNovels())

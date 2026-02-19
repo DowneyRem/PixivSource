@@ -1036,3 +1036,27 @@ function cleanCache() {
     try {java.refreshContent()} catch(err) {}
     sleepToast(`🔄 刷新本章\n\n若正文未更新，请手动刷新`, 5)
 }
+
+function getFurryAuthors() {
+    cache.delete("https://api.furrynovel.ink/fav/user/cache")  // 删除缓存实时请求数据
+    let furryAuthorsMap = {}
+    let authorsListLinpx = getAjaxJson("https://api.furrynovel.ink/fav/user/cache")
+    authorsListLinpx.forEach(author => {
+        furryAuthorsMap[author.name] = author.id || author._id
+    })
+
+    // let authorsMapFurryReading = getAjaxJson("")
+    // furryAuthorsMap = Object.assign(furryAuthorsMap, authorsMapFurryReading)
+    putInCacheObject("furryAuthors", furryAuthorsMap)
+    return furryAuthorsMap
+}
+
+function updatePixivAuthors() {
+    let furryAuthors = getFurryAuthors()
+    let pixivAuthors = getFromCacheObject("pixivAuthors")
+    if (!pixivAuthors) pixivAuthors = {}
+    pixivAuthors = Object.assign(pixivAuthors, furryAuthors)
+    putInCacheObject("pixivAuthors", pixivAuthors, cacheSaveSeconds)
+    sleepToast("\n🐺 兽人作者搜索优化 \n\n ✅ 已导入 Linpx 推荐作者", 1)
+    return pixivAuthors
+}

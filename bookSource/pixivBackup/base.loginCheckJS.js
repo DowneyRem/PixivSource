@@ -168,10 +168,12 @@ function publicFunc() {
     // 屏蔽作者
     u.authorFilter = function(novels) {
         let authors = getFromCacheObject("blockAuthorList")
-        if (authors !== null && authors.length >= 0) {
+        if (Array.isArray(authors) && authors.length >= 0) {
             java.log(`🚫 屏蔽作者ID：${JSON.stringify(authors)}`)
             authors.forEach(author => {
-                novels = novels.filter(novel => novel.userId !== String(author))
+                novels = novels.filter(novel => {
+                    novel.userId !== String(author)
+                })
             })
         }
         return novels
@@ -185,16 +187,14 @@ function publicFunc() {
         let watchedSeries = getFromCacheObject("watchedSeries")
         let novels0 = novels.map(novel => novel.id)
 
-        msg = util.checkStatus(!util.settings.HIDE_LIKE_NOVELS).replace("未","不")
-        java.log(`${msg}显示收藏小说`)
+        java.log(`${util.checkStatus(!util.settings.HIDE_LIKE_NOVELS)}显示收藏小说`)
         if (util.settings.HIDE_LIKE_NOVELS) {
             novels = novels.filter(novel => !likeNovels.includes(Number(novel.id)))
             novels1 = novels.map(novel => novel.id)
             java.log(`⏬ 过滤收藏：过滤前${novels0.length}；过滤后${novels1.length}`)
         }
 
-        msg = util.checkStatus(!util.settings.HIDE_WATCHED_SERIES).replace("未","不")
-        java.log(`${msg}显示追更系列`)
+        java.log(`${util.checkStatus(!util.settings.HIDE_WATCHED_SERIES)}显示追更系列`)
         if (util.settings.HIDE_WATCHED_SERIES) {
             novels = novels.filter(novel => !watchedSeries.includes(Number(novel.seriesId)))
             novels2 = novels.map(novel => novel.id)
@@ -205,8 +205,8 @@ function publicFunc() {
         let novels3 = novels.map(novel => novel.id)
         if (novels0.length >= 1 && novels3.length === 0) {
             let msg = `⏬ 过滤小说\n⚠️ 过滤后无结果\n\n请根据需要\n`
-            if (!util.settings.HIDE_LIKE_NOVELS) msg += "开启显示收藏小说\n"
-            if (!util.settings.HIDE_WATCHED_SERIES) msg += "开启显示追更系列"
+            if (util.settings.HIDE_LIKE_NOVELS) msg += "开启显示收藏小说\n"
+            if (util.settings.HIDE_WATCHED_SERIES) msg += "开启显示追更系列"
             sleepToast(msg, 1)
         }
 
@@ -225,8 +225,8 @@ function publicFunc() {
     u.novelFilter2 = function(novels) {
         let novels0 = novels.map(novel => novel.id)
         let captionBlockWords = getFromCacheObject("captionBlockWords")
-        if (captionBlockWords === null) captionBlockWords = []
-        if (captionBlockWords) {
+        if (!captionBlockWords) captionBlockWords = []
+        else {
             // 仅保留没有任何屏蔽词的小说
             // novels = novels.filter(novel => {
             //     return !captionBlockWords.some(item => {
@@ -240,8 +240,8 @@ function publicFunc() {
         }
 
         let tagsBlockWords = getFromCacheObject("tagsBlockWords")
-        if (tagsBlockWords === null) tagsBlockWords = []
-        if (tagsBlockWords) {
+        if (!tagsBlockWords) tagsBlockWords = []
+        else {
             // 仅保留没有任何屏蔽词的小说
             // novels = novels.filter(novel => {
             //     return !tagsBlockWords.some(item => {
@@ -259,7 +259,7 @@ function publicFunc() {
     // 收藏小说/追更系列 写入缓存
     u.saveNovels = function(listInCacheName, list) {
         let listInCache = getFromCacheObject(listInCacheName)
-        if (listInCache === null) listInCache = []
+        if (!listInCache) listInCache = []
 
         listInCache = listInCache.concat(list)
         listInCache = Array.from(new Set(listInCache))
@@ -267,13 +267,23 @@ function publicFunc() {
 
         if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
         else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
-        java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
+        util.debugFunc(() => {
+            java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
+        })
+    }
+
+    u.saveAuthors = function(authors) {
+        let pixivAuthors = getFromCacheObject("pixivAuthors")
+        if (!pixivAuthors) pixivAuthors = {}
+
+        pixivAuthors = Object.assign(pixivAuthors, authors)
+        putInCacheObject("pixivAuthors", pixivAuthors)
     }
 
     // 处理 novels 列表
     u.handNovels = function(novels, isDetail) {
         if (!isDetail) isDetail = false
-        let likeNovels = [], watchedSeries = []
+        let likeNovels = [], watchedSeries = [], authors = {}
         novels = util.authorFilter(novels)
         novels.forEach(novel => {
             // novel.id = novel.id
@@ -281,7 +291,7 @@ function publicFunc() {
             // novel.userName = novel.userName
             // novel.userId = novel.userId
             // novel.tags = novel.tags
-            putInCache(`${novel.userName}`, novel.userId)  // 加入缓存，便于搜索作者
+            authors[novel.userName] = novel.userId  // 加入缓存，便于搜索作者
             if (novel.tags === undefined || novel.tags === null) {
                 novel.tags = []
             }
@@ -400,6 +410,7 @@ function publicFunc() {
         // 收藏小说/追更系列 写入缓存
         util.saveNovels("likeNovels", likeNovels)
         util.saveNovels("watchedSeries", watchedSeries)
+        util.saveAuthors(authors)
         util.debugFunc(() => {
             java.log(`处理小说完成`)
         })
@@ -430,15 +441,15 @@ function publicFunc() {
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
             if (novel.seriesId) {
-                collectMsg = `📃 追更：${util.checkStatus(novel.isWatched)}追更系列`
+                collectMsg = `追更：${util.checkStatus(novel.isWatched)}追更系列`
             } else {
-                collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
+                collectMsg = `收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
             }
 
             if (util.settings.MORE_INFORMATION) {
                 novel.description = `\n登录：${util.checkStatus(isLogin())}登录账号
                 ${collectMsg}\n书名：${novel.title}\n作者：${novel.userName}
-                标签：${novel.tags}\n⬆️ 上传：${novel.createDate}
+                标签：${novel.tags}\n上传：${novel.createDate}
                 更新：${novel.updateDate}\n简介：${novel.description}`
             } else {
                 novel.description = `\n登录：${util.checkStatus(isLogin())}登录账号

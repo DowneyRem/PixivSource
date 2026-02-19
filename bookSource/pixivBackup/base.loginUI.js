@@ -69,8 +69,8 @@ let settings = [
 
     {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
-    // {"🔍 🚫 显示发现": "editSettings('SHOW_DISCOVER')" },
-    {"🔍 搜索说明": "readMeSearch()" },
+    // {"🔍 搜索说明": "readMeSearch()" },
+    {"🐺 兽人作者": "updatePixivAuthors()" },
 ]
 
 let discoverSettings = [

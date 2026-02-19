@@ -359,9 +359,9 @@
         }
     },
     {
-        "name": "🔍 搜索说明",
+        "name": "🐺 兽人作者",
         "type": "button",
-        "action": "readMeSearch()",
+        "action": "updatePixivAuthors()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
