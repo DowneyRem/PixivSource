@@ -31,7 +31,7 @@ function startShelfRefresh() {
 }
 
 function endShelfRefresh() {
-    source.putConcurrent("6/2000")
+    source.putConcurrent("25/5000")
 }
 
 function callBackFactory(event) {
