@@ -84,13 +84,6 @@ function getUserIdOnline(full) {
 }
 
 function getUserNovels() {
-    if (!isLogin()) {
-        sleepToast("👤 搜索作者\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
-        util.removeCookie(); util.login()
-        sleepToast("👤 搜索作者\n\n登录成功后，请重新搜索", 2)
-        return []
-    }
-
     let page = Number(java.get("page"))
     let uidList = getUserIdCache()
     if (!uidList) uidList = getUserIdOnline()
@@ -276,6 +269,12 @@ function novelFilter(novels) {
         novels = novels.concat(getSeries())
         novels = novels.concat(getNovels())
     } else {
+        if (!isLogin()) {
+            sleepToast("🔍 搜索小说\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
+            util.removeCookie(); util.login()
+            sleepToast("🔍 搜索小说\n\n登录成功后，请重新搜索", 2)
+            return []
+        }
         novels = novels.concat(getSeries())
         novels = novels.concat(getNovels())
         if (util.settings.SEARCH_AUTHOR) novels = novels.concat(getUserNovels())
