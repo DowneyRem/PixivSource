@@ -259,7 +259,7 @@ function novelFilter(novels) {
         // })
         novels = novels.filter(novel => novel.userName.includes(inputAuthor))
         let novels2 = novels.map(novel => novel.id)
-        java.log(`👤 过滤作者：${tags.join("、")}`)
+        java.log(`👤 过滤作者：${inputAuthor.join("、")}`)
         java.log(`👤 过滤作者：过滤前${novels0.length}；过滤后${novels2.length}`)
     }
     return novels
