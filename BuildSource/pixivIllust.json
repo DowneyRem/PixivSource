@@ -9,7 +9,7 @@
         "concurrentRate": "5/2000",
         "customButton": false,
         "customOrder": 2,
-        "enabled": true,
+        "enabled": false,
         "enabledCookieJar": true,
         "enabledExplore": true,
         "eventListener": false,
