@@ -1063,6 +1063,6 @@ function updatePixivAuthors() {
     if (!pixivAuthors) pixivAuthors = {}
     pixivAuthors = Object.assign(pixivAuthors, furryAuthors)
     putInCacheObject("pixivAuthors", pixivAuthors, cacheSaveSeconds)
-    sleepToast("\n🐺 兽人小说搜索优化 \n\n ✅ 已导入 Linpx 推荐作者数据", 1)
+    sleepToast("\n🐺 兽人作者搜索优化 \n\n ✅ 已导入 Linpx 推荐作者", 1)
     return pixivAuthors
 }
