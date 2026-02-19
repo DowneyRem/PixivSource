@@ -63,7 +63,7 @@ function getUserIdOnline(full) {
     let page = Number(java.get("page"))
     let userIds = getAjaxParseJson(urlSearchUser(userName, page, full), html => {
             let resp = JSON.parse(html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)[1])
-            return JSON.stringify(resp.props.pageProps.userIds)
+            return resp.props.pageProps.userIds
         }
     )
 
