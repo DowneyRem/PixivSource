@@ -1,24 +1,35 @@
 var cacheSaveSeconds = 30*24*60*60  // 长期缓存 30 天
 var cacheTempSeconds = 10*60*1000   // 冷却时间 10 分钟
 
-function cacheGetAndSet(key, supplyFunc, forceUpdate) {
+function cacheGetAndSet(key, supplyFunc, requestUpdate) {
     const {java, cache} = this
     let timestamp = 0
     let v = this.getFromCacheObject(key)
     if (Array.isArray(v)) {
-        timestamp = v[0].timestamp
-    } else if (v) timestamp = v.timestamp
+        try {
+            timestamp = v[0].timestamp
+        } catch (e) {
+            timestamp = 0
+        }
+    } else if (v) {
+        timestamp = v.timestamp
+    }
 
     const isExpired = v && (new Date().getTime() >= timestamp + cacheTempSeconds)
     const isError = v && (v.error === true) && isExpired
-    forceUpdate = forceUpdate && isExpired
+    requestUpdate = requestUpdate && isExpired
 
-    if (!v || forceUpdate || isError) {
+    if (!v || requestUpdate || isError) {
         v = supplyFunc()
         let now = new Date().getTime()
-        if (!Array.isArray(v) && v.length >= 1) {
+        // getAjaxJson getWebviewJson 时间戳写入对象本身
+        if (!Array.isArray(v)) {
             v = Object.assign({timestamp: now}, v)
         }
+        // else {
+        //     // getAjaxAllJson 时间戳写入第一个元素（读取时 v[0].timestamp）// 不重复写入
+        //     if (v.length > 0) v[0] = Object.assign({timestamp: now}, v[0])
+        // }
         this.putInCacheObject(key, v, cacheSaveSeconds)
     }
     return v
@@ -51,13 +62,13 @@ function getFromCacheObject(objectName) {
     return JSON.parse(object)
 }
 
-function getAjaxJson(url, forceUpdate) {
+function getAjaxJson(url, requestUpdate) {
     const {java, cache} = this
     return this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
-    }, forceUpdate)
+    }, requestUpdate)
 }
-function getAjaxAllJson(urls, forceUpdate) {
+function getAjaxAllJson(urls, requestUpdate) {
     const {java, cache} = this
     let batchKey = JSON.stringify(urls)
     return this.cacheGetAndSet(batchKey, () => {
@@ -71,7 +82,7 @@ function getAjaxAllJson(urls, forceUpdate) {
             this.putInCacheObject(urls[i], data, cacheSaveSeconds)
         }
         return results
-    }, forceUpdate)
+    }, requestUpdate)
 }
 
 function getWebViewUA() {
@@ -210,27 +221,33 @@ function urlIllustOriginal(illustId, order) {
     return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 
-function dateFormat(text) {
-    return `${text.slice(0, 10)}`
+function addZero(num) {
+    return String(num).padStart(2, '0')
+}
+function dateFormat(str) {
+    let time = new Date(str);
+    let Y = time.getFullYear() + "年";
+    let M = this.addZero(time.getMonth() + 1) + "月";
+    let D = this.addZero(time.getDate()) + "日";
+    return Y + M + D;
 }
 function timeFormat(str) {
-    let addZero = function (num) {
-        return num < 10 ? '0' + num : num;
-    }
     let time = new Date(str);
     let YY = time.getFullYear()
-    let MM = addZero(time.getMonth() + 1)
-    let DD = addZero(time.getDate())
-    let hh = addZero(time.getHours())
-    let mm = addZero(time.getMinutes())
-    let ss = addZero(time.getSeconds())
+    let MM = this.addZero(time.getMonth() + 1)
+    let DD = this.addZero(time.getDate())
+    let hh = this.addZero(time.getHours())
+    let mm = this.addZero(time.getMinutes())
+    let ss = this.addZero(time.getSeconds())
     return `${YY}-${MM}-${DD} ${hh}:${mm}:${ss}`
 }
 function timeTextFormat(text) {
     return `${text.slice(0, 10)} ${text.slice(11, 19)}`
 }
 
-sleep = Packages.java.lang.Thread.sleep
+function sleep(seconds) {
+    return Packages.java.lang.Thread.sleep(1000*seconds)
+}
 function sleepToast(text, seconds) {
     let {java} = this
     java.log(text)
