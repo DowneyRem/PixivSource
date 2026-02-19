@@ -158,7 +158,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     BookSource.bookUrlPattern = bookUrlPattern.split("\n")[1]
     BookSource.header = header
     BookSource.variableComment = `${variableComment}\n\n`
-    BookSource.concurrentRate = "3/2000"
+    BookSource.concurrentRate = "25/5000"
     BookSource.jsLib = jsLibContent
 
     BookSource.searchUrl = `@js:\n${searchUrlContent}`
