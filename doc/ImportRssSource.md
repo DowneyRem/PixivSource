@@ -16,7 +16,6 @@
 
 
 ## 导入订阅源
-
 ### 🚀 A.一键导入【最简单】 {#OneClickImport}
 **点击链接，一键导入 书源、订阅源**
 | 源名称    | jsDelivr | Github |
@@ -42,6 +41,9 @@
 | 🅿️ Pixiv 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
 | 🦊 Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json) | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
 | 🐲 BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json) | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
+| | | |
+| 🌌 通用书源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/normal.json) | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/normal.json) |
+| 📚 Books 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json) |
 
 
 <details><summary><strong> 🔗 规则订阅　详细操作 </strong></summary>
@@ -66,43 +68,10 @@
 </details>
 
 
-<details><summary><strong> ➕ 更多方法</strong></summary>
+<details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
 
-以下导入方法任选其一亦可
-
-<details><summary><strong> A. 文件导入</strong></summary>
-
-### A.文件导入更简单
-#### 1.下载书源/订阅源文件
-```
-https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
-```
-```
-https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
-```
-
-#### 2.使用阅读打开
-点击书源，选择用阅读打开
-
-![img](./pic/OpenInLegado.png)
-
-#### 3.导入完成并启用书源/订阅源
-![img](./pic/InportRssSourceBtsrk.png)
-</details>
-
-
-<details><summary><strong> C. 网络导入</strong></summary>
-
-### C.网络导入也方便
-请【**开启代理**】后，复制下面的【订阅书源】链接
-- btsrk 订阅源
-```
-https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
-```
-- 书源分享 订阅源
-```
-https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
-```
+### 🌐 C.网络导入
+订阅 - 设置 - 网络导入 - 复制链接，粘贴 - 添加订阅
 
 #### 1.打开【订阅】页面，点击右上角【设置】
 ![img](./pic/ImportOnlineRssSource1.png)
@@ -113,7 +82,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
 #### 3.粘贴订阅源链接，点击确定
 ![img](./pic/ImportOnlineRssSource3.jpg)
 
-#### 4.导入完成并启用订阅源
+#### 4.导入并启用订阅源
 ![img](./pic/InportRssSourceBtsrk.png)
 
 ![img](./pic/ImportOnlineRssSource4.jpg)
@@ -121,4 +90,20 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
 **无法网络导入时，请尝试开启代理，或过段时间重试**
 </details>
 
+
+<details><summary><strong> 📄 文件导入　详细操作</strong></summary>
+
+### 📑 D.文件导入
+#### 1.下载书源/订阅源文件
+打开 [此处的书源链接](#Subscription) ，选择 **链接另存为**，下载相应书源
+
+或打开 [Github Release](https://github.com/DowneyRem/PixivSource/releases/latest)，下载相应书源
+
+#### 2.使用阅读打开
+点击书源文件，打开方式选择：阅读
+
+![img](./pic/OpenInLegado.png)
+
+#### 3.导入并启用书源/订阅源
+![img](./pic/InportBookSourcePixiv.jpg)
 </details>
