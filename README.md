@@ -9,7 +9,7 @@
 
 
 ## ✨ [臻享阅读：最好的 Pixiv 小说阅读器——开源阅读 + Pixiv 书源](https://pixivsource.pages.dev/BetterExperience)
-## ⚡️ [快速开始](https://pixivsource.pages.dev/QuickStart)：➡️[下载阅读](https://pixivsource.pages.dev/QuickStart#DownloadLegado)➡️[导入书源](https://pixivsource.pages.dev/QuickStart#ImportSources)➡️[登录账号](https://pixivsource.pages.dev/QuickStart#LoginAccount)➡️[阅读设置](https://pixivsource.pages.dev/QuickStart#LegadoSettings)➡️[开始使用](https://pixivsource.pages.dev/Pixiv#AddNovel)
+## ⚡️ [快速开始](https://pixivsource.pages.dev/QuickStart)：➡️[下载阅读](https://pixivsource.pages.dev/QuickStart#DownloadLegado)➡️[导入书源](https://pixivsource.pages.dev/QuickStart#ImportSources)➡️[登录账号](https://pixivsource.pages.dev/QuickStart#LoginAccount)➡️[阅读设置](https://pixivsource.pages.dev/QuickStart#LegadoSettings)➡️[开始使用](https://pixivsource.pages.dev/Pixiv#All)
 
 
 ## 📖 书源功能

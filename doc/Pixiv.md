@@ -218,7 +218,7 @@ head:
 > **详见：[远程书籍](RemoteBooks.md)**
 
 
-## 全部功能 {#AddNovel}
+## 全部功能 {#All}
 ### 🔍 搜索小说 {#SearchNovel}
 <details><summary> 🔍 搜索小说 </summary>
 
