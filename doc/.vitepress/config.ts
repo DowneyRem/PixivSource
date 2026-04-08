@@ -184,7 +184,7 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                     { text: "☕ 支持开发", link: "/Sponsor" },
-                    { text: "💵 打赏记录", link: `${BLOG}/Sponsor/Source` },
+                    { text: "💵 打赏记录", link: `${BLOG}Sponsor` },
                 ]
             },
         ],
