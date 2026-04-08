@@ -39,24 +39,26 @@
 
 
 ### 🔗 B.规则订阅【易更新】 {#Subscription}
-**订阅 - 规则订阅 - 添加 - 复制链接，添加订阅**
+> [!NOTE]
+>
+> 阅读 Sigma 支持自动 **通过订阅规则** 更新书源
+> 
+>　**订阅 - 规则订阅 - 添加 - 复制链接、粘贴 - 添加订阅**
 
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |
-| 🅿️ Pixiv 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
-| 🦊 Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
-| 🐲 BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
+| 🅿️ Pixiv 书源   | [书源链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [书源链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
+| 🦊 Linpx 书源   | [书源链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)  | [书源链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
+| 🐲 BTSRK 订阅源 | [书源链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)  | [书源链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
 
 
-<details><summary><strong> 规则订阅 详细操作 </strong></summary>
+<details><summary><strong> 🔗 规则订阅　详细操作 </strong></summary>
 
 #### 1. 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.png)
 
-
 #### 2. 点击加号，粘贴链接，保存订阅
 ![img](./pic/SubscribeBoookSourcePixiv.jpg)
-
 
 #### 3. 点击相应订阅规则，导入并启用/更新书源
 ![img](./pic/SubscribeHomePage.jpg)
@@ -68,6 +70,26 @@
 **导入之后，再次点击则会检查更新**
 </details>
 
+
+<details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
+
+### 🌐 C.网络导入
+**我的 - 书源管理 - 菜单 - 网络导入 - 复制链接、粘贴 - 添加书源**
+
+#### 1. 打开【我的】页面，点击【书源管理】
+![img](./pic/ImportOnlineBookSource1.jpg)
+
+#### 2. 点击右上角的三点菜单，选择【网络导入】
+![img](./pic/ImportOnlineBookSource2.jpg)
+
+#### 3. 粘贴书源链接，点击确定
+![img](./pic/ImportOnlineBookSource3.jpg)
+
+#### 4. 导入完成并启用书源
+**如果导入失败，请开启代理，或过段时间重试**
+
+![img](./pic/InportBookSourcePixiv.jpg)
+</details>
 
 
 <details><summary><strong> ➕ 更多方法</strong></summary>
@@ -103,50 +125,6 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/DowneyRem/Pixi
 
 
 #### 3.导入完成并启用书源/订阅源
-![img](./pic/InportBookSourcePixiv.jpg)
-</details>
-
-
-<details><summary><strong> B. 规则订阅</strong></summary>
-
-### 🔗 B.规则订阅易更新
-#### 1. 打开【订阅】页面，点击【规则订阅】
-![img](./pic/SubscribeEntry.png)
-
-
-#### 2. 点击加号，粘贴链接，保存订阅
-![img](./pic/SubscribeBoookSourcePixiv.jpg)
-
-
-#### 3. 点击相应订阅规则，导入并启用/更新书源
-![img](./pic/SubscribeHomePage.jpg)
-
-**首次点击【订阅规则】 即可导入**
-
-![img](./pic/InportBookSourcePixiv.jpg)
-
-**导入之后，再次点击则会检查更新**
-</details>
-
-
-<details><summary><strong> C. 网络导入</strong></summary>
-
-### 🌐 C.网络导入也方便
-#### 1.打开【我的】页面，点击【书源管理】
-![img](./pic/ImportOnlineBookSource1.jpg)
-
-
-#### 2.点击右上角的三点菜单，选择【网络导入】
-![img](./pic/ImportOnlineBookSource2.jpg)
-
-
-#### 3.粘贴书源链接，点击确定
-![img](./pic/ImportOnlineBookSource3.jpg)
-
-
-#### 4.导入完成并启用书源
-**如果导入失败，请开启代理，或过段时间重试**
-
 ![img](./pic/InportBookSourcePixiv.jpg)
 </details>
 
