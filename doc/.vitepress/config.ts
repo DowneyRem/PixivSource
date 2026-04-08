@@ -6,17 +6,18 @@ import { resolve } from 'path'
 // 动态判断环境
 // Cloudflare Pages 默认提供 CF_PAGES 环境变量
 // GitHub Actions 默认提供 GITHUB_ACTIONS 环境变量
-// 本地开发：两者都为 false，不触发跳转
 const isCF = process.env.CF_PAGES === '1' || process.env.PLATFORM === 'cloudflare'
 const isGitHub = process.env.GITHUB_ACTIONS === 'true'
 
-// GitHub 部署在 /PixivSource/，Cloudflare 通常部署在根目录 /
-const BASE = isCF ? '/' : '/PixivSource/'
-const HOSTNAME = isCF ? 'https://pixivsource.pages.dev/' : 'https://downeyrem.github.io/PixivSource/'
-const BLOG = isCF ? 'https://downeyrem.pages.dev' : 'https://downeyrem.github.io'
+let HOSTNAME = "https://pixivsource.pages.dev/"
+let BASE = "/"
+if (isGitHub) {
+    HOSTNAME = "https://downeyrem.github.io/PixivSource/"
+    BASE = "/PixivSource/"
+}
 
-// 规范网址始终指向 CF Pages（主站）
-const CANONICAL_BASE = 'https://pixivsource.pages.dev'
+const CANONICAL_BASE = "https://pixivsource.pages.dev/"
+const BLOG = "https://downeyrem.pages.dev/"
 
 
 // https://vitepress.dev/reference/site-config
@@ -260,7 +261,7 @@ export default defineConfig({
         }
     },
     sitemap: {
-        hostname: HOSTNAME,
+        hostname: CANONICAL_BASE,
         lastmodDateOnly: true,  // print date not time
         xmlns: {   // 精简 xmlns
             news: false,
