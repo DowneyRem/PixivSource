@@ -59,7 +59,7 @@ export default defineConfig({
             .replace(/index\.md$/, '')
             .replace(/\.md$/, '')
 
-        const canonicalUrl = `${CANONICAL_BASE}/${path}`
+        const canonicalUrl = `${CANONICAL_BASE}${path}`
 
         // 优先使用页面 frontmatter，回退到全局默认值
         const ogTitle = pageData.frontmatter.title ?? 'Pixiv 书源 - PixivSource'
