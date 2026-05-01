@@ -113,3 +113,4 @@ features:
     link: BetterExperience#IPDirect
 ---
 <HomeUnderline />
+<FriendLinkHome />

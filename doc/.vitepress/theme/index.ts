@@ -11,6 +11,7 @@ import DownToDiscuss from "./components/DownToDiscuss.vue";
 import DragonChat from './components/DragonChat.vue'
 import FriendLink from "./components/FriendLink.vue"
 import FriendLinkFooter from './components/FriendLinkFooter.vue'
+import FriendLinkHome from './components/FriendLinkHome.vue'
 import HomeUnderline from "./components/HomeUnderline.vue"
 import NotFound from "./components/404.vue";
 import Sponsor from "./components/Sponsor.vue";
@@ -64,6 +65,7 @@ export default {
         app.component('DragonChat', DragonChat)
         app.component('FriendLink', FriendLink)
         app.component('HomeUnderline', HomeUnderline)
+        app.component('FriendLinkHome', FriendLinkHome)
         // app.component('UpdateTime', UpdateTime)
         app.component('Sponsor', Sponsor)
 
