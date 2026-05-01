@@ -1,12 +1,12 @@
 <template>
-    <!-- 只有当 frontmatter 没显式设置 footer: false 时显示 -->
     <footer v-if="frontmatter.footer !== false" class="custom-footer" :class="{ 'has-sidebar': hasSidebar }">
         <div class="footer-inner">
             <div class="container">
                 <p class="copyright">
-                    Copyright © 2025-{{ currentYear }}
-                    <a href="https://github.com/DowneyRem/PixivSource" target="_blank" rel="noopener">PixivSource</a>
-                    All rights reserved.
+                    <span class="footer-group">Copyright © 2025-{{ currentYear }}
+                         <a href="https://github.com/DowneyRem/PixivSource" target="_blank" rel="noopener">PixivSource</a>
+                    </span>
+                    <span class="footer-group rights">All rights reserved.</span>
                 </p>
             </div>
         </div>
@@ -81,5 +81,59 @@ const currentYear = new Date().getFullYear()
 :not(.has-sidebar) .footer-inner {
     padding: 0;
     text-align: center;
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--vp-c-text-2);
+}
+
+.copyright a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    transition: color 0.25s;
+}
+.copyright a:hover {
+    color: var(--vp-c-brand-1);
+}
+
+/* 手机端适配：分两行显示 */
+@media (max-width: 640px) {
+    .copyright {
+        flex-direction: column; /* 垂直排列 */
+        gap: 0px; /* 紧凑排列 */
+    }
+
+    .footer-group {
+        display: block; /* 强制占满一行 */
+    }
+
+    .rights {
+        font-size: 13px; /* 第二行稍微缩小，视觉更好看 */
+        opacity: 0.8;
+    }
+}
+
+/* 手机端适配 (小于 640px) */
+@media (max-width: 640px) {
+    .copyright {
+        /* 变成垂直排列 */
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .rights-text {
+        /* 或者通过强制换行 */
+        display: block;
+        font-size: 12px; /* 手机端版权声明可以稍微小一点，更有层次感 */
+        opacity: 0.8;
+    }
 }
 </style>
