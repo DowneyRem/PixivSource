@@ -28,11 +28,40 @@ const resolveIcon = (icon) => icon?.startsWith('http') ? icon : withBase(icon ||
 
 <style scoped>
 .home-friends {
-    padding-top: 70px;
+    padding-top: 60px;
     padding-bottom: 0px;
-    margin-bottom: -120px;
+    margin-bottom: -100px;
     display: flex;
     justify-content: center;
+}
+
+/* 手机端专门优化 */
+@media (max-width: 640px) {
+    .home-friends {
+        padding-top: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .grid {
+        /* 手机端强制两列并排，展示更多内容 */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .card {
+        padding: 6px 10px;
+    }
+
+    .name {
+        font-size: 13px;
+    }
+
+    .title-emoji {
+        /* 手机端标题稍微左移一点点对齐 */
+        margin-left: 0px !important;
+        width: 25px !important;
+    }
 }
 
 .container {
