@@ -63,7 +63,7 @@ name="唐尼瑞姆" badge="🐲" icon="🐲">
 ### 📅 定期赞助
 - [Linpx](https://www.furrynovel.ink) （2023年起，每年 ￥100）
 ### 🔀 不定期赞助
-- [阅读 Sigma](https://loyc.xyz/c/legado.html) （洛娅橙）
+- [阅读 Sigma](https://github.com/Luoyacheng/legado) （洛娅橙）
 - [阅读 Beta](https://beta.miaogongzi.cc) （喵公子）
 
 

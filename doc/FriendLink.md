@@ -18,7 +18,7 @@ friendGroups:
   - title: 📖 阅读软件
     items:
       - name: 阅读 Sigma
-        link: https://loyc.xyz/c/legado.html
+        link: https://github.com/Luoyacheng/legado
         icon: /img/LegadoSigma.png
         desc: 极致阅读体验 免费开源电子书阅读器
 

@@ -66,7 +66,7 @@ head:
 
 
 ## 安卓版 {#Android}
-### 👍 【推荐】[阅读 Sigma](https://loyc.xyz/c/legado.html) {#LegadoSigma}
+### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado) {#LegadoSigma}
 > [!TIP]
 > 
 > **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
