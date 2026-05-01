@@ -202,9 +202,9 @@ export default defineConfig({
             prev: '上一页',
             next: '下一页'
         },
-        footer: {
-            copyright: `Copyright © 2025-${new Date().getFullYear()} <a href="https://github.com/DowneyRem/PixivSource">PixivSource</a> All rights reserved.`
-        },
+        // footer: {
+        //     copyright: `Copyright © 2025-${new Date().getFullYear()} <a href="https://github.com/DowneyRem/PixivSource">PixivSource</a> All rights reserved.`
+        // },
         search: {
             provider: "local",
             options: {

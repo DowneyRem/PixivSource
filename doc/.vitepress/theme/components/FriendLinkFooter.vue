@@ -60,7 +60,7 @@ const showFooter = computed(() => {
 <style scoped>
 .fixed-friend-footer {
     width: 100%;
-    padding-bottom: 80px;
+    padding-bottom: 0px;
 }
 
 .footer-inner {
