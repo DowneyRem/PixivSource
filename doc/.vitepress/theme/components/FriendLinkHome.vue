@@ -28,40 +28,11 @@ const resolveIcon = (icon) => icon?.startsWith('http') ? icon : withBase(icon ||
 
 <style scoped>
 .home-friends {
-    padding-top: 60px;
+    padding-top: 65px;
     padding-bottom: 0px;
     margin-bottom: -100px;
     display: flex;
     justify-content: center;
-}
-
-/* 手机端专门优化 */
-@media (max-width: 640px) {
-    .home-friends {
-        padding-top: 40px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .grid {
-        /* 手机端强制两列并排，展示更多内容 */
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-    }
-
-    .card {
-        padding: 6px 10px;
-    }
-
-    .name {
-        font-size: 13px;
-    }
-
-    .title-emoji {
-        /* 手机端标题稍微左移一点点对齐 */
-        margin-left: 0px !important;
-        width: 25px !important;
-    }
 }
 
 .container {
@@ -108,7 +79,7 @@ const resolveIcon = (icon) => icon?.startsWith('http') ? icon : withBase(icon ||
 /* --- 网格与卡片样式 --- */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 12px;
 }
 
@@ -151,4 +122,34 @@ const resolveIcon = (icon) => icon?.startsWith('http') ? icon : withBase(icon ||
 .card:hover .name {
     color: var(--vp-c-brand-1);
 }
+
+/* 手机端专门优化 */
+@media (max-width: 640px) {
+    .home-friends {
+        padding-top: 20px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .grid {
+        /* 手机端如果觉得 180px 太宽导致一行只能显示一个，可以改为固定的 repeat(2, 1fr) */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .card {
+        padding: 6px 10px;
+    }
+
+    .name {
+        font-size: 13px;
+    }
+
+    .title-emoji {
+        /* 手机端标题稍微左移一点点对齐 */
+        margin-left: 9px !important;
+        width: 25px !important;
+    }
+}
+
 </style>
