@@ -1,10 +1,10 @@
 <template>
-    <div v-if="showFooter && allFriends.length > 0" class="fixed-friend-footer">
+    <!-- data 直接就是过滤后的分组数组，我们判断是否有数据即可 -->
+    <div v-if="showFooter && friendGroups.length > 0" class="fixed-friend-footer">
         <div class="footer-inner">
             <div class="footer-container">
                 <hr class="divider" />
                 <div class="footer-header">
-                    <!-- 这里的 🤝 会和下方的 icon 垂直对齐 -->
                     <a href="/FriendLink" class="footer-title">
                         <span class="title-emoji">🤝</span>
                         <span class="title-text">友情链接</span>
@@ -12,21 +12,24 @@
                 </div>
 
                 <div class="friends-grid">
-                    <a
-                        v-for="friend in allFriends"
-                        :key="friend.link"
-                        :href="friend.link"
-                        target="_blank"
-                        rel="noopener"
-                        class="friend-item"
-                    >
-                        <img
-                            :src="resolveIcon(friend.icon)"
-                            class="friend-icon"
-                            v-if="friend.icon"
-                        />
-                        <span class="friend-name">{{ friend.name }}</span>
-                    </a>
+                    <template v-for="group in friendGroups" :key="group.title">
+                        <a
+                            v-for="friend in group.items"
+                            :key="friend.link"
+                            :href="friend.link"
+                            target="_blank"
+                            rel="noopener"
+                            class="friend-item"
+                        >
+                            <img
+                                :src="resolveIcon(friend.icon)"
+                                class="friend-icon"
+                                v-if="friend.icon"
+                                loading="lazy"
+                            />
+                            <span class="friend-name">{{ friend.name }}</span>
+                        </a>
+                    </template>
                 </div>
             </div>
         </div>
@@ -37,17 +40,20 @@
 import { computed } from 'vue'
 import { useData, useRoute, withBase } from 'vitepress'
 import { data as friendGroups } from './FriendLink.data.ts'
-
 const { frontmatter } = useData()
 const route = useRoute()
 
-const allFriends = computed(() => friendGroups.flatMap(group => group.items || []))
+// 因为 transform 已经做好了过滤，这里直接使用即可
+// 如果你依然想在组件内维护一个扁平化列表，可以保留此 computed，但无需再 filter
+const allFriendsExist = computed(() => friendGroups.some(g => g.items?.length > 0))
+
 const resolveIcon = (icon) => icon?.startsWith('http') ? icon : withBase(icon || '')
 
 const showFooter = computed(() => {
     return frontmatter.value.layout !== 'home' &&
         frontmatter.value.friendLink !== false &&
-        !route.path.includes('FriendLink')
+        // 确保不在友链主页显示，支持路径结尾包含或不包含 .html
+        !route.path.replace(/\.html$/, '').endsWith('FriendLink')
 })
 </script>
 

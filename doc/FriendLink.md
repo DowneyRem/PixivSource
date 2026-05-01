@@ -39,6 +39,7 @@ friendGroups:
         link: https://pixivsource.pages.dev/
         icon: favicon-512x512.png
         desc: 最好的 Pixiv 小说阅读器
+        hide: true
 
       - name: 明月书阁
         link: https://skybook.pages.dev
@@ -65,11 +66,13 @@ friendGroups:
         desc: 由 Vite 和 Vue 驱动的静态站点生成器
         link: https://vitepress.dev/zh/
         icon: https://vitepress.dev/vitepress-logo-mini.svg
+        hide: true
 
       - name: VitePress 教程
         desc: 快速上手中文教程
         link: https://vitepress.yiov.top/
         icon: https://vitepress.yiov.top/logo.png
+        hide: true
 ---
 
 <div align="center">
