@@ -45,9 +45,17 @@ friendGroups:
         link: https://skybook.pages.dev
         icon: https://skybook.qzz.io/img/favicon.ico
         desc: 开源阅读相关资源分享站
-        
 
-  - title: 🤝 博客分享
+
+  - title: 🌏 翻译工具
+    items:
+      - name: 生肉狮 RawMage
+        link: https://my-lion-bot.online/
+        icon: /img/RawMage.jpg
+        desc: 为解决阅读语言障碍与内容保存而生
+
+
+  - title: 🖥 博客分享
     items:
       - name: 唐尼瑞姆的博客
         link: https://downeyrem.pages.dev
