@@ -117,6 +117,19 @@ head:
 | [Github Action](https://github.com/HapeLee/legado-with-MD3/actions)   | 需要代理，需要登录 |
 
 
+### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max)
+> [!TIP]
+>
+> **这是 youfengknight 基于 阅读 Sigma 的改版阅读仓库**
+>
+> 项目地址：https://github.com/youfengknight/Legado_Max
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/HapeLee/legado-with-MD3/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/HapeLee/legado-with-MD3/actions)   | 需要代理，需要登录 |
+
+
 ### 🚮 其他版本 {#AndroidOthers}
 <details><summary> 👎 阅读 正式版（已停更）</summary>
 
@@ -216,3 +229,15 @@ head:
 | ------------------------------------------------------------- | ----- |
 | [Github](https://github.com/mgz0227/legado-Harmony/releases)  | 开发中 |
 | [Gitee](https://gitee.com/mgz0227/legado-Harmony/releases)    | 开发中 |
+
+
+## 🐞 【不兼容】[阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release)
+> [!TIP]
+>
+> **阅读官方推出的跨平台桌面阅读应用，目前还在开发中，全平台可用**
+>
+> 项目地址：https://github.com/LegadoTeam/Legado-Tauri-Release
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/LegadoTeam/Legado-Tauri-Release/releases) | 需要代理，无需登录 |
