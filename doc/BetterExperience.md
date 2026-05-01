@@ -20,7 +20,7 @@ head:
 <br>
 
 # ✨ 臻享阅读 ✨
-## 最好的 Pixiv 的小说阅读器
+## 最好的 Pixiv 第三方小说阅读器
 ### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](Sponsor.md)
