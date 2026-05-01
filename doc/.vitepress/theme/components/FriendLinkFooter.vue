@@ -62,23 +62,67 @@ const showFooter = computed(() => {
     margin: 0 auto;
     max-width: var(--vp-layout-max-width);
     box-sizing: border-box;
-    padding: 0 24px;
+    padding: 20px;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 0px) {
     .footer-inner {
-        /* 左侧偏移 */
-        padding-left: 280px;
-        /* 右侧偏移 */
-        padding-right: 320px;
+        padding-left: 25px;
+        padding-right: 25px;
     }
 }
 
-/* 超大屏下保持手动设置的对齐感 */
-@media (min-width: 1440px) {
+@media (min-width: 740px) {
     .footer-inner {
-        padding-left: calc((100vw - var(--vp-layout-max-width)) / 2 + 240px);
-        padding-right: calc((100vw - var(--vp-layout-max-width)) / 2 + 240px);
+        /* 从 25px 开始，每增加 1px 屏幕宽度，padding 增加 0.5px */
+        padding-left: calc(25px + (100vw - 740px) * 0.5);
+        padding-right: calc(25px + (100vw - 740px) * 0.5);
+    }
+}
+
+/* 阶段 A：中等屏幕拟合 (960px - 1279px) */
+/* 数据点：960(330,60) -> 1160(350,80) -> 1210(400,120) -> 1270(430,150) */
+@media (min-width: 960px){
+    .footer-inner {
+        /* 左侧：960到1270增长100px，斜率约 0.32 */
+        padding-left: calc(330px + (100vw - 960px) * 0.322);
+        /* 右侧：960到1270增长90px，斜率约 0.29 */
+        padding-right: calc(60px + (100vw - 960px) * 0.29);
+    }
+}
+
+/* 阶段 B：大屏布局重排点 (1280px - 1549px) */
+/* 此处遵循你要求的 1280 突变：左跳至 340, 右跳至 300 */
+/* 数据点：1280(340,300) -> 1360(350,330) -> 1440(380,360) -> 1550(380,360) */
+@media (min-width: 1280px) {
+    .footer-inner {
+        /* 左侧：1280到1440增长40px，斜率 0.25 */
+        padding-left: calc(340px + (100vw - 1280px) * 0.25);
+        /* 右侧：1280到1440增长60px，斜率 0.375 */
+        padding-right: calc(300px + (100vw - 1280px) * 0.375);
+    }
+}
+
+/* 阶段 C：超大屏/生产力屏平滑期 (1550px - 1919px) */
+/* 数据点：1550(380,360) -> 1600(370,370) -> 1920(380,360) */
+@media (min-width: 1550px) {
+    .footer-inner {
+        /* 左侧：1550到1600缩减10px，1600到1920增加10px */
+        /* 取 1550-1920 的微调斜率，使其在 1920 达到 380 */
+        padding-left: calc(380px + (100vw - 1550px) * 0); /* 趋于稳定，或微量调整 */
+
+        /* 右侧：1550到1600增加10px，1600到1920缩减10px，1920回归360 */
+        padding-right: calc(360px + (100vw - 1550px) * 0);
+    }
+}
+
+/* 阶段 D：极限宽度对齐 (1920px+) */
+/* 锁定 380/360 并开启居中补偿 */
+@media (min-width: 1920px) {
+    .footer-inner {
+        /* (100vw - 1920) / 2 是窗口继续拉宽时保持正文对齐的偏移量 */
+        padding-left: calc(380px + (100vw - 1920px) / 2);
+        padding-right: calc(360px + (100vw - 1920px) / 2);
     }
 }
 
@@ -160,10 +204,4 @@ const showFooter = computed(() => {
     color: var(--vp-c-brand-1);
 }
 
-/* 移动端逻辑 */
-@media (max-width: 959px) {
-    .footer-inner {
-        padding: 0 24px !important;
-    }
-}
 </style>
