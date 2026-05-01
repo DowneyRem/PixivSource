@@ -40,7 +40,7 @@ hero:
   actions:
     - theme: brand
       text: ⬇️ 下载 阅读 Plus
-      link: "https://loyc.xyz/c/legado.html#download"
+      link: "https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk"
       
     - theme: alt
       text: ✨ 臻享阅读

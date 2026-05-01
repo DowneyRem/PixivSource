@@ -38,7 +38,7 @@ head:
 >
 > 点击链接，下载 **【阅读 Plus】** 安装包并安装软件
 >
-> https://loyc.xyz/c/legado.html#download
+> https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk
 > 
 > **苹果设备及更多兼容软件详见：** [下载阅读](./Download.md)
 

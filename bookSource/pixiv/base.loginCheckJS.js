@@ -87,12 +87,12 @@ function publicFunc() {
             java.log("📱 软件平台：🤖 阅读 正式版")
             sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
             sleep(3);
-            startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
+            startBrowser("https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk", "下载阅读 Plus")
         } else {
             java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
             sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
             sleep(3);
-            startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
+            startBrowser("https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk", "下载阅读 Plus")
             }
 
         if (globalThis.settings.IPDirect) {
