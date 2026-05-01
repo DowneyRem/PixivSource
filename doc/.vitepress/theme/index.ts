@@ -75,7 +75,7 @@ export default {
         if (typeof window !== 'undefined') {
             watch(
                 () => router.route.data.relativePath,
-                () => updateHomePageStyle(location.pathname === "/PixivSource/"),
+                () => updateHomePageStyle(location.pathname === "/"),
                 { immediate: true },
             )
         }
