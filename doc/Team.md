@@ -28,9 +28,9 @@ friendGroups:
           - name: 唐尼瑞姆的博客
             link: https://downeyrem.pages.dev
             icon: https://www.github.com/DowneyRem.png
-          - name: 打赏开发者
+          - name: 支持开发
             link: /Sponsor
-            icon: https://www.github.com/DowneyRem.png
+            icon: simple-icons:githubsponsors
 
         
       - name: WindyHusky
