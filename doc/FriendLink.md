@@ -1,17 +1,17 @@
 ---
 title: 友情链接 - PixivSource 相关资源推荐
-description: PixivSource 友情链接：开源阅读相关软件、书源资源站、开发者博客及 VitePress 工具推荐。
+description: PixivSource 友情链接：开源阅读相关软件、书源资源站、翻译工具、开发者博客推荐，欢迎提交开源阅读相关站点申请添加友链。
 
 head:
   - - meta
     - name: keywords
-      content: 开源阅读友情链接, Legado 相关资源, 阅读书源推荐, PixivSource 友链
+      content: Legado 相关资源, 阅读书源推荐, PixivSource 友链, 明月书阁, 生肉狮, 阅读 Sigma, 开源阅读资源站
   - - meta
     - property: og:title
       content: 友情链接 - PixivSource 相关资源推荐
   - - meta
     - property: og:description
-      content: PixivSource 友情链接：开源阅读相关软件、书源资源站、开发者博客及 VitePress 工具推荐。
+      content: PixivSource 友情链接：开源阅读相关软件、书源资源站、翻译工具、开发者博客推荐，欢迎提交开源阅读相关站点申请添加友链。
 
 
 friendGroups:

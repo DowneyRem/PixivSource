@@ -1,3 +1,20 @@
+---
+layout: doc
+title: 导入书源 - 开源阅读 导入书源教程
+description: 开源阅读 Legado 导入书源完整教程：一键导入、规则订阅、网络导入、文件导入四种方式。
+
+head:
+  - - meta
+    - name: keywords
+      content: 导入 Pixiv 书源, Legado 导入书源, 开源阅读导入书源, Pixiv 书源订阅, 一键导入书源, 书源规则订阅, Linpx 书源导入, BTSRK 订阅源, 书源网络导入
+  - - meta
+    - property: og:title
+      content: 导入书源 - 开源阅读 导入书源教程
+  - - meta
+    - property: og:description
+      content: 开源阅读 Legado 导入书源完整教程：一键导入、规则订阅、网络导入、文件导入四种方式。
+---
+
 <div align="center">
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>

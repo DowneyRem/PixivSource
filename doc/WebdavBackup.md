@@ -1,18 +1,18 @@
 ---
 layout: doc
-title: 备份与恢复 - 开源阅读 Legado 配置坚果云 WebDAV 备份
-description: 开源阅读 Legado 数据备份指南：注册坚果云、生成应用密码、配置 WebDAV 备份路径，实现书架与书源数据的自动备份与跨设备恢复。
+title: 备份与恢复 - 开源阅读 配置坚果云 WebDAV 备份
+description: 开源阅读 Legado 数据备份指南：注册坚果云、生成应用密码、配置 WebDAV 备份路径，实现书架与书源数据的自动备份、跨设备恢复。
 
 head:
   - - meta
     - name: keywords
-      content: 开源阅读备份, Legado WebDAV备份, 坚果云备份阅读, Legado备份恢复, 开源阅读坚果云
+      content: 开源阅读备份, Legado WebDAV备份, 坚果云备份阅读, Legado备份恢复, 开源阅读坚果云, 坚果云应用密码, Legado 自动备份, 开源阅读跨设备, WebDAV 云盘备份
   - - meta
     - property: og:title
-      content: 备份与恢复 - 开源阅读 Legado 配置坚果云 WebDAV 备份
+      content: 备份与恢复 - 开源阅读 配置坚果云 WebDAV 备份
   - - meta
     - property: og:description
-      content: 开源阅读 Legado 数据备份指南：注册坚果云、生成应用密码、配置 WebDAV 备份路径，实现书架与书源数据的自动备份与跨设备恢复。
+      content: 开源阅读 Legado 数据备份指南：注册坚果云、生成应用密码、配置 WebDAV 备份路径，实现书架与书源数据的自动备份、跨设备恢复。
 ---
 
 <div align="center">

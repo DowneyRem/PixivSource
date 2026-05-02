@@ -1,18 +1,18 @@
 ---
 layout: doc
-title: 远程书籍 - 在开源阅读中通过 WebDAV 阅读网盘书籍
-description: 在开源阅读 Legado 中配置 WebDAV 远程书籍：设置本地保存目录、添加网盘服务器、浏览并导入网盘中的小说到书架。
+title: 远程书籍 - 在开源阅读中阅读 WebDAV 网盘中的书籍
+description: 在开源阅读 Legado 中配置 WebDAV 远程书籍：设置本地保存目录、添加坚果云等网盘服务器、浏览并导入网盘中的小说到书架。
 
 head:
   - - meta
     - name: keywords
-      content: 开源阅读远程书籍, Legado WebDAV, 阅读网盘书籍, WebDAV 书源配置, Legado 远程书籍
+      content: 开源阅读 远程书籍, Legado WebDAV, 开源阅读 WebDAV 配置, Legado 远程书籍, Yandex WebDAV, 兽人小说共享书库
   - - meta
     - property: og:title
-      content: 远程书籍 - 在开源阅读中通过 WebDAV 阅读网盘书籍
+      content: 远程书籍 - 在开源阅读中阅读 WebDAV 网盘中的书籍
   - - meta
     - property: og:description
-      content: 在开源阅读 Legado 中配置 WebDAV 远程书籍：设置本地保存目录、添加网盘服务器、浏览并导入网盘中的小说到书架。
+      content: 在开源阅读 Legado 中配置 WebDAV 远程书籍：设置本地保存目录、添加坚果云等网盘服务器、浏览并导入网盘中的小说到书架。
 ---
 
 <div align="center">
