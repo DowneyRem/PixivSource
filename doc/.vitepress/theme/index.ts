@@ -16,6 +16,7 @@ import FriendLinkHome from './components/FriendLinkHome.vue'
 import HomeUnderline from "./components/HomeUnderline.vue"
 import NotFound from "./components/404.vue";
 import Sponsor from "./components/Sponsor.vue";
+import TeamGroups from "./components/TeamGroups.vue";
 import UpdateTime from "./components/UpdateTime.vue"
 import './style/index.css'
 
@@ -69,6 +70,7 @@ export default {
         app.component('HomeUnderline', HomeUnderline)
         app.component('FriendLinkHome', FriendLinkHome)
         // app.component('UpdateTime', UpdateTime)
+        app.component('TeamGroups', TeamGroups)
         app.component('Sponsor', Sponsor)
 
         // 彩虹背景动画样式
