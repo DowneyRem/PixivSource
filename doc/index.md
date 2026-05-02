@@ -1,20 +1,18 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
-title: Pixiv 书源
-description: 最好的 Pixiv 小说阅读器。——开源阅读 + Pixiv 书源。开源阅读 Legado 3.0 的 Pixiv 小说书源。开源阅读 Pixiv 书源。Legado with Pixiv BookSource, A Best Novel Reader for Pixiv. Pixiv BookSource for Legado 3.0.
-
+title: Pixiv 书源 - 最好的 Pixiv 第三方小说阅读器
+description: 用开源阅读 + Pixiv 书源，像看网文一样阅读 Pixiv 小说。支持搜索、收藏、追更、评论、直连评论等功能。
 
 head:
   - - meta
     - name: keywords
-      content: Pixiv小说, Pixiv书源, Legado书源, 开源阅读Pixiv, Pixiv小说阅读器, PixivSource, Pixiv BookSource, Legado 3.0
+      content: Pixiv 小说, Pixiv 书源, Legado 书源, 开源阅读 Pixiv, Pixiv 小说阅读器, PixivSource, Pixiv BookSource, Legado 3.0, 阅读 Plus Pixiv, Pixiv 书源导入, Linpx 书源, 兽人小说 书源, 开源阅读书源
   - - meta
     - property: og:title
-      content: Pixiv 书源 - 开源阅读 Legado 的 Pixiv 小说书源
+      content: Pixiv 书源 - 最好的 Pixiv 第三方小说阅读器
   - - meta
     - property: og:description
-      content: 用开源阅读 Legado App，像看网文一样阅读 Pixiv 小说。支持搜索、收藏、追更、评论，直连无需代理。
+      content: 用开源阅读 + Pixiv 书源，像看网文一样阅读 Pixiv 小说。支持搜索、收藏、追更、评论、直连、评论等功能。
   - - meta
     - property: og:image
       content: https://pixivsource.pages.dev/favicon-180x180.png
@@ -23,10 +21,10 @@ head:
       content: summary
   - - meta
     - name: twitter:title
-      content: Pixiv 书源 - 开源阅读 Legado 的 Pixiv 小说书源
+      content: Pixiv 书源 - 最好的 Pixiv 第三方小说阅读器
   - - meta
     - name: twitter:description
-      content: 用开源阅读 Legado App，像看网文一样阅读 Pixiv 小说。支持搜索、收藏、追更、评论，直连无需代理。
+      content: 用开源阅读 Legado + Pixiv 书源，像刷网文一样看 Pixiv 小说。支持搜索、收藏、追更、评论等功能。
 
 
 hero:

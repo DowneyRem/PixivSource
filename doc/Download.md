@@ -1,18 +1,18 @@
 ---
 layout: doc
-title: 下载开源阅读 Legado - Android、iOS、鸿蒙 全平台版本
-description: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Sigma，iOS 可用源阅，附各版本书源兼容性对照表。
+title: 下载开源阅读 - Android、iOS、鸿蒙 全平台版本
+description: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Sigma/Plus，iOS 可用源阅。
 
 head:
   - - meta
     - name: keywords
-      content: 开源阅读下载, 阅读 Legado 下载, 阅读 Sigma, 阅读 Beta, 源阅 iOS, Legado 鸿蒙
+      content: 开源阅读下载, 阅读 Legado 下载, 阅读 Sigma, 阅读 Plus, 阅读 Beta, 阅读 MD3, 阅读 Max, 阅读 Archive, 源阅 iOS, Legado 鸿蒙, Pixiv 书源兼容版本
   - - meta
     - property: og:title
-      content: 下载开源阅读 Legado - Android、iOS、鸿蒙全平台版本
+      content: 下载开源阅读 - Android、iOS、鸿蒙 全平台版本
   - - meta
     - property: og:description
-      content: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Sigma，iOS 可用源阅，附各版本书源兼容性对照表。
+      content: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Sigma/Plus，iOS 可用源阅。
 ---
 
 <div align="center">
