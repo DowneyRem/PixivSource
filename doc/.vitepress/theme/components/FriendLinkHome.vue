@@ -75,7 +75,7 @@ onUnmounted(() => ro?.disconnect())
   width: 100%;
   padding-top: 64px;
   padding-bottom: 0px;
-  margin-bottom: -80px;
+  margin-bottom: -90px;
   display: flex;
   justify-content: center;
 }

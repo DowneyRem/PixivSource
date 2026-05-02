@@ -79,6 +79,7 @@ watch(() => route.path, () => nextTick(alignToContent))
 <style scoped>
 .fixed-friend-footer {
   width: 100%;
+  padding-bottom: 20px;
 }
 
 .footer-container {

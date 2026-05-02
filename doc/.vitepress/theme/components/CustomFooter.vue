@@ -52,7 +52,7 @@ watch(() => route.path, () => nextTick(alignToContent))
 <style scoped>
 .custom-footer {
   width: 100%;
-  padding: 16px 0;
+  padding: 20px 0;
   background-color: var(--vp-c-bg);
 }
 
