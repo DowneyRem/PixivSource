@@ -126,8 +126,21 @@ head:
 
 | 下载站点 | 备注 |
 | ------- | --- |
-| [Github Release](https://github.com/HapeLee/legado-with-MD3/releases) | 需要代理，无需登录 |
-| [Github Action](https://github.com/HapeLee/legado-with-MD3/actions)   | 需要代理，需要登录 |
+| [Github Release](https://github.com/youfengknight/Legado_Max/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/youfengknight/Legado_Max/actions)   | 需要代理，需要登录 |
+
+
+### ⏺️ 【兼容】[阅读 Archive](https://github.com/Rimchars/legado)
+> [!TIP]
+>
+> **这是 Rimchars 基于 阅读 Sigma 的改版阅读仓库**
+>
+> 项目地址：https://github.com/Rimchars/legado
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/Rimchars/legado/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/Rimchars/legado/actions)   | 需要代理，需要登录 |
 
 
 ### 🚮 其他版本 {#AndroidOthers}
