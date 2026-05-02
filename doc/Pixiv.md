@@ -1,25 +1,25 @@
 ---
 layout: doc
-title: Pixiv 书源指南 - 搜索、发现、互动功能完全说明
-description: Pixiv 书源完整使用指南：登录账号、直连模式、高级搜索语法、发现排行榜、收藏追更评论等互动功能，以及屏蔽与自定义发现的详细说明。
+title: Pixiv 书源使用手册 - 搜索语法、发现配置、互动功能完全说明
+description: Pixiv 书源功能完全参考：高级搜索语法、发现与排行榜配置、收藏追更评论等互动功能、屏蔽作者标签、自定义发现，直连模式使用说明。
 
 head:
   - - meta
     - name: keywords
-      content: Pixiv 书源使用, Pixiv 高级搜索, Pixiv 直连模式, Pixiv 收藏追更, Pixiv 书源登录, Pixiv 屏蔽功能
+      content: Pixiv 书源搜索语法, Pixiv 高级搜索, Pixiv 直连模式, Pixiv 收藏追更, Pixiv 屏蔽标签, Pixiv 发现设置
   - - meta
     - property: og:title
-      content: Pixiv 书源指南 - 搜索、发现、互动功能完全说明
+      content: Pixiv 书源使用手册 - 搜索语法、发现配置、互动功能完全说明
   - - meta
     - property: og:description
-      content: Pixiv 书源完整使用指南：登录账号、直连模式、高级搜索语法、发现排行榜、收藏追更评论等互动功能，以及屏蔽与自定义发现的详细说明。
+      content: Pixiv 书源功能完全参考：高级搜索语法、发现与排行榜配置、收藏追更评论等互动功能、屏蔽作者标签、自定义发现，直连模式使用说明。
 ---
 
 <div align="center">
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
 
-# Pixiv 书源指南
+# Pixiv 书源使用手册
 ### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](./Sponsor.md)
