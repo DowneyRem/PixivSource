@@ -2,6 +2,7 @@
 layout: doc
 title: 支持开发 - 赞助 PixivSource Pixiv 书源项目
 description: 喜欢 PixivSource 书源？欢迎打赏支持开发者，赞助者将加入感谢名单、专属社区，并获得新功能投票权。
+comment: false
 
 head:
   - - meta
