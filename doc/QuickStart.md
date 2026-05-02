@@ -1,18 +1,21 @@
 ---
 layout: doc
-title: 快速开始 - 五分钟导入 Pixiv 书源，立即开始阅读
-description: 已了解开源阅读？五分钟完成配置：下载阅读 Plus、一键导入 Pixiv 书源与订阅源、登录账号，立即开始阅读 Pixiv 小说。
+title: ⚡️ 快速开始：5分钟配置开源阅读 Pixiv 书源
+description: 五分钟完成配置：下载阅读、一键导入 Pixiv/Linpx/BTSRK 书源与订阅源、登录账号，立即开始阅读 Pixiv 小说。
 
 head:
   - - meta
     - name: keywords
-      content: 一键导入 Pixiv 书源, 开源阅读下载, 阅读 Plus 下载, Legado 导入书源, Pixiv 书源安装, BTSRK 订阅源
+      content: Legado 书源导入, Pixiv 书源链接, Linpx 书源一键导入, 阅读 Plus 下载, BTSRK 订阅源, 规则订阅教程, 一键导入 Pixiv 书源, 开源阅读下载, 阅读 Plus 下载, Legado 导入书源, Pixiv 书源安装, BTSRK 订阅源
   - - meta
     - property: og:title
-      content: 快速开始 - 五分钟导入 Pixiv 书源，立即开始阅读
+      content: ⚡️ 快速开始：5分钟配置开源阅读 Pixiv 书源
   - - meta
     - property: og:description
-      content: 已了解开源阅读？五分钟完成配置：下载阅读 Plus、一键导入 Pixiv 书源与订阅源、登录账号，立即开始阅读 Pixiv 小说。
+      content: 五分钟完成配置：下载阅读、一键导入 Pixiv/Linpx/BTSRK 书源与订阅源、登录账号，立即开始阅读 Pixiv 小说。
+  - - meta
+    - property: og:image
+      content: /pic/BookSourcePixiv.png
 ---
 
 <div align="center">
