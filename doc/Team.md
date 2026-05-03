@@ -16,7 +16,7 @@ head:
       content: PixivSource 项目开发团队介绍：核心开发者、站方协助与社区贡献者名单。
 
 
-friendGroups:
+teamGroups:
   - title: 🛠️ 开发团队
     items:
       - name: DowneyRem
@@ -24,26 +24,31 @@ friendGroups:
         link: https://github.com/DowneyRem
         icon: https://www.github.com/DowneyRem.png
         desc: 项目创始、主要维护
+        sponsor: /Sponsor
         sites:
-          - name: 唐尼瑞姆的博客
+          - name: DowneyRem's Blog
             link: https://downeyrem.pages.dev
             icon: https://www.github.com/DowneyRem.png
-          - name: 支持开发
-            link: /Sponsor
-            icon: simple-icons:githubsponsors
 
-        
       - name: WindyHusky
         title: 狗子
         link: https://github.com/windyhusky
         icon: https://www.github.com/windyhusky.png
         desc: 早期开发
+        sites:
+        - name: Github
+          link: https://github.com/windyhusky
+          icon: simple-icons:github
         
       - name: Eigeen
         title: 本征
         link: https://github.com/eigeen
         icon: https://www.github.com/eigeen.png
         desc: TypeScript 重构
+        sites:
+        - name: Github
+          link: https://github.com/eigeen
+          icon: simple-icons:github
 
 
   - title: 🌐 站方协助
@@ -78,7 +83,7 @@ friendGroups:
         title: 洛娅橙
         link: https://github.com/Luoyacheng
         icon: https://github.com/Luoyacheng.png
-        desc: 
+        desc: 阅读 Sigma 开发者
         sites:
           - name: 阅读 Sigma
             link: https://github.com/Luoyacheng/legado
