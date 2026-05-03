@@ -5,7 +5,7 @@
       <div class="team-container">
         <div v-for="item in group.items" :key="item.link ?? item.name" class="team-card">
           <a
-              :href="item.link ?? '#'"
+              :href="item.link ?? undefined"
               target="_blank"
               rel="noopener"
               class="card-main"
@@ -21,9 +21,7 @@
             </div>
           </a>
 
-          <!-- 底部操作栏：其他站点链接 (左) + 打赏按钮 (右) -->
           <div v-if="item.sponsor || item.sites?.length" class="card-footer">
-            <!-- 其他站点链接 -->
             <div v-if="item.sites?.length" class="sites-list">
               <a
                   v-for="(site, i) in item.sites"
@@ -33,7 +31,6 @@
                   rel="noopener"
                   class="site-link"
                   :title="site.name"
-                  @click.stop
               >
                 <span class="site-icon">
                   <span v-if="isSvg(site.icon)" v-html="site.icon" class="svg-inner" />
@@ -41,14 +38,19 @@
                       v-else-if="isIconify(site.icon)"
                       :src="`https://api.iconify.design/${site.icon.replace(':', '/')}.svg?color=currentColor`"
                       class="img-inner"
+                      :alt="site.name"
                   />
-                  <img v-else :src="resolvePath(site.icon)" :alt="site.name" class="img-inner" />
+                  <img
+                      v-else
+                      :src="resolvePath(site.icon)"
+                      :alt="site.name"
+                      class="img-inner"
+                  />
                 </span>
                 <span v-if="site.name" class="site-name">{{ site.name }}</span>
               </a>
             </div>
 
-            <!-- 打赏按钮 -->
             <a
                 v-if="item.sponsor"
                 :href="item.sponsor"
@@ -72,8 +74,8 @@ import { useData, withBase } from 'vitepress'
 const { frontmatter } = useData()
 const teamGroups = computed(() => frontmatter.value.teamGroups || [])
 
-const isSvg = (icon) => icon?.trim().startsWith('<svg')
-const isIconify = (icon) => icon?.includes(':') && !icon.startsWith('http')
+const isSvg      = (icon) => icon?.trim().startsWith('<svg')
+const isIconify  = (icon) => icon?.includes(':') && !icon.startsWith('http')
 const resolvePath = (path) =>
     !path ? 'https://www.github.com/github.png'
         : (path.startsWith('http') || path.startsWith('data:')) ? path
@@ -99,6 +101,7 @@ const resolvePath = (path) =>
   gap: 16px;
 }
 
+/* 卡片 */
 .team-card {
   display: flex;
   flex-direction: column;
@@ -106,7 +109,7 @@ const resolvePath = (path) =>
   border: 1px solid var(--vp-c-bg-soft);
   background-color: var(--vp-c-bg-soft);
   overflow: hidden;
-  transition: border-color 0.25s, transform 0.25s;
+  transition: border-color 0.25s, transform 0.25s, background-color 0.25s;
 }
 
 .team-card:hover {
@@ -115,6 +118,7 @@ const resolvePath = (path) =>
   background-color: var(--vp-c-bg-mute);
 }
 
+/* 主区域 */
 .card-main {
   display: flex;
   align-items: center;
@@ -123,7 +127,6 @@ const resolvePath = (path) =>
   text-decoration: none !important;
   color: var(--vp-c-text-1) !important;
   flex: 1;
-  cursor: pointer;
 }
 
 .card-main.no-link {
@@ -131,6 +134,7 @@ const resolvePath = (path) =>
   pointer-events: none;
 }
 
+/* 头像 */
 .avatar {
   width: 54px;
   height: 54px;
@@ -141,6 +145,7 @@ const resolvePath = (path) =>
   background-color: var(--vp-c-bg-mute);
 }
 
+/* 信息区 */
 .info {
   display: flex;
   flex-direction: column;
@@ -186,6 +191,7 @@ const resolvePath = (path) =>
 .card-footer {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   padding: 10px 18px;
   background-color: var(--vp-c-bg-mute);
@@ -193,38 +199,11 @@ const resolvePath = (path) =>
   flex-wrap: wrap;
 }
 
-/* 其他站点链接 */
+/* 站点链接列表 */
 .sites-list {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-}
-
-/* 打赏按钮 —— 仿 VitePress sponsor 样式，置于右侧 */
-.sponsor-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 12px;
-  border-radius: 99px;
-  font-size: 12px;
-  font-weight: 500;
-  border: 1px solid var(--vp-c-sponsor);
-  color: var(--vp-c-sponsor);
-  text-decoration: none !important;
-  transition: background-color 0.2s, color 0.2s;
-  white-space: nowrap;
-  margin-left: auto;
-}
-
-.sponsor-btn::before {
-  content: '♥';
-  font-size: 11px;
-}
-
-.sponsor-btn:hover {
-  background-color: var(--vp-c-sponsor);
-  color: #fff;
 }
 
 .site-link {
@@ -261,6 +240,33 @@ const resolvePath = (path) =>
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* 打赏按钮 */
+.sponsor-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--vp-c-sponsor);
+  color: var(--vp-c-sponsor);
+  text-decoration: none !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sponsor-btn::before {
+  content: '♥';
+  font-size: 11px;
+}
+
+.sponsor-btn:hover {
+  background-color: var(--vp-c-sponsor);
+  color: var(--vp-c-white);
 }
 
 @media (max-width: 640px) {
