@@ -587,13 +587,18 @@ head:
 <details><summary><strong> 🚫 屏蔽作者 </strong></summary>
 
 #### 1. 屏蔽作者
+- **书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+
 ![img](./pic/PixivLoginUINovels.png)
+
 - 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
 </details>
 
 <details><summary><strong> 🚫 屏蔽标签 & 屏蔽描述 </strong></summary>
 
 #### 2. 屏蔽标签 & 屏蔽描述
+- **书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+
 - 1️⃣ 在登陆页面的【输入内容】输入内容（不需要`#`），点击【添加屏蔽】，添加至【标签屏蔽列表】或【描述屏蔽列表】
 ![img](./pic/PixivLoginUIBlockWords.png)
 - 2️⃣ 添加屏蔽内容时，会提示具体的屏蔽列表
@@ -607,6 +612,8 @@ head:
 <details><summary><strong> 🚫 隐藏收藏 & 隐藏追更 </strong></summary>
 
 #### 3. 隐藏收藏 & 隐藏追更（书源设置）
+
+- **⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
 - ❤️ 隐藏收藏：搜索发现 显示/隐藏 收藏单篇小说
 - 📃 隐藏追更：搜索发现 显示/隐藏 追更系列小说
 </details>
@@ -616,6 +623,7 @@ head:
 <details><summary> 📌 喜欢标签 </summary>
 
 #### 1. 喜欢标签
+- **书架 - 小说阅读界面 - Pixiv 小说 - 登录**
 - 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
   ![img](./pic/PixivLoginUILikeTags.png)
 - 2️⃣ 打开发现页面，点击按钮，查看内容
@@ -626,6 +634,7 @@ head:
 <details><summary> ❤️ 他人收藏 </summary>
 
 #### 2. 他人收藏
+- **书架 - 小说阅读界面 - Pixiv 小说 - 登录**
 - 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
 
 ![img](./pic/PixivLoginUILikeAuthors.png)
