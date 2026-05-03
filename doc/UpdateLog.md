@@ -26,6 +26,11 @@ head:
 </div>
 
 
+> [!TIP]
+>
+> **Pixiv 书源的更新日志（与 GitHub 同步）**
+
+
 ## ⏱️ [近期更新](https://github.com/DowneyRem/PixivSource/releases/latest) {#Latest}
 ### 📚 更新 265 {#265}
 - 🅿️ Pixiv、Pixiv 备用书源：

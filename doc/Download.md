@@ -27,9 +27,13 @@ head:
 
 
 > [!TIP]
+> 
+> **开源阅读 Legado 全平台下载指南**
 >
-> **从未使用过【开源阅读】的读者可以看这篇指南：**
-> [✨臻享阅读](BetterExperience.md)
+> **另有：新手配置指南：**
+> [✨臻享阅读](BetterExperience.md)；
+> **极简配置指南：**
+> [⚡️ 快速开始](QuickStart.md)
 
 
 ## 下载阅读 {#DownloadAPP}

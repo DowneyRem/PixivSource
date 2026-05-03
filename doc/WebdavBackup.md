@@ -25,6 +25,16 @@ head:
 #### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
+
+> [!TIP]
+> **开源阅读 Legado 备份恢复 指南**
+>
+> **另有：新手配置指南：**
+> [✨臻享阅读](BetterExperience.md)；
+> **极简配置指南：**
+> [⚡️ 快速开始](QuickStart.md)
+
+
 > [!NOTE]
 >
 > 本教程修改自 开源阅读官方教程：[坚果云注册与配置](https://www.yuque.com/legado/wiki/fkx510)
