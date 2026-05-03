@@ -24,16 +24,21 @@ head:
 
 # ✨ 臻享阅读 ✨
 ## 最好的 Pixiv 第三方小说阅读器
-### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
+### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) + Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](Sponsor.md)
 </div>
 
 
 > [!TIP]
->
-> **熟练使用【开源阅读】的读者可以看这篇指南：**
+> 
+> **面向新手的完整配置指南，彻底解决 Pixiv 官方软件的痛点！**
+> 
+> **另有：极简配置指南：**
 > [⚡️ 快速开始](QuickStart.md)
+> 
+> **Pixiv 书源 全部功能 详见：**
+> [🅿️ Pixiv 书源 功能手册](Pixiv.md)
 
 
 ## 你是否被下面的问题所困扰？ {#Trouble}
@@ -105,7 +110,7 @@ head:
 > **Android 设备：阅读 + Pixiv 书源**
 >
 > **苹果设备可用：源阅 + Pixiv 书源**
-> **，详见：[下载阅读](Download.md)**
+> **，详见：[下载阅读](Download.md#AppleiOS)**
 
 
 ## 软件介绍 {#LegadoIntroduction}

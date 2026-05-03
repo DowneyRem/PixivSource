@@ -27,9 +27,12 @@ head:
 
 
 > [!TIP]
+> **🦊 Linpx 书源 全功能使用手册**
 >
-> **从未使用过【开源阅读】的读者可以看这篇指南：**
-> [✨臻享阅读](BetterExperience.md)
+> **另有：新手配置指南：**
+> [✨臻享阅读](BetterExperience.md)；
+> **极简配置指南：**
+> [⚡️ 快速开始](QuickStart.md)
  
 
 ## [Linpx](http://www.furrynovel.ink) 是第三方 Pixiv 小说镜像站，主要内容为【兽人小说】

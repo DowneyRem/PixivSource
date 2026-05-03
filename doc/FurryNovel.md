@@ -27,9 +27,12 @@ head:
 
 
 > [!TIP]
+> **🐯 FurryNovel 书源 全功能使用手册**
 >
-> **从未使用过【开源阅读】的读者可以看这篇指南：**
-> [✨臻享阅读](BetterExperience.md)
+> **另有：新手配置指南：**
+> [✨臻享阅读](BetterExperience.md)；
+> **极简配置指南：**
+> [⚡️ 快速开始](QuickStart.md)
 
 
 ## [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说

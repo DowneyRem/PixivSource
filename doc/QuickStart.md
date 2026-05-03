@@ -30,9 +30,13 @@ head:
 
 
 > [!TIP]
->
-> **从未使用过【开源阅读】的读者可以看这篇指南：**
+> **没有复杂的概念，五分钟即可完成配置。即刻开始，享受极致阅读体验**
+> 
+> **另有：面向新手，从零开始的完整配置指南：**
 > [✨臻享阅读](BetterExperience.md)
+> 
+> **Pixiv 书源 全部功能 详见：**
+> [🅿️ Pixiv 书源 功能手册](Pixiv.md)
 
 
 ## ⚡️ 快速开始：[下载阅读](QuickStart#DownloadLegado) => [导入书源](QuickStart#ImportSources) => [书源配置](QuickStart#LoginAccount) => [阅读设置](QuickStart#LegadoSettings) {#QuickStart}
