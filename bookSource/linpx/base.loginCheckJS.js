@@ -1,13 +1,5 @@
 var util = {}
 
-function objStringify(obj) {
-    return JSON.stringify(obj, (n, v) => {
-        if (typeof v == "function")
-            return v.toString();
-        return v;
-    });
-}
-
 // 检测 源阅
 // 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
 // 可用 java.getCookie() cache.put() cache.get() 默认值为 undefined
@@ -72,8 +64,8 @@ function publicFunc() {
         java.log("⚙️ 使用自定义设置")
     } else {
         java.log("⚙️ 使用默认设置")
-        settings = setDefaultSettings()
     }
+    settings = checkSettings(settings)
     u.settings = settings
     putInCacheObject("linpxSettings", settings)  // 设置写入缓存
 

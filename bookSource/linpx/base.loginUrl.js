@@ -79,13 +79,6 @@ let settingsOptionsNames = {
     }
 }
 
-function checkSettingsLoginUrl(settings) {
-    if (!settings) settings = setDefaultSettings()
-    if (settings.PIC_SOURCE === undefined) settings.PIC_SOURCE = "Pixiv"
-    if (settings.PIC_LINK === undefined) settings.PIC_LINK = "Linpx"
-    return settings
-}
-
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
     else if (status === false) return "🚫 已关闭"
@@ -96,7 +89,7 @@ function statusMsg(status) {
 function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
     let msgList = []
-    let settings = checkSettingsLoginUrl(getFromCacheObject("linpxSettings"))
+    let settings = checkSettings(getFromCacheObject("linpxSettings"))
     Object.keys(settingsName).forEach(key => {
         if (settingsOptionsNames[key]) {
             let settingsValue = settings[key]
@@ -121,7 +114,7 @@ function setDefaultSettingsLoginUrl() {
 
 function editSettings(settingName) {
     let msg, status
-    let settings = checkSettingsLoginUrl(getFromCacheObject("linpxSettings"))
+    let settings = checkSettings(getFromCacheObject("linpxSettings"))
     if (settingsOptionsNames[settingName]) {
         let optionsKeys = Object.keys(settingsOptionsNames[settingName])
         let currentIndex = optionsKeys.indexOf(settings[settingName])

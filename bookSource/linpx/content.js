@@ -1,21 +1,5 @@
 var util = objParse(String(java.get("util")))
 
-function isFunctionString(v) {
-    return typeof v == "string" && (
-        v.trim().startsWith("function") ||
-        RegExp(/^\s*(\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>/).test(v)
-    )
-}
-
-function objParse(obj) {
-    return JSON.parse(obj, (n, v) => {
-        if (isFunctionString(v)) {
-            return eval(`(${v})`)
-        }
-        return v;
-    })
-}
-
 function replaceUploadedImage(res, content) {
     // 获取 [uploadedimage:] 的图片链接
     if (res.images !== undefined && res.images !== null) {

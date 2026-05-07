@@ -62,6 +62,30 @@ function getFromCacheObject(objectName) {
     return JSON.parse(object)
 }
 
+function objStringify(obj) {
+    return JSON.stringify(obj, (n, v) => {
+        if (typeof v == "function") {
+            return v.toString()
+        }
+        return v
+    })
+}
+function isFunctionString(v) {
+    return typeof v == "string" && (
+        v.trim().startsWith("function") ||
+        RegExp(/^\s*(\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>/).test(v)
+    )
+}
+function objParse(obj) {
+    return JSON.parse(obj, (n, v) => {
+        if (isFunctionString(v)) {
+            return eval(`(${v})`)
+        }
+        return v
+    })
+}
+
+
 function isHtmlString(str) {
     return str.startsWith("<!DOCTYPE html>")
 }
@@ -316,6 +340,12 @@ function setDefaultSettings() {
     settings.PIC_LINK = "Linpx"         // 正文：图片链接打开方式
 
     this.putInCacheObject("linpxSettings", settings)
+    return settings
+}
+function checkSettings(settings) {
+    if (!settings) settings = this.setDefaultSettings()
+    if (settings.PIC_SOURCE === undefined) settings.PIC_SOURCE = "Pixiv"
+    if (settings.PIC_LINK === undefined) settings.PIC_LINK = "Linpx"
     return settings
 }
 
