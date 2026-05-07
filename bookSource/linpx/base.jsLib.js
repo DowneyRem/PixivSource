@@ -312,6 +312,9 @@ function setDefaultSettings() {
 
     settings.DEBUG = false              // 全局：调试模式
 
+    settings.PIC_SOURCE = "Pixiv"       // 正文：Pixiv 插图解析方式
+    settings.PIC_LINK = "Linpx"         // 正文：图片链接打开方式
+
     this.putInCacheObject("linpxSettings", settings)
     return settings
 }

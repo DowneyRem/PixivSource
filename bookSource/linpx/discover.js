@@ -1,9 +1,16 @@
 var util = objParse(String(java.get("util")))
 var seriesSet = new Set();  // 存储seriesID
 
+function isFunctionString(v) {
+    return typeof v == "string" && (
+        v.trim().startsWith("function") ||
+        RegExp(/^\s*(\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>/).test(v)
+    )
+}
+
 function objParse(obj) {
     return JSON.parse(obj, (n, v) => {
-        if (typeof v == "string" && v.match("()")) {
+        if (isFunctionString(v)) {
             return eval(`(${v})`)
         }
         return v;

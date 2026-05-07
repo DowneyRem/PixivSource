@@ -24,6 +24,9 @@ let settings = [
     {"📚 🚫 恢复《》": "editSettings('REPLACE_TITLE_MARKS')" },
     {"🖼️ 🚫 显示描述": "editSettings('SHOW_CAPTIONS')" },
     {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
+
+    {"🖼️ 图片解析": "editSettings('PIC_SOURCE')" },
+    {"🔗 图片链接": "editSettings('PIC_LINK')" },
 ]
 
 // 添加按钮

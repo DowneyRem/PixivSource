@@ -34,7 +34,7 @@ function buildBookSource(sourceName) {
     const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
     const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.txt"))
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
-    const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
+    const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJS.js")) || readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
 
     const bookUrlPattern = readTextFile(path.join(sourcePath, "base.bookUrlPattern.txt"))
     const header = readTextFile(path.join(sourcePath, "base.header.json"))

@@ -54,11 +54,6 @@ function startGithubIssue() {
     startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
 }
 
-function checkStatus(status) {
-    if (eval(String(status)) === true) return "❤️"
-    else return "🖤"
-}
-
 let settingsName = {
     "SEARCH_AUTHOR": "🔍 搜索作者",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
@@ -67,23 +62,51 @@ let settingsName = {
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
     "SHOW_CAPTIONS": "🖼️ 显示描述",
     "DEBUG": "🐞 调试模式",
+    "PIC_SOURCE": "🖼️ 图片解析",
+    "PIC_LINK": "🔗 图片链接",
+}
+
+let settingsOptionsNames = {
+    "PIC_SOURCE": {
+        "Pixiv": "🅿️ Pixiv 直连",
+        "PixivCat": "🐱 PixivCat",
+    },
+    "PIC_LINK": {
+        "Linpx": "🦊 Linpx 网站",
+        "Pixiv": "🅿️ Pixiv 直连",
+        "PixivCat": "🐱 PixivCat",
+        "CloudFlare": "☁️ CloudFlare",
+    }
+}
+
+function checkSettingsLoginUrl(settings) {
+    if (!settings) settings = setDefaultSettings()
+    if (settings.PIC_SOURCE === undefined) settings.PIC_SOURCE = "Pixiv"
+    if (settings.PIC_LINK === undefined) settings.PIC_LINK = "Linpx"
+    return settings
 }
 
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
     else if (status === false) return "🚫 已关闭"
-    else return "🈚️ 未设置"
+    else if (status === undefined) return "🈚️ 未设置"
+    else return status
 }
 
-// 检测快速模式修改的4个设置
 function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
-    let keys = [], msgList = []
-    let settings = getFromCacheObject("linpxSettings")
-    keys = Object.keys(settingsName)
-    for (let i in keys) {
-        msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
-    }
+    let msgList = []
+    let settings = checkSettingsLoginUrl(getFromCacheObject("linpxSettings"))
+    Object.keys(settingsName).forEach(key => {
+        if (settingsOptionsNames[key]) {
+            let settingsValue = settings[key]
+            let settingsValueName = settingsOptionsNames[key][settingsValue] || statusMsg(settingsValue)
+            msgList.push(`${settingsName[key]}　${statusMsg(settingsValueName)}`)
+        } else {
+            msgList.push(`${settingsName[key]}　${statusMsg(settings[key])}`)
+        }
+    })
+    putInCacheObject("linpxSettings", settings)
     return msgList.join("\n").trim()
 }
 
@@ -98,14 +121,22 @@ function setDefaultSettingsLoginUrl() {
 
 function editSettings(settingName) {
     let msg, status
-    let settings = getFromCacheObject("linpxSettings")
-    if (!settings) settings = setDefaultSettings()
-    if (!!settings[settingName]) {
-        status = settings[settingName] = !settings[settingName]
+    let settings = checkSettingsLoginUrl(getFromCacheObject("linpxSettings"))
+    if (settingsOptionsNames[settingName]) {
+        let optionsKeys = Object.keys(settingsOptionsNames[settingName])
+        let currentIndex = optionsKeys.indexOf(settings[settingName])
+        if (currentIndex < 0) currentIndex = 0
+        let nextIndex = (currentIndex + 1) % optionsKeys.length
+        status = settings[settingName] = optionsKeys[nextIndex]
+        msg = `\n${settingsName[settingName]}\n\n${settingsOptionsNames[settingName][status]}`
     } else {
-        status = settings[settingName] = true
+        if (!!settings[settingName]) {
+            status = settings[settingName] = !settings[settingName]
+        } else {
+            status = settings[settingName] = true
+        }
+        msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
     }
     putInCacheObject("linpxSettings", settings)
-    msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
     sleepToast(msg)
 }

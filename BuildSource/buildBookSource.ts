@@ -116,7 +116,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
     const loginUIJS = readTextFile(path.join(sourcePath, "base.loginUI.js"))
-    const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
+    const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJS.js")) || readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
 
     const bookUrlPattern = readTextFile(path.join(sourcePath, "base.bookUrlPattern.txt"))
     const header = readTextFile(path.join(sourcePath, "base.header.json"))
