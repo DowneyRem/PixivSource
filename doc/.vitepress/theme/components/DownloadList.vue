@@ -1,9 +1,9 @@
 <script setup>
 /**
- * DownloadPage.vue
+ * DownloadList.vue
  * 软件下载页面组件，负责：
- *   - 从 frontmatter 读取 repos / manual 配置
- *   - 并发拉取 GitHub / Gitee API 数据
+ *   - 从 frontmatter.repos 读取下载卡片配置
+ *   - 并发拉取 GitHub / Gitee API Release 数据
  *   - 提供「显示全部」「GitHub 加速」两个全局开关
  *   - 将格式化后的数据 + getDownloadUrl 函数传递给 DownloadCard 子组件
  *
@@ -20,7 +20,7 @@
  *       prerelease: false           # 取最新正式版还是最新预发布版
  *       hide: true                  # 不展开「显示所有」时隐藏
  *
- *   manual:                         # 手动维护的直链卡片
+ *     # 如需直链卡片，也放在 repos 中，无需再维护 manual 列表：
  *     - name: 某 APK
  *       desc: 说明
  *       icon: /img/xxx.png
@@ -33,19 +33,19 @@
  *       changelog: "- 修复了 xxx\n- 新增了 yyy"
  */
 
-import { ref, computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import DownloadCard from './DownloadCard.vue'
+import { renderMarkdown } from '../utils/renderMarkdown'
 
 const { frontmatter } = useData()
 
 // ---------- 配置读取 ----------
-const rawRepos   = computed(() => frontmatter.value.repos   || [])
-const manualList = computed(() => frontmatter.value.manual  || [])
+const repoList = computed(() => frontmatter.value.repos || [])
 
 // ---------- 全局开关 ----------
-const showAllRepos    = ref(false)
-const useGithubProxy  = ref(true)
+const showAllRepos = ref(false)
+const useGithubProxy = ref(true)
 
 // ---------- Cloudflare Worker 代理域名（可在 .env 中配置 VITE_CF_WORKER_URL）----------
 const CF_PROXY_DOMAIN = computed(() => {
@@ -53,72 +53,53 @@ const CF_PROXY_DOMAIN = computed(() => {
   return raw.endsWith('/') ? raw.slice(0, -1) : raw
 })
 
-// ---------- 按需过滤仓库列表 ----------
-const filteredRepos = computed(() =>
-    showAllRepos.value ? rawRepos.value : rawRepos.value.filter(r => !r.hide)
+// ---------- 按需过滤卡片列表 ----------
+const visibleRepoList = computed(() =>
+    showAllRepos.value ? repoList.value : repoList.value.filter(item => !item.hide)
 )
 
 // ---------- API 数据存储 ----------
-const apiDataMap  = ref({})   // { repoKey: Release[] }
-const loadingMap  = ref({})   // { repoKey: boolean }
+const releaseMap = ref({}) // { repoKey: Release[] }
+const loadingMap = ref({}) // { repoKey: boolean }
 
-// ---------- Markdown 渲染（轻量，无需引入第三方库）----------
-const renderMarkdown = (md) => {
-  if (!md) return ''
-  let html = md
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/\r\n/g, '\n').replace(/\r/g, '\n')
-
-  html = html.replace(/^(#{1,6})\s+(.+?)(?=\n|$)/gm, (_, hashes, content) => {
-    const lv = hashes.length
-    return `<h${lv} style="margin:12px 0 8px 0;font-weight:700;font-size:${1.4 - lv * 0.1}rem;color:var(--vp-c-text-1);">${content}</h${lv}>`
-  })
-  html = html.replace(/(?:^([*+-])\s+(.+?)(?:\n|$))+/gm, (match) => {
-    const items = match.trim().split('\n')
-        .map(line => { const m = line.match(/^[*+-]\s+(.+)$/); return m ? `<li style="margin:4px 0;list-style-type:disc;">${m[1]}</li>` : '' })
-        .join('')
-    return `<ul style="padding-left:20px;margin:8px 0;">${items}</ul>`
-  })
-  html = html
-      .replace(/`([^`\n]+)`/g, '<code style="background:var(--vp-c-bg-alt);padding:2px 6px;border-radius:4px;font-family:var(--vp-font-family-mono);font-size:0.85em;color:var(--vp-c-brand-1);border:1px solid var(--vp-c-divider)">$1</code>')
-      .replace(/\*\*([^*]+)\*\*/g, '<strong style="font-weight:700;color:var(--vp-c-text-1);">$1</strong>')
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--vp-c-brand-1);text-decoration:underline;">$1</a>')
-  return html.split('\n').map(line => {
-    if (/^<(ul|li|\/ul|h\d)/.test(line.trim())) return line
-    return line ? line + '<br>' : ''
-  }).join('\n')
-}
+const getRepoKey = (item) => item?.link || item?.github || ''
 
 // ---------- 格式化 API 数据 ----------
 const transformReleases = (rawData, platform) => {
   if (!Array.isArray(rawData)) return []
-  const data = platform === 'gitee' ? [...rawData].reverse() : rawData
-  return data.map(item => {
-    const rawAssets = (item.assets || []).filter(a => {
-      const n = (a.name || '').toLowerCase()
-      return !n.endsWith('.zip') && !n.endsWith('.tar.gz')
-    })
-    const isPre = platform === 'gitee'
-        ? (item.prerelease || ['beta', 'alpha', 'pre'].some(k => String(item.tag_name).toLowerCase().includes(k)))
+
+  const releases = platform === 'gitee' ? [...rawData].reverse() : rawData
+
+  return releases.map(item => {
+    const assets = (item.assets || [])
+        .filter(asset => {
+          const assetName = (asset.name || '').toLowerCase()
+          return !assetName.endsWith('.zip') && !assetName.endsWith('.tar.gz')
+        })
+        .map(asset => ({
+          id: platform === 'gitee' ? asset.browser_download_url : asset.id,
+          name: asset.name,
+          browser_download_url: asset.browser_download_url,
+          size: platform === 'gitee' ? null : asset.size,
+        }))
+
+    const isPrerelease = platform === 'gitee'
+        ? item.prerelease || ['beta', 'alpha', 'pre'].some(keyword => String(item.tag_name).toLowerCase().includes(keyword))
         : item.prerelease
-    let tag = item.tag_name
-    if (String(item.tag_name).toLowerCase() === 'beta' && item.name) {
-      tag = item.name.replace(/^legado_app_/, '')
-    }
+
+    const tagName = String(item.tag_name).toLowerCase() === 'beta' && item.name
+        ? item.name.replace(/^legado_app_/, '')
+        : item.tag_name
+
     return {
-      tag_name: tag,
-      prerelease: isPre,
-      published_at: formatDate(platform === 'gitee' ? item.created_at : item.published_at),
+      tag_name: tagName,
+      prerelease: isPrerelease,
+      published_at: platform === 'gitee' ? item.created_at : item.published_at,
       body: renderMarkdown(item.body || ''),
       html_url: platform === 'gitee'
           ? `https://gitee.com/${item.author?.login}/${item.name?.replace('legado_app_', '')}/releases`
           : item.html_url,
-      assets: rawAssets.map(a => ({
-        id: platform === 'gitee' ? a.browser_download_url : a.id,
-        name: a.name,
-        browser_download_url: a.browser_download_url,
-        size: platform === 'gitee' ? null : a.size,
-      }))
+      assets,
     }
   })
 }
@@ -126,63 +107,68 @@ const transformReleases = (rawData, platform) => {
 // ---------- 解析仓库元信息 ----------
 const resolveRepoMeta = (url) => {
   if (!url) return null
-  url = url.trim()
-  if (url.includes('gitee.com/')) {
-    const path = url.split('gitee.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
+
+  const trimmedUrl = url.trim()
+
+  if (trimmedUrl.includes('gitee.com/')) {
+    const path = trimmedUrl.split('gitee.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
     return { platform: 'gitee', apiUrl: `https://gitee.com/api/v5/repos/${path}/releases` }
   }
-  if (url.includes('github.com/')) {
-    const path = url.split('github.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
+
+  if (trimmedUrl.includes('github.com/')) {
+    const path = trimmedUrl.split('github.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
     return { platform: 'github', apiUrl: `https://api.github.com/repos/${path}/releases` }
   }
-  return null
-}
 
-// ---------- 工具 ----------
-const formatDate = (iso) => {
-  if (!iso) return ''
-  const d = new Date(iso)
-  return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`
+  return null
 }
 
 // ---------- 下载链接转换（传递给 DownloadCard）----------
 const getDownloadUrl = (assetUrl, repoItem) => {
   if (!assetUrl) return ''
-  const repoLink = repoItem.link || repoItem.github || ''
+
+  const repoLink = getRepoKey(repoItem)
   if (repoLink.includes('gitee.com')) return assetUrl
+
   if (useGithubProxy.value && CF_PROXY_DOMAIN.value && assetUrl.includes('github.com')) {
     return `${CF_PROXY_DOMAIN.value}/${assetUrl}`
   }
+
   return assetUrl
 }
 
 // ---------- 取目标 Release ----------
 const getTargetRelease = (repoItem) => {
-  const releases = apiDataMap.value[repoItem.link || repoItem.github]
+  const releases = releaseMap.value[getRepoKey(repoItem)]
   if (!releases?.length) return null
+
   return repoItem.prerelease
       ? releases[0]
-      : (releases.find(r => !r.prerelease) || releases[0])
+      : releases.find(release => !release.prerelease) || releases[0]
+}
+
+const fetchRepoRelease = async (repoItem) => {
+  const repoKey = getRepoKey(repoItem)
+  const meta = resolveRepoMeta(repoKey)
+  if (!repoKey || !meta) return
+
+  loadingMap.value[repoKey] = true
+
+  try {
+    const res = await fetch(meta.apiUrl)
+    if (res.ok) {
+      releaseMap.value[repoKey] = transformReleases(await res.json(), meta.platform)
+    }
+  } catch (error) {
+    console.error(`[DownloadList] 拉取失败: ${repoKey}`, error)
+  } finally {
+    loadingMap.value[repoKey] = false
+  }
 }
 
 // ---------- 挂载时并发拉取所有仓库数据 ----------
 onMounted(() => {
-  rawRepos.value.forEach(async (repo) => {
-    const link = repo.link || repo.github
-    const meta = resolveRepoMeta(link)
-    if (!meta) return
-    loadingMap.value[link] = true
-    try {
-      const res = await fetch(meta.apiUrl)
-      if (res.ok) {
-        apiDataMap.value[link] = transformReleases(await res.json(), meta.platform)
-      }
-    } catch (e) {
-      console.error(`[DownloadPage] 拉取失败: ${link}`, e)
-    } finally {
-      loadingMap.value[link] = false
-    }
-  })
+  Promise.all(repoList.value.map(fetchRepoRelease))
 })
 </script>
 
@@ -193,14 +179,15 @@ onMounted(() => {
     <!-- 全局控制条 -->
     <div class="global-filter-bar">
       <label class="filter-checkbox-label">
-        <input type="checkbox" v-model="showAllRepos" class="filter-checkbox" />
+        <input v-model="showAllRepos" type="checkbox" class="filter-checkbox" />
         <span class="checkbox-custom-text">显示所有阅读分支版本</span>
       </label>
+
       <label class="filter-checkbox-label">
-        <input type="checkbox" v-model="useGithubProxy" class="filter-checkbox proxy-checkbox" />
+        <input v-model="useGithubProxy" type="checkbox" class="filter-checkbox proxy-checkbox" />
         <span class="checkbox-custom-text">
           启用 GitHub 下载加速
-          <span class="speed-badge" v-if="useGithubProxy && CF_PROXY_DOMAIN">
+          <span v-if="useGithubProxy && CF_PROXY_DOMAIN" class="speed-badge">
             (由 Cloudflare 支持)
           </span>
         </span>
@@ -209,27 +196,12 @@ onMounted(() => {
 
     <!-- 卡片网格 -->
     <div class="download-grid">
-      <!-- GitHub / Gitee 仓库卡片 -->
       <DownloadCard
-          v-for="(item, index) in filteredRepos"
-          :key="'repo-' + index"
+          v-for="(item, index) in visibleRepoList"
+          :key="getRepoKey(item) || item.url || `repo-${index}`"
           :item="item"
           :release="getTargetRelease(item)"
-          :loading="!!loadingMap[item.link || item.github]"
-          :get-download-url="getDownloadUrl"
-      />
-
-      <!-- 手动维护直链卡片 -->
-      <!--
-        manual 列表的卡片不依赖 API，release 留空，
-        DownloadCard 内部会走 item.url / item.label 分支渲染。
-      -->
-      <DownloadCard
-          v-for="(item, index) in manualList"
-          :key="'manual-' + index"
-          :item="item"
-          :release="null"
-          :loading="false"
+          :loading="!!loadingMap[getRepoKey(item)]"
           :get-download-url="getDownloadUrl"
       />
     </div>
