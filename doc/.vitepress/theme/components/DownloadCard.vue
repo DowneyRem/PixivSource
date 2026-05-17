@@ -10,6 +10,7 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { renderMarkdown } from '../utils/renderMarkdown'
+import { resolveRepoMeta, transformReleases } from '../utils/releases'
 
 const props = defineProps({
   item: {
@@ -61,57 +62,6 @@ const normalizeBody = (body) => {
   return String(body).includes('<') ? body : renderMarkdown(body)
 }
 
-const resolveRepoMeta = (urlField) => {
-  if (!urlField) return null
-  const url = urlField.trim()
-  if (url.includes('gitee.com/')) {
-    const path = url.split('gitee.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
-    return { platform: 'gitee', apiUrl: `https://gitee.com/api/v5/repos/${path}/releases` }
-  }
-  if (url.includes('github.com/')) {
-    const path = url.split('github.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
-    return { platform: 'github', apiUrl: `https://api.github.com/repos/${path}/releases` }
-  }
-  return null
-}
-
-const transformReleases = (rawData, platform) => {
-  if (!Array.isArray(rawData)) return []
-
-  const normalizedRawData = platform === 'gitee' ? [...rawData].reverse() : rawData
-
-  return normalizedRawData.map(item => {
-    const rawAssets = item.assets || []
-    const filteredAssets = rawAssets.filter(a => {
-      const n = (a.name || '').toLowerCase()
-      return !n.endsWith('.zip') && !n.endsWith('.tar.gz')
-    })
-
-    const isPre = platform === 'gitee'
-        ? (item.prerelease || ['beta', 'alpha', 'pre'].some(k => String(item.tag_name).toLowerCase().includes(k)))
-        : item.prerelease
-
-    let finalTagName = item.tag_name
-    if (String(item.tag_name).toLowerCase() === 'beta' && item.name) {
-      finalTagName = item.name.replace(/^legado_app_/, '')
-    }
-
-    return {
-      tag_name: finalTagName,
-      prerelease: isPre,
-      published_at: platform === 'gitee' ? item.created_at : item.published_at,
-      body: renderMarkdown(item.body || ''),
-      html_url: platform === 'gitee' ? `https://gitee.com/${item.author?.login}/${item.name?.replace('legado_app_', '')}/releases` : item.html_url,
-      assets: filteredAssets.map(a => ({
-        id: platform === 'gitee' ? a.browser_download_url : a.id,
-        name: a.name,
-        browser_download_url: a.browser_download_url,
-        size: platform === 'gitee' ? null : a.size,
-      })),
-    }
-  })
-}
-
 const getTargetRelease = (releases, item) => {
   if (!releases || !releases.length) return null
   return item.prerelease ? releases[0] : (releases.find(r => !r.prerelease) || releases[0])
@@ -131,7 +81,7 @@ const fetchFrontmatterRelease = async () => {
   try {
     const res = await fetch(meta.apiUrl)
     if (res.ok) {
-      localRelease.value = getTargetRelease(transformReleases(await res.json(), meta.platform), item)
+      localRelease.value = getTargetRelease(transformReleases(await res.json(), meta.platform, meta.webUrl), item)
     }
   } catch (e) {
     console.error(e)

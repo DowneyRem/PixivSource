@@ -37,7 +37,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import DownloadCard from './DownloadCard.vue'
-import { renderMarkdown } from '../utils/renderMarkdown'
+import { resolveRepoMeta, transformReleases } from '../utils/releases'
 
 const { frontmatter } = useData()
 
@@ -65,65 +65,6 @@ const releaseMap = ref({}) // { repoKey: Release[] }
 const loadingMap = ref({}) // { repoKey: boolean }
 
 const getRepoKey = (item) => item?.link || item?.github || ''
-
-// ---------- 格式化 API 数据 ----------
-const transformReleases = (rawData, platform) => {
-  if (!Array.isArray(rawData)) return []
-
-  const releases = platform === 'gitee' ? [...rawData].reverse() : rawData
-
-  return releases.map(item => {
-    const assets = (item.assets || [])
-        .filter(asset => {
-          const assetName = (asset.name || '').toLowerCase()
-          return !assetName.endsWith('.zip') && !assetName.endsWith('.tar.gz')
-        })
-        .map(asset => ({
-          id: platform === 'gitee' ? asset.browser_download_url : asset.id,
-          name: asset.name,
-          browser_download_url: asset.browser_download_url,
-          size: platform === 'gitee' ? null : asset.size,
-        }))
-
-    const isPrerelease = platform === 'gitee'
-        ? item.prerelease || ['beta', 'alpha', 'pre'].some(keyword => String(item.tag_name).toLowerCase().includes(keyword))
-        : item.prerelease
-
-    const tagName = String(item.tag_name).toLowerCase() === 'beta' && item.name
-        ? item.name.replace(/^legado_app_/, '')
-        : item.tag_name
-
-    return {
-      tag_name: tagName,
-      prerelease: isPrerelease,
-      published_at: platform === 'gitee' ? item.created_at : item.published_at,
-      body: renderMarkdown(item.body || ''),
-      html_url: platform === 'gitee'
-          ? `https://gitee.com/${item.author?.login}/${item.name?.replace('legado_app_', '')}/releases`
-          : item.html_url,
-      assets,
-    }
-  })
-}
-
-// ---------- 解析仓库元信息 ----------
-const resolveRepoMeta = (url) => {
-  if (!url) return null
-
-  const trimmedUrl = url.trim()
-
-  if (trimmedUrl.includes('gitee.com/')) {
-    const path = trimmedUrl.split('gitee.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
-    return { platform: 'gitee', apiUrl: `https://gitee.com/api/v5/repos/${path}/releases` }
-  }
-
-  if (trimmedUrl.includes('github.com/')) {
-    const path = trimmedUrl.split('github.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
-    return { platform: 'github', apiUrl: `https://api.github.com/repos/${path}/releases` }
-  }
-
-  return null
-}
 
 // ---------- 下载链接转换（传递给 DownloadCard）----------
 const getDownloadUrl = (assetUrl, repoItem) => {
@@ -160,7 +101,7 @@ const fetchRepoRelease = async (repoItem) => {
   try {
     const res = await fetch(meta.apiUrl)
     if (res.ok) {
-      releaseMap.value[repoKey] = transformReleases(await res.json(), meta.platform)
+      releaseMap.value[repoKey] = transformReleases(await res.json(), meta.platform, meta.webUrl)
     }
   } catch (error) {
     console.error(`[DownloadList] 拉取失败: ${repoKey}`, error)
