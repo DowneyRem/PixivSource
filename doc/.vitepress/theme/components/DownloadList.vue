@@ -46,7 +46,6 @@ const repoList = computed(() => frontmatter.value.repos || [])
 
 // ---------- 全局开关 ----------
 const showAllRepos = ref(false)
-
 // GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先保留代码便于后续恢复。
 // const useGithubProxy = ref(true)
 
@@ -129,7 +128,7 @@ const resolveRepoMeta = (url) => {
 // ---------- 下载链接转换（传递给 DownloadCard）----------
 const getDownloadUrl = (assetUrl, repoItem) => {
   if (!assetUrl) return ''
-
+  
   // GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先直接返回原始下载链接。
   // const repoLink = getRepoKey(repoItem)
   // if (repoLink.includes('gitee.com')) return assetUrl
@@ -186,7 +185,7 @@ onMounted(() => {
         <input v-model="showAllRepos" type="checkbox" class="filter-checkbox" />
         <span class="checkbox-custom-text">显示所有阅读分支版本</span>
       </label>
-
+      
       <!--
       GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先隐藏复选框。
       <label class="filter-checkbox-label">
