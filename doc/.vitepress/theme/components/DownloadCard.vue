@@ -9,6 +9,7 @@
 
 import { computed, onMounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
+import { renderMarkdown } from '../utils/renderMarkdown'
 
 const props = defineProps({
   item: {
@@ -54,41 +55,6 @@ const displayLoading = computed(() => props.loading || localLoading.value)
 
 const toggleLog = () => { logExpanded.value = !logExpanded.value }
 const toggleAssets = () => { assetsExpanded.value = !assetsExpanded.value }
-
-const renderMarkdown = (mdText) => {
-  if (!mdText) return ''
-
-  let html = mdText
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-
-  html = html.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
-
-  html = html.replace(/^(#{1,6})\s+(.+?)(?=\n|$)/gm, (match, hashes, content) => {
-    const level = hashes.length
-    return `<h${level} style="margin:12px 0 8px 0;font-weight:700;font-size:${1.4 - level * 0.1}rem;color:var(--vp-c-text-1);">${content}</h${level}>`
-  })
-
-  html = html.replace(/(?:^([*+-])\s+(.+?)(?:\n|$))+/gm, (match) => {
-    const items = match.trim().split('\n')
-        .map(line => {
-          const m = line.match(/^[*+-]\s+(.+)$/)
-          return m ? `<li style="margin:4px 0;list-style-type:disc;">${m[1]}</li>` : ''
-        })
-        .join('')
-    return `<ul style="padding-left:20px;margin:8px 0;">${items}</ul>`
-  })
-
-  html = html.replace(/`([^`\n]+)`/g, '<code style="background:var(--vp-c-bg-alt);padding:2px 6px;border-radius:4px;font-family:var(--vp-font-family-mono);font-size:0.85em;color:var(--vp-c-brand-1);border:1px solid var(--vp-c-divider)">$1</code>')
-  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong style="font-weight:700;color:var(--vp-c-text-1);">$1</strong>')
-  html = html.replace(/\[([^\]]+)]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--vp-c-brand-1);text-decoration:underline;">$1</a>')
-
-  return html.split('\n').map(line => {
-    if (line.trim().startsWith('<ul') || line.trim().startsWith('<li') || line.trim().startsWith('</ul') || line.trim().startsWith('<h')) return line
-    return line ? line + '<br>' : ''
-  }).join('\n')
-}
 
 const normalizeBody = (body) => {
   if (!body) return ''
