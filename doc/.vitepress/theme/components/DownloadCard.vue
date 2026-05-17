@@ -7,7 +7,7 @@
  * frontmatterSource + frontmatterIndex 从当前 VitePress 页面的 frontmatter 中读取数据。
  */
 
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, useSSRContext, watch } from 'vue'
 import { useData } from 'vitepress'
 import { renderMarkdown } from '../utils/renderMarkdown'
 import { resolveRepoMeta, transformReleases } from '../utils/releases'
@@ -44,6 +44,7 @@ const { frontmatter } = useData()
 
 const logExpanded = ref(false)
 const assetsExpanded = ref(false)
+const platformIconEl = ref(null)
 const localRelease = ref(null)
 const localLoading = ref(false)
 
@@ -53,6 +54,21 @@ const cardItem = computed(() => props.item || frontmatterList.value[props.frontm
 const hasInjectedRelease = computed(() => props.release !== undefined)
 const displayRelease = computed(() => hasInjectedRelease.value ? props.release : localRelease.value)
 const displayLoading = computed(() => props.loading || localLoading.value)
+
+const repoMeta = computed(() => resolveRepoMeta(cardItem.value.link || cardItem.value.github || cardItem.value.url))
+const repoPlatform = computed(() => {
+  if (!repoMeta.value) return null
+  return {
+    icon: repoMeta.value.platform,
+    label: repoMeta.value.platform === 'gitee' ? 'Gitee' : 'GitHub',
+    url: cardItem.value.link || cardItem.value.github || repoMeta.value.webUrl,
+  }
+})
+
+if (import.meta.env.SSR) {
+  const ssrContext = useSSRContext()
+  if (repoPlatform.value?.icon) ssrContext?.vpSocialIcons?.add(repoPlatform.value.icon)
+}
 
 const toggleLog = () => { logExpanded.value = !logExpanded.value }
 const toggleAssets = () => { assetsExpanded.value = !assetsExpanded.value }
@@ -95,7 +111,22 @@ watch(cardItem, () => {
   fetchFrontmatterRelease()
 })
 
-onMounted(fetchFrontmatterRelease)
+onMounted(async () => {
+  fetchFrontmatterRelease()
+
+  await nextTick()
+  if (
+    platformIconEl.value instanceof HTMLElement &&
+    (getComputedStyle(platformIconEl.value).maskImage ||
+      getComputedStyle(platformIconEl.value).webkitMaskImage) === 'none' &&
+    repoPlatform.value?.icon
+  ) {
+    platformIconEl.value.style.setProperty(
+      '--icon',
+      `url('https://api.iconify.design/simple-icons/${repoPlatform.value.icon}.svg')`
+    )
+  }
+})
 
 const sortedAssets = computed(() => {
   if (!displayRelease.value?.assets) return []
@@ -159,6 +190,19 @@ const navToRepo = () => {
 
 <template>
   <div v-if="cardItem.name" class="download-card" :class="{ 'is-expanded': logExpanded }">
+    <a
+        v-if="repoPlatform"
+        :href="repoPlatform.url"
+        target="_blank"
+        rel="noopener"
+        class="platform-icon-link"
+        :aria-label="`前往 ${repoPlatform.label}`"
+        :title="repoPlatform.label"
+        @click.stop
+    >
+      <span ref="platformIconEl" class="vpi-social platform-icon" :class="`vpi-social-${repoPlatform.icon}`"></span>
+    </a>
+
     <div class="main-link-area" @click="navToRepo">
       <img :src="cardItem.icon" class="card-icon" :alt="cardItem.name" />
       <div class="header-main">
@@ -289,6 +333,32 @@ const navToRepo = () => {
   transition: all 0.25s ease;
   position: relative;
 }
+.platform-icon-link {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  color: var(--vp-c-text-3);
+  background-color: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  transition: all 0.2s ease;
+}
+.platform-icon-link:hover {
+  color: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+  transform: translateY(-1px);
+}
+.platform-icon {
+  width: 17px;
+  height: 17px;
+  background-color: currentColor;
+}
 .download-card:hover {
   border-color: var(--vp-c-brand-1);
   transform: translateY(-2px);
@@ -310,7 +380,7 @@ const navToRepo = () => {
   border: 1px solid var(--vp-c-divider);
   flex-shrink: 0;
 }
-.header-main { flex: 1; min-width: 0; }
+.header-main { flex: 1; min-width: 0; padding-right: 1.8rem; }
 .header-main h4 {
   margin: 0 0 0.4rem 0;
   font-size: 1.15rem;
