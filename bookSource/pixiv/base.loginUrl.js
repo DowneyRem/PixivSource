@@ -1098,6 +1098,12 @@ function editSettings(settingName) {
 
         } else if (settingName in catalogSettingsName) {
             sleep(2); try { java.refreshBookToc() } catch(e) {}
+
+        } else if (settingName in contentSettingsName) {
+            sleep(2); try { java.refreshContent() } catch(e) {}
+
+        } else if (settingName in pictureSettingsName) {
+            sleep(2); try { java.refreshContent() } catch(e) {}
         }
     }
 }
