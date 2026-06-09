@@ -1057,6 +1057,11 @@ function showSettingsDiscover() {
 function setDefaultSettingsLoginUrl() {
     setDefaultSettings()
     sleepToast(`\n✅ 已恢复　🔧 默认设置\n\n${getSettingStatus()}`)
+    sleep(2)
+    try { source.refreshExplore() } catch (e) {}
+    try { java.refreshBookInfo() } catch(e) {}
+    try { java.refreshBookToc() } catch(e) {}
+    try { java.refreshContent() } catch(e) {}
 }
 
 function editSettings(settingName) {
