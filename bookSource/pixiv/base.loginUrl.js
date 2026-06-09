@@ -1086,6 +1086,8 @@ function editSettings(settingName) {
             msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
         }
         try { source.refreshExplore() } catch (e) {}
+        try { java.refreshBookToc() } catch(e) {}
+        try { java.refreshContent() } catch(e) {}
         sleepToast(msg)
 
     } else {
@@ -1094,7 +1096,7 @@ function editSettings(settingName) {
         if (settingName in discoverSettingsName) {
             sleep(2); try { source.refreshExplore() } catch (e) {}
 
-        } else if (settingName ===  "ADD_CHAPTER_INDEX") {
+        } else if (settingName in catalogSettingsName) {
             sleep(2); try { java.refreshBookToc() } catch(e) {}
         }
     }
