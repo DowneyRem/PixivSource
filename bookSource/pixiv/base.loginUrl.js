@@ -1056,6 +1056,7 @@ function editSettings(settingName) {
         status = settings[settingName] = true
     }
     putInCacheObject("pixivSettings", settings)
+    globalThis.settings = settings
 
     if (settingName === "FAST") {
         checkSettings(settings)
@@ -1078,10 +1079,10 @@ function editSettings(settingName) {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
         sleepToast(msg)
         if (settingName in discoverSettingsName) {
-            sleep(3); try { source.refreshExplore() } catch (e) {}
+            sleep(2); try { source.refreshExplore() } catch (e) {}
 
         } else if (settingName ===  "ADD_CHAPTER_INDEX") {
-            sleep(3); try { java.refreshBookToc() } catch(e) {}
+            sleep(2); try { java.refreshBookToc() } catch(e) {}
         }
     }
 }
