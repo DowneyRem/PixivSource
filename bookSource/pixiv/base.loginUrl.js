@@ -970,6 +970,7 @@ const otherSettingsName = {
 
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
+    "IPDirect": "✈️ 直连模式",
 }
 const pictureSettingsName = {
     "PIC_SOURCE": "⏳ 图片解析",
@@ -1080,6 +1081,9 @@ function editSettings(settingName) {
         checkSettings(settings)
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
         sleepToast(msg)
+        try { source.refreshExplore() } catch (e) {}
+        try { java.refreshBookToc() } catch(e) {}
+        try { java.refreshContent() } catch(e) {}
 
     } else if (settingName === "IPDirect") {
         if (settings.IPDirect && !isLogin()) {
@@ -1090,10 +1094,10 @@ function editSettings(settingName) {
             checkSettings(settings)
             msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
         }
+        sleepToast(msg)
         try { source.refreshExplore() } catch (e) {}
         try { java.refreshBookToc() } catch(e) {}
         try { java.refreshContent() } catch(e) {}
-        sleepToast(msg)
 
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
