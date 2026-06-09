@@ -1098,7 +1098,10 @@ function editSettings(settingName) {
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
         sleepToast(msg)
-        if (settingName in discoverSettingsName) {
+        if (settingName === "MORE_INFORMATION") {
+            sleep(2); try { java.refreshBookInfo() } catch(e) {}
+
+        } else if (settingName in discoverSettingsName) {
             sleep(2); try { source.refreshExplore() } catch (e) {}
 
         } else if (settingName in catalogSettingsName) {
