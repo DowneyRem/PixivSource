@@ -422,8 +422,9 @@ function setDefaultSettings() {
     settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
 
     settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
-    settings.SHOW_COMMENTS = true       // 正文：章尾显示评论，但会增加大量请求
     settings.SHOW_PICTURES = true       // 正文：正文显示图片，但会增加少许请求
+    settings.SHOW_QUESTION = true       // 正文：正文显示投票
+    settings.SHOW_COMMENTS = true       // 正文：章尾显示评论，但会增加大量请求
 
     settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
     settings.HIDE_LIKE_NOVELS = false   // 全局：搜索结果 隐藏收藏小说

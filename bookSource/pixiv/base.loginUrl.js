@@ -958,9 +958,10 @@ const catalogSettingsName = {
 }
 const contentSettingsName = {
     "SHOW_CAPTIONS": "📄 显示描述",
-    "SHOW_COMMENTS": "💬 显示评论",
     "SHOW_PICTURES": "🖼️ 显示图片",
+    "SHOW_QUESTION": "✅ 显示投票",
 
+    "SHOW_COMMENTS": "💬 显示评论",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
 }
 const otherSettingsName = {
@@ -969,7 +970,6 @@ const otherSettingsName = {
 
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
-    "IPDirect": "✈️ 直连模式",
 }
 const pictureSettingsName = {
     "PIC_SOURCE": "⏳ 图片解析",

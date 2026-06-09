@@ -102,16 +102,16 @@ let settings = [
     {"🔗 🚫 原始链接": "editSettings('SHOW_ORIGINAL_LINK')" },
 
     {"📄 🚫 显示描述": "editSettings('SHOW_CAPTIONS')" },
-    {"💬 🚫 显示评论": "editSettings('SHOW_COMMENTS')" },
     {"🖼️ 🚫 显示插图": "editSettings('SHOW_PICTURES')" },
+    {"✅ 🚫 显示投票": "editSettings('SHOW_QUESTION')" },
 
+    {"💬 🚫 显示评论": "editSettings('SHOW_COMMENTS')" },
     {"📚 🚫 恢复《》": "editSettings('REPLACE_TITLE_MARKS')" },
     {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
-    {"🚫 📃 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
 
+    {"🚫 📃 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
     {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
-    {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 
     // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
     // {"🔗 图片链接": "editSettings('PIC_LINK')" },
