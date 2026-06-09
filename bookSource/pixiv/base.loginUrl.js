@@ -1076,9 +1076,10 @@ function editSettings(settingName) {
 
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
-        if (settingName in Object.keys(discoverSettingsName)) try {source.refreshExplore()} catch (e) {}
-        if (settingName ===  "ADD_CHAPTER_INDEX") try { java.refreshBookToc() } catch(e) {}
         sleepToast(msg)
+        if (settingName in discoverSettingsName) {
+            sleep(3); try { source.refreshExplore() } catch (e) {}
+
         } else if (settingName ===  "ADD_CHAPTER_INDEX") {
             sleep(3); try { java.refreshBookToc() } catch(e) {}
         }
