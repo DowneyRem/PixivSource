@@ -39,20 +39,18 @@ function seriesHandler(res) {
     function sendAjaxForGetChapters(lastIndex) {
         let resp = getAjaxJson(urlIP(urlSeriesNovels(seriesID, limit, lastIndex)), true)
         let novels = resp.body.thumbnails.novel
-        // novels = resp.body.page.seriesContents
+        // let novels = resp.body.page.seriesContents
+
         novels.forEach((v, i) => {
             novelIds.push(v.id)
+            v.chapterUrl = urlIP(urlNovel(v.id))
             v.title = v.title.trim()
             if (util.settings.ADD_CHAPTER_INDEX) v.title = "第"+ (i+1) +"章 " + v.title
-            v.chapterUrl = urlIP(urlNovel(v.id))
-
-            if (v.updateDate !== undefined) {
+            if (v.updateDate && v.textCount) {
                 v.updateDate = timeTextFormat(v.createDate)
                 v.chapterInfo = `${v.updateDate}　　${v.textCount}字`
-            } else {
-                v.updateDate = java.timeFormat(v.uploadTimestamp)
-                v.chapterInfo = `${v.updateDate}　　${v.textLength}字`
             }
+
             util.debugFunc(() => {
                 java.log(`${v.title}`)
             })
@@ -63,10 +61,14 @@ function seriesHandler(res) {
     if (!util.settings.SHOW_UPDATE_TIME) {
         returnList = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesID)), true).body
         returnList.forEach((v, i) => {
+            novelIds.push(v.id)
+            v.chapterUrl = urlIP(urlNovel(v.id))
             v.title = v.title.trim()
             if (util.settings.ADD_CHAPTER_INDEX) v.title = "第"+ (i+1) +"章 " + v.title
-            v.chapterUrl = urlIP(urlNovel(v.id))
-            novelIds.push(v.id)
+
+            util.debugFunc(() => {
+                java.log(`${v.title}`)
+            })
         })
     } else {
         //逻辑控制者 也就是使用上面定义的两个函数来做对应功能
