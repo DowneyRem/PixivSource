@@ -43,7 +43,7 @@ function seriesHandler(res) {
         novels.forEach((v, i) => {
             novelIds.push(v.id)
             v.title = v.title.trim()
-            if (globalThis.settings.ADD_CHAPTER_INDEX) v.title = "第"+ (i+1) +"章 " + v.title
+            if (util.settings.ADD_CHAPTER_INDEX) v.title = "第"+ (i+1) +"章 " + v.title
             v.chapterUrl = urlIP(urlNovel(v.id))
 
             if (v.updateDate !== undefined) {
@@ -64,7 +64,7 @@ function seriesHandler(res) {
         returnList = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesID)), true).body
         returnList.forEach((v, i) => {
             v.title = v.title.trim()
-            if (globalThis.settings.ADD_CHAPTER_INDEX) v.title = "第"+ (i+1) +"章 " + v.title
+            if (util.settings.ADD_CHAPTER_INDEX) v.title = "第"+ (i+1) +"章 " + v.title
             v.chapterUrl = urlIP(urlNovel(v.id))
             novelIds.push(v.id)
         })
