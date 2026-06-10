@@ -146,7 +146,7 @@
 > **2️⃣ 文本框输入作者ID，点击按钮【🚫 屏蔽作者】，屏蔽指定作者**
 
 
-<div v-if="route.path === 'Pixiv'">
+<div v-if="pagePath === 'Pixiv'">
 
 ### 🚫 屏蔽标签 & 屏蔽描述 {#BlockWords}
 > [!NOTE]

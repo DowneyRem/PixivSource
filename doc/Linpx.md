@@ -35,9 +35,11 @@ repos:
 ---
 
 <script setup>
-import { useRoute, useRouter } from "vitepress";
-const route = useRoute();
-route.path = route.path.replace("/", "");
+import { computed } from "vue";
+import { useData } from "vitepress";
+
+const { page } = useData();
+const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 </script>
 
 

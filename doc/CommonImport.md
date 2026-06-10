@@ -1,6 +1,6 @@
 
 
-<div v-if="route.path === 'Pixiv' || route.path === 'BetterExperience'">
+<div v-if="pagePath === 'Pixiv' || pagePath === 'BetterExperience'">
 
 > [!IMPORTANT]
 >
@@ -14,7 +14,7 @@
 </div>
 
 
-<div v-if="route.path === 'Linpx'">
+<div v-if="pagePath === 'Linpx'">
 
 > [!IMPORTANT]
 >
@@ -28,7 +28,7 @@
 </div>
 
 
-<div v-if="route.path === 'FurryNovel'">
+<div v-if="pagePath === 'FurryNovel'">
 
 > [!IMPORTANT]
 >

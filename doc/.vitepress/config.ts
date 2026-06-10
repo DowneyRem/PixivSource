@@ -27,6 +27,7 @@ export default defineConfig({
     description: "适配 开源阅读 Legado 3.0 的 Pixiv 书源",
     base: BASE,  // 项目名称
     cleanUrls: true,        // 简洁URL
+    srcExclude: ['Common*.md'], // 公共 include 片段不作为独立页面渲染
     ignoreDeadLinks: true,  // 忽略死链
     appearance: true,       // 默认主题由用户配色方案决定
     lastUpdated: true,      // 获取页面最后更新的时间戳

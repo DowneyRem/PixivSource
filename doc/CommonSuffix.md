@@ -1,5 +1,5 @@
 
-<div v-if="route.path === 'BetterExperience' || route.path === 'QuickStart'">
+<div v-if="pagePath === 'BetterExperience' || pagePath === 'QuickStart'">
 
 ## 📖 畅享阅读 {#EnjoyReading}
 - 🔍 [搜索小说](Pixiv.md#SearchNovel)：书架页面，搜索小说，添加小说到书架

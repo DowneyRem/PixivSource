@@ -6,7 +6,7 @@
 >
 >　**点击链接，一键导入 书源、订阅源**
 
-<div v-if="route.path === 'QuickStart'">
+<div v-if="pagePath === 'QuickStart'">
 
 | 源名称    | jsDelivr | Github |
 |--------| -------- | ------ |
@@ -16,7 +16,7 @@
 </div>
 
 
-<div v-if="route.path.startsWith('Import')">
+<div v-if="pagePath.startsWith('Import')">
 
 | 源名称    | jsDelivr | Github |
 |--------| -------- | ------ |
@@ -39,7 +39,7 @@
 ![img](./pic/InportBookSourcePixiv.png)
 </details>
 
-<div v-if="route.path.startsWith('Import')">
+<div v-if="pagePath.startsWith('Import')">
 <details><summary><strong> ⚙️ 一键导入　网站设置 </strong></summary>
   
   > [!NOTE]
@@ -69,7 +69,7 @@
 > 
 >　**订阅 - 规则订阅 - 添加 - 复制链接、粘贴 - 添加订阅**
 
-<div v-if="route.path === 'QuickStart'">
+<div v-if="pagePath === 'QuickStart'">
 
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |
@@ -79,7 +79,7 @@
 </div>
 
 
-<div v-if="route.path.startsWith('Import')">
+<div v-if="pagePath.startsWith('Import')">
 
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |
@@ -112,7 +112,7 @@
 </details>
 
 
-<div v-if="route.path.startsWith('ImportBookSource')">
+<div v-if="pagePath.startsWith('ImportBookSource')">
 
 ### 🌐 C.网络导入 {#InternetBookSource}
 <details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
@@ -136,7 +136,7 @@
 </div>
 
 
-<div v-if="route.path.startsWith('ImportRssSource')">
+<div v-if="pagePath.startsWith('ImportRssSource')">
 
 ### 🌐 C.网络导入 {#InternetRssSource}
 <details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
@@ -162,7 +162,7 @@
 </div>
 
 
-<div v-if="route.path.startsWith('Import')">
+<div v-if="pagePath.startsWith('Import')">
 
 ### 📑 D.文件导入 {#File}
 <details><summary><strong> 📄 文件导入　详细操作</strong></summary>
