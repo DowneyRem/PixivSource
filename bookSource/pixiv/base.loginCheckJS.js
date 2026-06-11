@@ -128,7 +128,7 @@ function publicFunc() {
 
     u.getCookie = function() {
         let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-        if (isLogin()) putInCache("pixivCookie", pixivCookie, 60*60)  // 缓存1h
+        if (isLogin()) syncPixivWebCookie(pixivCookie)  // 缓存1h，并同步到 WebView CookieManager
     }
 
     u.removeCookie = function() {
@@ -615,6 +615,7 @@ function getPixivUid() {
 }
 
 function getHeaders() {
+    syncPixivWebCookie()
     let headers = {
         "accept": "application/json",
         "accept-encoding": "gzip, deflate, br, zstd",

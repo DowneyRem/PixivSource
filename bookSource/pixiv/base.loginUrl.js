@@ -57,7 +57,7 @@ function removeSettingsCache() {
 function getCookie() {
     let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
     if (!isLogin()) return ""
-    putInCache("pixivCookie", pixivCookie, 60*60)
+    pixivCookie = syncPixivWebCookie(pixivCookie)
     return pixivCookie
 }
 
@@ -1181,14 +1181,8 @@ function restoreData(data) {
     if (pixivCookie) {
         removeCookie()
         putInCache("pixivUid", data?.pixivUid)
-        putInCache("pixivCookie", pixivCookie, 60*60)
         putInCache("pixivCsrfToken", data?.pixivCsrfToken)
-        cookie.setCookie("https://www.pixiv.net", pixivCookie)
-        cookie.setCookie("https://accounts.pixiv.net", pixivCookie)
-        try {
-            cookie.setWebCookie("https://www.pixiv.net", pixivCookie)
-            cookie.setWebCookie("https://accounts.pixiv.net", pixivCookie)
-        } catch (e) {}
+        syncPixivWebCookie(pixivCookie)
     }
 
     // 书源缓存
@@ -1208,7 +1202,8 @@ function restoreData(data) {
 }
 
 function stripCfCookies(cookieStr) {
-    return cookieStr
+    if (!cookieStr) return ""
+    return sanitizePixivCookie(cookieStr)
         .replace(/;?\s*cf_clearance=[^;]*/g, '')
         .replace(/;?\s*__cf_bm=[^;]*/g, '')
         .replace(/^;\s*/, '')   // 防止开头多余的分号

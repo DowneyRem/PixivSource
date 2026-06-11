@@ -173,6 +173,7 @@ function getAjaxParseJson(url, parseFunc, requestUpdate) {
 function getWebviewJson(url, parseFunc, requestUpdate) {
     const {java, cache} = this
     return this.cacheGetAndSet(url, () => {
+        if (String(url).includes("pixiv.net")) this.syncPixivWebCookie()
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
     }, requestUpdate)
@@ -191,6 +192,80 @@ function getWebViewUA() {
     this.putInCache("userAgent", userAgent, cacheSaveSeconds/7)
     return String(userAgent)
 }
+
+function parseCookieMap(cookieStr) {
+    let cookieMap = {}
+    if (!cookieStr) return cookieMap
+    String(cookieStr).split(";").forEach(item => {
+        let index = item.indexOf("=")
+        if (index <= 0) return
+        let key = item.slice(0, index).trim()
+        let value = item.slice(index + 1).trim()
+        if (key && value) cookieMap[key] = value
+    })
+    return cookieMap
+}
+
+function stringifyCookieMap(cookieMap, priorityKeys) {
+    let items = []
+    let used = {}
+    priorityKeys.forEach(key => {
+        if (cookieMap[key] !== undefined) {
+            items.push(`${key}=${cookieMap[key]}`)
+            used[key] = true
+        }
+    })
+    Object.keys(cookieMap).forEach(key => {
+        if (!used[key]) items.push(`${key}=${cookieMap[key]}`)
+    })
+    return items.join("; ")
+}
+
+function sanitizePixivCookie(cookieStr) {
+    if (!cookieStr) return ""
+    let cookieMap = parseCookieMap(cookieStr)
+    let trackingKeys = [
+        "_ga", "_ga_MZ1NL4PHH0", "_ga_75BBYNYN9J", "_gcl_au", "_im_vid", "_pubcid", "_pubcid_cst",
+        "_twpid", "__utma", "__utmv", "__utmz", "cto_bidid", "cto_bundle", "cto_dna_bundle",
+        "FCCDCF", "FCNEC"
+    ]
+    trackingKeys.forEach(key => delete cookieMap[key])
+    let priorityKeys = [
+        "PHPSESSID", "device_token", "login_ever", "privacy_policy_agreement", "privacy_policy_notification",
+        "first_visit_datetime_pc", "p_ab_id", "p_ab_id_2", "p_ab_d_id", "yuid_b", "a_type", "b_type", "c_type",
+        "cf_clearance", "__cf_bm", "_cfuvid"
+    ]
+    let cleanedCookie = stringifyCookieMap(cookieMap, priorityKeys)
+    if (cleanedCookie.length <= 3800) return cleanedCookie
+
+    delete cookieMap.cf_clearance
+    delete cookieMap.__cf_bm
+    delete cookieMap._cfuvid
+    cleanedCookie = stringifyCookieMap(cookieMap, priorityKeys)
+    if (cleanedCookie.length <= 3800) return cleanedCookie
+
+    let essentialMap = {}
+    priorityKeys.forEach(key => {
+        if (cookieMap[key] !== undefined && key.indexOf("cf") !== 0) essentialMap[key] = cookieMap[key]
+    })
+    return stringifyCookieMap(essentialMap, priorityKeys)
+}
+
+function syncPixivWebCookie(cookieStr) {
+    const {java, cache} = this
+    if (!cookieStr) cookieStr = getFromCache("pixivCookie") || String(java.getCookie("https://www.pixiv.net/", null) || "")
+    cookieStr = sanitizePixivCookie(cookieStr)
+    if (!cookieStr || !cookieStr.includes("PHPSESSID=")) return cookieStr
+
+    putInCache("pixivCookie", cookieStr, 60*60)
+    try { cookie.setCookie("https://www.pixiv.net", cookieStr) } catch (e) {}
+    try { cookie.setCookie("https://accounts.pixiv.net", cookieStr) } catch (e) {}
+    // setWebCookie 会先清空 WebView session cookie；最后写 www，优先保证 pixiv 页面 WebView 已登录。
+    try { cookie.setWebCookie("https://accounts.pixiv.net", cookieStr) } catch (e) {}
+    try { cookie.setWebCookie("https://www.pixiv.net", cookieStr) } catch (e) {}
+    return cookieStr
+}
+
 function startBrowser(url, title) {
     const {java, cache} = this
     if (!title) title = url
@@ -199,6 +274,8 @@ function startBrowser(url, title) {
     headers["User-Agent"] = this.getWebViewUA()
 
     if (url.includes("https://www.pixiv.net")) {
+        this.syncPixivWebCookie()
+        headers["Cookie"] = this.getFromCache("pixivCookie") || ""
         if (url.includes("settings")) msg += "⚙️ 账号设置"
         else msg += "⤴️ 分享小说"
         msg += "\n\n即将打开 Pixiv\n请确认已开启代理/梯子/VPN等"
