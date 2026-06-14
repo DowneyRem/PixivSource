@@ -48,21 +48,27 @@ interface RssSource {
 
 function readTextFile(filePath: string): string {
     if (fs.existsSync(filePath)) {
-        let data = fs.readFileSync(filePath, "utf-8").trim()
-        return data.split("\r\n").join("\n")
+        try {
+            let data = fs.readFileSync(filePath, "utf-8").trim()
+            return data.split("
+").join("
+")
+        } catch (e) {
+            return ""
+        }
     }
     return ""
 }
 
 function saveTextFile(folder:string, fileName:string, data:any):void {
     if (folder && !fs.existsSync(folder)) {
-        fs.mkdirSync(folder)
+        fs.mkdirSync(folder, { recursive: true })
     }
     if (fileName.endsWith(".json")) {
         data = JSON.stringify(data, null, 4)
     }
     const outputPath = path.join(folder, fileName)
-    fs.writeFileSync(outputPath, data, "utf-8",)
+    fs.writeFileSync(outputPath, data, "utf-8")
 
     if (fileName.endsWith(".json")) {
         console.log(`✅  ${outputPath} 生成成功`)
@@ -75,8 +81,16 @@ function buildRssSource(sourceName:string): RssSource[] {
     let defaultDataPath = `BuildSource/rssSource.json`
 
     // 读取基础模板
+    if (!fs.existsSync(templatePath)) {
+        console.error(`模板文件不存在: ${templatePath}`)
+        return []
+    }
     let RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
     if (sourceName === "furry") RssSources = RssSources.slice(5, RssSources.length)
+    if (!fs.existsSync(defaultDataPath)) {
+        console.error(`默认数据文件不存在: ${defaultDataPath}`)
+        return []
+    }
     const defaultData: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
 
     // 填充默认数据
@@ -91,7 +105,7 @@ function buildRssSource(sourceName:string): RssSource[] {
     return RssSources
 }
 
-function buildNovelSource(name:string): RssSource {
+function buildNovelSource(name:string): RssSource | undefined {
     // 需要在 项目根目录下执行
     let sourcePath = `rssSource/${name}`
     let templatePath = `rssSource/furry.json`
@@ -106,8 +120,22 @@ function buildNovelSource(name:string): RssSource {
     else sourceName = ""
 
     // 读取基础模板
+    if (!fs.existsSync(templatePath)) {
+        console.error(`模板文件不存在: ${templatePath}`)
+        return undefined
+    }
     const RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
     const RssSource: RssSource = RssSources.find(item => item.sourceName === sourceName)
+    
+    if (!RssSource) {
+        console.error(`找不到书源: ${sourceName}`)
+        return undefined
+    }
+    
+    if (!fs.existsSync(defaultDataPath)) {
+        console.error(`默认数据文件不存在: ${defaultDataPath}`)
+        return undefined
+    }
     const defaultData: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
 
     // 读取各个构建后文件内容
@@ -128,7 +156,6 @@ function buildNovelSource(name:string): RssSource {
     RssSource.sourceComment = sourceComment
     RssSource.loginUrl = loginUrl
     RssSource.loginUi = loginUI
-    RssSource.loginUrl = loginUrl
 
     RssSource.header = header
     RssSource.jsLib = jsLib
@@ -148,13 +175,19 @@ function buildNovelSource(name:string): RssSource {
 }
 
 function buildBTSRKSource() {
+    const sources: RssSource[] = []
     const pixiv = buildNovelSource("pixiv")
+    if (pixiv) sources.push(pixiv)
     const linpx = buildNovelSource("linpx")
+    if (linpx) sources.push(linpx)
     const furryNovel = buildNovelSource("furryNovel")
+    if (furryNovel) sources.push(furryNovel)
     const repo = buildNovelSource("repo")
+    if (repo) sources.push(repo)
     const import2 = buildNovelSource("import2")
+    if (import2) sources.push(import2)
     const furrySites = buildRssSource("furry")
-    const allSources = [pixiv, linpx, furryNovel, repo, import2,  ...furrySites]
+    const allSources = [...sources, ...furrySites]
     saveTextFile("", "btsrk.json", allSources)
 }
 
@@ -174,7 +207,8 @@ function buildSearchSource() {
     RssSource.singleUrl = false
     RssSource.customOrder = 10
 
-    RssSource.ruleArticles = `@js:\n${ruleArticles}`
+    RssSource.ruleArticles = `@js:
+${ruleArticles}`
     RssSource.ruleTitle = "name"
     RssSource.ruleLink = "url"
     RssSource.injectJs = injectJs
@@ -256,7 +290,8 @@ function main() {
     console.log(new Date(Date.now()).toLocaleString("zh", options))
     console.log("——".repeat(11))
     let updateTimeNew = new Date(Date.now() + delayTime).toLocaleString("zh", options).slice(0, 10)
-    console.log(`订阅更新时间：\n${updateTimeNew}`)
+    console.log(`订阅更新时间：
+${updateTimeNew}`)
     buildBTSRKSource()
     // buildBooksSources()
     // buildImportSource()
