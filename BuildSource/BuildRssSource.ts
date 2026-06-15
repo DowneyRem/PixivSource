@@ -50,9 +50,7 @@ function readTextFile(filePath: string): string {
     if (fs.existsSync(filePath)) {
         try {
             let data = fs.readFileSync(filePath, "utf-8").trim()
-            return data.split("
-").join("
-")
+            return data.split("\r\n").join("\n")
         } catch (e) {
             return ""
         }
@@ -207,8 +205,7 @@ function buildSearchSource() {
     RssSource.singleUrl = false
     RssSource.customOrder = 10
 
-    RssSource.ruleArticles = `@js:
-${ruleArticles}`
+    RssSource.ruleArticles = `@js:\n${ruleArticles}`
     RssSource.ruleTitle = "name"
     RssSource.ruleLink = "url"
     RssSource.injectJs = injectJs
@@ -290,8 +287,7 @@ function main() {
     console.log(new Date(Date.now()).toLocaleString("zh", options))
     console.log("——".repeat(11))
     let updateTimeNew = new Date(Date.now() + delayTime).toLocaleString("zh", options).slice(0, 10)
-    console.log(`订阅更新时间：
-${updateTimeNew}`)
+    console.log(`订阅更新时间：\n${updateTimeNew}`)
     buildBTSRKSource()
     // buildBooksSources()
     // buildImportSource()
