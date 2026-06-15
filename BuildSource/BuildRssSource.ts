@@ -126,7 +126,7 @@ function buildNovelSource(name:string): RssSource | undefined {
     const RssSource: RssSource = RssSources.find(item => item.sourceName === sourceName)
     
     if (!RssSource) {
-        console.error(`找不到书源: ${sourceName}`)
+        console.error(`找不到订阅源: ${sourceName}`)
         return undefined
     }
     
