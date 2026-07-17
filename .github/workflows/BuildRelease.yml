@@ -50,14 +50,14 @@ jobs:
       - name: Upload pixiv.json
         uses: actions/upload-artifact@v4
         with:
-          name: pixiv.json
+          name: pixiv.json.zip
           path: pixiv.json
           retention-days: 7
 
       - name: Upload linpx.json
         uses: actions/upload-artifact@v4
         with:
-          name: linpx.json
+          name: linpx.json.zip
           path: linpx.json
           retention-days: 7
 
@@ -65,7 +65,7 @@ jobs:
       - name: Upload All Files (dist)
         uses: actions/upload-artifact@v4
         with:
-          name: pixiv-source-dist
+          name: dist.zip
           path: |
             pixiv.json
             linpx.json
