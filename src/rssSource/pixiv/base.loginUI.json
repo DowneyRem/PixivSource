@@ -26,6 +26,39 @@
             "layout_flexBasisPercent": -1
         }
     },
+
+    {
+        "name": "书源设置",
+        "type": "text"
+    },
+    {
+        "name": "🔢 章节编号",
+        "type": "button",
+        "action": "editSettings('ADD_CHAPTER_INDEX')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "❤️ 自动收藏",
+        "type": "button",
+        "action": "editSettings('AUTO_LIKE_NOVELS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "📚 整合系列",
+        "type": "button",
+        "action": "editSettings('COMBINE_NOVELS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
     {
         "name": "书源相关",
         "type": "text"
