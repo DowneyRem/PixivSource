@@ -6,14 +6,14 @@ on:
       - "main"
       - "test*"
     tags:
-      - '[0-9]*'   # 只要是以数字开头的 Tag（如 274, 274-beta），统统允许触发真正的 Release 流程
+      - '[0-9]*'   # 只要是以数字开头的 Tag 都触发 Release
   pull_request:
   workflow_dispatch:
 
 permissions:
   contents: write
 
-# 提前强制将 Action 运行环境适配到 Node 24，杜绝未来环境移除导致的弃用警告与构建失败
+# 强制使用 Node 24
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -25,8 +25,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v5
 
-      # 1. 先把 pnpm 环境立起来
-      - name: Setup pnpm Environment
+      # 设置 pnpm 环境
+      - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           run_install: false
@@ -41,37 +41,54 @@ jobs:
         run: corepack enable
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile # 严格锁定依赖安装
+        run: pnpm install --frozen-lockfile
 
       - name: Build JSON Files
         run: pnpm run build
 
-      - name: Upload Build Artifacts
+      # ==================== Artifact 上传（优化重点）====================
+      - name: Upload pixiv.json
         uses: actions/upload-artifact@v4
         with:
-          name: dist
+          name: pixiv.json
+          path: pixiv.json
+          retention-days: 7
+
+      - name: Upload linpx.json
+        uses: actions/upload-artifact@v4
+        with:
+          name: linpx.json
+          path: linpx.json
+          retention-days: 7
+
+      # 可选：同时提供一个打包的完整 artifact
+      - name: Upload All Files (dist)
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixiv-source-dist
           path: |
             pixiv.json
             linpx.json
           retention-days: 7
 
+      # ==================== Tag 触发时创建 Release ====================
       - name: Extract Changelog and Determine Type
         if: github.ref_type == 'tag'
         run: |
           RAW_TAG="${{ github.ref_name }}"
           
-          # 1. 动态分析 Tag 属性并决定是否为预发布版
+          # 动态判断是否为预发布版
           if [[ "$RAW_TAG" == *-* ]]; then
               echo "IS_PRERELEASE=true" >> $GITHUB_ENV
-              TAG_NAME="${RAW_TAG%%-*}" # 剥离后缀
-              echo "--> 预发布版检测成功，日志抓取基准设定为: $TAG_NAME"
+              TAG_NAME="${RAW_TAG%%-*}"
+              echo "--> 预发布版，基准版本: $TAG_NAME"
           else
               echo "IS_PRERELEASE=false" >> $GITHUB_ENV
               TAG_NAME="$RAW_TAG"
-              echo "--> 正式版检测成功，日志抓取基准设定为: $TAG_NAME"
+              echo "--> 正式版，基准版本: $TAG_NAME"
           fi
           
-          # 2. 安全传参，通过 awk 清洗并提取正文
+          # 提取更新日志
           awk -v t_name="$TAG_NAME" '
           $0 ~ "### 📚 更新 " t_name { 
               sub(/ \{#[^}]+\}/, ""); 
@@ -83,15 +100,14 @@ jobs:
           flag
           ' doc/UpdateLog.md > RELEASE_NEXT.md
           
-          # 3. 结果兜底检查
           if [ -s RELEASE_NEXT.md ]; then
               echo "LOG_FOUND=true" >> $GITHUB_ENV
-              echo "=== 成功匹配到日志内容 ==="
+              echo "=== 成功提取更新日志 ==="
               cat RELEASE_NEXT.md
               echo "========================="
           else
               echo "LOG_FOUND=false" >> $GITHUB_ENV
-              echo "--> 警告：未在文档中检索到对应版本的更新日志，将使用 GitHub 默认生成"
+              echo "--> 未找到对应版本日志，将使用 GitHub 自动生成"
               rm -f RELEASE_NEXT.md
           fi
 
@@ -101,14 +117,9 @@ jobs:
         with:
           title: ${{ github.ref_name }}
           draft: false
-
-          # 动态开关：纯数字发布正式版，带后缀发布预发布版
           prerelease: ${{ env.IS_PRERELEASE == 'true' }}
-
-          # 智能 Else 分支：有匹配日志用日志，没匹配日志用 GitHub 自动生成的 Release Note
           generate_release_notes: ${{ env.LOG_FOUND != 'true' }}
           body_path: ${{ env.LOG_FOUND == 'true' && 'RELEASE_NEXT.md' || '' }}
-
           files: |
             pixiv.json
             linpx.json
