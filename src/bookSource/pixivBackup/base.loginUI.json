@@ -395,6 +395,15 @@
         }
     },
     {
+        "name": "📚 整合系列",
+        "type": "button",
+        "action": "editSettings('COMBINE_NOVELS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
         "name": "⏩ 快速模式",
         "type": "button",
         "action": "editSettings('FAST')",

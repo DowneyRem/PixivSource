@@ -294,6 +294,9 @@ function urlUserBookmarks(userId) {
 function urlSearchNovel(novelName, page) {
     return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
 }
+function urlSearchNovelWeb(novelName, page) {
+    return `https://www.pixiv.net/search?q=${encodeURI(novelName)}&s_mode=tag_tc&type=novel&p=${page}`
+}
 function urlSearchSeries(seriesName, page) {
     return`https://www.pixiv.net/ajax/search/novels/${encodeURI(seriesName)}?word=${encodeURI(seriesName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`
 }
@@ -317,9 +320,10 @@ function urlCoverUrl(url) {
     if (url && !url.trim()) return ""
 
     let headers = {"Referer": "https://www.pixiv.net/"}
-    let settings = this.getFromCacheObject("pixivSettings")
-    if (!settings) settings = this.setDefaultSettings()
-    if (settings.IPDirect && url.trim()) {
+    if (!this._settings) {
+        this._settings = this.getFromCacheObject("pixivSettings") || this.setDefaultSettings()
+    }
+    if (this._settings.IPDirect && url.trim()) {
         if (url.includes("i.pximg.net")) {
             url = url.replace("https://i.pximg.net", "https://210.140.139.133")
             headers.host = "i.pximg.net"
@@ -433,6 +437,7 @@ function setDefaultSettings() {
     settings.HIDE_LIKE_NOVELS = false   // 全局：搜索/发现：隐藏已收藏小说
     settings.HIDE_WATCHED_SERIES = false// 全局：搜索/发现：隐藏已追更系列
 
+    settings.COMBINE_NOVELS = true      // 全局：整合系列
     settings.IPDirect = false           // 全局：直连模式
     settings.FAST  = false              // 全局：快速模式
     settings.DEBUG = false              // 全局：调试模式
@@ -441,6 +446,7 @@ function setDefaultSettings() {
     settings.SHOW_GENERAL = true        // 发现：显示 常规小说
     settings.SHOW_NEW_ADULT = true      // 发现：显示 最新企划约稿 R18
     settings.SHOW_NEW_GENERAL = false   // 发现：显示 最新企划约稿 常规
+
     settings.SHOW_RANK_ADULT = true     // 发现：显示 排行榜单 R18
     settings.SHOW_RANK_GENERAL = false  // 发现：显示 排行榜单 常规
     settings.SHOW_GENRE_ADULT = false   // 发现：显示 原创热门 R18
@@ -471,6 +477,12 @@ function checkSettings(settings) {
         settings.SHOW_COMMENTS = false        // 正文：显示评论
         settings.SHOW_PICTURES = false        // 正文：显示图片
     }
+
+    // 新设置初始化
+    if (settings.SHOW_PICTURES === undefined) settings.SHOW_PICTURES = true
+    if (settings.SHOW_QUESTION === undefined) settings.SHOW_QUESTION = true
+    if (settings.COMBINE_NOVELS === undefined) settings.COMBINE_NOVELS = true
+
     this.putInCacheObject("pixivSettings", settings)
     return settings
 }

@@ -978,9 +978,11 @@ const contentSettingsName = {
 const otherSettingsName = {
     "AUTO_LIKE_NOVELS": "❤️ 自动收藏",
     "AUTO_DISLIKE_NOVELS": "🖤 自动取消",
+
     "HIDE_LIKE_NOVELS": "❤️ 隐藏收藏",
     "HIDE_WATCHED_SERIES": "📃 隐藏追更",
 
+    "COMBINE_NOVELS": "📚 整合系列",
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
     "IPDirect": "✈️ 直连模式",

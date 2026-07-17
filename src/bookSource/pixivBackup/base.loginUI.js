@@ -116,9 +116,10 @@ let settings = [
     {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
     {"🚫 📃 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
 
+    {"📚 🚫 整合系列": "editSettings('COMBINE_NOVELS')" },
     {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
-    {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
+    // {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 
     // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
     // {"🔗 图片链接": "editSettings('PIC_LINK')" },
