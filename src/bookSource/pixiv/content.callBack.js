@@ -86,7 +86,7 @@ function novelBookmarkAdd() {
     )
     if (resp.error === true) {
         sleepToast(`❤️ 收藏小说\n\n⚠️ 收藏【${novel.title}】失败`)
-        shareFactory("novel")
+        // shareFactory("novel")
     } else {
         putInCacheObject(`collect${novel.id}`, resp.body)
         let likeNovels = getFromCacheObject("likeNovels")
@@ -128,7 +128,7 @@ function novelBookmarkDelete() {
     )
     if (resp.error === true) {
         sleepToast(`🖤 取消收藏\n\n⚠️ 取消收藏失败\n${novel.title}`)
-        shareFactory("novel")
+        // shareFactory("novel")
     } else {
         cache.delete(`collect${novel.id}`)
         sleepToast(`🖤 取消收藏\n\n✅ 已经取消收藏\n${novel.title}`)
@@ -151,7 +151,7 @@ function seriesWatch() {
     )
     if (resp.error === true) {
         sleepToast(`📃 追更系列\n\n⚠️ 追更【${novel.seriesTitle}】失败`, 1)
-        shareFactory("series")
+        // shareFactory("series")
     } else {
         putInCache(`watch${novel.seriesId}`, true)
         sleepToast(`📃 追更系列\n\n✅ 已追更【${novel.seriesTitle}】`)
@@ -174,7 +174,7 @@ function seriesUnWatch() {
     )
     if (resp.error === true) {
         sleepToast(`📃 追更系列\n\n⚠️ 取消追更【${novel.seriesTitle}】失败`, 1)
-        shareFactory("series")
+        // shareFactory("series")
     } else {
         cache.delete(`watch${novel.seriesId}`)
         sleepToast(`📃 追更系列\n\n✅ 已取消追更【${novel.seriesTitle}】`)
