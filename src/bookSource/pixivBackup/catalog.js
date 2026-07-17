@@ -87,10 +87,10 @@ function seriesHandler(res) {
 }
 
 (() => {
-    let res = util.getNovelRespSeries(result).body
-    if (res.firstNovelId === undefined || res.seriesNavData === null) {
-        return oneShotHandler(res)
-    } else {
+    let res = util.getNovelRespFirst(result).body
+    if (res.firstNovelId && res.seriesNavData && util.settings.COMBINE_NOVELS) {
         return seriesHandler(res)
+    } else {
+        return oneShotHandler(res)
     }
 })()
