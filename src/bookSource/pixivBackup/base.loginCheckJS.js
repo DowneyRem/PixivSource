@@ -481,7 +481,7 @@ function publicFunc() {
         return novels
     }
 
-    // 正文，详情，搜索：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
+    // 正文，目录，详情，搜索：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     // pixiv 默认分享信息中有#号，不会被识别成链接，无法使用添加网址
     u.getNovelRespFirst = function(result) {
         let novelId = 0, res = {"body": {}}
@@ -517,45 +517,6 @@ function publicFunc() {
         if (novelId) {
             java.log(`匹配小说ID：${novelId}`)
             res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
-        }
-        if (res.error === true) {
-            java.log(`无法从 Pixiv 获取当前小说`)
-            java.log(JSON.stringify(res))
-        }
-        return res
-    }
-
-    // 目录：从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
-    u.getNovelRespSeries = function(result) {
-        let seriesId = 0, res = {"body": {}}
-        let isJson = isJsonString(result)
-        let isHtml = isHtmlString(result)
-
-        if (!isJson && isHtml) {
-            let id = baseUrl.match(new RegExp("\\d+"))[0]
-            let pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/series/\\d+"
-            let isSeries = baseUrl.match(new RegExp(pattern))
-            if (isSeries) {
-                seriesId = id
-            } else {
-                let pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/(show\\.php\\?id=)?\\d+"
-                let isNovel = baseUrl.match(new RegExp(pattern))
-                if (isNovel) {
-                    java.log(`匹配小说ID：${id}`)
-                    res = getAjaxJson(urlIP(urlNovelDetailed(id)))
-                }
-            }
-        }
-        if (isJson) {
-            res = JSON.parse(result)
-        }
-
-        if (res.body && res.body.seriesNavData) {
-            seriesId = res.body.seriesNavData.seriesId
-        }
-        if (seriesId) {
-            java.log(`系列ID：${seriesId}`)
-            res = getAjaxJson(urlIP(urlSeriesDetailed(seriesId)))
         }
         if (res.error === true) {
             java.log(`无法从 Pixiv 获取当前小说`)

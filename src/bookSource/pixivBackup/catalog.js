@@ -88,7 +88,7 @@ function seriesHandler(res) {
 
 (() => {
     let res = util.getNovelRespFirst(result).body
-    if (res.firstNovelId && res.seriesNavData && util.settings.COMBINE_NOVELS) {
+    if ((res.firstNovelId || res.seriesNavData) && util.settings.COMBINE_NOVELS) {
         return seriesHandler(res)
     } else {
         return oneShotHandler(res)
