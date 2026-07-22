@@ -6,7 +6,7 @@ const homeMenu = {
 }
 
 const toolMenu = {
-    text: "常用工具",
+    text: "📌 常用工具",
     collapsed: false,
     items: [
         { text: "⬇️ 下载阅读", link: "/Download" },
@@ -15,7 +15,7 @@ const toolMenu = {
 }
 
 const quickMenu = {
-    text: "快速开始",
+    text: "⚡️ 快速开始",
     collapsed: false,
     items: [
         { text: "✨ 臻享阅读", link: "/BetterExperience" },
@@ -25,7 +25,7 @@ const quickMenu = {
 }
 
 const pixivMenu = {
-    text: "Pixiv 书源",
+    text: "🅿️ Pixiv 书源",
     collapsed: false,
     items: [
         { text: "️🅿️ 功能手册 ", link: "/Pixiv" },
@@ -35,17 +35,17 @@ const pixivMenu = {
 }
 
 const furryMenu = {
-    text: "兽人小说",
+    text: "📚 功能手册",
     collapsed: false,
     items: [
         { text: "🅿️ Pixiv 书源", link: "/Pixiv" },
         { text: "🦊 Linpx 书源", link: "/Linpx" },
-        { text: "🐯 兽人控小说站 书源", link: "/FurryNovel" }
+        { text: "🐯 兽人小说站", link: "/FurryNovel" }
     ]
 }
 
-const normalMenu = {
-    text: "通用教程",
+const legadoMenu = {
+    text: "📖 阅读指南",
     // collapsed: true,
     items: [
         { text: "📚 软件合集", link: "/Legado" },
@@ -59,7 +59,7 @@ const normalMenu = {
 }
 
 const devMenu = {
-    text: "开发动态",
+    text: "🚧 开发动态",
     collapsed: true,
     items: [
         { text: "📜 更新日志", link: "/UpdateLog" },
@@ -71,7 +71,7 @@ const devMenu = {
     ]
 }
 const sponsorMenu = {
-    text: "打赏记录",
+    text: "💵 打赏记录",
     collapsed: false,
     items: [
         { text: "☕ 支持开发", link: "/Sponsor" },
@@ -80,7 +80,7 @@ const sponsorMenu = {
 }
 
 const logMenu = {
-    text: "开发动态",
+    text: "更新日志",
     base: "/UpdateLog/",
     collapsed: false,
     items: [
@@ -95,7 +95,7 @@ const defaultMenu = [
     quickMenu,
     pixivMenu,
     // furryMenu,
-    // normalMenu,
+    // legadoMenu,
     devMenu,
     sponsorMenu,
 ]
@@ -105,7 +105,7 @@ const linpxMenu = [
     quickMenu,
     // pixivMenu,
     furryMenu,
-    // normalMenu,
+    // legadoMenu,
     devMenu,
     sponsorMenu,
 ]
@@ -115,7 +115,7 @@ const generalMenu = [
     // quickMenu,
     // pixivMenu,
     // furryMenu,
-    normalMenu,
+    legadoMenu,
     devMenu,
     sponsorMenu,
 ]
@@ -126,6 +126,16 @@ const updateLogMenu = [
     devMenu,
     sponsorMenu,
 ]
+
+const combinedItems = Array.from(
+    new Map([...quickMenu.items, ...furryMenu.items].map(item => [item.link, item])).values()
+)
+
+const newMenu = {
+    text: "📚 书源指南",
+    collapsed: false,
+    items: combinedItems
+}
 
 export const cnNav = [
     homeMenu,
@@ -148,6 +158,17 @@ generalLinks.forEach(link => {cnSidebar[link] = generalMenu})
 // 翻转 key 顺序，优先匹配设定规则
 cnSidebar = Object.fromEntries(Object.entries(cnSidebar).reverse())
 
+// 3. 浅拷贝并去 Emoji 处理（避免污染 cnNav）
+cnSidebar = Object.fromEntries(
+    Object.entries(cnSidebar).map(([key, menuList]) => [
+        key,
+        menuList.map(item => ({
+            ...item,
+            // 剔除开头的 Emoji 及紧随其后的空格
+            text: item.text.replace(/^\p{Extended_Pictographic}\s*/u, '')
+        }))
+    ])
+)
 
 export const twNav = [
     {
