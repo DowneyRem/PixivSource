@@ -1,4 +1,57 @@
-## ⚙️ 书源设置
+---
+layout: doc
+#title: ✨ 臻享阅读 - 开源阅读 + Pixiv 书源 新手使用指南
+#description: 彻底解决 Pixiv 官方软件的痛点！从认识开源阅读，到导入书源、登录账号、开始使用，彻底告别 Pixiv 官方软件的阅读功能缺陷，找回阅读的纯粹乐趣。
+
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+#prev: false
+#next: false
+#comment: false
+#friendLink: false
+
+#head:
+#  - - meta
+#    - name: keywords
+#      content: 臻享阅读, Pixiv 书源新手教程, 开源阅读 Legado 入门, Pixiv 小说书架, Legado Pixiv 配置, Pixiv 小说阅读器, Legado Pixiv 书源, 开源阅读配置
+#  - - meta
+#    - property: og:title
+#      content: ✨ 臻享阅读 - 开源阅读 + Pixiv 书源 新手使用指南
+#  - - meta
+#    - property: og:description
+#      content: 彻底解决 Pixiv 官方软件的痛点！从认识开源阅读，到导入书源、登录账号、开始使用，彻底告别 Pixiv 官方软件的阅读功能缺陷，找回阅读的纯粹乐趣。
+#  - - meta
+#    - property: og:image
+#      content: /pic/BookSourcePixiv.png
+
+---
+
+<script setup>
+import { computed } from "vue";
+import { useData } from "vitepress";
+
+const { page } = useData();
+const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
+</script>
+
+
+<div align="center">
+<img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+
+# 书源设置
+#### 🅿️ 开源阅读 Pixiv 书源
+#### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
+</div>
+
+
+
+> [!TIP]
+>
+> **Pixiv 书源的设置介绍**
+
+
 ### 1️⃣ 常规设置
 ⚙️ 常规设置：我的 - 书源管理 - Pixiv 小说 - 登录
 	
