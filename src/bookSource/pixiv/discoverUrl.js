@@ -109,19 +109,8 @@ let about = [
     {"💰 打赏": "https://pixivsource.pages.dev/Sponsor"},
 ]
 
-let likeTagLinks = [{"📌 喜欢标签 📌":""}]
-let othersBookmarks = [{"❤️ 他人收藏 ❤️": ""}]
-
-if (settings.SHOW_GENERAL) li = li.concat(normal)
-if (settings.SHOW_NEW_ADULT) li = li.concat(r18New)
-if (settings.SHOW_NEW_GENERAL) li = li.concat(generalNew)
-if (settings.SHOW_RANK_ADULT)li = li.concat(r18Rank)
-if (settings.SHOW_RANK_GENERAL) li = li.concat(generalRank)
-if (settings.SHOW_GENRE_ADULT) li = li.concat(r18Genre)
-if (settings.SHOW_GENRE_GENERAL) li = li.concat(generalGenre)
-sleepToast('功能手册🔖\n\n发现 - 书源相关 - "🔰 功能" - 查看')
-
 // 收藏标签
+let likeTagLinks = [{"📌 喜欢标签 📌":""}]
 let likeTags = getFromCacheObject("likeTags")
 if (likeTags && likeTags.length >= 1) {
     likeTags.forEach(tag => {
@@ -129,24 +118,36 @@ if (likeTags && likeTags.length >= 1) {
         tagLink[tag] = `${urlSearchNovel(tag, "{{page}}")}`
         likeTagLinks.push(tagLink)
     })
-    li = li.concat(likeTagLinks)
 }
 
 // 他人收藏
+let othersBookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 let likeAuthors = getFromCacheMap("likeAuthorsMap")
 if (!likeAuthors) likeAuthors = getFromCacheMap("likeAuthors")
-
 if (likeAuthors.size > 0) {
     likeAuthors.forEach((authorName, authorId) => {
         let bookmark = {}
         bookmark[authorName] = urlUserBookmarks(authorId)
         othersBookmarks.push(bookmark)
     })
-    li = li.concat(othersBookmarks)
 }
 
-// 书源相关
-li = li.concat(source)
+// 添加发现
+if (settings.SHOW_ADULT) li = li.concat(adultDefault)
+if (settings.SHOW_GENERAL) li = li.concat(normalDefault)
+if (settings.SHOW_NEW_ADULT) li = li.concat(adultNew)
+if (settings.SHOW_NEW_GENERAL) li = li.concat(generalNew)
+
+if (settings.SHOW_RANK_ADULT)li = li.concat(adultRank)
+if (settings.SHOW_RANK_GENERAL) li = li.concat(generalRank)
+if (settings.SHOW_GENRE_ADULT) li = li.concat(adultGenre)
+if (settings.SHOW_GENRE_GENERAL) li = li.concat(generalGenre)
+
+if (likeTags && likeTags.length >= 1) li = li.concat(likeTagLinks)
+if (likeAuthors && likeAuthors.size > 0) li = li.concat(othersBookmarks)
+
+if (settings.SHOW_ABOUT) li = li.concat(about)
+sleepToast('功能手册🔖\n\n发现 - 书源相关 - "🔰 功能" - 查看')
 
 // 添加格式
 li.forEach(item => {
