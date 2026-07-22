@@ -180,8 +180,9 @@ export let cnSidebar = {
     "/UpdateLog/": updateLogMenu,
 }
 
-const generalLinks = normalMenu.items.map(item => item.link)
-generalLinks.forEach(link => {cnSidebar[[link]] = generalMenu})
+const generalLinks = legadoMenu.items.map(item => item.link)
+generalLinks.forEach(link => {cnSidebar[link] = generalMenu})
+
 // 翻转 key 顺序，优先匹配设定规则
 cnSidebar = Object.fromEntries(Object.entries(cnSidebar).reverse())
 
