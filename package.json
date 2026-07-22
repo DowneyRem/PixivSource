@@ -22,21 +22,17 @@
     "build": "tsx scripts/buildBookSource.ts",
     "build:dev": "tsx scripts/buildBookSource.ts --dev",
     "build:release": "tsx scripts/buildBookSource.ts --release",
-
     "build:bookSource": "tsx scripts/buildBookSource.ts",
     "build:rssSource": "tsx scripts/buildRssSource.ts",
-
     "docs:convert": "node doc/scripts/ConvertChinese.js",
-
     "predocs:dev": "pnpm run docs:convert -- --dev",
     "docs:dev": "vitepress dev doc --host",
-
     "predocs:build": "pnpm run docs:convert",
     "docs:build": "vitepress build doc",
-
     "docs:preview": "pnpm run docs:build && vitepress preview doc"
   },
   "dependencies": {
+    "linkify-it": "5.0.1",
     "markdown-it-anchor": "^9.2.0",
     "tsx": "^4.20.6",
     "vitepress": "^1.6.4",
