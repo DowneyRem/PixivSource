@@ -106,7 +106,7 @@ const normalMenu = {
 
 const devMenu = {
     text: "开发动态",
-    collapsed: false,
+    collapsed: true,
     items: [
         { text: "📜 更新日志", link: "/UpdateLog" },
         { text: "🚀 项目进展", link: "/TimeLine" },
@@ -135,6 +135,56 @@ const logMenu = {
         { text: "📜 日志 2024", link: "2024" }
     ]
 }
+
+const defaultMenu = [
+    toolMenu,
+    quickMenu,
+    pixivMenu,
+    // furryMenu,
+    // normalMenu,
+    devMenu,
+    sponsorMenu,
+]
+
+const linpxMenu = [
+    toolMenu,
+    quickMenu,
+    // pixivMenu,
+    furryMenu,
+    // normalMenu,
+    devMenu,
+    sponsorMenu,
+]
+
+const generalMenu = [
+    toolMenu,
+    // quickMenu,
+    // pixivMenu,
+    // furryMenu,
+    normalMenu,
+    devMenu,
+    sponsorMenu,
+]
+
+const updateLogMenu = [
+    toolMenu,
+    logMenu,
+    devMenu,
+    sponsorMenu,
+]
+
+export let cnSidebar = {
+    "/": defaultMenu,
+    "/Linpx": linpxMenu,
+    "/FurryNovel": linpxMenu,
+    "/UpdateLog/": updateLogMenu,
+}
+
+const generalLinks = normalMenu.items.map(item => item.link)
+generalLinks.forEach(link => {cnSidebar[[link]] = generalMenu})
+// 翻转 key 顺序，优先匹配设定规则
+cnSidebar = Object.fromEntries(Object.entries(cnSidebar).reverse())
+
 
 export const twNav = [
     {
