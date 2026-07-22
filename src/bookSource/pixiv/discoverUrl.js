@@ -1,7 +1,8 @@
 let settings = getFromCacheObject("pixivSettings")
 if (!settings) settings = setDefaultSettings()
+let li =[]
 
-let li = [
+let adultDefault = [
     {"⭐️ 关注": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=r18&lang=zh"},
     {"📃 追更": "https://www.pixiv.net/ajax/watch_list/novel?p={{page}}&new=1&lang=zh"},
     {"💯 推荐": "https://www.pixiv.net/ajax/top/novel?mode=r18&lang=zh"},
@@ -12,7 +13,7 @@ let li = [
     {"🏠 首页": "https://www.pixiv.net/ajax/street/for_you?lang=zh"},
 ]
 
-let normal = [
+let normalDefault = [
     {"✅ 常规 小说 推荐 ✅": ""},
     {"⭐️ 关注": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=all&lang=zh"},
     {"💯 推荐": "https://www.pixiv.net/ajax/top/novel?mode=all&lang=zh"},
@@ -20,7 +21,7 @@ let normal = [
     {"🆙 更新": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"},
 ]
 
-let r18New = [
+let adultNew = [
     {"🆕 最新 企划 约稿 💰": ""},
     {"🆕 最新": "https://www.pixiv.net/ajax/novel/new?lastId=0&limit=20&r18=true&lang=zh"},
     {"📑 企划": "https://www.pixiv.net/ajax/user_event/portal/novels?mode=r18&p={{page}}&lang=zh"},
@@ -36,7 +37,7 @@ let generalNew = [
     {"编辑": "https://www.pixiv.net/ajax/novel/editors_picks?limit=30&lang=zh"},
 ]
 
-let r18Rank = [
+let adultRank = [
     {"👑 排行榜单 👑": ""},
     {"今日": "https://www.pixiv.net/ajax/ranking/novel?mode=daily_r18&content=novel&p={{page}}"},
     {"本周": "https://www.pixiv.net/ajax/ranking/novel?mode=weekly_r18&content=novel&p={{page}}"},
@@ -57,7 +58,7 @@ let generalRank = [
     {"AI生成": "https://www.pixiv.net/ajax/ranking/novel?mode=weekly_ai&content=novel&p={{page}}"}
 ]
 
-let r18Genre = [
+let adultGenre = [
     {"🔥 原创热门 🔥": ""},
     {"男性": "https://www.pixiv.net/ajax/genre/novel/male?mode=r18&lang=zh"},
     {"女性": "https://www.pixiv.net/ajax/genre/novel/female?mode=r18&lang=zh"},
@@ -100,7 +101,7 @@ let generalGenre = [
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}
 ]
 
-let source = [
+let about = [
     {"📘 书源相关 📘": ""},
     {"🏠 主页": "https://pixivsource.pages.dev"},
     {"🔰 功能": "https://pixivsource.pages.dev/Pixiv"},
