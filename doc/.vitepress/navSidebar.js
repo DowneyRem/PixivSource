@@ -51,75 +51,90 @@ export const cnNav = [
     },
 ]
 
-export const cnSidebar = [
-    {
-        text: "常用工具",
-        collapsed: false,
-        items: [
-            { text: "⬇️ 下载阅读", link: "/Download" },
-            { text: "🚀 一键导入", link: "/Import" },
-        ]
-    },
-    {
-        text: "快速开始",
-        collapsed: false,
-        items: [
-            { text: "✨ 臻享阅读", link: "/BetterExperience" },
-            { text: "⚡️️️ 快速开始", link: "/QuickStart" },
-            { text: "➕ 添加小说", link: "/AddNovels" },
-        ]
-    },
-    {
-        text: "功能手册",
-        collapsed: false,
-        items: [
-            { text: "🅿️ Pixiv 书源", link: "/Pixiv" },
-            { text: "🦊 Linpx 书源", link: "/Linpx" },
-            { text: "🐯 兽人控小说站 书源", link: "/FurryNovel" },
-        ]
-    },
-    {
-        text: "Pixiv 书源",
-        collapsed: false,
-        items: [
-            { text: "🆚 功能对比", link: "/PixivComparison" },
-            { text: "⚙️ 书源设置", link: "/PixivSettings" },
-        ]
-    },
-    {
-        text: "通用教程",
-        collapsed: true,
-        items: [
-            { text: "📚 软件合集", link: "/Legado" },
-            { text: "🚀 导入书源", link: "/ImportBookSource" },
-            { text: "🚀 导入订阅", link: "/ImportRssSource" },
-            { text: "📌 使用技巧", link: "/LegadoTips" },
-            { text: "💾 备份恢复", link: "/WebdavBackup" },
-            { text: "☁️ 远程书籍", link: "/RemoteBooks" },
-            { text: "🛠️ 故障排查", link: "/TroubleShoot" }
-        ]
-    },
-    {
-        text: "开发动态",
-        collapsed: false,
-        items: [
-            { text: "📜 更新日志", link: "/UpdateLog" },
-            { text: "🚀 项目进展", link: "/TimeLine" },
-            { text: "🌱 项目起源", link: "/Beginning" },
-            { text: "🔌 Pixiv Api", link: "/PixivWebApi" },
-            { text: "👥 开发团队", link: "/Team" },
-            { text: "🤝 友情链接", link: "/FriendLink" },
-        ]
-    },
-    {
-        text: "打赏记录",
-        collapsed: false,
-        items: [
-            { text: "☕ 支持开发", link: "/Sponsor" },
-            { text: "💵 打赏记录", link: `${BLOG}Sponsor` },
-        ]
-    },
-]
+const toolMenu = {
+    text: "常用工具",
+    collapsed: false,
+    items: [
+        { text: "⬇️ 下载阅读", link: "/Download" },
+        { text: "🚀 一键导入", link: "/Import" }
+    ]
+}
+
+const quickMenu = {
+    text: "快速开始",
+    collapsed: false,
+    items: [
+        { text: "✨ 臻享阅读", link: "/BetterExperience" },
+        { text: "⚡️ 快速开始", link: "/QuickStart" },
+        { text: "➕ 添加小说", link: "/AddNovels" }
+    ]
+}
+
+const pixivMenu = {
+    text: "Pixiv 书源",
+    collapsed: false,
+    items: [
+        { text: "️🅿️ 功能手册 ", link: "/Pixiv" },
+        { text: "🆚 功能对比", link: "/PixivComparison" },
+        { text: "⚙️ 书源设置", link: "/PixivSettings" }
+    ]
+}
+
+const furryMenu = {
+    text: "兽人小说",
+    collapsed: false,
+    items: [
+        { text: "🅿️ Pixiv 书源", link: "/Pixiv" },
+        { text: "🦊 Linpx 书源", link: "/Linpx" },
+        { text: "🐯 兽人控小说站 书源", link: "/FurryNovel" }
+    ]
+}
+
+const normalMenu = {
+    text: "通用教程",
+    // collapsed: true,
+    items: [
+        { text: "📚 软件合集", link: "/Legado" },
+        { text: "🚀 导入书源", link: "/ImportBookSource" },
+        { text: "🚀 导入订阅", link: "/ImportRssSource" },
+        { text: "📌 使用技巧", link: "/LegadoTips" },
+        { text: "💾 备份恢复", link: "/WebdavBackup" },
+        { text: "☁️ 远程书籍", link: "/RemoteBooks" },
+        { text: "🛠️ 故障排查", link: "/TroubleShoot" },
+    ]
+}
+
+const devMenu = {
+    text: "开发动态",
+    collapsed: false,
+    items: [
+        { text: "📜 更新日志", link: "/UpdateLog" },
+        { text: "🚀 项目进展", link: "/TimeLine" },
+        { text: "🌱 项目起源", link: "/Beginning" },
+        { text: "🔌 Pixiv Api", link: "/PixivWebApi" },
+        { text: "👥 开发团队", link: "/Team" },
+        { text: "🤝 友情链接", link: "/FriendLink" }
+    ]
+}
+const sponsorMenu = {
+    text: "打赏记录",
+    collapsed: false,
+    items: [
+        { text: "☕ 支持开发", link: "/Sponsor" },
+        { text: "💵 打赏记录", link: `${BLOG}Sponsor` }
+    ]
+}
+
+const logMenu = {
+    text: "开发动态",
+    base: "/UpdateLog/",
+    collapsed: false,
+    items: [
+        { text: "📜 日志 2026", link: "2026" },
+        { text: "📜 日志 2025", link: "2025" },
+        { text: "📜 日志 2024", link: "2024" }
+    ]
+}
 
 export const twNav = [
     {
