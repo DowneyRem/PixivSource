@@ -1023,10 +1023,14 @@ const discoverSettingsName ={
     "SHOW_GENERAL": "🆗 常规小说",
     "SHOW_NEW_ADULT": "🔞 最新企划",
     "SHOW_NEW_GENERAL": "🆗 最新企划",
+
     "SHOW_RANK_ADULT": "🔞 排行榜单",
     "SHOW_RANK_GENERAL": "🆗 排行榜单",
     "SHOW_GENRE_ADULT": "🔞 原创热门",
     "SHOW_GENRE_GENERAL": "🆗 原创热门",
+
+    "SHOW_ABOUT": "📚 书源相关",
+    "SHOW_FURRY": "🐺 兽人小说",
 }
 const menuSettingsName = {
     "SHOW_DISCOVER": "⚙️ 发现设置\n（书源编辑界面）",
