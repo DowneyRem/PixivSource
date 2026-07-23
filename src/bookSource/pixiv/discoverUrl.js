@@ -140,7 +140,7 @@ if (settings.SHOW_FURRY) {
         .sort(() => Math.random() - 0.5)
         .slice(0, 5)
     const randomObjects = randomAuthors.map(author => ({
-        [author.name]: urlUserDetailed(author.id)
+        [author.name]: urlUserAllWorks(author.id)
     }))
     furrynovels = furrynovels.concat(randomObjects)
 }
