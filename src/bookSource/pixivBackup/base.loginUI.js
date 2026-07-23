@@ -129,15 +129,19 @@ let settings = [
 let discoverSettings = [
     {"发现设置": "text" },
     {"🔍 当前发现": "showSettingsDiscover()" },
+    {"🔞 默认发现": "editSettings('SHOW_ADULT')" },
     {"🆗 常规小说": "editSettings('SHOW_GENERAL')" },
-    {"🔞 最新企划": "editSettings('SHOW_NEW_ADULT')" },
 
+    {"🔞 最新企划": "editSettings('SHOW_NEW_ADULT')" },
     {"🆗 最新企划": "editSettings('SHOW_NEW_GENERAL')" },
     {"🔞 排行榜单": "editSettings('SHOW_RANK_ADULT')" },
-    {"🆗 排行榜单": "editSettings('SHOW_RANK_GENERAL')" },
 
+    {"🆗 排行榜单": "editSettings('SHOW_RANK_GENERAL')" },
     {"🔞 原创热门": "editSettings('SHOW_GENRE_ADULT')" },
     {"🆗 原创热门": "editSettings('SHOW_GENRE_GENERAL')" },
+
+    {"📚 书源相关": "editSettings('SHOW_ABOUT')" },
+    {"🦊 兽人小说": "editSettings('SHOW_FURRY')" },
     {"🐺 兽人作者": "updatePixivAuthors()" },
 ]
 

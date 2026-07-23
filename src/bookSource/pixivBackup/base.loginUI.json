@@ -421,15 +421,16 @@
             "layout_flexBasisPercent": -1
         }
     },
-    {
-        "name": "✈️ 直连模式",
-        "type": "button",
-        "action": "editSettings('IPDirect')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
+//    {
+//        "name": "✈️ 直连模式",
+//        "type": "button",
+//        "action": "editSettings('IPDirect')",
+//        "style": {
+//            "layout_flexGrow": 1,
+//            "layout_flexBasisPercent": -1
+//        }
+//    },
+//
 //    {
 //        "name": "⏳ 图片解析",
 //        "type": "button",
@@ -466,6 +467,15 @@
         "name": "🔍 当前发现",
         "type": "button",
         "action": "showSettingsDiscover()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🔞 默认发现",
+        "type": "button",
+        "action": "editSettings('SHOW_ADULT')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -529,6 +539,24 @@
         "name": "🆗 原创热门",
         "type": "button",
         "action": "editSettings('SHOW_GENRE_GENERAL')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "📚 书源相关",
+        "type": "button",
+        "action": "editSettings('SHOW_ABOUT')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🦊 兽人小说",
+        "type": "button",
+        "action": "editSettings('SHOW_FURRY')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
