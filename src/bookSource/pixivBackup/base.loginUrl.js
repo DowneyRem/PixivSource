@@ -134,7 +134,7 @@ function getNovel() {
 
 function getPostBody(url, body, headers) {
     if (headers === undefined) headers = getFromCacheObject("pixivHeaders")
-    if (headers === undefined) headers = getFromCacheObject("headers")
+    // if (headers === undefined) headers = getFromCacheObject("headers")
     if (isJsonString(body)) {
         headers["content-type"] = "application/json; charset=utf-8"
     } else if (typeof body === "string") {
@@ -674,13 +674,13 @@ function blockShowFactory() {
     key = keys[nextIndex]
     putInCacheObject("blockType", key)
 
-    if (key === "authors") {
+    if (key === "Authors") {
         let words = printAuthorMap(getFromCacheMap("blockAuthorMap"))
         if (!words) words = ""
         sleepToast(`👀 查看屏蔽\n${blockType[key]}\n\n${words}`, 2)
     } else {
         let words = getFromCacheObject(`block${key}`)
-        if (!words) words = getFromCacheObject(`${key.toLowerCase()}BlockWords`)
+        // if (!words) words = getFromCacheObject(`${key.toLowerCase()}BlockWords`)
         if (!words) words = []
         sleepToast(`👀 查看屏蔽\n${blockType[key]}\n\n${words.join("\n")}`, 2)
         putInCacheObject(`block${key}`, words)
@@ -691,7 +691,7 @@ function blockWordAdd() {
     let method = getFromCacheObject("blockType")
     let blockTypeName = blockType[method]
     let blockWords = getFromCacheObject(`block${method}`)
-    if (!blockWords) getFromCacheObject(`${method.toLowerCase()}BlockWords`)
+    // if (!blockWords) getFromCacheObject(`${method.toLowerCase()}BlockWords`)
     if (!blockWords) blockWords = []
 
     let word = String(result.get("文本框")).trim()
@@ -710,7 +710,7 @@ function blockWordDelete() {
     let method = getFromCacheObject("blockType")
     let blockTypeName = blockType[method]
     let blockWords = getFromCacheObject(`block${method}`)
-    if (!blockWords) getFromCacheObject(`${method.toLowerCase()}BlockWords`)
+    // if (!blockWords) getFromCacheObject(`${method.toLowerCase()}BlockWords`)
     if (!blockWords) blockWords = []
 
     let word = String(result.get("文本框")).trim()
@@ -780,12 +780,12 @@ function blockAuthorDelete() {
 }
 
 function blockAddFactory() {
-    if (getFromCacheObject("blockType") === "authors") return blockAuthorAdd()
+    if (getFromCacheObject("blockType") === "Authors") return blockAuthorAdd()
     else return blockWordAdd()
 }
 
 function blockDeleteFactory() {
-    if (getFromCacheObject("blockType") === "authors") return blockAuthorDelete()
+    if (getFromCacheObject("blockType") === "Authors") return blockAuthorDelete()
     else return blockWordDelete()
 }
 
@@ -1017,10 +1017,14 @@ const discoverSettingsName ={
     "SHOW_GENERAL": "🆗 常规小说",
     "SHOW_NEW_ADULT": "🔞 最新企划",
     "SHOW_NEW_GENERAL": "🆗 最新企划",
+
     "SHOW_RANK_ADULT": "🔞 排行榜单",
     "SHOW_RANK_GENERAL": "🆗 排行榜单",
     "SHOW_GENRE_ADULT": "🔞 原创热门",
     "SHOW_GENRE_GENERAL": "🆗 原创热门",
+
+    "SHOW_ABOUT": "📚 书源相关",
+    "SHOW_FURRY": "🦊 兽人小说",
 }
 const menuSettingsName = {
     "SHOW_DISCOVER": "⚙️ 发现设置\n（书源编辑界面）",
@@ -1169,19 +1173,21 @@ function backupData() {
     let data = {}
     // 账号相关
     data.pixivUid = getFromCache("pixivUid")
-    data.pixivCsrfToken = getCsrfToken()
     data.pixivCookie = getCookie()
+    data.pixivCsrfToken = getCsrfToken()
+
     // 书源缓存
     data.pixivAuthors = getFromCacheObject("pixivAuthors")
     data.likeNovels = getFromCacheObject("likeNovels")
     data.watchedSeries = getFromCacheObject("watchedSeries")
+
     // 书源设置
     data.pixivSettings = getFromCacheObject("pixivSettings")
     data.blockCaption = getFromCacheObject("blockCaption")
-    if (!data.blockCaption) data.blockCaption = getFromCacheObject("captionBlockWords")
     data.blockTags = getFromCacheObject("blockTags")
-    if (!data.blockTags) data.blockCaption = getFromCacheObject("blockTags")
     data.likeTags = getFromCacheObject("likeTags")
+    // if (!data.blockCaption) data.blockCaption = getFromCacheObject("captionBlockWords")
+    // if (!data.blockTags) data.blockCaption = getFromCacheObject("tagBlockWords")
 
     // 书源设置 Map
     data.blockAuthorMap = Object.fromEntries(getFromCacheMap("blockAuthorMap"))
@@ -1216,6 +1222,7 @@ function restoreData(data) {
     putInCacheObject("blockCaption", data?.blockCaption)
     putInCacheObject("blockTags", data?.blockTags)
     putInCacheObject("likeTags", data?.likeTags)
+
     // 书源设置 Map
     putInCacheMap("blockAuthorMap", new Map(Object.entries(data?.blockAuthorMap)))
     putInCacheMap("likeAuthorsMap", new Map(Object.entries(data?.likeAuthorsMap)))
@@ -1243,7 +1250,7 @@ function getFurryAuthors() {
     let furryAuthorsMap = {}
     let authorsListLinpx = getAjaxJson(urlLinpxAuthors())
     authorsListLinpx.forEach(author => {
-        furryAuthorsMap[author.name] = author.id || author._id
+        furryAuthorsMap[author.name] = author.id
     })
 
     // let authorsMapFurryReading = getAjaxJson("")
