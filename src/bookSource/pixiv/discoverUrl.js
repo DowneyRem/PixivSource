@@ -132,6 +132,20 @@ if (likeAuthors.size > 0) {
     })
 }
 
+// 兽人小说
+let furrynovels = [{"🦊 兽人小说 🦊": ""}]
+if (settings.SHOW_FURRY) {
+    let authorsListLinpx = getAjaxJson(urlLinpxAuthors())
+    const randomAuthors = authorsListLinpx
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 5)
+    const randomObjects = randomAuthors.map(author => ({
+        [author.name]: urlUserDetailed(author.id)
+    }))
+    furrynovels = furrynovels.concat(randomObjects)
+}
+
+
 // 添加发现
 if (settings.SHOW_ADULT) li = li.concat(adultDefault)
 if (settings.SHOW_GENERAL) li = li.concat(normalDefault)
@@ -145,9 +159,9 @@ if (settings.SHOW_GENRE_GENERAL) li = li.concat(generalGenre)
 
 if (likeTags && likeTags.length >= 1) li = li.concat(likeTagLinks)
 if (likeAuthors && likeAuthors.size > 0) li = li.concat(othersBookmarks)
-
+if (settings.SHOW_FURRY) li = li.concat(furrynovels)
 if (settings.SHOW_ABOUT) li = li.concat(about)
-sleepToast('功能手册🔖\n\n发现 - 书源相关 - "🔰 功能" - 查看')
+sleepToast('功能手册\n\n发现 - 书源相关 - "🔰 功能" ')
 
 // 添加格式
 li.forEach(item => {

@@ -1253,7 +1253,7 @@ function getFurryAuthors() {
     let furryAuthorsMap = {}
     let authorsListLinpx = getAjaxJson(urlLinpxAuthors())
     authorsListLinpx.forEach(author => {
-        furryAuthorsMap[author.name] = author.id || author._id
+        furryAuthorsMap[author.name] = author.id
     })
 
     // let authorsMapFurryReading = getAjaxJson("")
