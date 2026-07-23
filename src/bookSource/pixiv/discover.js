@@ -14,10 +14,12 @@ function handlerFactory() {
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
         return () => {updateSource(); return []}
     }
-    if (!baseUrl.includes("www.pixiv.net")) {
+    if (!baseUrl.includes("https://www.pixiv.net")) {
         return () => {startBrowser(baseUrl, ""); return []}
     }
-
+    if (!isLogin() && !util.settings.DEBUG) {
+        return handlerNoLogin()
+    }
     if (baseUrl.includes("/bookmark")) {
         return handlerBookMarks()
     }
@@ -63,6 +65,14 @@ function handlerFactory() {
     }
 }
 
+function handlerNoLogin() {
+    return () => {
+        sleepToast("⭐️ 发现小说\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
+        util.removeCookie(); util.login()
+        sleepToast("⭐️ 发现小说\n\n登录成功后，请重新搜索/进入发现", 2)
+        return []
+    }
+}
 
 // 推荐小说
 function handlerRecommend() {
