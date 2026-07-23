@@ -92,7 +92,7 @@ function getUserNovels() {
         let resp = getAjaxJson(urlIP(urlUserAllWorks(uid)), true)
         // java.log(urlIP(urlUserAllWorks(id)))
 
-        // 获取系列小说，与 util.handnovels 系列详情兼容
+        // 获取系列小说，与 util.handNovels 系列详情兼容
         let seriesIds = []
         if (resp.body.novelSeries.length >= 1) {
             resp.body.novelSeries.forEach(novel =>{
@@ -261,7 +261,7 @@ function novelFilter(novels) {
     return novels
 }
 
-(() => {
+function handlerFactory() {
     let novels = []
     let keyword = String(java.get("keyword"))
     if (keyword.startsWith("@")) {
@@ -289,4 +289,8 @@ function novelFilter(novels) {
         return []
     }
     return novelFilter(util.formatNovels(util.handNovels(novels)))
+}
+
+(() => {
+    return handlerFactory()
 })()
