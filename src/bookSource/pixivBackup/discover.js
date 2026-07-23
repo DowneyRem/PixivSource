@@ -14,8 +14,11 @@ function handlerFactory() {
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
         return () => {updateSource(); return []}
     }
-    if (baseUrl.includes("github")) {
+    if (!baseUrl.includes("https://www.pixiv.net")) {
         return () => {startBrowser(baseUrl, ""); return []}
+    }
+    if (!isLogin() && !util.settings.DEBUG) {
+        return handlerNoLogin()
     }
     if (baseUrl.includes("/bookmark")) {
         return handlerBookMarks()
@@ -50,21 +53,29 @@ function handlerFactory() {
     if (baseUrl.includes("/ranking")) {
         return handlerRanking()
     }
+    if (baseUrl.includes("/search/novels")) {
+        return handlerSearch()
+    }
+    if (baseUrl.includes("/street/for_you")) {
+        return handlerHome()
+    }
+    if (baseUrl.includes("/profile/all")) {
+        return handlerUserNovels()
+    }
     // 正则匹配网址内容
     if (baseUrl.includes("/marker_all")) {
         return handlerRankingOld()
     }
-    if (baseUrl.includes("/ajax/search/novels")) {
-        return handlerSearch()
-    }
-    if (baseUrl.startsWith("https://www.pixiv.net")) {
-        return handlerHome()
-    }
-    else {
-        return () => {startBrowser(baseUrl, ""); return []}
-    }
 }
 
+function handlerNoLogin() {
+    return () => {
+        sleepToast("⭐️ 发现小说\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
+        util.removeCookie(); util.login()
+        sleepToast("⭐️ 发现小说\n\n登录成功后，请重新进入发现", 2)
+        return []
+    }
+}
 
 // 推荐小说
 function handlerRecommend() {
@@ -151,6 +162,75 @@ function handlerHome() {
         // novels.forEach(novel => novel.tags = novel.tags.map(tag => tag.name))
         // java.log(JSON.stringify(novels))
         return util.formatNovels(util.handNovels(util.combineNovels(novels)))
+    }
+}
+
+// 作者小说
+function handlerUserNovels() {
+    return () => {
+        let resp = JSON.parse(result)
+        // let resp = getAjaxJson(urlIP(urlUserAllWorks(uid)), true)
+        // java.log(urlIP(urlUserAllWorks(id)))
+
+        // 获取系列小说，与 util.handnovels 系列详情兼容
+        let novels = [], seriesIds = []
+        if (resp.body.novelSeries.length >= 1) {
+            resp.body.novelSeries.forEach(novel =>{
+                seriesIds.push(novel.id)
+                novel.textCount = novel.publishedTotalCharacterCount
+                novel.description = novel.caption
+            })
+            novels = novels.concat(resp.body.novelSeries)
+        }
+
+        // 获取所有系列内部的小说 ID
+        let seriesNovelIds = []
+        if (globalThis.environment.IS_LEGADO) {
+            let seriesUrls = seriesIds.map(seriesId => urlIP(urlSeriesNovelsTitles(seriesId)))
+            // let resp = getAjaxAllJson(seriesUrls).map(resp => resp.body)
+            // seriesNovelIds = resp.flat().map(item => item.id)
+            seriesNovelIds = getAjaxAllJson(seriesUrls).flatMap(resp => resp.body.map(item => item.id))
+        }
+
+        if (globalThis.environment.IS_SOURCEREAD) {
+            seriesIds.forEach(seriesId => {
+                let novels = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
+                seriesNovelIds.push.apply(seriesNovelIds, novels.map(novel => novel.id))
+            })
+        }
+        // java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
+        // java.log(JSON.stringify(seriesNovelIds.length))
+
+        // 获取单篇小说
+        let novelIds = Object.keys(resp.body.novels)
+        novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
+        // 默认过滤系列小说的 novelId，否则请求过多
+        // if (util.settings.COMBINE_NOVELS) {
+        //     novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
+        // }
+        novelIds = novelIds.reverse()
+        // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
+        // java.log(JSON.stringify(novelIds.length))
+
+        if (globalThis.environment.IS_LEGADO) {
+            let novelUrls = novelIds.map(novelId => urlIP(urlNovelDetailed(novelId)))
+            // java.log(JSON.stringify(novelUrls))
+            // cache.delete(novelUrls)
+            novels = novels.concat(getAjaxAllJson(novelUrls).map(resp => resp.body))
+        }
+
+        if (globalThis.environment.IS_SOURCEREAD) {
+            novelIds.forEach(novelId => {
+                // java.log(urlIP(urlNovelDetailed(novelId)))
+                let res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
+                if (res.error !== true) {
+                    novels.push(res.body)
+                } else {
+                    java.log(JSON.stringify(res))
+                }
+            })
+        }
+        return util.formatNovels(util.handNovels(novels))
     }
 }
 
