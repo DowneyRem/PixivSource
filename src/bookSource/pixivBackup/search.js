@@ -92,7 +92,7 @@ function getUserNovels() {
         let resp = getAjaxJson(urlIP(urlUserAllWorks(uid)), true)
         // java.log(urlIP(urlUserAllWorks(id)))
 
-        // 获取系列小说，与 util.handnovels 系列详情兼容
+        // 获取系列小说，与 util.handNovels 系列详情兼容
         let seriesIds = []
         if (resp.body.novelSeries.length >= 1) {
             resp.body.novelSeries.forEach(novel =>{
@@ -132,7 +132,7 @@ function getUserNovels() {
         // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
         // java.log(JSON.stringify(novelIds.length))
 
-        if (globalThis.environment.IS_LEGADO) {
+        if (util.environment.IS_LEGADO) {
             let novelUrls = novelIds.map(novelId => urlIP(urlNovelDetailed(novelId)))
             // java.log(JSON.stringify(novelUrls))
             // cache.delete(novelUrls)
@@ -261,16 +261,27 @@ function novelFilter(novels) {
     return novels
 }
 
-(() => {
+function handlerFactory() {
     let novels = []
     let keyword = String(java.get("keyword"))
-    if (keyword.startsWith("@")) {
-        java.put("keyword", keyword.slice(1))
-        novels = novels.concat(getUserNovels())
-    } else if (keyword.startsWith("#")) {
+    if (keyword.startsWith("#")) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getNovels())
         if (util.settings.COMBINE_NOVELS) novels = novels.concat(getSeries())
+    }
+
+    // 登录检测
+    else if (!isLogin() || !util.settings.DEBUG) {
+        sleepToast("🔍 搜索小说\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
+        util.removeCookie(); util.login()
+        sleepToast("🔍 搜索小说\n\n登录成功后，请重新搜索", 2)
+        return novels
+    }
+
+    else if (keyword.startsWith("@") ) {
+        java.put("keyword", keyword.slice(1))
+        novels = novels.concat(getUserNovels())
+
     } else if (keyword.startsWith("$") || util.settings.SEARCH_AUTHOR) {
         if (keyword.startsWith("$")) {
             keyword = keyword.slice(1)
@@ -278,15 +289,16 @@ function novelFilter(novels) {
         }
         java.log(`👤 粗略搜索作者：${keyword}`)
         novels = novels.concat(getUserIdOnline()[1])
+
     } else {
         novels = novels.concat(getNovels())
         if (util.settings.COMBINE_NOVELS) novels = novels.concat(getSeries())
         if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))
-    // 返回空列表中止流程
-    if (novels.length === 0) {
-        return []
-    }
     return novelFilter(util.formatNovels(util.handNovels(novels)))
+}
+
+(() => {
+    return handlerFactory()
 })()

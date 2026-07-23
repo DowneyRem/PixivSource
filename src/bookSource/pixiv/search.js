@@ -105,14 +105,14 @@ function getUserNovels() {
 
         // 获取所有系列内部的小说 ID
         let seriesNovelIds = []
-        if (globalThis.environment.IS_LEGADO) {
+        if (util.environment.IS_LEGADO) {
             let seriesUrls = seriesIds.map(seriesId => urlIP(urlSeriesNovelsTitles(seriesId)))
             // let resp = getAjaxAllJson(seriesUrls).map(resp => resp.body)
             // seriesNovelIds = resp.flat().map(item => item.id)
             seriesNovelIds = getAjaxAllJson(seriesUrls).flatMap(resp => resp.body.map(item => item.id))
         }
 
-        if (globalThis.environment.IS_SOURCEREAD) {
+        if (util.environment.IS_SOURCEREAD) {
             seriesIds.forEach(seriesId => {
                 let novels = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
                 seriesNovelIds.push.apply(seriesNovelIds, novels.map(novel => novel.id))
@@ -132,14 +132,14 @@ function getUserNovels() {
         // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
         // java.log(JSON.stringify(novelIds.length))
 
-        if (globalThis.environment.IS_LEGADO) {
+        if (util.environment.IS_LEGADO) {
             let novelUrls = novelIds.map(novelId => urlIP(urlNovelDetailed(novelId)))
             // java.log(JSON.stringify(novelUrls))
             // cache.delete(novelUrls)
             novels = novels.concat(getAjaxAllJson(novelUrls).map(resp => resp.body))
         }
 
-        if (globalThis.environment.IS_SOURCEREAD) {
+        if (util.environment.IS_SOURCEREAD) {
             novelIds.forEach(novelId => {
                 // java.log(urlIP(urlNovelDetailed(novelId)))
                 let res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
