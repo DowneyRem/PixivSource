@@ -14,9 +14,10 @@ function handlerFactory() {
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
         return () => {updateSource(); return []}
     }
-    if (baseUrl.includes("github")) {
+    if (!baseUrl.includes("www.pixiv.net")) {
         return () => {startBrowser(baseUrl, ""); return []}
     }
+
     if (baseUrl.includes("/bookmark")) {
         return handlerBookMarks()
     }
@@ -50,18 +51,15 @@ function handlerFactory() {
     if (baseUrl.includes("/ranking")) {
         return handlerRanking()
     }
+    if (baseUrl.includes("/search/novels")) {
+        return handlerSearch()
+    }
+    if (baseUrl.includes("/street/for_you")) {
+        return handlerHome()
+    }
     // 正则匹配网址内容
     if (baseUrl.includes("/marker_all")) {
         return handlerRankingOld()
-    }
-    if (baseUrl.includes("/ajax/search/novels")) {
-        return handlerSearch()
-    }
-    if (baseUrl.startsWith("https://www.pixiv.net")) {
-        return handlerHome()
-    }
-    else {
-        return () => {startBrowser(baseUrl, ""); return []}
     }
 }
 
