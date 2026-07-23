@@ -451,6 +451,8 @@ function setDefaultSettings() {
     settings.SHOW_RANK_GENERAL = false  // 发现：显示 排行榜单 常规
     settings.SHOW_GENRE_ADULT = false   // 发现：显示 原创热门 R18
     settings.SHOW_GENRE_GENERAL = false // 发现：显示 原创热门 常规
+
+    settings.SHOW_ABOUT = true          // 发现：显示 书源相关
     settings.SHOW_FURRY = false         // 发现：显示 兽人小说推荐作者
 
     settings.SHOW_SETTINGS = false      // 设置：显示 书源设置
@@ -482,7 +484,8 @@ function checkSettings(settings) {
     if (settings.SHOW_PICTURES === undefined) settings.SHOW_PICTURES = true
     if (settings.SHOW_QUESTION === undefined) settings.SHOW_QUESTION = true
     if (settings.COMBINE_NOVELS === undefined) settings.COMBINE_NOVELS = true
-
+    if (settings.SHOW_ADULT === undefined) settings.SHOW_ADULT = true
+    if (settings.SHOW_ABOUT === undefined) settings.SHOW_ABOUT = true
     this.putInCacheObject("pixivSettings", settings)
     return settings
 }

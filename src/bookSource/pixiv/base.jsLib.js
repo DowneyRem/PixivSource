@@ -486,6 +486,7 @@ function checkSettings(settings) {
     if (settings.SHOW_PICTURES === undefined) settings.SHOW_PICTURES = true
     if (settings.SHOW_QUESTION === undefined) settings.SHOW_QUESTION = true
     if (settings.COMBINE_NOVELS === undefined) settings.COMBINE_NOVELS = true
+    if (settings.SHOW_ADULT === undefined) settings.SHOW_ADULT = true
     if (settings.SHOW_ABOUT === undefined) settings.SHOW_ABOUT = true
 
     this.putInCacheObject("pixivSettings", settings)
