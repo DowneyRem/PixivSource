@@ -264,16 +264,21 @@ function novelFilter(novels) {
 function handlerFactory() {
     let novels = []
     let keyword = String(java.get("keyword"))
-
-    // 登录检测
-    if (!isLogin() || !util.settings.DEBUG) return novels
     if (keyword.startsWith("#")) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getNovels())
         if (util.settings.COMBINE_NOVELS) novels = novels.concat(getSeries())
     }
 
-    if (keyword.startsWith("@") ) {
+    // 登录检测
+    else if (!isLogin() || !util.settings.DEBUG) {
+        sleepToast("🔍 搜索小说\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
+        util.removeCookie(); util.login()
+        sleepToast("🔍 搜索小说\n\n登录成功后，请重新搜索", 2)
+        return novels
+    }
+
+    else if (keyword.startsWith("@") ) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getUserNovels())
 

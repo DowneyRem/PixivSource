@@ -72,7 +72,7 @@ function handlerNoLogin() {
     return () => {
         sleepToast("⭐️ 发现小说\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
         util.removeCookie(); util.login()
-        sleepToast("⭐️ 发现小说\n\n登录成功后，请重新搜索/进入发现", 2)
+        sleepToast("⭐️ 发现小说\n\n登录成功后，请重新进入发现", 2)
         return []
     }
 }
