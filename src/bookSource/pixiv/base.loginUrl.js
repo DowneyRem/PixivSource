@@ -680,7 +680,7 @@ function blockShowFactory() {
     key = keys[nextIndex]
     putInCacheObject("blockType", key)
 
-    if (key === "authors") {
+    if (key === "Authors") {
         let words = printAuthorMap(getFromCacheMap("blockAuthorMap"))
         if (!words) words = ""
         sleepToast(`👀 查看屏蔽\n${blockType[key]}\n\n${words}`, 2)
@@ -786,12 +786,12 @@ function blockAuthorDelete() {
 }
 
 function blockAddFactory() {
-    if (getFromCacheObject("blockType") === "authors") return blockAuthorAdd()
+    if (getFromCacheObject("blockType") === "Authors") return blockAuthorAdd()
     else return blockWordAdd()
 }
 
 function blockDeleteFactory() {
-    if (getFromCacheObject("blockType") === "authors") return blockAuthorDelete()
+    if (getFromCacheObject("blockType") === "Authors") return blockAuthorDelete()
     else return blockWordDelete()
 }
 
