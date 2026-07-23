@@ -1030,7 +1030,7 @@ const discoverSettingsName ={
     "SHOW_GENRE_GENERAL": "🆗 原创热门",
 
     "SHOW_ABOUT": "📚 书源相关",
-    "SHOW_FURRY": "🐺 兽人小说",
+    "SHOW_FURRY": "🦊 兽人小说",
 }
 const menuSettingsName = {
     "SHOW_DISCOVER": "⚙️ 发现设置\n（书源编辑界面）",

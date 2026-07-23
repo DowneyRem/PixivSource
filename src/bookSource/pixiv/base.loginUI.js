@@ -141,8 +141,8 @@ let discoverSettings = [
     {"🆗 原创热门": "editSettings('SHOW_GENRE_GENERAL')" },
 
     {"📚 书源相关": "editSettings('SHOW_ABOUT')" },
-    {"🐺 兽人小说": "editSettings('SHOW_FURRY')" },
-    {"🐲 兽人作者": "updatePixivAuthors()" },
+    {"🦊 兽人小说": "editSettings('SHOW_FURRY')" },
+    {"🐺 兽人作者": "updatePixivAuthors()" },
 ]
 
 let li = []
