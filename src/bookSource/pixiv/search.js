@@ -264,13 +264,19 @@ function novelFilter(novels) {
 function handlerFactory() {
     let novels = []
     let keyword = String(java.get("keyword"))
-    if (keyword.startsWith("@")) {
-        java.put("keyword", keyword.slice(1))
-        novels = novels.concat(getUserNovels())
-    } else if (keyword.startsWith("#")) {
+
+    // 登录检测
+    if (!isLogin() || !util.settings.DEBUG) return novels
+    if (keyword.startsWith("#")) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getNovels())
         if (util.settings.COMBINE_NOVELS) novels = novels.concat(getSeries())
+    }
+
+    if (keyword.startsWith("@") ) {
+        java.put("keyword", keyword.slice(1))
+        novels = novels.concat(getUserNovels())
+
     } else if (keyword.startsWith("$") || util.settings.SEARCH_AUTHOR) {
         if (keyword.startsWith("$")) {
             keyword = keyword.slice(1)
@@ -278,16 +284,13 @@ function handlerFactory() {
         }
         java.log(`👤 粗略搜索作者：${keyword}`)
         novels = novels.concat(getUserIdOnline()[1])
+
     } else {
         novels = novels.concat(getNovels())
         if (util.settings.COMBINE_NOVELS) novels = novels.concat(getSeries())
         if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))
-    // 返回空列表中止流程
-    if (novels.length === 0) {
-        return []
-    }
     return novelFilter(util.formatNovels(util.handNovels(novels)))
 }
 
