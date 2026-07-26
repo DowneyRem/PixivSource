@@ -136,10 +136,10 @@ function publicFunc() {
         cookie.removeCookie('https://accounts.pixiv.net')
         cookie.removeCookie('https://accounts.google.com')
         cookie.removeCookie('https://api.weibo.com')
-        cache.delete("pixivCookie")
         cache.delete("pixivUid")
+        cache.delete("pixivCookie")
         cache.delete("pixivCsrfToken")  // 与登录设备有关
-        cache.delete("headers")
+        cache.delete("PixivHeaders")
     }
 
     // 获取 Csrf Token，以便进行收藏等请求
