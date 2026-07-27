@@ -271,7 +271,7 @@ function handlerFactory() {
     }
 
     // 登录检测
-    else if (!isLogin() || !util.settings.DEBUG) {
+    else if (!isLogin() && !util.settings.DEBUG) {
         sleepToast("🔍 搜索小说\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
         util.removeCookie(); util.login()
         sleepToast("🔍 搜索小说\n\n登录成功后，请重新搜索", 2)
