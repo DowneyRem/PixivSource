@@ -75,11 +75,9 @@ function publicFunc() {
             sleep(3); startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Sigma")
         }
 
-        if (u.settings.IPDirect) {
-            java.log("✈️ 直连模式：✅ 已开启")
-        } else {
-            java.log("✈️ 直连模式：❌ 已关闭")
-        }
+        if (u.settings.IPDirect) java.log("✈️ 直连模式：✅ 已开启")
+        if (u.settings.FAST) java.log("⏩ 快速模式：✅ 已开启")
+        if (u.settings.DEBUG) java.log("🐞 调试模式：✅ 已开启")
     }
 
     u.debugFunc = (func) => {
@@ -518,8 +516,7 @@ function publicFunc() {
     }
 
     u.init(); u.log();
-    util = u
-    java.put("util", objStringify(u))
+    util = u; java.put("util", objStringify(u))
 }
 
 function checkMessageThread(checkTimes) {
