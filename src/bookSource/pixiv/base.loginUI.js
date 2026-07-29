@@ -17,17 +17,20 @@ let settingsBase = []
 if (BOOK) {
     settingsBase = [
         {"👀 书源设置": `editSettings('SHOW_SETTINGS2')` },
+        {"👀 发现设置": `editSettings('SHOW_DISCOVER2')` },
         {"🔰 功能手册": "startGithubReadme()" },
-        {"✈️ 直连模式": "editSettings('IPDirect')" },
         {"🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
         {"❤️ 自动收藏": "editSettings('AUTO_LIKE_NOVELS')" },
         {"🐞 调试模式": "editSettings('DEBUG')" },
     ]
 } else {
     settingsBase = [
+        {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
+        {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
+        {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
+        {"💾 备份恢复": "backupRestore()" },
         {"👀 书源设置": `editSettings('SHOW_SETTINGS')` },
         {"👀 发现设置": `editSettings('SHOW_DISCOVER')` },
-        {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
     ]
 }
 
@@ -92,9 +95,9 @@ let comment = [
 
 let settings = [
     {"书源设置": "text" },
-    {"💾 备份恢复": "backupRestore()" },
     {"⚙️ 当前设置": "showSettings()" },
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
+    {"📚 🚫 整合系列": "editSettings('COMBINE_NOVELS')" },
 
     {"🚫 👤 搜索作者": "editSettings('SEARCH_AUTHOR')" },
     {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
@@ -116,9 +119,9 @@ let settings = [
     {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
     {"🚫 📃 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
 
-    {"📚 🚫 整合系列": "editSettings('COMBINE_NOVELS')" },
-    {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
-    {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
+    // {"📚 🚫 整合系列": "editSettings('COMBINE_NOVELS')" },
+    // {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
+    // {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
     // {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 
     // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
