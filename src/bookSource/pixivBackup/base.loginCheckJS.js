@@ -67,22 +67,23 @@ function publicFunc() {
         java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
         java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
 
-    // 输出环境信息
-    if (u.environment.IS_SOURCEREAD) {
-        java.log("📱 软件平台：🍎 源阅 SourceRead")
-    } else if (u.environment.IS_LEGADO_SIGMA) {
-        java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
-    } else if (u.environment.IS_LEGADO_OFFICIAL) {
-        java.log("📱 软件平台：🤖 阅读 正式版")
-        // sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-        // sleep(3);
-        // startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Plus")
-    }
+        // 输出环境信息
+        if (u.environment.IS_SOURCEREAD) {
+            java.log("📱 软件平台：🍎 源阅 SourceRead")
+        } else if (u.environment.IS_LEGADO_SIGMA) {
+            java.log("📱 软件平台：🤖 阅读 Sigma / 阅读 Beta【新包名")
+        } else if (u.environment.IS_LEGADO_OFFICIAL) {
+            java.log("📱 软件平台：🤖 阅读 正式版")
+            // sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
+            // sleep(3);
+            // startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Plus")
+        }
 
-    if (u.settings.IPDirect) {
-        java.log("✈️ 直连模式：✅ 已开启")
-    } else {
-        java.log("✈️ 直连模式：❌ 已关闭")
+        if (u.settings.IPDirect) {
+            java.log("✈️ 直连模式：✅ 已开启")
+        } else {
+            java.log("✈️ 直连模式：❌ 已关闭")
+        }
     }
 
     u.debugFunc = (func) => {
@@ -528,6 +529,7 @@ function publicFunc() {
         return res
     }
 
+    u.init(); u.log();
     util = u
     java.put("util", objStringify(u))
 }
