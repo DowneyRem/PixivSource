@@ -45,24 +45,27 @@ function isLegadoSigma() {
 
 function publicFunc() {
     let u = {}
-    // 输出书源信息
-    java.log(`${source.bookSourceComment.split("\n")[0]}`)
-    java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
-    java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
+    u.init = () => {
+        // 设置写入缓存
+        u.settings = getFromCacheObject("pixivSettings")
+        if (!u.settings) u.settings = setDefaultSettings()
+        u.settings = checkSettings()
+        putInCacheObject("pixivSettings", u.settings)
 
-    // 设置写入缓存
-    u.settings = getFromCacheObject("pixivSettings")
-    if (!u.settings) u.settings = setDefaultSettings()
-    u.settings = checkSettings()
-    putInCacheObject("pixivSettings", u.settings)
+        // 环境写入缓存
+        u.environment = {}
+        u.environment.IS_SOURCEREAD = isSourceRead()
+        u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
+        u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
+        u.environment.IS_LEGADO = u.environment.IS_LEGADO_SIGMA || u.environment.IS_LEGADO_OFFICIAL
+        putInCacheObject("pixivEnvironment", u.environment)
+    }
 
-    // 环境写入缓存
-    u.environment = {}
-    u.environment.IS_SOURCEREAD = isSourceRead()
-    u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
-    u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
-    u.environment.IS_LEGADO = u.environment.IS_LEGADO_SIGMA || u.environment.IS_LEGADO_OFFICIAL
-    putInCacheObject("pixivEnvironment", u.environment)
+    u.log = () => {
+        // 输出书源信息
+        java.log(`${source.bookSourceComment.split("\n")[0]}`)
+        java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
+        java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
 
     // 输出环境信息
     if (u.environment.IS_SOURCEREAD) {
