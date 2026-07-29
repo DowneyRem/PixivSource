@@ -1126,7 +1126,8 @@ function editSettings(settingName) {
 
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
-        sleepToast(msg)
+        sleepToast(msg); try { java.reLoginView() } catch(e) {}
+
         if (settingName === "MORE_INFORMATION") {
             sleep(2); try { java.refreshBookInfo() } catch(e) {}
 
