@@ -1083,11 +1083,7 @@ function showSettingsDiscover() {
 function setDefaultSettingsLoginUrl() {
     setDefaultSettings()
     sleepToast(`\n✅ 已恢复　🔧 默认设置\n\n${getSettingStatus()}`)
-    sleep(2)
-    try { source.refreshExplore() } catch (e) {}
-    try { java.refreshBookInfo() } catch(e) {}
-    try { java.refreshBookToc() } catch(e) {}
-    try { java.refreshContent() } catch(e) {}
+    refreshSettings("DEFAULT")
 }
 
 function editSettings(settingName) {
@@ -1105,46 +1101,56 @@ function editSettings(settingName) {
     if (settingName === "FAST") {
         checkSettings(settings)
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
-        sleepToast(msg)
-        try { source.refreshExplore() } catch (e) {}
-        try { java.refreshBookToc() } catch(e) {}
-        try { java.refreshContent() } catch(e) {}
 
     } else if (settingName === "IPDirect") {
         if (settings.IPDirect && !isLogin()) {
-            msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
             settings.IPDirect = false
             checkSettings(settings)
+            msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
         } else {
             checkSettings(settings)
             msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
         }
-        sleepToast(msg)
+    } else {
+        msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
+    }
+
+    sleepToast(msg)
+    refreshSettings(settingName)
+}
+
+function refreshSettings(settingName) {
+    if (settingName === "DEFAULT") {
+        try { source.refreshExplore() } catch (e) {}
+        try { java.refreshBookInfo() } catch(e) {}
+        try { java.refreshBookToc() } catch(e) {}
+        try { java.refreshContent() } catch(e) {}
+
+    } else if (settingName === "FAST" || settingName === "IPDirect") {
         try { source.refreshExplore() } catch (e) {}
         try { java.refreshBookToc() } catch(e) {}
         try { java.refreshContent() } catch(e) {}
 
-    } else {
-        msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
-        sleepToast(msg); try { java.reLoginView() } catch(e) {}
+    } else if (settingName in menuSettingsName) {
+        try { java.reLoginView() } catch (e) {}
 
-        if (settingName === "MORE_INFORMATION") {
-            sleep(2); try { java.refreshBookInfo() } catch(e) {}
+    } else if (settingName in discoverSettingsName) {
+        try { source.refreshExplore() } catch (e) {}
 
-        } else if (settingName in discoverSettingsName) {
-            sleep(2); try { source.refreshExplore() } catch (e) {}
+    } else if (settingName === "MORE_INFORMATION") {
+        try { java.refreshBookInfo() } catch(e) {}
 
-        } else if (settingName in catalogSettingsName) {
-            sleep(2); try { java.refreshBookToc() } catch(e) {}
+    } else if (settingName in catalogSettingsName) {
+        try { java.refreshBookToc() } catch(e) {}
 
-        } else if (settingName in contentSettingsName) {
-            sleep(2); try { java.refreshContent() } catch(e) {}
+    } else if (settingName in contentSettingsName) {
+        try { java.refreshContent() } catch(e) {}
 
-        } else if (settingName in pictureSettingsName) {
-            sleep(2); try { java.refreshContent() } catch(e) {}
-        }
+    } else if (settingName in pictureSettingsName) {
+        try { java.refreshContent() } catch(e) {}
     }
 }
+
 
 function backupRestore() {
     let variable = String(result.get("书源设置") || "").trim()
