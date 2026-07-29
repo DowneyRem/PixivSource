@@ -28,10 +28,10 @@ function removeCookie() {
     cookie.removeCookie('https://accounts.pixiv.net')
     cookie.removeCookie('https://accounts.google.com')
     cookie.removeCookie('https://api.weibo.com')
-    cache.delete("pixivCookie")
     cache.delete("pixivUid")
-    cache.delete("pixivCsrfToken")  // 与登录设备有关
-    cache.delete("pixivHeaders")
+    cache.delete("pixivCookie")
+    cache.delete("pixivCsrfToken")
+    cache.delete("PixivHeaders")
 }
 
 function removeCacheList(listName) {
