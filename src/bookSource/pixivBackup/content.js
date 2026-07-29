@@ -1,6 +1,4 @@
 var util = objParse(String(java.get("util")))
-util.environment = getFromCacheObject("pixivEnvironment")
-
 let emoji = {
     "normal": 101, "surprise": 102, "series": 103, "heaven": 104, "happy": 105,
     "excited": 106, "sing": 107, "cry": 108, "normal2": 201, "shame2": 202,

@@ -44,7 +44,7 @@ function getNovelInfo(resp) {
     }
 
     // 系列 + 阅读，使用当前章节名称
-    if (novel.seriesId && globalThis.environment.IS_LEGADO) {
+    if (novel.seriesId && util.environment.IS_LEGADO) {
         novel.title = book.durChapterTitle
         try{
             let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
@@ -75,7 +75,7 @@ function getNovelInfo(resp) {
 
 // 在正文内部添加小说描述
 function getCaptions(resp, content)　{
-    if (globalThis.settings.SHOW_CAPTIONS && resp.description !== "") {
+    if (util.settings.SHOW_CAPTIONS && resp.description !== "") {
         content = resp.description + "\n" + "——————————\n".repeat(2) + content
     }
     return content
@@ -86,7 +86,7 @@ function replaceUploadedImage(resp, content) {
     if (resp.textEmbeddedImages) {
         let images = resp.textEmbeddedImages
         Object.keys(images).forEach((key) => {
-            if (globalThis.settings.SHOW_PICTURES) {
+            if (util.settings.SHOW_PICTURES) {
                 let url = urlCoverUrl(images[key].urls.original)
                 content = content.replace(`[uploadedimage:${key}]`, `<img src="${url}">`)
             } else {
@@ -122,7 +122,7 @@ function replacePixivImage(content) {
 
 // 替换 Pixiv 分页标记符号 [newpage]
 function replaceNewPage(content) {
-    if (!globalThis.environment.IS_LEGADO_SIGMA) {
+    if (!util.environment.IS_LEGADO_SIGMA) {
         let matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
         if (matched) {
             for (let i in matched) {
@@ -141,7 +141,7 @@ function replaceChapter(content) {
             let matched2 = matched[i].match(/\[chapter:(.*?)]/m)
             let chapter = matched2[1].trim()
             // 替换 Pixiv 分页标记符号 [newpage]
-            if (globalThis.environment.IS_LEGADO_SIGMA) {
+            if (util.environment.IS_LEGADO_SIGMA) {
                 content = content.replace(`${matched[i]}`, `<usehtml><h3>${chapter}</h3></usehtml>`)
             } else {
                 content = content.replace(`${matched[i]}`, `${chapter}<p>​<p/>`)
@@ -173,7 +173,7 @@ function replaceJumpUrl(content) {
             let urlName = matched2[1].trim()
             let urlLink = matched2[2].trim()
 
-            if (globalThis.environment.IS_LEGADO_SIGMA) {
+            if (util.environment.IS_LEGADO_SIGMA) {
                 content = content.replace(`${matchedText}`, `<usehtml><p>　　<a href=${urlLink}>${urlName}</a></p></usehtml>`)
             } else {
                 if (urlLink === urlName) {
@@ -197,7 +197,7 @@ function replaceRb(content) {
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
 
-            if (!globalThis.settings.REPLACE_TITLE_MARKS) {
+            if (!util.settings.REPLACE_TITLE_MARKS) {
                 // 默认替换成（括号）
                 content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
             } else {
@@ -218,12 +218,12 @@ function replaceRb(content) {
 
 // 添加投票信息
 function getPollData(resp, content) {
-    if (!globalThis.settings.SHOW_QUESTION || !resp.pollData) return content
+    if (!util.settings.SHOW_QUESTION || !resp.pollData) return content
 
     // resp.pollData.selectedValue = 0
     if (resp.pollData) {
         let text = ""
-        let showText = globalThis.settings.DEBUG || String(getFromCache("pixivUid")) !== resp.userId
+        let showText = util.settings.DEBUG || String(getFromCache("pixivUid")) !== resp.userId
         if (!resp.pollData.selectedValue && showText) {
             text = "\n\n(⚠️当前未投，点击【Pixiv 小说】，打开登录界面，点击投票选项，即可参与投票)"
         }
@@ -264,12 +264,12 @@ function formatComment(item, replyToName = null) {
 }
 
 function getComment(resp, content) {
-    if (!globalThis.settings.SHOW_COMMENTS || resp.commentCount === 0) return content
+    if (!util.settings.SHOW_COMMENTS || resp.commentCount === 0) return content
 
     const limit = 50
     let comments = [], commentUrls = [];
     let maxPage = Math.ceil(resp.commentCount / limit)
-    if (maxPage >= 2 && globalThis.environment.IS_LEGADO) {
+    if (maxPage >= 2 && util.environment.IS_LEGADO) {
         for (let i = 0; i < maxPage; i++) {
             commentUrls.push(urlIP(urlNovelComments(resp.id, i * limit, limit)))
         }
