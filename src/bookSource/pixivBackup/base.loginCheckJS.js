@@ -46,37 +46,33 @@ function isLegadoSigma() {
 function publicFunc() {
     let u = {}
     u.init = () => {
-        // 设置写入缓存
         u.settings = getFromCacheObject("pixivSettings")
         if (!u.settings) u.settings = setDefaultSettings()
         u.settings = checkSettings()
         putInCacheObject("pixivSettings", u.settings)
 
-        // 环境写入缓存
         u.environment = {}
         u.environment.IS_SOURCEREAD = isSourceRead()
         u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
         u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
         u.environment.IS_LEGADO = u.environment.IS_LEGADO_SIGMA || u.environment.IS_LEGADO_OFFICIAL
+        u.environment.IS_BACKUP = source.bookSourceComment.includes("备用")
         putInCacheObject("pixivEnvironment", u.environment)
     }
 
     u.log = () => {
-        // 输出书源信息
         java.log(`${source.bookSourceComment.split("\n")[0]}`)
         java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
         java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
 
-        // 输出环境信息
         if (u.environment.IS_SOURCEREAD) {
             java.log("📱 软件平台：🍎 源阅 SourceRead")
         } else if (u.environment.IS_LEGADO_SIGMA) {
-            java.log("📱 软件平台：🤖 阅读 Sigma / 阅读 Beta【新包名")
-        } else if (u.environment.IS_LEGADO_OFFICIAL) {
+            java.log("📱 软件平台：🤖 阅读 Sigma / 阅读 Beta【新包名】")
+        } else if (u.environment.IS_LEGADO_OFFICIAL && !u.environment.IS_BACKUP) {
             java.log("📱 软件平台：🤖 阅读 正式版")
-            // sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-            // sleep(3);
-            // startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Plus")
+            sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请使用：\n阅读【Sigma】\n\n即将为您打开下载界面，请在浏览器内打开并下载")
+            sleep(3); startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Sigma")
         }
 
         if (u.settings.IPDirect) {
