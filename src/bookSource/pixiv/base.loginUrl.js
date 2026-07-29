@@ -966,6 +966,8 @@ function readMeSearch() {
 const serachSettingsName = {
     "SEARCH_AUTHOR": "🔍 搜索作者",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
+}
+const detailSettingsName = {
     "MORE_INFORMATION": "📖 更多简介",
 }
 const catalogSettingsName = {
@@ -1000,6 +1002,7 @@ const pictureSettingsName = {
 }
 const novelSettingsName = Object.assign({},
     serachSettingsName,
+    detailSettingsName,
     catalogSettingsName,
     contentSettingsName,
     otherSettingsName,
@@ -1096,7 +1099,6 @@ function editSettings(settingName) {
         status = settings[settingName] = true
     }
     putInCacheObject("pixivSettings", settings)
-    globalThis.settings = settings
 
     if (settingName === "FAST") {
         checkSettings(settings)
@@ -1137,7 +1139,7 @@ function refreshSettings(settingName) {
     } else if (settingName in discoverSettingsName) {
         try { source.refreshExplore() } catch (e) {}
 
-    } else if (settingName === "MORE_INFORMATION") {
+    } else if (settingName in detailSettingsName) {
         try { java.refreshBookInfo() } catch(e) {}
 
     } else if (settingName in catalogSettingsName) {
