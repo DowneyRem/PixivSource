@@ -17,6 +17,9 @@ function handlerFactory() {
     if (!baseUrl.includes("https://www.pixiv.net")) {
         return () => {startBrowser(baseUrl, ""); return []}
     }
+    if (!baseUrl.includes("https://210.140.139.155")) {
+        return () => {startBrowser(baseUrl, ""); return []}
+    }
     if (!isLogin() && !util.settings.DEBUG) {
         return handlerNoLogin()
     }
