@@ -14,15 +14,16 @@ function handlerFactory() {
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
         return () => {updateSource(); return []}
     }
-    if (!baseUrl.includes("https://www.pixiv.net")) {
+    if (baseUrl.includes("https://github.com")) {
         return () => {startBrowser(baseUrl, ""); return []}
     }
-    if (!baseUrl.includes("https://210.140.139.155")) {
+    if (baseUrl.includes("https://pixivsource.pages.dev")) {
         return () => {startBrowser(baseUrl, ""); return []}
     }
     if (!isLogin() && !util.settings.DEBUG) {
         return handlerNoLogin()
     }
+
     if (baseUrl.includes("/bookmark")) {
         return handlerBookMarks()
     }
