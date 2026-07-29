@@ -42,60 +42,43 @@ function isLegadoSigma() {
 }
 
 function publicFunc() {
-    let u = {}, settings = {}
+    let u = {}
+    u.init = () => {
+        u.settings = getFromCacheObject("pixivSettings")
+        if (!u.settings) u.settings = setDefaultSettings()
+        u.settings = checkSettings()
+        putInCacheObject("pixivSettings", u.settings)
 
-    let isFirstInit = false;
-    if (!globalThis.ALREADY_LOGGED_INFO) {
-        globalThis.ALREADY_LOGGED_INFO = true
-        isFirstInit = true
+        u.environment = {}
+        u.environment.IS_SOURCEREAD = isSourceRead()
+        u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
+        u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
+        u.environment.IS_LEGADO = u.environment.IS_LEGADO_SIGMA || u.environment.IS_LEGADO_OFFICIAL
+        u.environment.IS_BACKUP = source.bookSourceComment.includes("备用")
+        putInCacheObject("pixivEnvironment", u.environment)
     }
 
-    if (!globalThis.settings) {
-        // cache.delete("pixivSettings")
-        settings = getFromCacheObject("pixivSettings")
-        if (!settings) settings = setDefaultSettings()
-        globalThis.settings = checkSettings(settings)
-    }
-    // 环境信息不会改变，可以使用 globalThis.environment
-    if (!globalThis.environment) {
-        globalThis.environment = {}
-        globalThis.environment.IS_SOURCEREAD = isSourceRead()
-        globalThis.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
-        globalThis.environment.IS_LEGADO_SIGMA = isLegadoSigma()
-        globalThis.environment.IS_LEGADO = globalThis.environment.IS_LEGADO_OFFICIAL || globalThis.environment.IS_LEGADO_SIGMA
-    }
-
-    // 只有第一次初始化时才输出日志
-    if (isFirstInit) {
+    u.log = () => {
         java.log(`${source.bookSourceComment.split("\n")[0]}`)
         java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
         java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
 
-        if (globalThis.environment.IS_SOURCEREAD) {
+        if (u.environment.IS_SOURCEREAD) {
             java.log("📱 软件平台：🍎 源阅 SourceRead")
-        } else if (globalThis.environment.IS_LEGADO_SIGMA) {
-            java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
-        } else if (globalThis.environment.IS_LEGADO_OFFICIAL) {
+        } else if (u.environment.IS_LEGADO_SIGMA) {
+            java.log("📱 软件平台：🤖 阅读 Sigma / 阅读 Beta【新包名】")
+        } else if (u.environment.IS_LEGADO_OFFICIAL && !u.environment.IS_BACKUP) {
             java.log("📱 软件平台：🤖 阅读 正式版")
-            sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-            sleep(3)
-            startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Plus")
+            sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请使用：\n阅读【Sigma】\n\n即将为您打开下载界面，请在浏览器内打开并下载")
+            sleep(3); startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Sigma")
         }
 
-        if (globalThis.settings.IPDirect) {
+        if (u.settings.IPDirect) {
             java.log("✈️ 直连模式：✅ 已开启")
         } else {
             java.log("✈️ 直连模式：❌ 已关闭")
         }
     }
-
-    // 使用 globalThis.settings 无法获取最新的设置
-    // 使用 globalThis.environment 可能无法写入 environment
-    // cache.delete("pixivSettings")
-    settings = getFromCacheObject("pixivSettings")
-    if (!settings) settings = setDefaultSettings()
-    u.settings = checkSettings(settings)
-    putInCacheObject("pixivEnvironment", globalThis.environment)
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {
@@ -540,6 +523,7 @@ function publicFunc() {
         return res
     }
 
+    u.init(); u.log();
     util = u
     java.put("util", objStringify(u))
 }
