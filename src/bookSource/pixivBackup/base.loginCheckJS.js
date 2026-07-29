@@ -121,10 +121,10 @@ function publicFunc() {
         cookie.removeCookie('https://accounts.pixiv.net')
         cookie.removeCookie('https://accounts.google.com')
         cookie.removeCookie('https://api.weibo.com')
-        cache.delete("pixivCookie")
         cache.delete("pixivUid")
-        cache.delete("pixivCsrfToken")  // 与登录设备有关
-        cache.delete("headers")
+        cache.delete("pixivCookie")
+        cache.delete("pixivCsrfToken")
+        cache.delete("PixivHeaders")
     }
 
     // 获取 Csrf Token，以便进行收藏等请求
@@ -179,7 +179,7 @@ function publicFunc() {
 
     // 过滤收藏与追更
     u.novelFilter = function(novels) {
-        let novels1 = [], novels2 = [], msg
+        let novels1 = [], novels2 = []
         let likeNovels = getFromCacheObject("likeNovels")
         let watchedSeries = getFromCacheObject("watchedSeries")
         let novels0 = novels.map(novel => novel.id)
@@ -206,15 +206,6 @@ function publicFunc() {
             if (util.settings.HIDE_WATCHED_SERIES) msg += "开启显示追更系列"
             sleepToast(msg, 1)
         }
-
-        util.debugFunc(() => {
-            // java.log(JSON.stringify(novels0))
-            java.log(JSON.stringify(novels0.length))
-            // java.log(JSON.stringify(novels1))
-            java.log(JSON.stringify(novels1.length))
-            // java.log(JSON.stringify(novels2))
-            java.log(JSON.stringify(novels2.length))
-        })
         return novels
     }
 
@@ -308,12 +299,13 @@ function publicFunc() {
             if (novel.isOneshot !== undefined) {
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
-                    novel.id = novel.novelId  // 获取真正的 novelId
                     novel.seriesTitle = undefined
+                    novel.id = novel.novelId  // 获取真正的 novelId
+                    // novel.title = novel.title
                 } else {
                     novel.seriesId = novel.id
-                    novel.id = novel.novelId = novel.latestEpisodeId  // 获取真正的 novelId
                     novel.seriesTitle = novel.title
+                    novel.id = novel.novelId = novel.latestEpisodeId  // 获取真正的 novelId
                     // novel.isWatched = novel.isWatched  // 搜索系列可获取
                 }
                 novel.textCount = novel.textLength

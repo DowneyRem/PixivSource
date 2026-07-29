@@ -17,6 +17,7 @@ function objStringify(obj) {
 function isSourceRead() {
     return java.getUserAgent() === java.getWebViewUA()
 }
+
 // 正式版 不支持在 JSlib 的函数直接设置默认参数
 // 正式版 不支持 a?.b 的写法
 // 检测 阅读 正式版 与 Beta 版本
@@ -30,6 +31,7 @@ function isLegadoOfficial() {
     }
     return isLegadoOfficialStatus
 }
+
 // 检测 阅读 Beta 版本 与 Sigma 版本
 // Sigma 版本新增函数
 // java.ajaxTestAll()
@@ -121,7 +123,7 @@ function publicFunc() {
         cookie.removeCookie('https://api.weibo.com')
         cache.delete("pixivUid")
         cache.delete("pixivCookie")
-        cache.delete("pixivCsrfToken")  // 与登录设备有关
+        cache.delete("pixivCsrfToken")
         cache.delete("PixivHeaders")
     }
 
@@ -177,7 +179,7 @@ function publicFunc() {
 
     // 过滤收藏与追更
     u.novelFilter = function(novels) {
-        let novels1 = [], novels2 = [], msg
+        let novels1 = [], novels2 = []
         let likeNovels = getFromCacheObject("likeNovels")
         let watchedSeries = getFromCacheObject("watchedSeries")
         let novels0 = novels.map(novel => novel.id)
@@ -204,15 +206,6 @@ function publicFunc() {
             if (util.settings.HIDE_WATCHED_SERIES) msg += "开启显示追更系列"
             sleepToast(msg, 1)
         }
-
-        // util.debugFunc(() => {
-        //     // java.log(JSON.stringify(novels0))
-        //     java.log(JSON.stringify(novels0.length))
-        //     // java.log(JSON.stringify(novels1))
-        //     java.log(JSON.stringify(novels1.length))
-        //     // java.log(JSON.stringify(novels2))
-        //     java.log(JSON.stringify(novels2.length))
-        // })
         return novels
     }
 
@@ -306,12 +299,13 @@ function publicFunc() {
             if (novel.isOneshot !== undefined) {
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
-                    novel.id = novel.novelId  // 获取真正的 novelId
                     novel.seriesTitle = undefined
+                    novel.id = novel.novelId  // 获取真正的 novelId
+                    // novel.title = novel.title
                 } else {
                     novel.seriesId = novel.id
-                    novel.id = novel.novelId = novel.latestEpisodeId  // 获取真正的 novelId
                     novel.seriesTitle = novel.title
+                    novel.id = novel.novelId = novel.latestEpisodeId  // 获取真正的 novelId
                     // novel.isWatched = novel.isWatched  // 搜索系列可获取
                 }
                 novel.textCount = novel.textLength
@@ -554,8 +548,6 @@ function checkMessageThread(checkTimes) {
 function getPixivUid() {
     // cache.delete("pixivUid")
     let pixivUid = getFromCache("pixivUid")
-    // if (!pixivUid) pixivUid = getFromCache("pixivUid")
-
     if (!pixivUid && isLogin()) {
         let html = java.ajax("https://www.pixiv.net/")
         pixivUid = html.match(/user_id:'(\d+)'/)[1]
@@ -583,7 +575,6 @@ function getHeaders() {
         "x-csrf-token": getFromCache("pixivCsrfToken") || "",
         "Cookie": getFromCache("pixivCookie") || ""
     }
-    // putInCacheObject("headers", headers)
     putInCacheObject("pixivHeaders", headers)
     return headers
 }
