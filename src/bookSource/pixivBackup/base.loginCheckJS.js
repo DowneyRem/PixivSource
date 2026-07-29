@@ -556,8 +556,6 @@ function checkMessageThread(checkTimes) {
 function getPixivUid() {
     // cache.delete("pixivUid")
     let pixivUid = getFromCache("pixivUid")
-    // if (!pixivUid) pixivUid = getFromCache("pixivUid")
-
     if (!pixivUid && isLogin()) {
         let html = java.ajax("https://www.pixiv.net/")
         pixivUid = html.match(/user_id:'(\d+)'/)[1]
@@ -585,7 +583,6 @@ function getHeaders() {
         "x-csrf-token": getFromCache("pixivCsrfToken") || "",
         "Cookie": getFromCache("pixivCookie") || ""
     }
-    // putInCacheObject("headers", headers)
     putInCacheObject("pixivHeaders", headers)
     return headers
 }
