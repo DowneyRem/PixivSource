@@ -129,9 +129,9 @@ https://www.pixiv.net/search?q=中文&s_mode=s_tag&type=novel&work_lang=zh-cn
 > [!NOTE]
 > 按照 [Pixiv 小说首页](https://www.pixiv.net/novel) 顺序排序
 
-### ⭐️ 关注用户
+### ⭐️ 关注用户 {#FollowLatest}
 > [!TIP]
-> 已关注用户的作品（小说） / **关注作者，最新小说**
+> 已关注用户的（最新）作品 / **关注作者，最新小说**
 - **URL**：`https://www.pixiv.net/ajax/follow_latest/novel`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
@@ -240,7 +240,7 @@ https://www.pixiv.net/novel
 ```
 
 
-### 👑 小说排行榜
+### 👑 小说排行榜 {#Ranking}
 - **URL**: `https://www.pixiv.net/ajax/ranking/novel`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
@@ -302,6 +302,33 @@ https://www.pixiv.net/ajax/commission/page/request/complete/novels?mode=r18&p=1&
 ```
 https://www.pixiv.net/request/complete/novels?mode=r18
 ```
+
+
+## 侧边栏
+### ⭐️ [关注用户(同上)](#FollowLatest)
+
+
+### 🔍 发现小说
+- **URL**: `https://www.pixiv.net/ajax/novel/discovery`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+#### 参数说明
+| 参数名 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `mode` | Query | String | 年龄限制：`all`、`safe`、`r18`|
+| `lang` | Query | String | 语言：`zh` 中文 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/novel/discovery?mode=r18&lang=zh
+```
+#### 对应网页
+```
+https://www.pixiv.net/novel/discovery?mode=r18
+```
+
+
+### 👑 [小说排行榜(同上)](#Ranking)
 
 
 ## 小说信息
