@@ -312,13 +312,17 @@ https://www.pixiv.net/request/complete/novels?mode=r18
 
 ## 侧边栏
 > [!NOTE]
-> 按照 [Pixiv 小说首页](https://www.pixiv.net/novel) 侧边栏顺序排序
+> **按照 [Pixiv 小说首页](https://www.pixiv.net/novel) 侧边栏顺序排序：**
+>
+> ⭐️ [已关注用户的最新作品](#FollowLatest)；
+> 🔍 [发现](#Discovery)；
+> 👑 [排行榜](#Ranking)；
+> 🆕 [本站的最新作品](#New)；
+> 💰 [约稿](#Commission)；
+> 📑 [用户企划](#UserEvent)
 
 
-### ⭐️ [关注用户(同上)](#FollowLatest)
-
-
-### 🔍 发现小说
+### 🔍 发现小说 {#Discovery}
 - **URL**: `https://www.pixiv.net/ajax/novel/discovery`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
@@ -336,9 +340,6 @@ https://www.pixiv.net/ajax/novel/discovery?mode=r18&lang=zh
 ```
 https://www.pixiv.net/novel/discovery?mode=r18
 ```
-
-
-### 👑 [小说排行榜(同上)](#Ranking)
 
 
 ### 🆕 最新作品 {#New}
@@ -364,16 +365,6 @@ https://www.pixiv.net/ajax/novel/new?lastId=0&limit=20&r18=true&lang=zh
 ```
 https://www.pixiv.net/novel/new_r18.php
 ```
-
-
-### 💰 [小说约稿(同上)](#Commission)
-> [!TIP]
-> 已完成的约稿 - 小说
-
-
-### 📑 [用户企划(同上)](#UserEvent)
-> [!TIP]
-> 用户企划 - 小说
 
 
 ## 小说信息
