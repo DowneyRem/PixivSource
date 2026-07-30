@@ -125,9 +125,19 @@ https://www.pixiv.net/search?q=中文&s_mode=s_tag&type=novel&work_lang=zh-cn
 `https://www.pixiv.net/ajax/street/v2/main`
 
 
-## 小说推荐
+## 小说首页
 > [!NOTE]
-> 按照 [Pixiv 小说首页](https://www.pixiv.net/novel) 顺序排序
+> **按照 [Pixiv 小说首页](https://www.pixiv.net/novel) 顺序排序排序：**
+>
+> ⭐️ [已关注用户的作品](#FollowLatest)；
+> 📃 [追更列表中的作品](#WatchList)；
+> 👍 [编辑部的推荐作品](#EditorsPicks)；
+> 🔥 [原创热门作品](#Genre)；
+> 💯 [推荐作品](#Top)；
+> 👑 [每日排行榜](#Ranking)；
+> 📑 [瞩目的企划目录](#UserEvent)；
+> 💰 [小说约稿作品](#Commission)
+
 
 ### ⭐️ 关注用户 {#FollowLatest}
 > [!TIP]
@@ -152,10 +162,10 @@ https://www.pixiv.net/novel/bookmark_new_r18.php
 ```
 
 
-### 📃 追更列表
+### 📃 追更列表 {#WatchList}
 > [!TIP]
 > 追更列表中的作品
-- **URL**：`https://www.pixiv.net/ajax/follow_latest/novel`
+- **URL**：`https://www.pixiv.net/ajax/watch_list/novel`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
 #### 参数说明
@@ -175,7 +185,7 @@ https://www.pixiv.net/following/watchlist/novels
 ```
 
 
-### 👍 编辑部推荐
+### 👍 编辑部推荐 {#EditorsPicks}
 > [!TIP]
 > 编辑部的推荐作品 **（仅日语）**
 - **URL**：`https://www.pixiv.net/ajax/novel/editors_picks`
@@ -197,7 +207,7 @@ https://www.pixiv.net/novel/editors_picks
 ```
 
 
-### 🔥 原创热门
+### 🔥 原创热门 {#Genre}
 > [!TIP]
 > 原创热门作品 (分类)
 - **URL**：`https://www.pixiv.net/ajax/genre/novel/{genre}`
@@ -220,7 +230,7 @@ https://www.pixiv.net/genre/novel/male?mode=r18
 ```
 
 
-### 💯 推荐作品
+### 💯 推荐作品 {#Top}
 - **URL**: `https://www.pixiv.net/ajax/top/novel`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
@@ -232,7 +242,7 @@ https://www.pixiv.net/genre/novel/male?mode=r18
 
 #### 调用示例
 ```
-https://www.pixiv.net/ajax/genre/novel/male?mode=r18&lang=zh
+https://www.pixiv.net/ajax/top/novel?mode=all&lang=zh
 ```
 #### 对应网页
 ```
