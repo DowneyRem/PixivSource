@@ -74,7 +74,7 @@ let adultGenre = [
     {"耽美": "https://www.pixiv.net/ajax/genre/novel/bl?mode=r18&lang=zh"},
     {"百合": "https://www.pixiv.net/ajax/genre/novel/yuri?mode=r18&lang=zh"},
     {"散文·诗歌": "https://www.pixiv.net/ajax/genre/novel/poetry?mode=r18&lang=zh"},
-    {"随笔·纪实": "https://www.pixiv.net/ajax/genre/novel/non-fiction??mode=r18&lang=zh"},
+    {"随笔·纪实": "https://www.pixiv.net/ajax/genre/novel/non-fiction?mode=r18&lang=zh"},
     {"剧本": "https://www.pixiv.net/ajax/genre/novel/screenplays?mode=r18&lang=zh"},
     {"评论": "https://www.pixiv.net/ajax/genre/novel/reviews?mode=r18&lang=zh"},
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=r18&lang=zh"}
@@ -95,7 +95,7 @@ let generalGenre = [
     {"耽美": "https://www.pixiv.net/ajax/genre/novel/bl?mode=safe&lang=zh"},
     {"百合": "https://www.pixiv.net/ajax/genre/novel/yuri?mode=safe&lang=zh"},
     {"散文·诗歌": "https://www.pixiv.net/ajax/genre/novel/poetry?mode=safe&lang=zh"},
-    {"随笔·纪实": "https://www.pixiv.net/ajax/genre/novel/non-fiction??mode=safe&lang=zh"},
+    {"随笔·纪实": "https://www.pixiv.net/ajax/genre/novel/non-fiction?mode=safe&lang=zh"},
     {"剧本": "https://www.pixiv.net/ajax/genre/novel/screenplays?mode=safe&lang=zh"},
     {"评论": "https://www.pixiv.net/ajax/genre/novel/reviews?mode=safe&lang=zh"},
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}
