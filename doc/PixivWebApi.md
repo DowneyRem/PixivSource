@@ -300,7 +300,7 @@ https://www.pixiv.net/user_event.php?type=novels&mode=r18
 > [!TIP]
 > 已完成的约稿 - 小说
 
-- **URL**: `https://www.pixiv.net/ajax/commission/page/request/complete/novels?mode=r18&p=1&lang=zh`
+- **URL**: `https://www.pixiv.net/ajax/commission/page/request/complete/novels`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
 #### 参数说明
@@ -333,6 +333,9 @@ https://www.pixiv.net/request/complete/novels?mode=r18
 
 
 ### 🔍 发现小说 {#Discovery}
+> [!TIP]
+> 发现 - 推荐作品 - 小说 
+
 - **URL**: `https://www.pixiv.net/ajax/novel/discovery`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
@@ -380,7 +383,7 @@ https://www.pixiv.net/novel/new_r18.php
 ## 小说信息
 ### 📄 小说详情
 ```
-https://www.pixiv.net/ajax/novel/${novelId}
+https://www.pixiv.net/ajax/novel/{novelId}
 ```
 - 请求方法：`GET`
 - 传参方式：`PATH`
