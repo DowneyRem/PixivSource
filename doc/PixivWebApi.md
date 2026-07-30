@@ -262,7 +262,10 @@ https://www.pixiv.net/ajax/ranking/novel?mode=daily_r18&content=novel&p=1
 https://www.pixiv.net/novel/ranking.php?mode=daily_r18
 ```
 
-### 📑 小说企划
+### 📑 小说企划 {#UserEvent}
+> [!TIP]
+> 用户企划 - 小说
+
 - **URL**: `https://www.pixiv.net/ajax/user_event/portal/novels`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
@@ -283,7 +286,10 @@ https://www.pixiv.net/user_event.php?type=novels&mode=r18
 ```
 
 
-### 💰 小说约稿
+### 💰 小说约稿 {#Commission}
+> [!TIP]
+> 已完成的约稿 - 小说
+
 - **URL**: `https://www.pixiv.net/ajax/commission/page/request/complete/novels?mode=r18&p=1&lang=zh`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
@@ -305,6 +311,10 @@ https://www.pixiv.net/request/complete/novels?mode=r18
 
 
 ## 侧边栏
+> [!NOTE]
+> 按照 [Pixiv 小说首页](https://www.pixiv.net/novel) 侧边栏顺序排序
+
+
 ### ⭐️ [关注用户(同上)](#FollowLatest)
 
 
@@ -329,6 +339,41 @@ https://www.pixiv.net/novel/discovery?mode=r18
 
 
 ### 👑 [小说排行榜(同上)](#Ranking)
+
+
+### 🆕 最新作品 {#New}
+> [!TIP]
+> 本站的最新作品 / 大家的新作
+
+- **URL**: `https://www.pixiv.net/ajax/novel/new`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+#### 参数说明
+| 参数名 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `lastId` | Query | Integer | `0` |
+| `limit` | Query | Integer | `20` |
+| `r18` | Query | Boolean | `true`、`false` |
+| `lang` | Query | String | 语言：`zh` 中文 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/novel/new?lastId=0&limit=20&r18=true&lang=zh
+```
+#### 对应网页
+```
+https://www.pixiv.net/novel/new_r18.php
+```
+
+
+### 💰 [小说约稿(同上)](#Commission)
+> [!TIP]
+> 已完成的约稿 - 小说
+
+
+### 📑 [用户企划(同上)](#UserEvent)
+> [!TIP]
+> 用户企划 - 小说
 
 
 ## 小说信息
