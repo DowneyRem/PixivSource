@@ -125,13 +125,28 @@ https://www.pixiv.net/search?q=中文&s_mode=s_tag&type=novel&work_lang=zh-cn
 `https://www.pixiv.net/ajax/street/v2/main`
 
 
-
 ## 小说推荐
 ### ⭐️ 关注用户
 > [!TIP]
-> 关注作者，最新小说
+> 已关注用户的作品（小说） / **关注作者，最新小说**
+- **URL**：`https://www.pixiv.net/ajax/follow_latest/novel`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+#### 参数说明
+| 参数名 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `p` | Query | Integer | 页码 |
+| `mode` | Query | String | 年龄限制：`all`、`safe`、 `r18`|
+| `lang` | Query | String | 语言：`zh` 中文 |
 
-`https://www.pixiv.net/ajax/follow_latest/novel?p={page}&mode=r18&lang=zh`
+#### 调用示例
+```
+https://www.pixiv.net/ajax/follow_latest/novel?p=1&mode=r18&lang=zh
+```
+#### 对应网页
+```
+https://www.pixiv.net/novel/bookmark_new_r18.php
+```
 
 
 ### 📃 追更列表
