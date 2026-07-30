@@ -175,17 +175,26 @@ https://www.pixiv.net/novel/ranking.php?mode=daily_r18
 
 
 ## 小说信息
-#### 小说详情
+### 📄 小说详情
 ```
 https://www.pixiv.net/ajax/novel/${novelId}
 ```
 - 请求方法：`GET`
 - 传参方式：`PATH`
-- 参数：
-  - novelId：小说作品 ID
-- 示例：`https://www.pixiv.net/ajax/novel/123455`
-- 网页：`https://www.pixiv.net/novel/show.php?id=123455`
+#### 参数说明
 
+| 参数名 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| novelId | PATH | Integer | 小说 ID |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/novel/123455
+```
+#### 对应网页
+```
+https://www.pixiv.net/novel/show.php?id=123455
+```
 
 ## 小说互动
 ### ▶️ 互动
