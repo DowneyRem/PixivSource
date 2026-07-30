@@ -126,6 +126,9 @@ https://www.pixiv.net/search?q=中文&s_mode=s_tag&type=novel&work_lang=zh-cn
 
 
 ## 小说推荐
+> [!NOTE]
+> 按照 [Pixiv 小说首页](https://www.pixiv.net/novel) 顺序排序
+
 ### ⭐️ 关注用户
 > [!TIP]
 > 已关注用户的作品（小说） / **关注作者，最新小说**
@@ -151,7 +154,7 @@ https://www.pixiv.net/novel/bookmark_new_r18.php
 
 ### 📃 追更列表
 > [!TIP]
-> 已关注用户的作品（小说） / **关注作者，最新小说**
+> 追更列表中的作品
 - **URL**：`https://www.pixiv.net/ajax/follow_latest/novel`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
@@ -174,7 +177,7 @@ https://www.pixiv.net/following/watchlist/novels
 
 ### 👍 编辑部推荐
 > [!TIP]
-> 编辑部的推荐作品 / **（仅日语）**
+> 编辑部的推荐作品 **（仅日语）**
 - **URL**：`https://www.pixiv.net/ajax/novel/editors_picks`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
@@ -196,7 +199,7 @@ https://www.pixiv.net/novel/editors_picks
 
 ### 🔥 原创热门
 > [!TIP]
-> 原创热门(分类)
+> 原创热门作品 (分类)
 - **URL**：`https://www.pixiv.net/ajax/genre/novel/{genre}`
 - **请求方法**: `GET`
 - **传参方式**: `PATH` & `QUERY`
@@ -259,6 +262,11 @@ https://www.pixiv.net/ajax/ranking/novel?mode=daily_r18&content=novel&p=1
 ```
 https://www.pixiv.net/novel/ranking.php?mode=daily_r18
 ```
+
+### 📑 小说企划
+
+### 💰 小说约稿
+
 
 
 ## 小说信息
