@@ -991,6 +991,8 @@ const otherSettingsName = {
     "HIDE_WATCHED_SERIES": "📃 隐藏追更",
 
     "COMBINE_NOVELS": "📚 整合系列",
+}
+const modeSettingsName = {
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
     "IPDirect": "✈️ 直连模式",
@@ -1006,9 +1008,9 @@ const novelSettingsName = Object.assign({},
     catalogSettingsName,
     contentSettingsName,
     otherSettingsName,
+    modeSettingsName,
     // pictureSettingsName
 )
-
 const fastSettingsName = {
     "SEARCH_AUTHOR": "🔍 搜索作者",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
@@ -1128,7 +1130,8 @@ function refreshSettings(settingName) {
         try { java.refreshBookToc() } catch(e) {}
         try { java.refreshContent() } catch(e) {}
 
-    } else if (settingName === "FAST" || settingName === "IPDirect") {
+    } else if (settingName in modeSettingsName) {
+        try { java.reLoginView() } catch (e) {}
         try { source.refreshExplore() } catch (e) {}
         try { java.refreshBookToc() } catch(e) {}
         try { java.refreshContent() } catch(e) {}
