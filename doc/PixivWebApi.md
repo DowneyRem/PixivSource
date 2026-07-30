@@ -218,7 +218,23 @@ https://www.pixiv.net/genre/novel/male?mode=r18
 
 
 ### 💯 推荐作品
-`https://www.pixiv.net/ajax/top/novel?mode=r18&lang=zh`
+- **URL**: `https://www.pixiv.net/ajax/top/novel`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+#### 参数说明
+| 参数名 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `mode` | Query | String | 年龄限制：`all`、`r18`|
+| `lang` | Query | String | 语言：`zh` 中文 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/genre/novel/male?mode=r18&lang=zh
+```
+#### 对应网页
+```
+https://www.pixiv.net/novel
+```
 
 
 ### 👑 小说排行榜
