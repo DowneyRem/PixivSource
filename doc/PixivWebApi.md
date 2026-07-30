@@ -150,7 +150,26 @@ https://www.pixiv.net/novel/bookmark_new_r18.php
 
 
 ### 📃 追更列表
-`https://www.pixiv.net/ajax/watch_list/novel?p={page}&new=1&lang=zh`
+> [!TIP]
+> 已关注用户的作品（小说） / **关注作者，最新小说**
+- **URL**：`https://www.pixiv.net/ajax/follow_latest/novel`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+#### 参数说明
+| 参数名 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `page` | Query | Integer | 页码 |
+| `new` | Query | Integer | `1` |
+| `lang` | Query | String | 语言：`zh` 中文 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/watch_list/novel?p=1&new=1&lang=zh
+```
+#### 对应网页
+```
+https://www.pixiv.net/following/watchlist/novels
+```
 
 
 ### 编辑部推荐
