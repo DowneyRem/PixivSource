@@ -172,8 +172,26 @@ https://www.pixiv.net/following/watchlist/novels
 ```
 
 
-### 编辑部推荐
-`https://www.pixiv.net/ajax/novel/editors_picks?limit=30&lang=zh`
+### 👍 编辑部推荐
+> [!TIP]
+> 编辑部的推荐作品 / **（仅日语）**
+- **URL**：`https://www.pixiv.net/ajax/novel/editors_picks`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+#### 参数说明
+| 参数名 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `limit` | Query | Integer | `30` |
+| `lang` | Query | String | 语言：`zh` 中文 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/novel/editors_picks?limit=30&lang=zh
+```
+#### 对应网页
+```
+https://www.pixiv.net/novel/editors_picks
+```
 
 
 ### 🔥 原创热门
