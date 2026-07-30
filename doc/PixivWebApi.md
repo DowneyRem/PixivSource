@@ -284,7 +284,24 @@ https://www.pixiv.net/user_event.php?type=novels&mode=r18
 
 
 ### 💰 小说约稿
+- **URL**: `https://www.pixiv.net/ajax/commission/page/request/complete/novels?mode=r18&p=1&lang=zh`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+#### 参数说明
+| 参数名 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `mode` | Query | String | 年龄限制：`all`、`safe`、`r18`|
+| `p` | Query | Integer | 页码 |
+| `lang` | Query | String | 语言：`zh` 中文 |
 
+#### 调用示例
+```
+https://www.pixiv.net/ajax/commission/page/request/complete/novels?mode=r18&p=1&lang=zh
+```
+#### 对应网页
+```
+https://www.pixiv.net/request/complete/novels?mode=r18
+```
 
 
 ## 小说信息
