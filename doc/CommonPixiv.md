@@ -41,16 +41,12 @@
 
 ### ✈️ 直连模式（可选） {#IPDirect}
 > [!TIP]
->
-> **如果你可以直接访问 Pixiv ，可以略过这一步**
+>站点> **如果你可以访问 Pixiv，或者你使用的是【轻悦时光】，都可以略过这一步**
 
-<details><summary><strong> ✈️ 直连模式 </strong></summary>
+<details><summary><strong> ✈️ 直连模式（✅ 仅限 开源阅读） </strong></summary>
 
 > [!NOTE]
-> 
-> **完成【登录账号】后，可在登录界面开启【直连模式】**
-> 
-> **开启【直连模式】后，无需代理，即可阅读小说**
+> **成功【登录账号】后，可在登录界面开启【直连模式】。开启后，无需代理即可阅读小说**
 >
 > **✈️ 直连模式 => 我的 - 书源管理 - Pixiv 小说 - 登录**
 
@@ -65,13 +61,12 @@
 > [!IMPORTANT]
 > **🚫 直连模式下，以下功能不可用：**
 >  - **搜索：搜索作者**
->  - **发现：书签、首页**
+>  - **发现：书签**
 >  - **目录：显示原始链接**
 
 > [!NOTE]
 >
-> **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
->
+> **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)，**
 > **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
 
 </details>

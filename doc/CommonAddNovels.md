@@ -3,7 +3,6 @@
 <div v-if="pagePath.includes('BetterExperience')">
 
 > [!TIP]
->
 > 添加小说共有4种方法：
 > **🔍 [搜索小说](#SearchNovel)；
 > ⭐️ [发现小说](#DiscoverNovel)；
@@ -13,7 +12,6 @@
 <div v-else>
 
 > [!TIP]
-> 
 > ▶️ 添加小说共有4种方法，详见 📖 [添加小说](AddNovels.md)
 </div>
 

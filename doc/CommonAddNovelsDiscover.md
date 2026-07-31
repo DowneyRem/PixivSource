@@ -10,7 +10,7 @@
 
 ![img](./pic/DiscoverPixiv.png)
 
-打开发现页面，点击上方的发现按钮，可以进入小说列表
+打开发现页面，点击上方按钮，进入小说列表
 
 ![img](./pic/DiscoverViaLegado.png)
 
