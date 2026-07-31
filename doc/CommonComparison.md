@@ -1,9 +1,9 @@
-## 功能对比 {#Comparison}
+## 功能优势 {#Comparison}
 <div v-if="pagePath.includes('BetterExperience')">
 
 > [!TIP]
 >
-> **Pixiv 官方 APP 与 Pixiv 书源（开源阅读）的功能对比**，完整版详见：
+> **Pixiv 小说功能对比**，完整版详见：
 > [功能对比](PixivComparison.md)
 </div>
 
@@ -12,8 +12,7 @@
 | 功能 | Pixiv App | Pixiv 书源 |
 | :--- | :--- | :--- |
 | 📚 **小说书架** | ❌ 无 | ✅ 支持 |
-| 💾 **离线阅读** | ❌ 无 | ✅ 支持 |
-| ⏹️ **首行缩进** | ❌ 无 | ✅ 支持 |
+| 💾 **离线阅读** | ❌ 无 | ✅ [支持](LegadoTips.md#Cache) |
 | 🀄️ **繁简通搜** | ❌ 无 | ✅ [支持](Pixiv.md#ConvertChinese) |
 | 🔀 **繁简转换** | ❌ 无 | ✅ [支持](LegadoTips.md#ConvertChinese) |
 | 🔢 **阅读进度** | ☑️ 仅限系列 | ✅ 单篇和系列 |
@@ -23,7 +22,7 @@
 
 ### 🚫 小说过滤 {#NovelFilter}
 | 功能 | Pixiv App | Pixiv 书源 |
-|------|-----------|-----------|
+| :--- | :--- | :--- |
 | 👤️ **屏蔽作者** | 💰 会员功能 | 🆓 [免费支持](Pixiv.md#BlockAuthor) |
 | 🏷️ **屏蔽标签** | 💰 会员功能 | 🆓 [免费支持](Pixiv.md#BlockWords) |
 | 📝 **屏蔽描述** | ❌ 无 | ✅ [免费支持](Pixiv.md#BlockWords) |

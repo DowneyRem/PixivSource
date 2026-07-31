@@ -80,10 +80,9 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ### ⚡️ 快速跳转 {#QuickJump}
 > [!TIP]
+> **面向新手的完整配置指南，彻底解决 Pixiv 的痛点！**
 > 
-> **面向新手的完整配置指南，彻底解决 Pixiv 官方软件的痛点！**
-> 
-> [⚡️ 点我立即开始配置](#StartNow)；
+> [⚡️ 点我立即开始](#StartNow)；
 > **另有：极简配置指南：**
 > [⚡️ 快速开始](QuickStart.md)
 > 
@@ -92,7 +91,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 为什么需要 Pixiv 书源？ {#WhyPixivSource}
-### 👎 Pixiv App 更适合看图，而不是看小说 {#Unsuitable}
+### 👎 Pixiv App 更适合看图片，而不是看小说 {#Unsuitable}
 <details><summary><strong>查看详细说明</strong></summary>
 
 - 小说功能缺陷
@@ -110,7 +109,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 </details>
 
 
-### 😞 现有 第三方 App 不能满足重度小说阅读需求 {#Unsuitable2}
+### 😞 第三方 App 小说功能不够全面 {#Unsuitable2}
 <details><summary><strong>调研软件列表</strong></summary>
 
 > [!NOTE]
@@ -135,12 +134,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 #### 有没有更好的选择？ {#BetterChoice}
-### 🅿️ 开源阅读 + Pixiv 书源 {#Legado&PixivSource}
+### 📖 开源阅读 + 🅿️ Pixiv 书源 {#Legado&PixivSource}
 > [!NOTE]
->
 > **我们的目标：做最好的 Pixiv 小说阅读器**
 >
-> **经过充分调研、持续迭代与用户反馈，此目标已在 2025.12 实现**
+> **经过充分调研与持续迭代，此目标已于 2025.12 实现**
 
 #### 你将获得：堪比网络小说的阅读体验
 
