@@ -1,10 +1,8 @@
 ### ⭐️ [发现小说](Pixiv.md#DiscoverNovel) {#DiscoverNovel}
 > [!NOTE]
->
 > **发现页面 - 点击“Pixiv 小说” - 点击按钮 - 添加小说到书架**
 
 > [!TIP]
->
 > Pixiv 有诸多推荐小说的功能，这些功能均在**发现页面**，
 > 详见 [发现小说](Pixiv.md#DiscoverNovel)
 

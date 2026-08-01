@@ -3,7 +3,6 @@
 阅读指 [**Legado / 开源阅读**](https://github.com/Luoyacheng/legado-E) 这一开源阅读软件
 
 > [!IMPORTANT]
->
 > **【开源阅读】是一个特殊的浏览器，通过特定规则【书源】或【订阅源】访问网页，并重新排版**
 >
 > 转自：[**阅读常见问题解答**](https://mp.weixin.qq.com/s/5EO-TuqYfDrK-bFk78vd3g)
@@ -91,7 +90,6 @@
 ![img.png](./pic/LegadoProfile.png)
 
 > [!IMPORTANT]
->
 > **设置中的这两项非常重要**，稍后讲解：
 >  - **【书源管理】** 查看 [书源管理](#BookSourceManage)
 >  - **【备份与恢复】** 查看 [备份与恢复](#WebdavBackup)
@@ -102,7 +100,6 @@
 
 
 > [!TIP]
-> 
 > 我们刚刚使用的是 **一键导入** 添加的书源 
 > 
 > 这里的 **【本地导入】【网络导入】同样可以添加书源**，详见：

@@ -1,10 +1,8 @@
 ### 🔗 [添加网址](Pixiv.md#AddUrl) {#AddUrl}
 > [!NOTE]
->
 > **书架 - 菜单 - 添加网址 - 粘贴小说链接 - 添加小说到书架**
 
 > [!TIP]
->
 > **当你收到 Pixiv 的链接时，可以通过添加网址，将其添加到书架**
 >
 > **可以同时添加多个小说的链接，支持：**
@@ -28,7 +26,6 @@ https://www.pixiv.net/novel/show.php?id=26200191
 ![img](./pic/AddBookViaUrl3.png)
 
 > [!WARNING]
->
 > **无法直接添加**：Pixiv App 分享链接 **（删掉#号即可正常添加）**
 
 ```
