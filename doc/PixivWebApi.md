@@ -47,7 +47,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 > [!WARNING]
->
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
 > [网页版](https://pixivsource.pages.dev/PixivWebApi)
 > 内容更全面，排版更精美**

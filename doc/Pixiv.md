@@ -73,7 +73,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 > [!WARNING]
->
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
 > [网页版](https://pixivsource.pages.dev/Pixiv)
 > 内容更全面，排版更精美**
@@ -147,7 +146,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ## 搜索小说 {#SearchNovel}
 > [!NOTE]
->
 > **书架页面 - 放大镜 - 输入关键词 - 搜索小说 - 添加小说到书架**
 >
 > 同时搜索：**Pixiv 网站上小说、本地书架上的小说**

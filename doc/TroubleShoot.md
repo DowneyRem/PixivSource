@@ -35,18 +35,15 @@ head:
 
 
 > [!WARNING]
->
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
 > [网页版](https://pixivsource.pages.dev/TroubleShoot)
 > 内容更全面，排版更精美**
 
 
 > [!TIP]
-> 
 > **开源阅读 Legado 的【简易】故障排查与处理**
 
 > [!IMPORTANT]
->
 > **反馈前请确认以下事项：**
 >  - **阅读分支版本（如：Sigma、MD3 等）**
 >  - **阅读软件版本（如：3.26.0101）**
@@ -72,12 +69,10 @@ head:
 
 ### 🗑️ 清除 WebView 数据 {#ClearWebViewData}
 > [!WARNING]
->
 > **清除 WebView 数据，会重置当前登录状态，但是能解决大部分由于缓存数据错误导致的问题**
 >
 
 > [!IMPORTANT]
->
 > **🗑️ 清除 WebView 数据 => 我的 - 其他设置 - 清除 WebView 数据**
 
 
@@ -94,11 +89,9 @@ head:
 ## 调试书源 {#SourceDebug}
 ### 🐞 调试模式 {#DebugMode}
 > [!TIP]
-> 
 > **开启书源的调试模式，可以跳过强制登录，也有助于分析错误，打开方式如下：**
 
 > [!IMPORTANT]
-> 
 > **⏺️ 互动功能 => 书架 - 阅读界面 - Pixiv 小说 - 登录 => 调试模式**
 >
 > **⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录 => 调试模式**
@@ -136,7 +129,6 @@ head:
 
 ### 🐞 调试书源 {#DebugSource}
 > [!IMPORTANT]
-> 
 > **🐞 调试书源 => 我的 - 书源管理 - 调试 - 输入内容**
 
 <details><summary><strong> 打开 🐞 调试书源 </strong></summary>

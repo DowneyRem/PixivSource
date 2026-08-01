@@ -34,14 +34,12 @@ head:
 
 
 > [!WARNING]
->
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
 > [网页版](https://pixivsource.pages.dev/RemoteBooks)
 > 内容更全面，排版更精美**
 
 
 > [!TIP]
-> 
 > **开源阅读 Legado 远程书籍 配置指南**
 >
 > **另有：新手配置指南：**
@@ -100,7 +98,6 @@ head:
 ### 🐺 兽人小说分享 {#FurryNovels}
 
 > [!TIP]
-> 
 > **如果你喜欢兽人小说，可以填入以下内容**
 >
 > 分享信息来自：[@FurryNovels](https://t.me/FurryReading/2145)
@@ -108,7 +105,6 @@ head:
 <details><summary><strong> 🐺 兽人小说分享 </strong></summary>
 
 > [!WARNING]
->
 > **因 Yandex Disk 已将 Webdav 功能变更为会员服务，分享配置已失效**
 
 | 配置 | 内容                                   |
@@ -120,7 +116,6 @@ head:
 **填入 Webdav 服务器配置信息，保存**
 
 > [!CAUTION]
->
 > **请不要将此配置，填入【备份与恢复】！不然会导致数据泄露（并且还是你亲手造成的）**
 </details>
 

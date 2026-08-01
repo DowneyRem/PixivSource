@@ -48,7 +48,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 > [!TIP]
->
 > **Pixiv 书源的设置介绍**
 
 
