@@ -53,6 +53,40 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 阅读功能
+### 💾 离线缓存 {#OfflineCache}
+> [!TIP]
+> ✅ 开源阅读软件自带 **离线缓存、导出书籍** 功能
+>
+> **💾 离线缓存 => 书架界面 - 菜单 - 缓存/导出**
+> 
+> **⬇️ 导出书籍 => 书架界面 - 菜单 - 缓存/导出**
+
+书架页面，点击右上角菜单，点击【缓存/导出】
+
+![img](./pic/LegadoOfflineCache1.png)
+
+点击 **【开始按钮】▶️** ，开始缓存
+
+![img](./pic/LegadoOfflineCache2.png)
+
+长按 **【开始按钮】▶️**，可以进入缓存设置
+
+![img](./pic/LegadoOfflineCache3.png)
+
+
+> [!WARNING]
+> **不建议短时间内缓存大量章节**
+
+
+### ⬇️ 导出书籍 {#ExportBooks}
+> [!TIP]
+> ✅ 开源阅读软件自带 **导出书籍** 功能
+
+进入 [离线阅读](#OfflineCache) 界面后，点击右上角菜单，即可打开书籍导出设置
+
+![img](./pic/LegadoOfflineCache4.png)
+
+
 ### 🀄️ 繁简转换 {#ConvertChinese}
 > [!TIP]
 > ✅ 开源阅读软件自带 **繁简转换** 功能
