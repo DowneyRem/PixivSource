@@ -70,7 +70,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 > [!WARNING]
->
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
 > [网页版](https://pixivsource.pages.dev/Linpx)
 > 内容更全面，排版更精美**
@@ -113,7 +112,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ## 搜索小说 {#SearchNovel}
 > [!NOTE]
->
 > **书架页面 - 放大镜 - 输入关键词 - 搜索小说**
 
 
@@ -161,7 +159,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ## 发现小说 {#DiscoverNovel}
 > [!NOTE]
->
 > **发现页面 - 点击“Linpx” - 点击按钮**
 
 
@@ -171,7 +168,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ### 🆙 更新书源 {#UpdateSource}
 > [!NOTE]
->
 > **点击按钮【🆙 更新】进入书源更新界面**
 
 ![img](./pic/UpdateSource.png)
@@ -187,7 +183,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ## 订阅源 {#RssSource}
 > [!NOTE]
-> 
 > 订阅界面，打开 Linpx 订阅源
 
 
@@ -222,7 +217,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ## 设置功能 {#Settings}
 > [!NOTE]
->
 > **⚙️ 书源设置 => 我的 - 书源管理 - Linpx - 登录**
 
 ![img](./pic/LinpxLogin.png)
@@ -230,7 +224,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ### ▶️ 基础功能 {#SettingsBase}
 > [!NOTE]
->
 > **⚙️ 书源设置 => 我的 - 书源管理 - Linpx - 登录**
 
 ![img](./pic/LinpxLoginUIBase.png)
@@ -241,7 +234,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ### ⚙️ 书源设置 {#SettingsSource}
 > [!NOTE]
->
 > **⚙️ 书源设置 => 我的 - 书源管理 - Linpx - 登录**
 
 ![img](./pic/LinpxLoginUISettings.png)
@@ -265,7 +257,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ## 互动功能 {#Interact}
 ### ⏺️ 互动功能 {#InteractFunction}
 > [!NOTE]
->
 > **⏺️ 互动功能 => 书架 - 小说阅读界面 - Linpx - 登录**
 
 ![img](./pic/LinpxLoginUINovels.png)

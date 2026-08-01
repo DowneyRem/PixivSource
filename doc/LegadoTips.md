@@ -47,7 +47,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 > [!WARNING]
->
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
 > [网页版](https://pixivsource.pages.dev/LegadoTips)
 > 内容更全面，排版更精美**
@@ -56,7 +55,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ## 阅读功能
 ### 🀄️ 繁简转换 {#ConvertChinese}
 > [!TIP]
-> 
 > ✅ 开源阅读软件自带 **繁简转换** 功能
 > 
 > **🀄️ 繁简转换 => 小说阅读界面 - 界面 - 简/繁 - 繁简转换**
@@ -71,7 +69,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ## 添加小说 {#AddNovels}
 > [!TIP]
->
 > ▶️ 添加小说共有4种方法，详见 📖 [添加小说](AddNovels.md)
 
 <!--@include: CommonAddNovelsAddURL.md-->

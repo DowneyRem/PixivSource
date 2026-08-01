@@ -43,7 +43,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 > [!WARNING]
->
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
 > [网页版](https://pixivsource.pages.dev/ImportBookSource)
 > 内容更全面，排版更精美**
@@ -51,7 +50,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ### ⚡️ 快速跳转 {#QuickJump}
 > [!TIP]
->
 > **书源导入指南：[开源阅读](#Legado)、[轻悦时光](#QYSG)**
 >
 > **另有：新手配置指南：**

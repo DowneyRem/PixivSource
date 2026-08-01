@@ -66,14 +66,12 @@ repos:
 
 
 > [!WARNING]
->
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
 > [网页版](https://pixivsource.pages.dev/Download)
 > 内容更全面，排版更精美**
 
 
 > [!TIP]
->
 > **开源阅读 Legado 全平台下载指南；软件下载页面 =>
 > [⬇️ 下载阅读](Download.md)**
 >
@@ -99,7 +97,6 @@ repos:
 ## 安卓版 {#Android}
 ### ✅ 兼容软件 {#AndroidCompatibility}
 > [!TIP]
->
 > **所有 阅读修改版 【最新版】，理论上均支持本站书源**
 
 > [!IMPORTANT]
@@ -117,7 +114,6 @@ repos:
 
 ### ⬇️ 下载软件 {#AndroidDownload}
 > [!NOTE]
->
 > 推荐使用 **阅读 Sigma**，更多版本选择详见 下方列表 或
 > **[⬇️ 下载阅读](Download.md)**
 
@@ -127,7 +123,6 @@ repos:
 ### ➕ 更多软件 {#AndroidMore}
 #### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado-E) {#LegadoSigma}
 > [!TIP]
->
 > **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
 >
 > 项目地址：https://github.com/Luoyacheng/legado-E
@@ -142,7 +137,6 @@ repos:
 
 #### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
 > [!TIP]
->
 > **这是 喵公子 用于同步上游代码的仓库，是【阅读 Beta】的仓库**
 >
 > **阅读 Beta 【新包名】是当前主流版本**
@@ -162,7 +156,6 @@ repos:
 #### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3) {#LegadoMD3}
 
 > [!TIP]
->
 > **这是 HapeLee 的阅读改版仓库，软件界面采用 MD3 风格**
 >
 > 项目地址：https://github.com/HapeLee/legado-with-MD3
@@ -176,7 +169,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 T](https://github.com/skybbk1001/legadoT) {#LegadoT}
 
 > [!TIP]
->
 > **带有定时任务的阅读，这是 明月照大江 基于 阅读官方版 的改版阅读仓库**
 >
 > 项目地址：https://github.com/skybbk1001/legadoT
@@ -190,7 +182,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 Archive](https://github.com/Rimchars/legado) {#LegadoArchive}
 
 > [!TIP]
->
 > **这是 Rimchars 基于 阅读 Sigma 的改版阅读仓库，增强了界面、AI、EPUB、漫画、视频和主题能力**
 >
 > 项目地址：https://github.com/Rimchars/legado
@@ -204,7 +195,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 R](https://github.com/refgd/legado) {#LegadoR}
 
 > [!TIP]
->
 > **这是 refgd 基于 阅读 Archive 的改版阅读仓库，增强了界面、AI、EPUB、漫画、视频和主题能力**
 >
 > 项目地址：https://github.com/refgd/legado
@@ -218,7 +208,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max) {#LegadoMax}
 
 > [!TIP]
->
 > **这是 youfengknight 基于 阅读 Sigma，专为墨水屏阅读器优化的改版阅读仓库**
 >
 > 项目地址：https://github.com/youfengknight/Legado_Max
@@ -232,7 +221,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 薯条版](https://github.com/huajideshutiao/legado) {#LegadoShutiao}
 
 > [!TIP]
->
 > **这是 huajideshutiao 基于 阅读 Sigma，专为墨水屏阅读器优化的改版阅读仓库**
 >
 > 项目地址：https://github.com/huajideshutiao/Legado
@@ -246,7 +234,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 NG](https://github.com/joestar817/legado_NG) {#LegadoNG}
 
 > [!TIP]
->
 > **这是 joestar817 基于 阅读 Sigma 的改版阅读仓库**
 >
 > 项目地址：https://github.com/joestar817/legado_NG
@@ -260,7 +247,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 自用增强分支](https://github.com/Jingshiro/legado) {#LegadoJingshiro}
 
 > [!TIP]
->
 > **这是 Jingshiro 基于 阅读 Sigma 的改版阅读仓库**
 >
 > 项目地址：https://github.com/Jingshiro/legado
@@ -278,7 +264,6 @@ repos:
 
 #### 👎 【官方】[阅读 正式版](https://github.com/gedoor/legado) {#Legado}
 > [!NOTE]
->
 > **这是 gedoor/坤飞 阅读3.0的仓库，24年之前是阅读【正式版】的主仓库**
 >
 > **目前主要由 Horis 维护（只修 Bug），现在是【阅读 Beta】的上游仓库**
@@ -299,7 +284,6 @@ repos:
 <details><summary> 🚮 阅读 Pro 版（已下架）</summary>
 
 > [!NOTE]
->
 > **阅读 Pro 版于 2023 年被 Google 下架，现已停止更新，不推荐继续使用**
 >
 > **所有 Pro 版限定功能已于 2023.11.01 移植至普通版**
@@ -345,14 +329,12 @@ repos:
 
 ### ⬇️ 下载软件 {#IOSDownload}
 > [!NOTE]
->
 > **轻悦时光现已兼容大部分 阅读3 的书源，全平台可用**
 
 <DownloadCard :frontmatter-index="1" />
 
 
 > [!NOTE]
->
 > **源阅目前对阅读书源兼容效果也很不错**
 
 | 相关站点 | 备注   |
@@ -400,14 +382,12 @@ repos:
 ## 鸿蒙版 {#Harmony}
 ### ⬇️ 下载软件 {#HarmonyDownload}
 > [!NOTE]
->
 > **轻悦时光现已兼容大部分 阅读3 的书源，全平台可用**
 
 <DownloadCard :frontmatter-index="2" />
 
 
 > [!IMPORTANT]
->
 > **阅读原生鸿蒙版已停更；卓易通详见：
 > 安卓版 => [下载阅读](#AndroidDownload)**
 
@@ -416,7 +396,6 @@ repos:
 <details><summary> 🌸 阅读 鸿蒙版（已停更）</summary>
 
 > [!NOTE]
->
 > **这是 阅读官方 的阅读鸿蒙版，目前可以本地阅读**
 >
 > 项目地址：https://github.com/mgz0227/legado-Harmony
