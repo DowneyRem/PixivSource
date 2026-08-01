@@ -1,7 +1,6 @@
 
 ### 🚀 A.一键导入【最简单】 {#OneClick}
 > [!NOTE]
->
 > **一键导入【操作简便】，后续需要【手动更新】书源**
 >
 >　**点击链接，一键导入 书源、订阅源**
@@ -112,12 +111,14 @@
 </details>
 
 
+<div v-if="!pagePath.includes('QuickStart')">
+
 ### 🔗 C.网络导入 {#Internet}
+</div>
 <div v-if="pagePath.includes('ImportBookSource')">
 <details><summary><strong> 🔗 网络导入　详细操作</strong></summary>
 
 > [!IMPORTANT]
->
 > **我的 - 书源管理 - 菜单 - 网络导入 - 复制链接、粘贴 - 添加书源**
 
 #### 0.先复制下面的网址
@@ -146,7 +147,6 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json
 <details><summary><strong> 🔗 网络导入　详细操作</strong></summary>
 
 > [!IMPORTANT]
-> 
 > **订阅 - 设置 - 网络导入 - 复制链接，粘贴 - 添加订阅**
 
 #### 0.先复制下面的网址

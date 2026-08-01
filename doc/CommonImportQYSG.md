@@ -1,6 +1,5 @@
 ### 🔗 A.网络导入 {#Internet2}
 > [!IMPORTANT]
->
 > **我的 - 书源管理 - 菜单 - 网络导入**
 
 
@@ -35,7 +34,6 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json
 
 ### 🌐 B.浏览器导入 {#Browser}
 > [!IMPORTANT]
->
 > **我的 - 浏览器 - 搜索"Pixiv 书源"，进入官网，点击"导入书源"**
 
 

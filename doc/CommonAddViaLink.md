@@ -1,6 +1,5 @@
 ## 添加网址 {#AddUrl}
 > [!NOTE]
->
 > **书架 - 菜单 - 添加网址 - 粘贴小说链接 - 添加小说到书架**
 
 
@@ -8,7 +7,6 @@
 <div v-if="pagePath.includes('Pixiv')">
 
 > [!TIP]
-> 
 > **可以同时添加多个小说的链接，支持：**
 > - ✅ **Pixiv 单篇小说链接**
 >   - `https://www.pixiv.net/novel/show.php?id=26200191`

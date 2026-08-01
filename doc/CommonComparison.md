@@ -2,7 +2,6 @@
 <div v-if="pagePath.includes('BetterExperience')">
 
 > [!TIP]
->
 > **Pixiv 小说功能对比**，完整版详见：
 > [功能对比](PixivComparison.md)
 </div>

@@ -2,7 +2,6 @@
 <div v-if="pagePath.includes('Pixiv') || pagePath.includes('BetterExperience')">
 
 > [!IMPORTANT]
->
 > **点击下方链接，一键导入书源、订阅源**
 >
 > 🅿️ [一键导入 Pixiv 书源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
@@ -16,7 +15,6 @@
 <div v-if="pagePath.includes('Linpx')">
 
 > [!IMPORTANT]
->
 > **点击下方链接，一键导入书源、订阅源**
 >
 > 🦊 [一键导入 Linpx 书源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
@@ -30,7 +28,6 @@
 <div v-if="pagePath.includes('FurryNovel')">
 
 > [!IMPORTANT]
->
 > **点击下方链接，一键导入书源、订阅源**
 >
 > 🐯 [一键导入 FurryNovel 书源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
