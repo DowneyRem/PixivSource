@@ -172,8 +172,26 @@ https://www.pixiv.net/search/users?nick=null&s_mode=s_usr&i=1&p=1
 
 
 ## 首页推荐
-### 精选新作/关注用户的作品,插画
-`https://www.pixiv.net/ajax/street/latest?lang=zh`
+### 🆕 精选新作
+> [!TIP]
+> 首页精选新作（插画）
+
+- **URL**：`https://www.pixiv.net/ajax/street/latest`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `lang` | Query | String | 语言：`zh` 中文 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/street/latest?lang=zh
+```
+#### 对应网页
+```
+https://www.pixiv.net
+```
 
 
 ### 👤 推荐用户
