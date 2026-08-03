@@ -241,7 +241,6 @@ function handlerUserNovels() {
 // 书签，顺序相同
 function handlerRankingOld() {
     if (util.environment.IS_LEGADO) return handlerRankingAjaxAll()
-    // else if (util.environment.IS_SOURCE_READ) return handlerRankingWebview()
     else if (util.environment.IS_SOURCE_READ) return handlerRankingAjax()
     else return []
 }
@@ -262,27 +261,6 @@ function handlerRankingAjaxAll() {
         // java.log(JSON.stringify(novelIds))
         let novels = getAjaxAllJson(novelUrls).map(resp => resp.body)
         return util.formatNovels(util.handNovels(util.combineNovels(novels)))
-    }
-}
-
-// 书签
-function handlerRankingWebview() {
-    return () => {
-        let novelIds = []  // 正则获取网址中的 novelId
-        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
-        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
-        for (let i in matched) {
-            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
-            if (novelIds.indexOf(novelId) === -1) {
-                novelIds.push(novelId)
-            }
-        }
-        // java.log(JSON.stringify(novelIds))
-        let userNovels = getWebviewJson(
-            urlNovelsDetailed(getFromCache("pixivUid"), novelIds), html => {
-                return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
-            }).body
-        return util.formatNovels(util.handNovels(util.combineNovels(Object.values(userNovels))))
     }
 }
 

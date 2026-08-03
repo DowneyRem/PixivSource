@@ -163,13 +163,6 @@ function getAjaxAllJson(urls, requestUpdate) {
         return results
     }, requestUpdate)
 }
-function getWebviewJson(url, parseFunc, requestUpdate) {
-    const {java, cache} = this
-    return this.cacheGetAndSet(url, () => {
-        let html = java.webView(null, url, null)
-        return JSON.parse(parseFunc(html))
-    }, requestUpdate)
-}
 
 function getWebViewUA() {
     const {java, cache} = this
