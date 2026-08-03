@@ -62,8 +62,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **使用本文档即表示：您已阅读并同意以上全部内容。**
 
 
-## 搜索
-### 🔎 搜索
+## 搜索 {#Search}
+### 🔎 搜索 {#SearchAll}
 - **URL**：`https://www.pixiv.net/ajax/search/{type}/{name}`
 - **请求方法**: `GET`
 - **传参方式**: `PATH` & `QUERY`
@@ -80,7 +80,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 | `s_mode` | Query | String | 检索范围：`s_tag` 标签部分一致、`s_tag_full` 标签完全一致、`tag_tc` 标签标题说明文字、`tc` 标签说明文字 |
 
 
-### 📖 搜索小说
+### 📖 搜索小说 {#SearchNovels}
 - **URL**：`https://www.pixiv.net/ajax/search/{type}/{name}`
 - **请求方法**: `GET`
 - **传参方式**: `PATH` & `QUERY`
@@ -107,7 +107,7 @@ https://www.pixiv.net/search?q=中文&s_mode=s_tag&type=novel&work_lang=zh-cn
 ```
 
 
-### 📖 搜索小说(全)
+### 📖 搜索小说(全) {#SearchNovelsAll}
 - **URL**：`https://www.pixiv.net/ajax/search/{type}/{name}`
 - **请求方法**: `GET`
 - **传参方式**: `PATH` & `QUERY`
@@ -171,8 +171,8 @@ https://www.pixiv.net/search/users?nick=null&s_mode=s_usr&i=1&p=1
 ```
 
 
-## 首页推荐
-### 🆕 精选新作
+## 首页推荐 {#Home}
+### 🆕 精选新作 {#HomeNew}
 > [!TIP]
 > 首页精选新作（插画）
 
@@ -194,7 +194,7 @@ https://www.pixiv.net
 ```
 
 
-### 👤 推荐用户
+### 👤 推荐用户 {#HomeRecommendedUsers}
 > [!TIP]
 > 首页推荐用户、正在举办的比赛
 
@@ -215,7 +215,7 @@ https://www.pixiv.net/ajax/street/sub?lang=zh
 https://www.pixiv.net
 ```
 
-### 👍 推荐作品
+### 👍 推荐作品 {#HomeRecommendedWorks}
 > [!TIP]
 > 推荐作品
 
@@ -237,8 +237,7 @@ https://www.pixiv.net
 ```
 
 
-
-## 小说首页
+## 小说首页 {#Novel}
 > [!NOTE]
 > **按照 [Pixiv 小说首页](https://www.pixiv.net/novel) 顺序排序排序：**
 >
@@ -437,7 +436,7 @@ https://www.pixiv.net/request/complete/novels?mode=r18
 ```
 
 
-## 侧边栏
+## 侧边栏 {#Sidebar}
 > [!NOTE]
 > **按照 [Pixiv 小说首页](https://www.pixiv.net/novel) 侧边栏顺序排序：**
 >
@@ -497,8 +496,8 @@ https://www.pixiv.net/novel/new_r18.php
 ```
 
 
-## 小说信息
-### 📄 小说详情
+## 小说信息 {#Detail}
+### 📄 小说详情 {#NovelDetail}
 ```
 https://www.pixiv.net/ajax/novel/{novelId}
 ```
@@ -523,8 +522,8 @@ https://www.pixiv.net/novel/show.php?id=123455
 ### ▶️ 互动
 
 ---
-## 插画
-### 👑 插画排行榜
+## 插画 {#Illust}
+### 👑 插画排行榜 {#IllustRanking}
 - **URL**: `https://www.pixiv.net/ranking.php`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
