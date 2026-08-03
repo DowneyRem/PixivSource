@@ -1006,15 +1006,15 @@ const novelSettingsName = Object.assign({},
     // pictureSettingsName
 )
 const fastSettingsName = {
-    "SEARCH_AUTHOR": "🔍 搜索作者",
-    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
     "SHOW_UPDATE_TIME": "📅 更新时间",
-    "SHOW_COMMENTS": "💬 显示评论",
+    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
+
     "SHOW_PICTURES": "🖼️ 显示图片",
+    "SHOW_QUESTION": "✅ 显示投票",
+    "SHOW_COMMENTS": "💬 显示评论",
 }
 const IPDirectSettingsName = {
-    "SEARCH_AUTHOR": "🔍 搜索作者",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
 }
 const discoverSettingsName ={
