@@ -68,7 +68,7 @@ function handlerFactory() {
     }
     // 正则匹配网址内容
     if (baseUrl.includes("/marker_all")) {
-        return handlerRankingOld()
+        return handlerRegex()
     }
 }
 
@@ -178,6 +178,23 @@ function handlerUserNovels() {
 }
 
 // 书签，顺序相同
+function handlerRegex() {
+    return () => {
+        let novelIds = []
+        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
+        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
+        for (let i in matched) {
+            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
+            if (novelIds.indexOf(novelId) === -1) {
+                novelIds.push(novelId)
+            }
+        }
+
+        let novels = getAjaxJson(urlIP(urlNovelsDetailed(getFromCache("pixivUid"), novelIds))).body
+        return util.formatNovels(util.handNovels(util.combineNovels(Object.values(novels).reverse())))
+    }
+}
+
 function handlerRankingOld() {
     if (util.environment.IS_LEGADO) return handlerRankingAjaxAll()
     else if (util.environment.IS_SOURCE_READ) return handlerRankingAjax()
