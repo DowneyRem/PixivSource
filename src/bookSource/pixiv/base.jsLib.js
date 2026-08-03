@@ -457,12 +457,13 @@ function checkSettings(settings) {
     }
 
     if (settings.FAST) {
-        settings.SEARCH_AUTHOR = false        // 搜索：默认不搜索作者名称
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
-        settings.SHOW_COMMENTS = false        // 正文：显示评论
+
         settings.SHOW_PICTURES = false        // 正文：显示图片
+        settings.SHOW_QUESTION = false        // 正文：正文显示投票
+        settings.SHOW_COMMENTS = false        // 正文：显示评论
     }
 
     // 新设置初始化
