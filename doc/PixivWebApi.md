@@ -58,7 +58,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 - **请求方法**: `GET`
 - **传参方式**: `PATH` & `QUERY`
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `type` | Path | String | 作品类型：`artwork` 插画漫画动图、`illust_ugoira` 插画动图、`illust` 插画、`ugoira` 动图、`manga` 漫画、`novel` 小说 |
 | `name` | Path | String | 关键词 |
@@ -70,12 +70,12 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 | `s_mode` | Query | String | 检索范围：`s_tag` 标签部分一致、`s_tag_full` 标签完全一致、`tag_tc` 标签标题说明文字、`tc` 标签说明文字 |
 
 
-### 🔎 搜索小说
+### 📖 搜索小说
 - **URL**：`https://www.pixiv.net/ajax/search/{type}/{name}`
 - **请求方法**: `GET`
 - **传参方式**: `PATH` & `QUERY`
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `type` | Path | String | 作品类型：`novel` 小说 |
 | `name` | Path | String | 关键词 |
@@ -104,6 +104,33 @@ https://www.pixiv.net/ajax/search/novels/中文?word=中文&order=date_d&mode=al
 #### 对应网页
 ```
 https://www.pixiv.net/search?q=中文&s_mode=s_tag&type=novel&work_lang=zh-cn
+```
+
+
+### 👤 搜索作者 {#SearchUser}
+> [!TIP]
+> **搜索用户**
+
+- **URL**：`https://www.pixiv.net/ajax/search/users`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `nick` | Query | String | 昵称 |
+| `s_mode` | Query | String | 模式：`s_usr` 部分一致、`s_usr_full` 完全一致 |
+| `i` | Query | Integer | [可选]有无投稿：`1` 是（默认）、`0` 否 |
+| `comment` | Query | Integer | 不明：空或数字：`comment=`、`comment=1` |
+| `p` | Query | Integer | 页码 |
+| `lang` | Query | String | 语言：`zh` 中文 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/search/users?nick=null&s_mode=s_usr&i=1&lang=zh
+```
+#### 对应网页
+```
+https://www.pixiv.net/search/users?nick=null&s_mode=s_usr&i=1
 ```
 
 
@@ -141,11 +168,12 @@ https://www.pixiv.net/search?q=中文&s_mode=s_tag&type=novel&work_lang=zh-cn
 ### ⭐️ 关注用户 {#FollowLatest}
 > [!TIP]
 > 已关注用户的（最新）作品 / **关注作者，最新小说**
+
 - **URL**：`https://www.pixiv.net/ajax/follow_latest/novel`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `p` | Query | Integer | 页码 |
 | `mode` | Query | String | 年龄限制：`all`、`safe`、`r18`|
@@ -164,11 +192,12 @@ https://www.pixiv.net/novel/bookmark_new_r18.php
 ### 📃 追更列表 {#WatchList}
 > [!TIP]
 > 追更列表中的作品
+
 - **URL**：`https://www.pixiv.net/ajax/watch_list/novel`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `page` | Query | Integer | 页码 |
 | `new` | Query | Integer | `1` |
@@ -187,11 +216,12 @@ https://www.pixiv.net/following/watchlist/novels
 ### 👍 编辑部推荐 {#EditorsPicks}
 > [!TIP]
 > 编辑部的推荐作品 **（仅日语）**
+
 - **URL**：`https://www.pixiv.net/ajax/novel/editors_picks`
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `limit` | Query | Integer | `30` |
 | `lang` | Query | String | 语言：`zh` 中文 |
@@ -209,11 +239,12 @@ https://www.pixiv.net/novel/editors_picks
 ### 🔥 原创热门 {#Genre}
 > [!TIP]
 > 原创热门作品 (分类)
+
 - **URL**：`https://www.pixiv.net/ajax/genre/novel/{genre}`
 - **请求方法**: `GET`
 - **传参方式**: `PATH` & `QUERY`
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `genre` | Path | String | 仅 `safe`：`all` 综合<br/>仅 `r18`：`male` 男性、`female` 女性<br/>全部：`romance` 恋爱、`isekai_fantasy` 异世界奇幻、`contemporary_fantasy` 现代奇幻、`mystery` 悬疑、`horror` 恐怖、`sci-fi` 科幻、`literature` 文学、`drama` 情感、`historical_pieces` 历史、`bl` 耽美、`yuri` 百合、`poetry` 散文·诗歌、`non-fiction` 随笔·纪实、`screenplays` 剧本、`reviews` 评论、`other` 其他 |
 | `mode` | Query | String | 年龄限制：`safe`、`r18`|
@@ -234,7 +265,7 @@ https://www.pixiv.net/genre/novel/male?mode=r18
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `mode` | Query | String | 年龄限制：`all`、`r18`|
 | `lang` | Query | String | 语言：`zh` 中文 |
@@ -255,7 +286,7 @@ https://www.pixiv.net/novel
 - **传参方式**: `QUERY`
 - 推出时间：2026-07
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `mode` | Query | String | 模式：<br/>`daily` 今日、`weekly` 本周、`monthly` 本月、`rookie` 新人 、`weekly_original` 原创、`weekly_ai` AI生成、`male` 受男性欢迎、`female` 受女性欢迎<br/>`daily_r18` 今日、`weekly_r18` 本周、`weekly_r18_ai` AI生成、`male_r18` 受男性欢迎、`female_r18` 受女性欢迎、`r18g` R18G |
 | `content` | Query | String | 内容：`novel` 小说 |
@@ -279,7 +310,7 @@ https://www.pixiv.net/novel/ranking.php?mode=daily_r18
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `mode` | Query | String | 年龄限制：`all`、`r18`|
 | `p` | Query | Integer | 页码 |
@@ -303,7 +334,7 @@ https://www.pixiv.net/user_event.php?type=novels&mode=r18
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `mode` | Query | String | 年龄限制：`all`、`safe`、`r18`|
 | `p` | Query | Integer | 页码 |
@@ -339,7 +370,7 @@ https://www.pixiv.net/request/complete/novels?mode=r18
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `mode` | Query | String | 年龄限制：`all`、`safe`、`r18`|
 | `lang` | Query | String | 语言：`zh` 中文 |
@@ -362,7 +393,7 @@ https://www.pixiv.net/novel/discovery?mode=r18
 - **请求方法**: `GET`
 - **传参方式**: `QUERY`
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `lastId` | Query | Integer | `0` |
 | `limit` | Query | Integer | `20` |
@@ -388,7 +419,7 @@ https://www.pixiv.net/ajax/novel/{novelId}
 - 传参方式：`PATH`
 #### 参数说明
 
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | novelId | PATH | Integer | 小说 ID |
 
@@ -412,7 +443,7 @@ https://www.pixiv.net/novel/show.php?id=123455
 - **传参方式**: `QUERY`
 
 #### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
+| 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `mode` | Query | String | 模式：<br/>`daily` 今日、`weekly` 本周、`monthly` 本月、`rookie` 新人 、`original` 原创、`daily_ai` AI生成、`male` 受男性欢迎、`female` 受女性欢迎<br/>`daily_r18` 今日、`weekly_r18` 本周、`daily_r18_ai` AI生成、`male_r18` 受男性欢迎、`female_r18` 受女性欢迎、`r18g` R18G |
 | `content` | Query | String | 内容：`all` 综合、`illust` 插画、`manga` 漫画、`ugoira` 动图 |
