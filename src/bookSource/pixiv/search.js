@@ -58,18 +58,16 @@ function getUserIdCache() {
     }
 }
 
+// 模糊搜索作者
 function getUserIdOnline(full) {
     let userName = String(java.get("keyword"))
     let page = Number(java.get("page"))
-    // cache.delete(urlSearchUser(userName, page, full))
-    let resp = getAjaxParseJson(urlSearchUser(userName, page, full), html => {
-            // java.log(urlIP(urlSearchUser(userName, page, full)))
-            return JSON.parse(html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)[1])
-        }
-    )
 
-    let novels = Object.values(JSON.parse(resp.props.pageProps.serverSerializedPreloadedState).thumbnail.novel)
-    let userIds = Array.from(new Set(novels.map(novel => novel.userId)))
+    // cache.delete(urlIP(urlSearchUser(userName, page, full)))
+    let resp = getAjaxJson(urlIP(urlSearchUser(userName, page, full))).body
+    let novels = resp.thumbnails.novel
+    let userIds = resp.page.userIds
+
     java.log(`👤 获取作者ID：${JSON.stringify(userIds)}`)
     if (userIds.length === 1) {
         let pixivAuthors = getFromCacheObject("pixivAuthors")
@@ -86,7 +84,7 @@ function getUserNovels() {
     let uidList = getUserIdCache()
     if (!uidList) [uidList, novels] = getUserIdOnline()
 
-    if(uidList.length === 0 || uidList.length >=2 ) return novels
+    if (uidList.length === 0 || uidList.length >=2 ) return novels
     else if(uidList.length === 1 ) {
         let uid = uidList[0]
         let resp = getAjaxJson(urlIP(urlUserAllWorks(uid)), true)
@@ -287,7 +285,7 @@ function handlerFactory() {
             keyword = keyword.slice(1)
             java.put("keyword", keyword)
         }
-        java.log(`👤 粗略搜索作者：${keyword}`)
+        sleepToast(`\n\n👤 模糊搜索作者：${keyword}`)
         novels = novels.concat(getUserIdOnline()[1])
 
     } else {
