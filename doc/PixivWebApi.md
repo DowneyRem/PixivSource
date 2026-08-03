@@ -176,16 +176,30 @@ https://www.pixiv.net/search/users?nick=null&s_mode=s_usr&i=1&p=1
 `https://www.pixiv.net/ajax/street/latest?lang=zh`
 
 
-### 推荐作品,插画
-`https://www.pixiv.net/ajax/street/sub?lang=zh`
+### 👤 推荐用户
+> [!TIP]
+> 首页推荐用户、正在举办的比赛
 
+- **URL**：`https://www.pixiv.net/ajax/street/sub`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `lang` | Query | String | 语言：`zh` 中文 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/street/sub?lang=zh
+```
+#### 对应网页
+```
+https://www.pixiv.net
+```
 
 ### 首页推荐,插画,小说
 `https://www.pixiv.net/ajax/street/for_you?lang=zh`
 
-
-### 首页推荐等
-`https://www.pixiv.net/ajax/street/v2/main`
 
 
 ## 小说首页
