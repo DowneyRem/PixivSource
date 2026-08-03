@@ -122,7 +122,7 @@ function getUserNovels() {
         // 获取单篇小说
         let novelIds = Object.keys(resp.body.novels)
         novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
-        // 默认过滤系列小说的 novelId，否则请求过多
+        // 默认过滤系列小说的 novelId，否则与系列重复
         // if (util.settings.COMBINE_NOVELS) {
         //     novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
         // }
@@ -130,23 +130,9 @@ function getUserNovels() {
         // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
         // java.log(JSON.stringify(novelIds.length))
 
-        if (util.environment.IS_LEGADO) {
-            let novelUrls = novelIds.map(novelId => urlIP(urlNovelDetailed(novelId)))
-            // java.log(JSON.stringify(novelUrls))
-            // cache.delete(novelUrls)
-            novels = novels.concat(getAjaxAllJson(novelUrls).map(resp => resp.body))
-        }
-
-        if (util.environment.IS_SOURCEREAD) {
-            novelIds.forEach(novelId => {
-                // java.log(urlIP(urlNovelDetailed(novelId)))
-                let res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
-                if (res.error !== true) {
-                    novels.push(res.body)
-                } else {
-                    java.log(JSON.stringify(res))
-                }
-            })
+        if (novelIds) {
+            novels = novels.concat(Object.values(
+                getAjaxJson(urlIP(urlNovelsDetailed(getFromCache("pixivUid"), novelIds))).body))
         }
     }
     
