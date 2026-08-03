@@ -82,6 +82,33 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 | `word` | Query | String | 关键词 (同 name) |
 | `order` | Query | String | 排序方式：`date_d` 最新、`date` 最旧 |
 | `mode` | Query | String | 年龄限制：`all`、`safe`、`r18`|
+| `p` | Query | Integer | 页码 |
+| `s_mode` | Query | String | 检索范围：`s_tag` 标签部分一致、`s_tag_full` 标签完全一致、`tag_tc` 标签标题说明文字、`tc` 标签说明文字 |
+| `gs` | Query | Integer | [可选]整合系列：`0` 否、`1` 是 |
+| `lang` | Query | String | 语言：`zh` 中文 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/search/novels/中文?word=中文&order=date_d&mode=all&p=1&s_mode=s_tag&lang=zh
+```
+#### 对应网页
+```
+https://www.pixiv.net/search?q=中文&s_mode=s_tag&type=novel&work_lang=zh-cn
+```
+
+
+### 📖 搜索小说(全)
+- **URL**：`https://www.pixiv.net/ajax/search/{type}/{name}`
+- **请求方法**: `GET`
+- **传参方式**: `PATH` & `QUERY`
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `type` | Path | String | 作品类型：`novel` 小说 |
+| `name` | Path | String | 关键词 |
+| `word` | Query | String | 关键词 (同 name) |
+| `order` | Query | String | 排序方式：`date_d` 最新、`date` 最旧 |
+| `mode` | Query | String | 年龄限制：`all`、`safe`、`r18`|
 | `scd` | Query | String | [可选]开始时间：`0` 否、`2026-01-01`|
 | `ecd` | Query | String | [可选]结束时间：`0` 否、`2026-07-01`|
 | `p` | Query | Integer | 页码 |
@@ -126,11 +153,11 @@ https://www.pixiv.net/search?q=中文&s_mode=s_tag&type=novel&work_lang=zh-cn
 
 #### 调用示例
 ```
-https://www.pixiv.net/ajax/search/users?nick=null&s_mode=s_usr&i=1&lang=zh
+https://www.pixiv.net/ajax/search/users?nick=null&s_mode=s_usr&i=1&p=1&lang=zh
 ```
 #### 对应网页
 ```
-https://www.pixiv.net/search/users?nick=null&s_mode=s_usr&i=1
+https://www.pixiv.net/search/users?nick=null&s_mode=s_usr&i=1&p=1
 ```
 
 
