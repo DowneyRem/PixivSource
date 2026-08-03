@@ -293,14 +293,14 @@ function urlUserBookmarks(userId) {
     return `https://www.pixiv.net/ajax/user/${userId}/novels/bookmarks?tag=&offset={{(page-1)*30}}&limit=30&rest=show&lang=zh`
 }
 
+function urlSearchNovelFull(novelName, series, page) {
+    return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=${Number(series)}&lang=zh`
+}
 function urlSearchNovel(novelName, page) {
-    return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
+    return urlSearchNovelFull(novelName, false, page)
 }
-function urlSearchNovelWeb(novelName, page) {
-    return `https://www.pixiv.net/search?q=${encodeURI(novelName)}&s_mode=tag_tc&type=novel&p=${page}`
-}
-function urlSearchSeries(seriesName, page) {
-    return`https://www.pixiv.net/ajax/search/novels/${encodeURI(seriesName)}?word=${encodeURI(seriesName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`
+function urlSearchSeries(novelName, page) {
+    return urlSearchNovelFull(novelName, true, page)
 }
 function urlSearchUser(userName, page, full) {
     let pageUrl = "", fullUrl = ""
