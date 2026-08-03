@@ -162,21 +162,6 @@ function getAjaxAllJson(urls, requestUpdate) {
         return results
     }, requestUpdate)
 }
-function getAjaxParseJson(url, parseFunc, requestUpdate) {
-    const {java, cache} = this
-    return this.cacheGetAndSet(url, () => {
-        let resp = parseFunc(java.ajax(url))
-        if (resp instanceof Object) return resp
-        else return JSON.parse(resp)
-    }, requestUpdate)
-}
-function getWebviewJson(url, parseFunc, requestUpdate) {
-    const {java, cache} = this
-    return this.cacheGetAndSet(url, () => {
-        let html = java.webView(null, url, null)
-        return JSON.parse(parseFunc(html))
-    }, requestUpdate)
-}
 
 function getWebViewUA() {
     const {java, cache} = this
@@ -291,20 +276,19 @@ function urlUserBookmarks(userId) {
     return `https://www.pixiv.net/ajax/user/${userId}/novels/bookmarks?tag=&offset={{(page-1)*30}}&limit=30&rest=show&lang=zh`
 }
 
+function urlSearchNovelFull(novelName, series, page) {
+    return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=${Number(series)}&lang=zh`
+}
 function urlSearchNovel(novelName, page) {
-    return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
+    return urlSearchNovelFull(novelName, false, page)
 }
-function urlSearchNovelWeb(novelName, page) {
-    return `https://www.pixiv.net/search?q=${encodeURI(novelName)}&s_mode=tag_tc&type=novel&p=${page}`
-}
-function urlSearchSeries(seriesName, page) {
-    return`https://www.pixiv.net/ajax/search/novels/${encodeURI(seriesName)}?word=${encodeURI(seriesName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`
+function urlSearchSeries(novelName, page) {
+    return urlSearchNovelFull(novelName, true, page)
 }
 function urlSearchUser(userName, page, full) {
-    let pageUrl = "", fullUrl = ""
-    if (full) fullUrl = "_full"
-    if (page && page >= 2) pageUrl = `&p=${page}`
-    return `https://www.pixiv.net/search/users?nick=${userName}&s_mode=s_usr${fullUrl}&i=1${pageUrl}`;
+    if (!page) page = 1
+    const fullUrl = full ? "s_usr_full": "s_usr"
+    return `https://www.pixiv.net/ajax/search/users?nick=${userName}&s_mode=${fullUrl}&i=1&p=${page}&lang=zh`
 }
 
 function urlLinpxAuthors() {

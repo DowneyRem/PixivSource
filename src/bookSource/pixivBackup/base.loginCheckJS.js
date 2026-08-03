@@ -471,6 +471,50 @@ function publicFunc() {
         return novels
     }
 
+    u.getUserNovelsById = function(resp) {
+        let novels = [], seriesIds = []
+        // 获取系列小说，与 util.handNovels 系列详情兼容
+        if (resp.body.novelSeries.length >= 1) {
+            resp.body.novelSeries.forEach(novel =>{
+                seriesIds.push(novel.id)
+                novel.textCount = novel.publishedTotalCharacterCount
+                novel.description = novel.caption
+            })
+            novels = novels.concat(resp.body.novelSeries)
+        }
+
+        // 获取所有系列内部的小说 ID
+        let seriesNovelIds = []
+        if (util.environment.IS_LEGADO) {
+            let seriesUrls = seriesIds.map(seriesId => urlIP(urlSeriesNovelsTitles(seriesId)))
+            // let resp = getAjaxAllJson(seriesUrls).map(resp => resp.body)
+            // seriesNovelIds = resp.flat().map(item => item.id)
+            seriesNovelIds = getAjaxAllJson(seriesUrls).flatMap(resp => resp.body.map(item => item.id))
+        }
+
+        if (util.environment.IS_SOURCEREAD) {
+            seriesIds.forEach(seriesId => {
+                let novels = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
+                seriesNovelIds.push.apply(seriesNovelIds, novels.map(novel => novel.id))
+            })
+        }
+        // java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
+        // java.log(JSON.stringify(seriesNovelIds.length))
+
+        // 获取单篇小说，默认过滤系列小说的 novelId，否则与系列重复
+        let novelIds = Object.keys(resp.body.novels)
+        novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
+        // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
+        // java.log(JSON.stringify(novelIds.length))
+
+        if (novelIds) {
+            let singles = getAjaxJson(urlIP(urlNovelsDetailed(getFromCache("pixivUid"), novelIds))).body
+            novels = novels.concat(Object.values(singles).reverse())
+        }
+        return novels
+    }
+
+
     // 正文，目录，详情，搜索：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     // pixiv 默认分享信息中有#号，不会被识别成链接，无法使用添加网址
     u.getNovelRespFirst = function(result) {
@@ -546,8 +590,10 @@ function getPixivUid() {
     // cache.delete("pixivUid")
     let pixivUid = getFromCache("pixivUid")
     if (!pixivUid && isLogin()) {
-        let html = java.ajax("https://www.pixiv.net/")
-        pixivUid = html.match(/user_id:'(\d+)'/)[1]
+        pixivUid = java.getResponse().headers().get("x-userid")
+        if (!pixivUid) pixivUid = java.getResponse().headers().get("x-user-id")
+        if (!pixivUid) pixivUid = java.ajax("https://www.pixiv.net/").match(/user_id:'(\d+)'/)[1]
+        // java.log(pixivUid)
         putInCache("pixivUid", pixivUid)
     }
     return pixivUid

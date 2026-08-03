@@ -9,7 +9,7 @@ let adultDefault = [
     {"🔍 发现": "https://www.pixiv.net/ajax/novel/discovery?mode=r18&lang=zh"},
     {"❤️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixivUid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh"},
     {"㊙️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixivUid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=hide&lang=zh"},
-    {"🏷️ 书签": "https://www.pixiv.net/novel/marker_all.php"},
+    {"🏷️ 书签": "https://www.pixiv.net/novel/marker_all.php?p={{page}}"},
     {"🏠 首页": "https://www.pixiv.net/ajax/street/for_you?lang=zh"},
 ]
 
@@ -74,7 +74,7 @@ let adultGenre = [
     {"耽美": "https://www.pixiv.net/ajax/genre/novel/bl?mode=r18&lang=zh"},
     {"百合": "https://www.pixiv.net/ajax/genre/novel/yuri?mode=r18&lang=zh"},
     {"散文·诗歌": "https://www.pixiv.net/ajax/genre/novel/poetry?mode=r18&lang=zh"},
-    {"随笔·纪实": "https://www.pixiv.net/ajax/genre/novel/non-fiction??mode=r18&lang=zh"},
+    {"随笔·纪实": "https://www.pixiv.net/ajax/genre/novel/non-fiction?mode=r18&lang=zh"},
     {"剧本": "https://www.pixiv.net/ajax/genre/novel/screenplays?mode=r18&lang=zh"},
     {"评论": "https://www.pixiv.net/ajax/genre/novel/reviews?mode=r18&lang=zh"},
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=r18&lang=zh"}
@@ -95,7 +95,7 @@ let generalGenre = [
     {"耽美": "https://www.pixiv.net/ajax/genre/novel/bl?mode=safe&lang=zh"},
     {"百合": "https://www.pixiv.net/ajax/genre/novel/yuri?mode=safe&lang=zh"},
     {"散文·诗歌": "https://www.pixiv.net/ajax/genre/novel/poetry?mode=safe&lang=zh"},
-    {"随笔·纪实": "https://www.pixiv.net/ajax/genre/novel/non-fiction??mode=safe&lang=zh"},
+    {"随笔·纪实": "https://www.pixiv.net/ajax/genre/novel/non-fiction?mode=safe&lang=zh"},
     {"剧本": "https://www.pixiv.net/ajax/genre/novel/screenplays?mode=safe&lang=zh"},
     {"评论": "https://www.pixiv.net/ajax/genre/novel/reviews?mode=safe&lang=zh"},
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}

@@ -58,18 +58,16 @@ function getUserIdCache() {
     }
 }
 
-function getUserIdOnline(full) {
+// 模糊搜索作者
+function getUserNovelsByName() {
     let userName = String(java.get("keyword"))
     let page = Number(java.get("page"))
-    // cache.delete(urlSearchUser(userName, page, full))
-    let resp = getAjaxParseJson(urlSearchUser(userName, page, full), html => {
-            // java.log(urlIP(urlSearchUser(userName, page, full)))
-            return JSON.parse(html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)[1])
-        }
-    )
 
-    let novels = Object.values(JSON.parse(resp.props.pageProps.serverSerializedPreloadedState).thumbnail.novel)
-    let userIds = Array.from(new Set(novels.map(novel => novel.userId)))
+    // cache.delete(urlIP(urlSearchUser(userName, page, full)))
+    let resp = getAjaxJson(urlIP(urlSearchUser(userName, page))).body
+    let novels = resp.thumbnails.novel
+    let userIds = resp.page.userIds
+
     java.log(`👤 获取作者ID：${JSON.stringify(userIds)}`)
     if (userIds.length === 1) {
         let pixivAuthors = getFromCacheObject("pixivAuthors")
@@ -80,81 +78,15 @@ function getUserIdOnline(full) {
     return [userIds, novels]
 }
 
+function getUserNovelsById(uid) {
+    return util.getUserNovelsById(getAjaxJson(urlIP(urlUserAllWorks(uid)), true))
+}
+
 function getUserNovels() {
     let novels = []
-    let page = Number(java.get("page"))
     let uidList = getUserIdCache()
-    if (!uidList) [uidList, novels] = getUserIdOnline()
-
-    if(uidList.length === 0 || uidList.length >=2 ) return novels
-    else if(uidList.length === 1 ) {
-        let uid = uidList[0]
-        let resp = getAjaxJson(urlIP(urlUserAllWorks(uid)), true)
-        // java.log(urlIP(urlUserAllWorks(id)))
-
-        // 获取系列小说，与 util.handNovels 系列详情兼容
-        let seriesIds = []
-        if (resp.body.novelSeries.length >= 1) {
-            resp.body.novelSeries.forEach(novel =>{
-                seriesIds.push(novel.id)
-                novel.textCount = novel.publishedTotalCharacterCount
-                novel.description = novel.caption
-            })
-            novels = novels.concat(resp.body.novelSeries)
-        }
-
-        // 获取所有系列内部的小说 ID
-        let seriesNovelIds = []
-        if (util.environment.IS_LEGADO) {
-            let seriesUrls = seriesIds.map(seriesId => urlIP(urlSeriesNovelsTitles(seriesId)))
-            // let resp = getAjaxAllJson(seriesUrls).map(resp => resp.body)
-            // seriesNovelIds = resp.flat().map(item => item.id)
-            seriesNovelIds = getAjaxAllJson(seriesUrls).flatMap(resp => resp.body.map(item => item.id))
-        }
-
-        if (util.environment.IS_SOURCEREAD) {
-            seriesIds.forEach(seriesId => {
-                let novels = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
-                seriesNovelIds.push.apply(seriesNovelIds, novels.map(novel => novel.id))
-            })
-        }
-        // java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
-        // java.log(JSON.stringify(seriesNovelIds.length))
-
-        // 获取单篇小说
-        let novelIds = Object.keys(resp.body.novels)
-        novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
-        // 默认过滤系列小说的 novelId，否则请求过多
-        // if (util.settings.COMBINE_NOVELS) {
-        //     novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
-        // }
-        novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
-        // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
-        // java.log(JSON.stringify(novelIds.length))
-
-        if (util.environment.IS_LEGADO) {
-            let novelUrls = novelIds.map(novelId => urlIP(urlNovelDetailed(novelId)))
-            // java.log(JSON.stringify(novelUrls))
-            // cache.delete(novelUrls)
-            novels = novels.concat(getAjaxAllJson(novelUrls).map(resp => resp.body))
-        }
-
-        if (util.environment.IS_SOURCEREAD) {
-            novelIds.forEach(novelId => {
-                // java.log(urlIP(urlNovelDetailed(novelId)))
-                let res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
-                if (res.error !== true) {
-                    novels.push(res.body)
-                } else {
-                    java.log(JSON.stringify(res))
-                }
-            })
-        }
-    }
-    
-    util.debugFunc(() => {
-        java.log(`获取用户搜索小说结束`)
-    })
+    if (!uidList) [uidList, novels] = getUserNovelsByName()
+    if (uidList.length === 1 ) novels = getUserNovelsById(uidList[0])
     return novels
 }
 
@@ -287,7 +219,7 @@ function handlerFactory() {
             keyword = keyword.slice(1)
             java.put("keyword", keyword)
         }
-        java.log(`👤 粗略搜索作者：${keyword}`)
+        sleepToast(`\n\n👤 模糊搜索作者：${keyword}`)
         novels = novels.concat(getUserIdOnline()[1])
 
     } else {

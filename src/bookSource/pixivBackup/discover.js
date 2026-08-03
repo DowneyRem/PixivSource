@@ -68,7 +68,7 @@ function handlerFactory() {
     }
     // 正则匹配网址内容
     if (baseUrl.includes("/marker_all")) {
-        return handlerRankingOld()
+        return handlerRegex()
     }
 }
 
@@ -173,103 +173,14 @@ function handlerHome() {
 function handlerUserNovels() {
     return () => {
         let resp = JSON.parse(result)
-        // let resp = getAjaxJson(urlIP(urlUserAllWorks(uid)), true)
-        // java.log(urlIP(urlUserAllWorks(id)))
-
-        // 获取系列小说，与 util.handnovels 系列详情兼容
-        let novels = [], seriesIds = []
-        if (resp.body.novelSeries.length >= 1) {
-            resp.body.novelSeries.forEach(novel =>{
-                seriesIds.push(novel.id)
-                novel.textCount = novel.publishedTotalCharacterCount
-                novel.description = novel.caption
-            })
-            novels = novels.concat(resp.body.novelSeries)
-        }
-
-        // 获取所有系列内部的小说 ID
-        let seriesNovelIds = []
-        if (util.environment.IS_LEGADO) {
-            let seriesUrls = seriesIds.map(seriesId => urlIP(urlSeriesNovelsTitles(seriesId)))
-            // let resp = getAjaxAllJson(seriesUrls).map(resp => resp.body)
-            // seriesNovelIds = resp.flat().map(item => item.id)
-            seriesNovelIds = getAjaxAllJson(seriesUrls).flatMap(resp => resp.body.map(item => item.id))
-        }
-
-        if (util.environment.IS_SOURCEREAD) {
-            seriesIds.forEach(seriesId => {
-                let novels = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
-                seriesNovelIds.push.apply(seriesNovelIds, novels.map(novel => novel.id))
-            })
-        }
-        // java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
-        // java.log(JSON.stringify(seriesNovelIds.length))
-
-        // 获取单篇小说
-        let novelIds = Object.keys(resp.body.novels)
-        novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
-        // 默认过滤系列小说的 novelId，否则请求过多
-        // if (util.settings.COMBINE_NOVELS) {
-        //     novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
-        // }
-        novelIds = novelIds.reverse()
-        // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
-        // java.log(JSON.stringify(novelIds.length))
-
-        if (util.environment.IS_LEGADO) {
-            let novelUrls = novelIds.map(novelId => urlIP(urlNovelDetailed(novelId)))
-            // java.log(JSON.stringify(novelUrls))
-            // cache.delete(novelUrls)
-            novels = novels.concat(getAjaxAllJson(novelUrls).map(resp => resp.body))
-        }
-
-        if (util.environment.IS_SOURCEREAD) {
-            novelIds.forEach(novelId => {
-                // java.log(urlIP(urlNovelDetailed(novelId)))
-                let res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
-                if (res.error !== true) {
-                    novels.push(res.body)
-                } else {
-                    java.log(JSON.stringify(res))
-                }
-            })
-        }
-        return util.formatNovels(util.handNovels(novels))
+        return util.formatNovels(util.handNovels(util.getUserNovelsById(resp)))
     }
 }
 
 // 书签，顺序相同
-function handlerRankingOld() {
-    if (util.environment.IS_LEGADO) return handlerRankingAjaxAll()
-    // else if (util.environment.IS_SOURCE_READ) return handlerRankingWebview()
-    else if (util.environment.IS_SOURCE_READ) return handlerRankingAjax()
-    else return []
-}
-
-// 书签，顺序相同
-function handlerRankingAjaxAll() {
+function handlerRegex() {
     return () => {
-        let  novelIds = [], novelUrls = []
-        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
-        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
-        for (let i in matched) {
-            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
-            if (novelIds.indexOf(novelId) === -1) {
-                novelIds.push(novelId)
-                novelUrls.push(urlNovelDetailed(novelId))
-            }
-        }
-        // java.log(JSON.stringify(novelIds))
-        let novels = getAjaxAllJson(novelUrls).map(resp => resp.body)
-        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
-    }
-}
-
-// 书签
-function handlerRankingWebview() {
-    return () => {
-        let novelIds = []  // 正则获取网址中的 novelId
-        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
+        let novelIds = []
         let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
         for (let i in matched) {
             let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
@@ -277,35 +188,9 @@ function handlerRankingWebview() {
                 novelIds.push(novelId)
             }
         }
-        // java.log(JSON.stringify(novelIds))
-        let userNovels = getWebviewJson(
-            urlNovelsDetailed(getFromCache("pixivUid"), novelIds), html => {
-                return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
-            }).body
-        return util.formatNovels(util.handNovels(util.combineNovels(Object.values(userNovels))))
-    }
-}
 
-// 书签，顺序相同
-function handlerRankingAjax() {
-    return () => {
-        let novels = [], novelIds = []
-        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
-        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
-        for (let i in matched) {
-            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
-            if (novelIds.indexOf(novelId) === -1) {
-                novelIds.push(novelId)
-                // java.log(urlNovelDetailed(novelId))
-                let resp = getAjaxJson(urlNovelDetailed(novelId))
-                if (resp.error !== true) {
-                    novels.push(resp.body)
-                } else {
-                    java.log(JSON.stringify(resp))
-                }
-            }
-        }
-        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
+        let novels = getAjaxJson(urlIP(urlNovelsDetailed(getFromCache("pixivUid"), novelIds))).body
+        return util.formatNovels(util.handNovels(util.combineNovels(Object.values(novels).reverse())))
     }
 }
 
