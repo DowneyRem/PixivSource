@@ -1020,7 +1020,6 @@ const fastSettingsName = {
     "SHOW_PICTURES": "🖼️ 显示图片",
 }
 const IPDirectSettingsName = {
-    "SEARCH_AUTHOR": "🔍 搜索作者",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
 }
 const discoverSettingsName ={

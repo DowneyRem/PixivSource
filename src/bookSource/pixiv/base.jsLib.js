@@ -453,7 +453,6 @@ function checkSettings(settings) {
     if (!settings) settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
     if (settings.IPDirect) {
-        settings.SEARCH_AUTHOR = false        // 搜索：默认不搜索作者名称
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
     }
 
