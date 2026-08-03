@@ -181,7 +181,6 @@ function handlerUserNovels() {
 function handlerRegex() {
     return () => {
         let novelIds = []
-        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
         let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
         for (let i in matched) {
             let novelId = matched[i].match(RegExp(/\d{5,}/))[0]

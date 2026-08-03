@@ -9,7 +9,7 @@ let adultDefault = [
     {"🔍 发现": "https://www.pixiv.net/ajax/novel/discovery?mode=r18&lang=zh"},
     {"❤️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixivUid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh"},
     {"㊙️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixivUid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=hide&lang=zh"},
-    {"🏷️ 书签": "https://www.pixiv.net/novel/marker_all.php"},
+    {"🏷️ 书签": "https://www.pixiv.net/novel/marker_all.php?p={{page}}"},
     {"🏠 首页": "https://www.pixiv.net/ajax/street/for_you?lang=zh"},
 ]
 
