@@ -163,14 +163,6 @@ function getAjaxAllJson(urls, requestUpdate) {
         return results
     }, requestUpdate)
 }
-function getAjaxParseJson(url, parseFunc, requestUpdate) {
-    const {java, cache} = this
-    return this.cacheGetAndSet(url, () => {
-        let resp = parseFunc(java.ajax(url))
-        if (resp instanceof Object) return resp
-        else return JSON.parse(resp)
-    }, requestUpdate)
-}
 function getWebviewJson(url, parseFunc, requestUpdate) {
     const {java, cache} = this
     return this.cacheGetAndSet(url, () => {
