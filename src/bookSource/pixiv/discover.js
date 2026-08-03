@@ -195,54 +195,6 @@ function handlerRegex() {
     }
 }
 
-function handlerRankingOld() {
-    if (util.environment.IS_LEGADO) return handlerRankingAjaxAll()
-    else if (util.environment.IS_SOURCE_READ) return handlerRankingAjax()
-    else return []
-}
-
-// 书签，顺序相同
-function handlerRankingAjaxAll() {
-    return () => {
-        let  novelIds = [], novelUrls = []
-        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
-        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
-        for (let i in matched) {
-            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
-            if (novelIds.indexOf(novelId) === -1) {
-                novelIds.push(novelId)
-                novelUrls.push(urlNovelDetailed(novelId))
-            }
-        }
-        // java.log(JSON.stringify(novelIds))
-        let novels = getAjaxAllJson(novelUrls).map(resp => resp.body)
-        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
-    }
-}
-
-// 书签，顺序相同
-function handlerRankingAjax() {
-    return () => {
-        let novels = [], novelIds = []
-        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
-        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
-        for (let i in matched) {
-            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
-            if (novelIds.indexOf(novelId) === -1) {
-                novelIds.push(novelId)
-                // java.log(urlNovelDetailed(novelId))
-                let resp = getAjaxJson(urlNovelDetailed(novelId))
-                if (resp.error !== true) {
-                    novels.push(resp.body)
-                } else {
-                    java.log(JSON.stringify(resp))
-                }
-            }
-        }
-        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
-    }
-}
-
 (() => {
     return handlerFactory()()
 })()
