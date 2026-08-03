@@ -303,10 +303,9 @@ function urlSearchSeries(novelName, page) {
     return urlSearchNovelFull(novelName, true, page)
 }
 function urlSearchUser(userName, page, full) {
-    let pageUrl = "", fullUrl = ""
-    if (full) fullUrl = "_full"
-    if (page && page >= 2) pageUrl = `&p=${page}`
-    return `https://www.pixiv.net/search/users?nick=${userName}&s_mode=s_usr${fullUrl}&i=1${pageUrl}`;
+    if (!page) page = 1
+    const fullUrl = full ? "s_usr_full": "s_usr"
+    return `https://www.pixiv.net/ajax/search/users?nick=${userName}&s_mode=${fullUrl}&i=1&p=${page}&lang=zh`
 }
 
 function urlLinpxAuthors() {
