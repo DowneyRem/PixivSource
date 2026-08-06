@@ -14,20 +14,23 @@ const props = defineProps({
 })
 
 const { frontmatter, lang } = useData()
-// 定义内置的多语言词典
+// 定义内置的多语言词典，加入对应语言的跳转链接
 const i18n = {
   'zh-CN': {
-    title: '⚡️ 快速导入'
+    title: '⚡️ 快速导入',
+    link: '/Import'
   },
   'zh-TW': {
-    title: '⚡️ 快速導入'
+    title: '⚡️ 快速導入',
+    link: '/zh-TW/Import'
   },
   'en': {
-    title: '⚡️ Quick Import'
+    title: '⚡️ Quick Import',
+    link: '/en/Import'
   },
 }
 
-// 计算最终显示的标题（优先使用 props 传入的标题，其次根据当前语言获取默认标题）
+// 计算最终显示的标题
 const computedTitle = computed(() => {
   if (props.title) return props.title
   const currentLang = lang.value || 'zh-CN'
@@ -45,6 +48,16 @@ const computedTitle = computed(() => {
   return i18n['zh-CN'].title
 })
 
+// 计算对应语言的跳转链接
+const computedLink = computed(() => {
+  const currentLang = lang.value || 'zh-CN'
+  const shortLang = currentLang.split('-')[0]
+  if (i18n[currentLang]?.link) return i18n[currentLang].link
+  if (i18n[shortLang]?.link) return i18n[shortLang].link
+  if (i18n['en']?.link) return i18n['en'].link
+  return i18n['zh-CN'].link
+})
+
 const computedActions = computed(() => {
   return props.actions || frontmatter.value.hero?.actions || []
 })
@@ -54,7 +67,9 @@ const computedActions = computed(() => {
   <div v-if="computedActions.length > 0" class="legado-actions-outer">
     <div class="legado-card main-mode">
       <div class="legado-header">
-        <span class="header-title">{{ computedTitle }}</span>
+        <a :href="withBase(computedLink)" class="header-title-link">
+          <span class="header-title">{{ computedTitle }}</span>
+        </a>
       </div>
 
       <div class="actions-container">
@@ -93,10 +108,19 @@ const computedActions = computed(() => {
   margin-bottom: 20px;
 }
 
+.header-title-link {
+  text-decoration: none !important;
+}
+
+.header-title-link:hover .header-title {
+  color: var(--vp-c-brand-1);
+}
+
 .header-title {
   font-size: 15px;
   font-weight: 600;
   color: var(--vp-c-text-2);
+  transition: color 0.25s ease;
 }
 
 .actions-container {
