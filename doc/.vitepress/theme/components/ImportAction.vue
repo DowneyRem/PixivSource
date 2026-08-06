@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData, withBase } from 'vitepress'
+import { useData, useRoute, withBase } from 'vitepress'
 
 const props = defineProps({
   actions: {
@@ -14,48 +14,61 @@ const props = defineProps({
 })
 
 const { frontmatter, lang } = useData()
-// 定义内置的多语言词典，加入对应语言的跳转链接
+const route = useRoute()
+
+// 定义内置的多语言词典，并针对不同页面路径（如 download、import）分发不同文案
 const i18n = {
   'zh-CN': {
-    title: '⚡️ 快速导入',
-    link: '/Import'
+    import: { title: '⚡️ 快速导入', link: '/Import' },
+    download: { title: '🚀 一键导入', link: '/Import' }
   },
   'zh-TW': {
-    title: '⚡️ 快速導入',
-    link: '/zh-TW/Import'
+    import: { title: '⚡️ 快速匯入', link: '/zh-TW/Import' },
+    download: { title: '🚀 一鍵匯入', link: '/zh-TW/Import' }
   },
   'en': {
-    title: '⚡️ Quick Import',
-    link: '/en/Import'
+    import: { title: '⚡️ Quick Import', link: '/en/Import' },
+    download: { title: '🚀 One-Click Import', link: '/en/Import' }
   },
 }
+
+// 辅助函数：根据当前路由判断属于哪个页面类型
+const pageType = computed(() => {
+  const path = route.path.toLowerCase()
+  if (path.toLowerCase().includes('download')) return 'download'
+  return 'import' // 默认或匹配 import
+})
 
 // 计算最终显示的标题
 const computedTitle = computed(() => {
   if (props.title) return props.title
   const currentLang = lang.value || 'zh-CN'
   const shortLang = currentLang.split('-')[0] // 例如 'en-US' 变 'en'
-  if (i18n[currentLang]?.title) {
-    return i18n[currentLang].title
+  const type = pageType.value
+
+  if (i18n[currentLang]?.[type]?.title) {
+    return i18n[currentLang][type].title
   }
-  if (i18n[shortLang]?.title) {
-    return i18n[shortLang].title
+  if (i18n[shortLang]?.[type]?.title) {
+    return i18n[shortLang][type].title
   }
-  if (i18n['en']?.title) {
-    return i18n['en'].title
+  if (i18n['en']?.[type]?.title) {
+    return i18n['en'][type].title
   }
 
-  return i18n['zh-CN'].title
+  return i18n['zh-CN'][type].title
 })
 
-// 计算对应语言的跳转链接
+// 计算对应语言和页面的跳转链接
 const computedLink = computed(() => {
   const currentLang = lang.value || 'zh-CN'
   const shortLang = currentLang.split('-')[0]
-  if (i18n[currentLang]?.link) return i18n[currentLang].link
-  if (i18n[shortLang]?.link) return i18n[shortLang].link
-  if (i18n['en']?.link) return i18n['en'].link
-  return i18n['zh-CN'].link
+  const type = pageType.value
+
+  if (i18n[currentLang]?.[type]?.link) return i18n[currentLang][type].link
+  if (i18n[shortLang]?.[type]?.link) return i18n[shortLang][type].link
+  if (i18n['en']?.[type]?.link) return i18n['en'][type].link
+  return i18n['zh-CN'][type].link
 })
 
 const computedActions = computed(() => {
