@@ -124,16 +124,15 @@ thirdPartyRepos:
     show_assets: 2
     hide: false
     
-hero:
-  actions:
-    - text: 🚀 Import Pixiv BookSource
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
+actions:
+  - text: 🚀 Import Pixiv BookSource
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
 
-    - text: 🚀 Import Pixiv RssSource
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
+  - text: 🚀 Import Pixiv RssSource
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
 
-    - text: 🚀 Import "One-click Import" RssSource
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json"
+  - text: 🚀 Import "One-click Import" RssSource
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json"
 ---
 
 <DownloadList />

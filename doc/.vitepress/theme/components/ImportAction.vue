@@ -59,7 +59,7 @@ const computedLink = computed(() => {
 })
 
 const computedActions = computed(() => {
-  return props.actions || frontmatter.value.hero?.actions || []
+  return props.actions || frontmatter.value.actions || []
 })
 </script>
 

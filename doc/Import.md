@@ -23,27 +23,24 @@ head:
     - property: og:description
       content: 一键导入 阅读资源 到开源阅读 App：书源, 订阅源, 替换规则, 目录规则, TTS 配置, 主题配置, 排版配置。
       
-
-hero:
-  actions:
-    - text: ⬇️ 下载阅读
-      link: Download
-      
-    - text: 🚀 一键导入 订阅源
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json"
-      
-    - text: 🚀 Pixiv 书源
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
-      
-    - text: 🚀 Pixiv 订阅源
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
-      
-    - text: 🚀 Pixiv 目录规则
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json"
-      
-    - text: 🚀 通用书源
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/normal.json"
-
+actions:
+  - text: ⬇️ 下载阅读
+    link: Download
+    
+  - text: 🚀 一键导入 订阅源
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json"
+    
+  - text: 🚀 Pixiv 书源
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
+    
+  - text: 🚀 Pixiv 订阅源
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
+    
+  - text: 🚀 Pixiv 目录规则
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json"
+    
+  - text: 🚀 通用书源
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/normal.json"
 ---
 
 <ImportRedirect />

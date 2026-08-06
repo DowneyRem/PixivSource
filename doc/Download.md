@@ -150,16 +150,15 @@ thirdPartyRepos:
         url: https://www.qread.xyz
         recommend: false
         
-hero:
-  actions:
-    - text: 🚀 Pixiv 书源
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
-      
-    - text: 🚀 Pixiv 订阅源
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
-      
-    - text: 🚀 一键导入 订阅源
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json"
+actions:
+  - text: 🚀 Pixiv 书源
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
+    
+  - text: 🚀 Pixiv 订阅源
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
+    
+  - text: 🚀 一键导入 订阅源
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json"
 ---
 
 <DownloadList />

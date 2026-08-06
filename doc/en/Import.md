@@ -23,27 +23,24 @@ head:
     - property: og:description
       content: One-Click Import Reading Resources into Legado App. BookSource, RssSource, Replace Rule, TOC Rule, TTS Rule, Theme Rule, Layout Rule.
       
-
-hero:
-  actions:
-    - text: ⬇️ Download Legado
-      link: Download
-      
-    - text: 🚀 Import "One-click Import" RssSource
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json"
-      
-    - text: 🚀 Import Pixiv BookSource
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
-      
-    - text: 🚀 Import Pixiv RssSource
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
-      
+actions:
+  - text: ⬇️ Download Legado
+    link: Download
+    
+  - text: 🚀 Import "One-click Import" RssSource
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json"
+    
+  - text: 🚀 Import Pixiv BookSource
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
+    
+  - text: 🚀 Import Pixiv RssSource
+    link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
+    
 #    - text: 🚀 Import Pixiv TOC Rules
 #      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json"
 #      
 #    - text: 🚀 Import General BookSource
 #      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/normal.json"
-
 ---
 
 <ImportRedirect />
