@@ -176,7 +176,7 @@ export const twNav = [
         link: "/zh-TW/"
     },
     {
-        text: "📌 站方功能",
+        text: "📌 常用工具",
         activeMatch: "/",
         items: [
             { text: "⬇️ 下載閱讀", link: "/zh-TW/Download" },
@@ -220,7 +220,7 @@ export const twNav = [
 
 export const twSidebar = [
     {
-        text: "站方功能",
+        text: "常用工具",
         collapsed: false,
         items: [
             { text: "⬇️ 下載閱讀", link: "/zh-TW/Download" },

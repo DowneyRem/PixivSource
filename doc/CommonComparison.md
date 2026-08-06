@@ -10,7 +10,7 @@
 ### 📖 阅读体验 {#ReadingExperience}
 | 功能 | Pixiv App | Pixiv 书源 |
 | :--- | :--- | :--- |
-| 📚 **小说书架** | ❌ 无 | ✅ 支持 |
+| 📚 **小说书架** | ❌ 无 | ✅ [支持](#ShelfPage) |
 | 💾 **离线阅读** | ❌ 无 | ✅ [支持](LegadoTips.md#OfflineCache) |
 | 🀄️ **繁简通搜** | ❌ 无 | ✅ [支持](Pixiv.md#ConvertChinese) |
 | 🔀 **繁简转换** | ❌ 无 | ✅ [支持](LegadoTips.md#ConvertChinese) |
