@@ -47,7 +47,7 @@ hero:
 ---
 
 <ImportRedirect />
-<VPHeroAction />
+<ImportAction />
 
 
 > [!WARNING]

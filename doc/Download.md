@@ -163,7 +163,7 @@ hero:
 ---
 
 <DownloadList />
-<VPHeroAction />
+<ImportAction />
 
 
 > [!WARNING]

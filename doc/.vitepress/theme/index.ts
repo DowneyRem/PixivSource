@@ -16,12 +16,12 @@ import FriendLink from "./components/FriendLink.vue"
 import FriendLinkFooter from './components/FriendLinkFooter.vue'
 import FriendLinkFooterHome from './components/FriendLinkFooterHome.vue'
 import HomeUnderline from "./components/HomeUnderline.vue"
+import ImportAction from "./components/ImportAction.vue"
 import ImportRedirect from "./components/ImportRedirect.vue"
 import NotFound from "./components/NotFound.vue"
 import Sponsor from "./components/Sponsor.vue"
 import TeamGroups from "./components/TeamGroups.vue"
 import UpdateTime from "./components/UpdateTime.vue"
-import VPHeroAction from "./components/VPHeroAction.vue"
 import './style/index.css'
 
 // 彩虹背景动画样式
@@ -79,11 +79,11 @@ export default {
         app.component('FriendLink', FriendLink)
         app.component('FriendLinkFooterHome', FriendLinkFooterHome)
         app.component('HomeUnderline', HomeUnderline)
+        app.component('ImportAction', ImportAction)
         app.component('ImportRedirect', ImportRedirect)
         // app.component('UpdateTime', UpdateTime)
         app.component('TeamGroups', TeamGroups)
         app.component('Sponsor', Sponsor)
-        app.component('VPHeroAction', VPHeroAction)
 
         // 彩虹背景动画样式
         const isHomePage = (path: string) =>
