@@ -16,19 +16,19 @@ const props = defineProps({
 const { frontmatter, lang } = useData()
 const route = useRoute()
 
-// 定义内置的多语言词典，并针对不同页面路径（如 download、import）分发不同文案
+// 定义内置的多语言词典
 const i18n = {
   'zh-CN': {
-    import: { title: '⚡️ 快速导入', link: '/Import' },
-    download: { title: '🚀 一键导入', link: '/Import' }
+    import: { title: '⚡️ 快速导入' },
+    download: { title: '🚀 一键导入' }
   },
   'zh-TW': {
-    import: { title: '⚡️ 快速匯入', link: '/zh-TW/Import' },
-    download: { title: '🚀 一鍵匯入', link: '/zh-TW/Import' }
+    import: { title: '⚡️ 快速匯入' },
+    download: { title: '🚀 一鍵匯入' }
   },
   'en': {
-    import: { title: '⚡️ Quick Import', link: '/en/Import' },
-    download: { title: '🚀 One-Click Import', link: '/en/Import' }
+    import: { title: '⚡️ Quick Import' },
+    download: { title: '🚀 One-Click Import' }
   },
 }
 
@@ -59,16 +59,25 @@ const computedTitle = computed(() => {
   return i18n['zh-CN'][type].title
 })
 
-// 计算对应语言和页面的跳转链接
+// 🌟 动态拼接对应语言的跳转链接
 const computedLink = computed(() => {
   const currentLang = lang.value || 'zh-CN'
   const shortLang = currentLang.split('-')[0]
-  const type = pageType.value
 
-  if (i18n[currentLang]?.[type]?.link) return i18n[currentLang][type].link
-  if (i18n[shortLang]?.[type]?.link) return i18n[shortLang][type].link
-  if (i18n['en']?.[type]?.link) return i18n['en'][type].link
-  return i18n['zh-CN'][type].link
+  // 根据语言动态生成路径：
+  // 英文或繁体等非根目录语言加上语言前缀，简体中文(zh-CN)直接用根目录
+  if (shortLang === 'zh' && currentLang !== 'zh-CN') {
+    return `/${currentLang}/Import`
+  }
+  if (shortLang !== 'zh' && shortLang !== 'en') {
+    return `/${shortLang}/Import`
+  }
+  if (shortLang === 'en') {
+    return `/en/Import`
+  }
+
+  // 默认简体中文
+  return `/Import`
 })
 
 const computedActions = computed(() => {
