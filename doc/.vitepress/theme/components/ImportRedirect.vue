@@ -47,13 +47,13 @@ const i18n = {
     }
   },
   'zh-TW': {
-    title: '🚀 一鍵導入 閱讀資源',
-    selectType: '請選擇導入類型',
+    title: '🚀 一鍵匯入 閱讀資源',
+    selectType: '請選擇匯入類型',
     clear: '清空內容',
     placeholder: '粘貼 http(s) 鏈接、legado:// 協議，或者直接粘貼書源 JSON 源碼...',
-    jsonError: 'JSON 格式錯誤，請檢查後再導入',
+    jsonError: 'JSON 格式錯誤，請檢查後再匯入',
     btnUpload: '⏳ 正在通過 Cloudflare 分流打包...',
-    btnSubmit: '確認導入至閱讀',
+    btnSubmit: '確認匯入至閱讀',
     redirectTitle: '正在拉起閱讀 App',
     redirectDesc: '如果已安裝開源閱讀，應用將立即拉起...',
     manualRedirect: '沒有反應？點擊手動跳轉',
