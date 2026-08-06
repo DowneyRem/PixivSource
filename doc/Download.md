@@ -152,16 +152,13 @@ thirdPartyRepos:
         
 hero:
   actions:
-    - theme: alt
-      text: 🚀 Pixiv 书源
+    - text: 🚀 Pixiv 书源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
       
-    - theme: alt
-      text: 🚀 Pixiv 订阅源
+    - text: 🚀 Pixiv 订阅源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
       
-    - theme: alt
-      text: 🚀 一键导入 订阅源
+    - text: 🚀 一键导入 订阅源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json"
 ---
 

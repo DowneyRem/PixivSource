@@ -29,7 +29,6 @@ const i18n = {
 
 // 计算最终显示的标题（优先使用 props 传入的标题，其次根据当前语言获取默认标题）
 const computedTitle = computed(() => {
-  // 1. 优先使用用户通过组件 props 传入的标题
   if (props.title) return props.title
   const currentLang = lang.value || 'zh-CN'
   const shortLang = currentLang.split('-')[0] // 例如 'en-US' 变 'en'
@@ -64,7 +63,7 @@ const computedActions = computed(() => {
             :key="action.link"
             :href="withBase(action.link)"
             :target="action.target"
-            :class="['action-btn', action.theme || 'alt']"
+            class="action-btn alt"
         >
           <span class="btn-text">{{ action.text }}</span>
         </a>
@@ -107,16 +106,28 @@ const computedActions = computed(() => {
   justify-content: center;
 }
 
+/* 默认状态下所有按钮使用 alt 样式 */
+.action-btn.alt {
+  background-color: var(--vp-button-alt-bg);
+  color: var(--vp-button-alt-text);
+  border: 1px solid var(--vp-button-alt-border);
+}
+
+/* 仅当鼠标悬浮（正下方）时，该按钮切换为 brand 颜色 */
+.action-btn.alt:hover {
+  background-color: var(--vp-c-brand-1) !important;
+  color: var(--vp-button-brand-text) !important;
+  border-color: var(--vp-c-brand-1) !important;
+}
+
 .action-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 12px 22px;
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-gutter);
   border-radius: 14px;
   text-decoration: none !important;
-  transition: all 0.25s ease;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s, transform 0.25s ease;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -124,24 +135,11 @@ const computedActions = computed(() => {
 .btn-text {
   font-size: 15px;
   font-weight: 700;
-  color: var(--vp-c-text-1);
-}
-
-.action-btn.brand {
-  background: var(--vp-c-brand-1);
-  border-color: var(--vp-c-brand-1);
-}
-.action-btn.brand .btn-text {
-  color: #ffffff;
 }
 
 .action-btn:hover {
-  transform: translateY(-3px);
-  border-color: var(--vp-c-brand-1);
+  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.action-btn.brand:hover {
-  opacity: 0.9;
 }
 
 @media (max-width: 480px) {

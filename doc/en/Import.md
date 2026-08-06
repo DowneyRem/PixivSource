@@ -26,28 +26,22 @@ head:
 
 hero:
   actions:
-    - theme: alt
-      text: ⬇️ Download Legado
+    - text: ⬇️ Download Legado
       link: Download
       
-    - theme: alt
-      text: 🚀 Import "One-click Import" RssSource
+    - text: 🚀 Import "One-click Import" RssSource
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json"
       
-    - theme: alt
-      text: 🚀 Import Pixiv BookSource
+    - text: 🚀 Import Pixiv BookSource
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
       
-    - theme: alt
-      text: 🚀 Import Pixiv RssSource
+    - text: 🚀 Import Pixiv RssSource
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
       
-#    - theme: alt
-#      text: 🚀 Import Pixiv TOC Rules
+#    - text: 🚀 Import Pixiv TOC Rules
 #      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json"
 #      
-#    - theme: alt
-#      text: 🚀 Import General BookSource
+#    - text: 🚀 Import General BookSource
 #      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/normal.json"
 
 ---
