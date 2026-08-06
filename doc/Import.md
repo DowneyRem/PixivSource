@@ -53,7 +53,7 @@ hero:
 ---
 
 <ImportRedirect />
-<VPHeroAction title="⚡️ 快速导入" />
+<VPHeroAction />
 
 
 > [!WARNING]
