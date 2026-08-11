@@ -62,8 +62,28 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **使用本文档即表示：您已阅读并同意以上全部内容。**
 
 
+### 快速跳转 {#QuickJump}
+> [!NOTE]
+> 🔎 [搜索作品](#Search)；
+> 🏡 [首页推荐](#Home)；
+> 📖 [小说首页](#Novel)；
+> 💈 [侧边栏](#Sidebar)；
+> 📄 [小说信息](#Detail)；
+> ▶️ [小说互动](#NovelInteract)；
+> 💬 [小说评论](#NovelComment)；
+> 👤 [用户互动](#UserInteract)；
+> 🖼 [插画](#Illust)
+
+
 ## 搜索 {#Search}
-### 🔎 搜索 {#SearchAll}
+> [!NOTE]
+> 搜索：
+> 🔎 [搜索作品](#SearchAll)；
+> 📖 [搜索小说](#SearchNovels)；
+> 👤 [搜索作者](#SearchUser)
+
+
+### 🔎 搜索作品 {#SearchAll}
 - **URL**：`https://www.pixiv.net/ajax/search/{type}/{name}`
 - **请求方法**: `GET`
 - **传参方式**: `PATH` & `QUERY`
@@ -172,7 +192,15 @@ https://www.pixiv.net/search/users?nick=null&s_mode=s_usr&i=1&p=1
 
 
 ## 首页推荐 {#Home}
-### 推荐标签 {#HomeRecommendedTags}
+> [!NOTE]
+> 首页推荐：
+> #️⃣ [推荐标签](#HomeRecommendedTags)；
+> 🆕 [精选新作](#HomeNew)；
+> 👤 [推荐用户](#HomeRecommendedUsers)；
+> 👍 [推荐作品](#HomeRecommendedWorks)
+
+
+### #️⃣ 推荐标签 {#HomeRecommendedTags}
 > [!TIP]
 > 首页推荐标签
 
@@ -519,6 +547,11 @@ https://www.pixiv.net/novel/new_r18.php
 
 
 ## 小说信息 {#Detail}
+> [!NOTE]
+> 小说信息：
+> 📄 [小说详情](#NovelDetail)
+
+
 ### 📄 小说详情 {#NovelDetail}
 ```
 https://www.pixiv.net/ajax/novel/{novelId}
@@ -541,6 +574,17 @@ https://www.pixiv.net/novel/show.php?id=123455
 ```
 
 ## 小说互动 {#NovelInteract}
+> [!NOTE]
+> 小说互动：
+> ❤️ [收藏单篇小说](#NovelBookmarkAdd)；
+> 📖 [小说收藏数据](#NovelBookmarkData)；
+> 🖤 [取消收藏小说](#NovelBookmarkDelete)；
+> 📃 [追更系列小说](#SeriesWatch)；
+> 📃 [取消追更系列](#SeriesUnWatch)
+> 🏷️ [添加删除书签](#NovelMarker)；
+> ✅ [提交小说投票](#NovelPollAnswer)
+
+
 ### ❤️ 收藏单篇小说 {#NovelBookmarkAdd}
 - **URL**：`https://www.pixiv.net/ajax/novels/bookmarks/add`
 - **请求方法**: `POST`
@@ -654,7 +698,7 @@ del=1&book_id=987654321
 ```
 
 
-### 📃 取消追更系列 {#SeriesUnWatch}
+### 📃 取消追更系列小说 {#SeriesUnWatch}
 > [!TIP]
 > 仅限系列小说
 
@@ -711,6 +755,13 @@ mode=save&i_id=12345678&u_id=87654321&page=1
 
 
 ## 小说评论 {#NovelComment}
+> [!NOTE]
+> 💬 [发送小说评论](#NovelCommentAdd)；
+> 📖 [获取评论数据](#NovelCommentsRoots)；
+> 📖 [获取评论回复](#NovelCommentsReplies)；
+> 🗑 [删除小说评论](#NovelCommentDelete)
+
+
 ### 💬 发送小说评论 {#NovelCommentAdd}
 > [!TIP]
 > 发送小说评论、回复小说评论
@@ -788,7 +839,12 @@ i_id=12345678&del_id=987654321
 ```
 
 
-## 用户互动
+## 用户互动 {#UserInteract}
+> [!NOTE]
+> ⭐️ [关注用户](#UserFollow)；
+> ⭐️ [取消关注用户](#UserUnFollow)；
+> 🚫 [拉黑用户](#UserBlackList)
+
 ### ⭐️ 关注用户 {#UserFollow}
 - **URL**：`https://www.pixiv.net/bookmark_add.php`
 - **请求方法**: `POST`
