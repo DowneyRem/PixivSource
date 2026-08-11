@@ -686,6 +686,47 @@ mode=save&i_id=12345678&u_id=87654321&page=1
 ```
 
 
+## 用户互动
+### ⭐️ 关注作者 {#UserFollow}
+- **URL**：`https://www.pixiv.net/bookmark_add.php`
+- **请求方法**: `POST`
+- **Content-Type**: `application/x-www-form-urlencoded`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `mode` | Body | String | 操作模式，固定传 `add` |
+| `type` | Body | String | 关注类型，固定传 `user` |
+| `user_id` | Body | Integer | 目标作者的用户 ID |
+| `tag` | Body | String | 关注标签，默认为空 `""` |
+| `restrict` | Body | Integer | 关注权限：`0` 公开关注、`1` 私密关注 |
+| `format` | Body | String | 响应数据格式，固定传 `json` |
+
+#### 请求体示例
+```
+mode=add&type=user&user_id=12345678&tag=""&restrict=0&format=json
+```
+
+
+### ⭐️ 取消关注作者 {#UserUnFollow}
+- **URL**：`https://www.pixiv.net/rpc_group_setting.php`
+- **请求方法**: `POST`
+- **Content-Type**: `application/x-www-form-urlencoded`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `mode` | Body | String | 操作模式，固定传 `del` |
+| `type` | Body | String | 取消关注的类型，固定传 `bookuser` |
+| `id` | Body | Integer | 目标作者的用户 ID |
+
+#### 请求体示例
+```
+mode=del&type=bookuser&id=12345678
+```
+
+
+
 ---
 ## 插画 {#Illust}
 ### 👑 插画排行榜 {#IllustRanking}
