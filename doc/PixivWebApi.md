@@ -692,6 +692,7 @@ mode=save&i_id=12345678&u_id=87654321&page=1
 ```
 
 
+## 小说评论
 ### 💬 发送小说评论 {#NovelCommentAdd}
 > [!TIP]
 > 发送小说评论、回复小说评论
@@ -714,6 +715,42 @@ mode=save&i_id=12345678&u_id=87654321&page=1
 type=comment&novel_id=12345678&author_user_id=87654321&comment=testComment
 ```
 
+
+### 📖 获取评论数据 {#NovelCommentsRoots}
+- **URL**：`https://www.pixiv.net/ajax/novels/comments/roots`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `novel_id` | Query | String / Integer | 目标小说 ID |
+| `offset` | Query | Integer | 偏移量（分页起始位置，如 `0`） |
+| `limit` | Query | Integer | 每页返回数量限制（如 `50`） |
+| `lang` | Query | String | 语言：`zh` 中文 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/novels/comments/roots?novel_id=12345678&offset=0&limit=50&lang=zh
+```
+
+
+### 📖 获取评论回复 {#NovelCommentsReplies}
+* **URL**：`https://www.pixiv.net/ajax/novels/comments/replies`
+* **请求方法**: `GET`
+* **传参方式**: `QUERY`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| --- | --- | --- | --- |
+| `comment_id` | Query | String / Integer | 目标父评论 ID |
+| `page` | Query | Integer | 页码（如 `1`） |
+| `lang` | Query | String | 语言：`zh` 中文 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/novels/comments/replies?comment_id=987654321&page=1&lang=zh
+```
 
 
 ## 用户互动
