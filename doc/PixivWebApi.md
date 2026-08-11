@@ -565,6 +565,37 @@ https://www.pixiv.net/novel/show.php?id=123455
 ```
 
 
+### 📖 小说收藏数据 {#NovelBookmarkData}
+- **URL**：`https://www.pixiv.net/ajax/novel/{novelId}/bookmarkData`
+- **请求方法**: `GET`
+- **传参方式**: `PATH`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `novelId` | Path | Integer | 目标小说 ID |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/novel/12345678/bookmarkData
+```
+
+#### 响应示例
+```json
+{
+	"error": false,
+	"message": "",
+	"body": {
+		"id": 12345678,
+		"isBookmarkable": true,
+		"bookmarkData": {
+			"id": "912321341",
+			"private": false
+		}
+	}
+}
+```
+
 
 ---
 ## 插画 {#Illust}
