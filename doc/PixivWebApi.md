@@ -541,7 +541,30 @@ https://www.pixiv.net/novel/show.php?id=123455
 ```
 
 ## 小说互动
-### ▶️ 互动
+### ❤️ 收藏小说 {#NovelBookmarkAdd}
+- **URL**：`https://www.pixiv.net/ajax/novels/bookmarks/add`
+- **请求方法**: `POST`
+- **Content-Type**: `application/json`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 必填 | 说明 |
+| :--- | :--- | :--- | :--- | :--- |
+| `novel_id` | Body | String  | **是** | 目标小说 ID |
+| `restrict` | Body | Integer | **是** | 收藏权限：`0` 公开收藏、`1` 私密收藏(仅自己可见) |
+| `comment` | Body | String | 否 | 收藏备注，默认为空字符串 |
+| `tags` | Body | Array | 否 | 收藏标签，默认为空数组 |
+
+#### 请求体示例
+```json
+{
+  "novel_id": "12345678",
+  "restrict": 0,
+  "comment": "",
+  "tags": []
+}
+```
+
+
 
 ---
 ## 插画 {#Illust}
