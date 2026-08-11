@@ -635,6 +635,25 @@ del=1&book_id=987654321
 ```
 
 
+### 🏷️ 添加书签 {#NovelMarker}
+- **URL**：`https://www.pixiv.net/novel/rpc_marker.php`
+- **请求方法**: `POST`
+- **Content-Type**: `application/x-www-form-urlencoded`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `mode` | Body | String | 操作模式，固定传 `save` |
+| `i_id` | Body | Integer | 小说 ID |
+| `u_id` | Body | Integer | 用户 ID |
+| `page` | Body | Integer | 小说页码：`0` 删除书签，其他添加书签 |
+
+#### 请求体示例
+```
+mode=save&i_id=12345678&u_id=87654321&page=1
+```
+
+
 ---
 ## 插画 {#Illust}
 ### 👑 插画排行榜 {#IllustRanking}
