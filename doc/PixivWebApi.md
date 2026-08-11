@@ -655,6 +655,9 @@ mode=save&i_id=12345678&u_id=87654321&page=1
 
 
 ### 📃 追更系列小说 {#SeriesWatch}
+> [!TIP]
+> 仅限系列小说
+
 - **URL**：`https://www.pixiv.net/ajax/novel/series/{seriesId}/watch`
 - **请求方法**: `POST`
 - **Content-Type**: `application/json`
@@ -671,6 +674,9 @@ mode=save&i_id=12345678&u_id=87654321&page=1
 
 
 ### 📃 取消追更系列 {#SeriesUnWatch}
+> [!TIP]
+> 仅限系列小说
+
 - **URL**：`https://www.pixiv.net/ajax/novel/series/{seriesId}/unwatch`
 - **请求方法**: `POST`
 - **Content-Type**: `application/json`
@@ -684,6 +690,30 @@ mode=save&i_id=12345678&u_id=87654321&page=1
 ```json
 {}
 ```
+
+
+### 💬 发送小说评论 {#NovelCommentAdd}
+> [!TIP]
+> 发送小说评论、回复小说评论
+
+- **URL**：`https://www.pixiv.net/novel/rpc/post_comment.php`
+- **请求方法**: `POST`
+- **Content-Type**: `application/x-www-form-urlencoded`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `type` | Body | String | 评论类型，固定传 `comment` |
+| `novel_id` | Body | Integer | 目标小说 ID |
+| `author_user_id` | Body | Integer | 当前用户 ID |
+| `comment` | Body | String | 评论的具体内容（需经过 URL 编码） |
+| `parent_id` | Body | Integer | [可选] 回复的目标评论 ID（若为根评论则不传） |
+
+#### 请求体示例
+```
+type=comment&novel_id=12345678&author_user_id=87654321&comment=testComment
+```
+
 
 
 ## 用户互动
