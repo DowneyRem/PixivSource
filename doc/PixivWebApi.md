@@ -275,7 +275,7 @@ https://www.pixiv.net
 
 ### ⭐️ 关注用户 {#FollowLatest}
 > [!TIP]
-> 已关注用户的（最新）作品 / **关注作者，最新小说**
+> 已关注用户的（最新）作品 / **关注用户，最新小说**
 
 - **URL**：`https://www.pixiv.net/ajax/follow_latest/novel`
 - **请求方法**: `GET`
@@ -789,7 +789,7 @@ i_id=12345678&del_id=987654321
 
 
 ## 用户互动
-### ⭐️ 关注作者 {#UserFollow}
+### ⭐️ 关注用户 {#UserFollow}
 - **URL**：`https://www.pixiv.net/bookmark_add.php`
 - **请求方法**: `POST`
 - **Content-Type**: `application/x-www-form-urlencoded`
@@ -810,7 +810,7 @@ mode=add&type=user&user_id=12345678&tag=""&restrict=0&format=json
 ```
 
 
-### ⭐️ 取消关注作者 {#UserUnFollow}
+### ⭐️ 取消关注用户 {#UserUnFollow}
 - **URL**：`https://www.pixiv.net/rpc_group_setting.php`
 - **请求方法**: `POST`
 - **Content-Type**: `application/x-www-form-urlencoded`
@@ -827,6 +827,28 @@ mode=add&type=user&user_id=12345678&tag=""&restrict=0&format=json
 mode=del&type=bookuser&id=12345678
 ```
 
+
+### 🚫 拉黑用户 {#UserBlackList}
+> [!TIP]
+> 拉黑用户，禁止其点赞、评论、收藏、关注、私信等
+
+- **URL**：`https://www.pixiv.net/ajax/block/save`
+- **请求方法**: `POST`
+- **Content-Type**: `application/json`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `user_id` | Body | Integer |用户 UID |
+| `action` | Body | String | 操作行为：`block` 拉黑、`unblock` 取消拉黑 |
+
+#### 请求体示例 (JSON)
+```json
+{
+  "user_id": "12345678",
+  "action": "block"
+}
+```
 
 
 ---
