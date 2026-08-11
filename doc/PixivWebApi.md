@@ -635,25 +635,6 @@ del=1&book_id=987654321
 ```
 
 
-### 🏷️ 添加书签 {#NovelMarker}
-- **URL**：`https://www.pixiv.net/novel/rpc_marker.php`
-- **请求方法**: `POST`
-- **Content-Type**: `application/x-www-form-urlencoded`
-
-#### 参数说明
-| 参数 | 位置 | 类型 | 说明 |
-| :--- | :--- | :--- | :--- |
-| `mode` | Body | String | 操作模式，固定传 `save` |
-| `i_id` | Body | Integer | 小说 ID |
-| `u_id` | Body | Integer | 用户 ID |
-| `page` | Body | Integer | 小说页码：`0` 删除书签，其他添加书签 |
-
-#### 请求体示例
-```
-mode=save&i_id=12345678&u_id=87654321&page=1
-```
-
-
 ### 📃 追更系列小说 {#SeriesWatch}
 > [!TIP]
 > 仅限系列小说
@@ -684,11 +665,48 @@ mode=save&i_id=12345678&u_id=87654321&page=1
 #### 参数说明
 | 参数 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
-| `seriesId` | Path | String / Integer | 系列小说 ID |
+| `seriesId` | Path | Integer | 系列小说 ID |
 
 #### 请求体示例
 ```json
 {}
+```
+
+
+### 🏷️ 添加删除书签 {#NovelMarker}
+- **URL**：`https://www.pixiv.net/novel/rpc_marker.php`
+- **请求方法**: `POST`
+- **Content-Type**: `application/x-www-form-urlencoded`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `mode` | Body | String | 操作模式，固定传 `save` |
+| `i_id` | Body | Integer | 小说 ID |
+| `u_id` | Body | Integer | 用户 ID |
+| `page` | Body | Integer | 小说页码：`0` 删除书签，其他添加书签 |
+
+#### 请求体示例
+```
+mode=save&i_id=12345678&u_id=87654321&page=1
+```
+
+### ✅ 提交小说投票 {#NovelPollAnswer}
+- **URL**：`https://www.pixiv.net/ajax/novel/{novelId}/poll/answer`
+- **请求方法**: `POST`
+- **Content-Type**: `application/json`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `novelId` | Path | Integer | 小说 ID |
+| `choice_id` | Body | Integer | 投票选项，数字1-5 |
+
+#### 请求体示例
+```json
+{
+  "choice_id": 1
+}
 ```
 
 
