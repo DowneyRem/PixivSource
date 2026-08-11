@@ -541,7 +541,7 @@ https://www.pixiv.net/novel/show.php?id=123455
 ```
 
 ## 小说互动
-### ❤️ 收藏小说 {#NovelBookmarkAdd}
+### ❤️ 收藏单篇小说 {#NovelBookmarkAdd}
 - **URL**：`https://www.pixiv.net/ajax/novels/bookmarks/add`
 - **请求方法**: `POST`
 - **Content-Type**: `application/json`
@@ -624,7 +624,7 @@ del=1&book_id=987654321
 | :--- | :--- | :--- | :--- |
 | bookmarkIds | Body | Array | 收藏夹记录 ID 列表 |
 
-#### 请求体示例 (JSON)
+#### 请求体示例
 ```json
 {
   "bookmarkIds": [
@@ -651,6 +651,38 @@ del=1&book_id=987654321
 #### 请求体示例
 ```
 mode=save&i_id=12345678&u_id=87654321&page=1
+```
+
+
+### 📃 追更系列小说 {#SeriesWatch}
+- **URL**：`https://www.pixiv.net/ajax/novel/series/{seriesId}/watch`
+- **请求方法**: `POST`
+- **Content-Type**: `application/json`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `seriesId` | Path | Integer | 系列小说 ID |
+
+#### 请求体示例
+```json
+{}
+```
+
+
+### 📃 取消追更系列 {#SeriesUnWatch}
+- **URL**：`https://www.pixiv.net/ajax/novel/series/{seriesId}/unwatch`
+- **请求方法**: `POST`
+- **Content-Type**: `application/json`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `seriesId` | Path | String / Integer | 系列小说 ID |
+
+#### 请求体示例
+```json
+{}
 ```
 
 
