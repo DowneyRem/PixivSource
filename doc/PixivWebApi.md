@@ -597,6 +597,44 @@ https://www.pixiv.net/ajax/novel/12345678/bookmarkData
 ```
 
 
+### 🖤 取消收藏小说 {#NovelBookmarkDelete}
+- **URL**：`https://www.pixiv.net/ajax/novels/bookmarks/delete`
+- **请求方法**: `POST`
+- **Content-Type**: `application/x-www-form-urlencoded`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `del` | Body | Integer | 操作标识，固定 `1` |
+| `book_id` | Body | Integer | 收藏夹记录 ID |
+
+#### 请求体示例
+```
+del=1&book_id=987654321
+```
+
+
+### 🖤 取消收藏小说批量 {#NovelsBookmarkDelete}
+- **URL**：`https://www.pixiv.net/ajax/novels/bookmarks/remove`
+- **请求方法**: `POST`
+- **Content-Type**: `application/json`
+
+#### 参数说明
+| 参数 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| bookmarkIds | Body | Array | 收藏夹记录 ID 列表 |
+
+#### 请求体示例 (JSON)
+```json
+{
+  "bookmarkIds": [
+    "987654321",
+    "987654322"
+  ]
+}
+```
+
+
 ---
 ## 插画 {#Illust}
 ### 👑 插画排行榜 {#IllustRanking}
