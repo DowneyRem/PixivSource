@@ -124,8 +124,6 @@ repos:
 #### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado-E) {#LegadoSigma}
 > [!TIP]
 > **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
->
-> 项目地址：https://github.com/Luoyacheng/legado-E
 
 | 下载站点 | 推荐版本 | 备注 |
 | ------- | ------ | --- |
@@ -138,8 +136,6 @@ repos:
 #### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
 > [!TIP]
 > **阅读 Beta 【新包名】是当前主流版本，已经同步 Sigma 版本核心功能**
->
-> 【新包名】项目地址：https://github.com/LegadoTeam/legado
 
 | 下载站点 | 推荐版本 | 备注 |
 | ------- | ------- | --- |
@@ -154,8 +150,6 @@ repos:
 #### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3) {#LegadoMD3}
 > [!TIP]
 > **这是 HapeLee 的阅读改版仓库，软件界面采用 MD3 风格，已经同步 Sigma 版本大部分核心功能**
->
-> 项目地址：https://github.com/HapeLee/legado-with-MD3
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -166,8 +160,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 T](https://github.com/skybbk1001/legadoT) {#LegadoT}
 > [!TIP]
 > **带有定时任务的阅读，这是 明月照大江 基于 阅读官方版 的改版阅读仓库**
->
-> 项目地址：https://github.com/skybbk1001/legadoT
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -178,8 +170,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 薯条版](https://github.com/huajideshutiao/legado) {#LegadoShutiao}
 > [!TIP]
 > **这是 huajideshutiao 基于 阅读 阅读官方版，专为墨水屏阅读器优化的改版阅读仓库**
->
-> 项目地址：https://github.com/huajideshutiao/Legado
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -192,8 +182,6 @@ repos:
 
 > [!TIP]
 > **这是 Rimchars 基于 阅读 Sigma 的改版阅读仓库，增强了界面、AI、EPUB、漫画、视频和主题能力**
->
-> 项目地址：https://github.com/Rimchars/legado
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -205,8 +193,6 @@ repos:
 
 > [!TIP]
 > **这是 refgd 基于 阅读 Archive 的改版阅读仓库，增强了界面、AI、EPUB、漫画、视频和主题能力**
->
-> 项目地址：https://github.com/refgd/legado
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -218,8 +204,6 @@ repos:
 
 > [!TIP]
 > **这是 CCSSNE 基于 阅读 R 的改版仓库，主打优化听书体验 操作和界面向番茄靠齐**
->
-> 项目地址：https://github.com/CCSSNE/legadoC
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -230,8 +214,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max) {#LegadoMax}
 > [!TIP]
 > **这是 youfengknight 基于 阅读 Sigma，专为墨水屏阅读器优化的改版阅读仓库**
->
-> 项目地址：https://github.com/youfengknight/Legado_Max
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -242,8 +224,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 NG](https://github.com/joestar817/legado_NG) {#LegadoNG}
 > [!TIP]
 > **这是 joestar817 基于 阅读 Sigma 的改版阅读仓库**
->
-> 项目地址：https://github.com/joestar817/legado_NG
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -254,8 +234,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 PP](https://github.com/damifan3/legadoPP) {#LegadoPP}
 > [!TIP]
 > **这是 damifan3 基于 阅读 Sigma 的改版阅读仓库，在原有基础上增加更多实用功能**
->
-> 项目地址：https://github.com/damifan3/legadoPP
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -266,8 +244,6 @@ repos:
 #### ⏺️ 【兼容】[阅读 自用增强分支](https://github.com/Jingshiro/legado) {#LegadoJingshiro}
 > [!TIP]
 > **这是 Jingshiro 基于 阅读 Sigma 的改版阅读仓库，新增详细阅读记录、笔记想法、AI助手、主题全量导出、藏书票等功能**
->
-> 项目地址：https://github.com/Jingshiro/legado
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -285,10 +261,9 @@ repos:
 > **目前主要由 Horis 维护（只修 Bug），现在是【阅读 Beta】的上游仓库**
 >
 > **现已删库跑路（2026.05.27）**
->
-> 项目地址：https://github.com/gedoor/legado
 
-**正式版已经停止更新，不推荐继续使用**
+> [!WARNING]
+> **正式版已经停止更新，不推荐继续使用**
 
 | 下载站点 | 备注 |
 | ------- | ---- |
@@ -299,6 +274,7 @@ repos:
 
 <details><summary> 🚮 阅读 Pro 版（已下架）</summary>
 
+#### 👎 【官方】[阅读 Pro 版](https://github.com/gedoor/legado) {#LegadoPro}
 > [!NOTE]
 > **阅读 Pro 版于 2023 年被 Google 下架，现已停止更新，不推荐继续使用**
 >
@@ -411,15 +387,14 @@ repos:
 ### 🚮 停更软件 {#HarmonyOthers}
 <details><summary> 🌸 阅读 鸿蒙版（已停更）</summary>
 
+#### 🌸 [阅读 鸿蒙版](https://github.com/mgz0227/legado-Harmony)
 > [!NOTE]
 > **这是 阅读官方 的阅读鸿蒙版，目前可以本地阅读**
->
-> 项目地址：https://github.com/mgz0227/legado-Harmony
 
 | 下载站点 | 备注 |
 | ------- | ---- |
-| [Github](https://github.com/mgz0227/legado-Harmony/releases) | 停止更新 |
-| [Gitee](https://gitee.com/mgz0227/legado-Harmony/releases) | 停止更新 |
+| [Github Release](https://github.com/mgz0227/legado-Harmony/releases) | 停止更新 |
+| [Gitee Release](https://gitee.com/mgz0227/legado-Harmony/releases) | 停止更新 |
 </details>
 
 
@@ -467,8 +442,6 @@ repos:
 > [!TIP]
 >
 > **这是 hectorqin 的阅读3服务器版，桌面端与 iOS 均可使用**
->
-> 项目地址：https://github.com/hectorqin/reader
 
 | 下载站点 | 备注 |
 | ------- | ---- |
@@ -482,12 +455,10 @@ repos:
 
 #### 💻 [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release) {#LegadoTauri}
 > [!NOTE]
->
 > **阅读官方推出的跨平台桌面应用，目前仍在开发中，全平台可用**
->
-> **⚠️ 不兼容 阅读3 的书源**
->
-> 项目地址：https://github.com/LegadoTeam/Legado-Tauri-Release
+
+> [!WARNING]
+> **⚠️ 阅读 Tauri 不兼容 阅读3 的书源**
 
 | 下载站点 | 备注 |
 | ------- | --- |
