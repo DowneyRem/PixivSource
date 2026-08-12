@@ -56,19 +56,10 @@ legadoRepos:
     desc: 继承 Sigma 版，增强界面、AI、EPUB、漫画、视频和主题能力
     link: https://github.com/Rimchars/legado
     prerelease: false
-    recommend: arm64-v8a
+    recommend: apk
     show_assets: 1
     hide: true
-    
-  - name: 阅读 Max
-    icon: /img/LegadoMax.png
-    desc: 继承 Sigma 版，专为墨水屏阅读器优化
-    link: https://github.com/youfengknight/Legado_Max
-    prerelease: false
-    recommend: beta
-    show_assets: 1
-    hide: true
-    
+
   - name: 阅读 R
     icon: /img/LegadoR.png
     desc: 继承 Archive 版，增强界面、AI、EPUB、漫画、视频和主题能力
@@ -77,40 +68,67 @@ legadoRepos:
     recommend: legado
     show_assets: 1
     hide: true
-
+    
+  - name: 阅读 C
+    icon: /img/LegadoR.png
+    desc: 继承 R 版，主打优化听书体验，操作和界面向番茄靠齐
+    link: https://github.com/CCSSNE/legadoC
+    prerelease: false
+    recommend: legado
+    show_assets: 1
+    hide: true
+    
   - name: 阅读 NG
     icon: /img/LegadoNG.png
-    desc: 基于阅读 Sigma 继续演进的独立阅读器分支
+    desc: 继承 Sigma 版，继续演进的独立阅读器分支
     link: https://github.com/joestar817/legado_NG
     prerelease: false
     recommend: release
     show_assets: 1
     hide: true
     
-  - name: 阅读 薯条版
-    icon: /img/LegadoShutiao.png
-    desc: 继承 官方版 的修改版
-    link: https://github.com/huajideshutiao/Legado
+  - name: 阅读 Max
+    icon: /img/LegadoMax.png
+    desc: 继承 Sigma 版，专为墨水屏阅读器优化
+    link: https://github.com/Suml-1/Legado_Max
     prerelease: false
-    recommend: arm64
+    recommend: beta
     show_assets: 1
     hide: true
-            
-  - name: 阅读 T
+    
+  - name: 阅读 PP
     icon: /img/Legado.png
-    desc: 带定时任务的阅读
-    link: https://github.com/skybbk1001/legadoT
-    prerelease: true
-    recommend: legado
+    desc: 继承 Sigma 版，在其基础上新增更多功能和修复问题
+    link: https://github.com/damifan3/legadoPP
+    prerelease: false
+    recommend: release
     show_assets: 1
     hide: true
-
+    
   - name: 阅读 自用增强分支
     icon: /img/LegadoJingshiro.png
     desc: 继承 Sigma 版，新增了更多特性
     link: https://github.com/Jingshiro/legado
     prerelease: false
     recommend: releaseS
+    show_assets: 1
+    hide: true
+    
+  - name: 阅读 T
+    icon: /img/Legado.png
+    desc: 继承 官方版，带定时任务的阅读
+    link: https://github.com/skybbk1001/legadoT
+    prerelease: true
+    recommend: legado
+    show_assets: 1
+    hide: true
+
+  - name: 阅读 薯条版
+    icon: /img/LegadoShutiao.png
+    desc: 继承 官方版 的修改版
+    link: https://github.com/huajideshutiao/Legado
+    prerelease: false
+    recommend: arm64
     show_assets: 1
     hide: true
 

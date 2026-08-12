@@ -352,7 +352,7 @@ const navToRepo = () => {
             <div class="btn-left-content"><span class="file-name">{{ t.goWeb }}</span></div>
           </a>
 
-          <div v-if="hiddenCount >= 0 || assetsExpanded" class="toggle-more-assets-btn" @click="toggleAssets">
+          <div v-if="hiddenCount >= 1 || assetsExpanded" class="toggle-more-assets-btn" @click="toggleAssets">
             {{ assetsExpanded ? t.collapse : t.expand.replace('{count}', hiddenCount) }}
           </div>
         </div>
