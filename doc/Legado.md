@@ -211,16 +211,6 @@ repos:
 | [Github Action](https://github.com/CCSSNE/legadoC/actions) | 需要代理，需要登录 |
 
 
-#### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max) {#LegadoMax}
-> [!TIP]
-> **这是 youfengknight 基于 阅读 Sigma，专为墨水屏阅读器优化的改版阅读仓库**
-
-| 下载站点 | 备注 |
-| ------- | --- |
-| [Github Release](https://github.com/youfengknight/Legado_Max/releases) | 需要代理，无需登录 |
-| [Github Action](https://github.com/youfengknight/Legado_Max/actions) | 需要代理，需要登录 |
-
-
 #### ⏺️ 【兼容】[阅读 NG](https://github.com/joestar817/legado_NG) {#LegadoNG}
 > [!TIP]
 > **这是 joestar817 基于 阅读 Sigma 的改版阅读仓库**
@@ -229,6 +219,16 @@ repos:
 | ------- | --- |
 | [Github Release](https://github.com/joestar817/legado_NG/releases) | 需要代理，无需登录 |
 | [Github Action](https://github.com/joestar817/legado_NG/actions) | 需要代理，需要登录 |
+
+
+#### ⏺️ 【兼容】[阅融 LegaFuse](https://github.com/h166278/legado_FU) {#LegaFuse}
+> [!TIP]
+> **这是 h166278 基于 阅读 阅读 NG 的改版阅读仓库，在原有基础上增加更多实用功能**
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/h166278/legado_FU/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/h166278/legado_FU/actions) | 需要代理，需要登录 |
 
 
 #### ⏺️ 【兼容】[阅读 PP](https://github.com/damifan3/legadoPP) {#LegadoPP}
@@ -251,7 +251,41 @@ repos:
 | [Github Action](https://github.com/Jingshiro/legado/actions) | 需要代理，需要登录 |
 
 
+### 🔀 Max 分支 {#LegadoMax}
+#### ⏺️ 【兼容】[Suml-1 阅读 Max](https://github.com/Suml-1/Legado_Max) {#LegadoMax2}
+> [!TIP]
+> **这是 Suml-1 基于 youfengknight 的 阅读 Max 的改版仓库，在其基础上新增更多实用和强大功能**
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/youfengknight/Legado_Max/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/youfengknight/Legado_Max/actions) | 需要代理，需要登录 |
+
+
+#### ⏺️ 【兼容】[辞晨 阅读 Max](https://github.com/GEd520/Legado_Maxs) {#LegadoMax3}
+> [!TIP]
+> **这是 辞晨/GEd520 基于 youfengknight 的 阅读 Max 的改版仓库，在其基础上新增更多实用和强大功能**
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/youfengknight/Legado_Max/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/youfengknight/Legado_Max/actions) | 需要代理，需要登录 |
+
+
 ### 🚮 停更软件 {#AndroidOthers}
+<details><summary> ⏺️ 怣疯 阅读 Max（已停更）</summary>
+
+#### ⏺️ 【兼容】[怣疯 阅读 Max](https://github.com/youfengknight/Legado_Max) {#LegadoMax1}
+> [!TIP]
+> **这是 怣疯/youfengknight 基于 阅读 Sigma，专为墨水屏阅读器优化的改版阅读仓库**
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/youfengknight/Legado_Max/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/youfengknight/Legado_Max/actions) | 需要代理，需要登录 |
+</details>
+
+
 <details><summary> 👎 阅读 正式版（已停更）</summary>
 
 #### 👎 【官方】[阅读 正式版](https://github.com/gedoor/legado) {#Legado}
