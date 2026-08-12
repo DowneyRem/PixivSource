@@ -120,7 +120,7 @@ repos:
 <DownloadCard :frontmatter-index="0" />
 
 
-### ➕ 更多软件 {#AndroidMore}
+### 🔀 原版分支
 #### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado-E) {#LegadoSigma}
 > [!TIP]
 > **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
@@ -137,9 +137,7 @@ repos:
 
 #### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
 > [!TIP]
-> **这是 喵公子 用于同步上游代码的仓库，是【阅读 Beta】的仓库**
->
-> **阅读 Beta 【新包名】是当前主流版本**
+> **阅读 Beta 【新包名】是当前主流版本，已经同步 Sigma 版本核心功能**
 >
 > 【新包名】项目地址：https://github.com/LegadoTeam/legado
 
@@ -154,9 +152,8 @@ repos:
 
 
 #### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3) {#LegadoMD3}
-
 > [!TIP]
-> **这是 HapeLee 的阅读改版仓库，软件界面采用 MD3 风格**
+> **这是 HapeLee 的阅读改版仓库，软件界面采用 MD3 风格，已经同步 Sigma 版本大部分核心功能**
 >
 > 项目地址：https://github.com/HapeLee/legado-with-MD3
 
@@ -167,7 +164,6 @@ repos:
 
 
 #### ⏺️ 【兼容】[阅读 T](https://github.com/skybbk1001/legadoT) {#LegadoT}
-
 > [!TIP]
 > **带有定时任务的阅读，这是 明月照大江 基于 阅读官方版 的改版阅读仓库**
 >
@@ -179,6 +175,19 @@ repos:
 | [Github Action](https://github.com/skybbk1001/legadoT/actions) | 需要代理，需要登录 |
 
 
+#### ⏺️ 【兼容】[阅读 薯条版](https://github.com/huajideshutiao/legado) {#LegadoShutiao}
+> [!TIP]
+> **这是 huajideshutiao 基于 阅读 阅读官方版，专为墨水屏阅读器优化的改版阅读仓库**
+>
+> 项目地址：https://github.com/huajideshutiao/Legado
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/huajideshutiao/Legado/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/huajideshutiao/Legado/actions) | 需要代理，需要登录 |
+
+
+### 🔀 Sigma 分支
 #### ⏺️ 【兼容】[阅读 Archive](https://github.com/Rimchars/legado) {#LegadoArchive}
 
 > [!TIP]
@@ -205,8 +214,20 @@ repos:
 | [Github Action](https://github.com/refgd/legado/actions) | 需要代理，需要登录 |
 
 
-#### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max) {#LegadoMax}
+#### ⏺️ 【兼容】[阅读 C](https://github.com/CCSSNE/legadoC) {#LegadoC}
 
+> [!TIP]
+> **这是 CCSSNE 基于 阅读 R 的改版仓库，主打优化听书体验 操作和界面向番茄靠齐**
+>
+> 项目地址：https://github.com/CCSSNE/legadoC
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/CCSSNE/legadoC/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/CCSSNE/legadoC/actions) | 需要代理，需要登录 |
+
+
+#### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max) {#LegadoMax}
 > [!TIP]
 > **这是 youfengknight 基于 阅读 Sigma，专为墨水屏阅读器优化的改版阅读仓库**
 >
@@ -218,21 +239,7 @@ repos:
 | [Github Action](https://github.com/youfengknight/Legado_Max/actions) | 需要代理，需要登录 |
 
 
-#### ⏺️ 【兼容】[阅读 薯条版](https://github.com/huajideshutiao/legado) {#LegadoShutiao}
-
-> [!TIP]
-> **这是 huajideshutiao 基于 阅读 Sigma，专为墨水屏阅读器优化的改版阅读仓库**
->
-> 项目地址：https://github.com/huajideshutiao/Legado
-
-| 下载站点 | 备注 |
-| ------- | --- |
-| [Github Release](https://github.com/huajideshutiao/Legado/releases) | 需要代理，无需登录 |
-| [Github Action](https://github.com/huajideshutiao/Legado/actions) | 需要代理，需要登录 |
-
-
 #### ⏺️ 【兼容】[阅读 NG](https://github.com/joestar817/legado_NG) {#LegadoNG}
-
 > [!TIP]
 > **这是 joestar817 基于 阅读 Sigma 的改版阅读仓库**
 >
@@ -244,10 +251,21 @@ repos:
 | [Github Action](https://github.com/joestar817/legado_NG/actions) | 需要代理，需要登录 |
 
 
-#### ⏺️ 【兼容】[阅读 自用增强分支](https://github.com/Jingshiro/legado) {#LegadoJingshiro}
-
+#### ⏺️ 【兼容】[阅读 PP](https://github.com/damifan3/legadoPP) {#LegadoPP}
 > [!TIP]
-> **这是 Jingshiro 基于 阅读 Sigma 的改版阅读仓库**
+> **这是 damifan3 基于 阅读 Sigma 的改版阅读仓库，在原有基础上增加更多实用功能**
+>
+> 项目地址：https://github.com/damifan3/legadoPP
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/damifan3/legadoPP/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/damifan3/legadoPP/actions) | 需要代理，需要登录 |
+
+
+#### ⏺️ 【兼容】[阅读 自用增强分支](https://github.com/Jingshiro/legado) {#LegadoJingshiro}
+> [!TIP]
+> **这是 Jingshiro 基于 阅读 Sigma 的改版阅读仓库，新增详细阅读记录、笔记想法、AI助手、主题全量导出、藏书票等功能**
 >
 > 项目地址：https://github.com/Jingshiro/legado
 
@@ -255,8 +273,6 @@ repos:
 | ------- | --- |
 | [Github Release](https://github.com/Jingshiro/legado/releases) | 需要代理，无需登录 |
 | [Github Action](https://github.com/Jingshiro/legado/actions) | 需要代理，需要登录 |
-
-
 
 
 ### 🚮 停更软件 {#AndroidOthers}
