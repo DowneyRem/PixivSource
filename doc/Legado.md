@@ -72,24 +72,24 @@ repos:
 
 
 > [!TIP]
-> **开源阅读 Legado 全平台下载指南；软件下载页面 =>
+> **开源阅读 Legado 全平台软件合集；软件下载页面 =>
 > [⬇️ 下载阅读](Download.md)**
 >
-> **另有：新手配置指南：**
-> [✨ 臻享阅读](BetterExperience.md)；
-> **极简配置指南：**
-> [⚡️ 快速开始](QuickStart.md)
+> **快速跳转：**
+> ✅ [兼容软件](#Compatibility)；
+> 🤖 [安卓版](#Android)；
+> 🍎 [苹果版](#AppleiOS)；
+> 🌸 [鸿蒙版](#Harmony)；
+> 🔀 [跨平台](#MultiPlatform)；
+> ⚙️ [配置阅读](#LegadoSettings)
 
-### ✅ 兼容软件 {#Compatibility}
-> [!NOTE]
-> **经过测试，下述软件均支持本站书源**
 
+### 兼容软件 {#Compatibility}
 | 阅读软件 | 版本号 | 兼容书源 | 书源版本 |
 |:----|:---|:----|:-----|
 | **👍 【推荐】阅读 Sigma** | **3.26.021623** | **Pixiv 小说**  | **最新** | 
 | **🏛️ 【官方】阅读 Beta**  | **3.26.021623** | **Pixiv 小说**  | **最新** |
 | **🎀 【兼容】阅读 MD3**   | **3.26.8**      | **Pixiv 小说**  | **最新** |
-| **✅ 【兼容】阅读 T**     | **3.26.060621** | **Pixiv 小说**  | **最新** |
 | **🍎 【兼容】轻悦时光**    | **2.1.05312**   | **Pixiv 小说**  | **最新** |
 | **🍎 【兼容】源阅**       | **1.0 (112)**   | **Pixiv 小说备用** | **最新** |
 
@@ -464,5 +464,14 @@ repos:
 | ------- | --- |
 | [Github Release](https://github.com/LegadoTeam/Legado-Tauri-Release/releases) | 需要代理，无需登录 |
 </details>
+
+
+## 配置阅读 {#LegadoSettings}
+> [!TIP]
+> **详见：新手配置指南：**
+> [✨ 臻享阅读](BetterExperience.md)；
+> **极简配置指南：**
+> [⚡️ 快速开始](QuickStart.md)
+
 
 <!--@include: CommonDiscuss.md-->
