@@ -214,7 +214,7 @@ export const getTargetRelease = (releases: any[], item: { prerelease?: boolean }
 
     if (item.prerelease) return releases[0];
 
-    return releases.find(r => !isPrereleaseRelease(r)) || null;
+    return releases.find(r => !isPrereleaseRelease(r)) || releases[0];
 };
 
 export const resolveRepoMeta = (urlField?: string | null) => {

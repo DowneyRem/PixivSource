@@ -215,7 +215,11 @@ onMounted(async () => {
 const sortedAssets = computed(() => {
   if (!displayRelease.value?.assets) return []
   const keyword = cardItem.value.recommend
-  return [...displayRelease.value.assets].sort((a, b) => {
+  const assets = cardItem.value.prerelease
+      ? displayRelease.value.assets
+      : displayRelease.value.assets.filter(asset => !isPrereleaseAsset(asset.name))
+
+  return [...assets].sort((a, b) => {
     if (!keyword) return 0
     const kw = keyword.split(" ")
     const aIndex = kw.findIndex(k => a.name.toLowerCase().includes(k.toLowerCase()))
@@ -228,6 +232,10 @@ const sortedAssets = computed(() => {
     return 0
   })
 })
+
+const isPrereleaseAsset = (assetName) => {
+  return /(^|[._\-\s])(beta|alpha|pre|preview|rc|canary|nightly)(?=([._\-\s]|\d|$))/i.test(assetName || '')
+}
 
 const visibleAssets = computed(() => {
   if (assetsExpanded.value || !cardItem.value.show_assets) return sortedAssets.value
