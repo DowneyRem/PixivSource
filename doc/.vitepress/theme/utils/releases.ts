@@ -33,24 +33,28 @@ const PLATFORM_CONFIGS: Record<Platform, PlatformConfig> = {
         buildFetchUrl: (repoPath, page, perPage) =>
             `https://legado-repo.tnt-wwxs-tz.workers.dev?platform=github&repo=${encodeURIComponent(repoPath)}&per_page=${perPage}&page=${page}`,
 
-        transformRelease: (item, repoWebUrl) => ({
-            tag_name: item.tag_name,
-            prerelease: item.prerelease,
-            published_at: item.published_at,
-            body: renderMarkdown(item.body || ''),
-            html_url: item.html_url,
-            assets: (item.assets || [])
-                .filter((a: any) => {
-                    const name = (a.name || '').toLowerCase();
-                    return !name.endsWith('.zip') && !name.endsWith('.tar.gz');
-                })
-                .map((a: any) => ({
-                    id: a.id,
-                    name: a.name,
-                    browser_download_url: a.browser_download_url,
-                    size: a.size,
-                })),
-        }),
+        transformRelease: (item, repoWebUrl) => {
+            const isPrerelease = isPrereleaseRelease(item);
+
+            return {
+                tag_name: item.tag_name,
+                prerelease: isPrerelease,
+                published_at: item.published_at,
+                body: renderMarkdown(item.body || ''),
+                html_url: item.html_url,
+                assets: (item.assets || [])
+                    .filter((a: any) => {
+                        const name = (a.name || '').toLowerCase();
+                        return !name.endsWith('.zip') && !name.endsWith('.tar.gz');
+                    })
+                    .map((a: any) => ({
+                        id: a.id,
+                        name: a.name,
+                        browser_download_url: a.browser_download_url,
+                        size: a.size,
+                    })),
+            };
+        },
     },
 
     gitee: {
@@ -71,8 +75,7 @@ const PLATFORM_CONFIGS: Record<Platform, PlatformConfig> = {
                 return !name.endsWith('.zip') && !name.endsWith('.tar.gz');
             });
 
-            const isPrerelease = item.prerelease ||
-                ['beta', 'alpha', 'pre'].some(k => String(item.tag_name).toLowerCase().includes(k));
+            const isPrerelease = isPrereleaseRelease(item);
 
             const tagName = String(item.tag_name).toLowerCase() === 'beta' && item.name
                 ? item.name.replace(/^legado_app_/, '')
@@ -97,6 +100,19 @@ const PLATFORM_CONFIGS: Record<Platform, PlatformConfig> = {
             };
         },
     },
+};
+
+const PRERELEASE_KEYWORDS = ['beta', 'alpha', 'pre', 'preview', 'rc', 'canary', 'nightly'];
+
+const isPrereleaseRelease = (item: any) => {
+    if (item?.prerelease) return true;
+
+    const text = [item?.tag_name, item?.name]
+        .filter(Boolean)
+        .map(value => String(value).toLowerCase())
+        .join(' ');
+
+    return PRERELEASE_KEYWORDS.some(keyword => text.includes(keyword));
 };
 
 // ── 缓存工具 ──
@@ -195,7 +211,10 @@ export const fetchReleasesWithCache = async (
 // ── 其他函数保持不变 ──
 export const getTargetRelease = (releases: any[], item: { prerelease?: boolean }) => {
     if (!releases?.length) return null;
-    return item.prerelease ? releases[0] : releases.find(r => !r.prerelease) || releases[0];
+
+    if (item.prerelease) return releases[0];
+
+    return releases.find(r => !isPrereleaseRelease(r)) || null;
 };
 
 export const resolveRepoMeta = (urlField?: string | null) => {
