@@ -91,7 +91,7 @@ legadoRepos:
     icon: /img/LegadoMax.png
     desc: 继承 Sigma 版，专为墨水屏阅读器优化
     link: https://github.com/Suml-1/Legado_Max
-    prerelease: false
+    prerelease: true
     recommend: beta
     show_assets: 1
     hide: true
@@ -101,7 +101,7 @@ legadoRepos:
     desc: 继承 Sigma 版，在其基础上新增更多功能和修复问题
     link: https://github.com/damifan3/legadoPP
     prerelease: false
-    recommend: release
+    recommend: releasePP
     show_assets: 1
     hide: true
     
@@ -118,8 +118,8 @@ legadoRepos:
     icon: /img/Legado.png
     desc: 继承 官方版，带定时任务的阅读
     link: https://github.com/skybbk1001/legadoT
-    prerelease: true
-    recommend: legado
+    prerelease: false
+    recommend: arm64
     show_assets: 1
     hide: true
 
@@ -128,15 +128,15 @@ legadoRepos:
     desc: 继承 官方版 的修改版
     link: https://github.com/huajideshutiao/Legado
     prerelease: false
-    recommend: arm64
+    recommend: arm64_releaseA.apk
     show_assets: 1
     hide: true
 
   - name: 阅读 Beta
     icon: /img/Legado.png
-    desc: 开源阅读 官方 Beta 版
+    desc: 喵公子基于 官方版 的修改版
     link: https://github.com/legadoteam/legado
-    prerelease: true
+    prerelease: false
     recommend: releaseA.apk
     show_assets: 1
     hide: true
