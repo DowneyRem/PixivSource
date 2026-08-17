@@ -409,7 +409,7 @@ function userFollow(restrict) {
     if (resp.error) {
         sleepToast(`⭐️ 关注作者\n\n⚠️ 关注【${novel.userName}】失败\n已打开浏览器，请(上滑)手动关注`, 1)
         java.startBrowserAwait(`${urlUserUrl(novel.userId)},
-    {"headers": {"User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36" }}`, `关注${novel.userName}`, false)
+        {"User-Agent": ${getWebViewUA()}}}`, `关注${novel.userName}`, false)
     }
     sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
 }
