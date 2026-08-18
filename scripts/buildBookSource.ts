@@ -25,34 +25,6 @@ interface BookSource {
     loginUi: string
     loginUrl: string
     respondTime: number
-    ruleBookInfo: {
-        author: string
-        canReName: string
-        coverUrl: string
-        init: string
-        intro: string
-        kind: string
-        lastChapter: string
-        name: string
-        tocUrl: string
-        wordCount: string
-    }
-    ruleContent: {
-        content: string
-        imageStyle: string
-        callBackJs: string
-    }
-    ruleExplore: {
-        author: string
-        bookList: string
-        bookUrl: string
-        coverUrl: string
-        intro: string
-        kind: string
-        lastChapter: string
-        name: string
-        wordCount: string
-    }
     ruleSearch: {
         author: string
         bookList: string
@@ -65,13 +37,53 @@ interface BookSource {
         name: string
         wordCount: string
     }
+    ruleExplore: {
+        author: string
+        bookList: string
+        bookUrl: string
+        coverUrl: string
+        intro: string
+        kind: string
+        lastChapter: string
+        name: string
+        wordCount: string
+    }
+    ruleBookInfo: {
+        author: string
+        canReName: string
+        coverUrl: string
+        init: string
+        intro: string
+        kind: string
+        lastChapter: string
+        name: string
+        tocUrl: string
+        wordCount: string
+    }
     ruleToc: {
+        preUpdateJs: string
         chapterList: string
         chapterName: string
         chapterUrl: string
+        formatJs: string
+        isVolume: string
+        updateTime: string
         isPay: string
         isVip: string
-        updateTime: string
+        nextTocUrl: string
+    }
+    ruleContent: {
+        content: string
+        nextContentUrl: string
+        subContent: string
+        replaceRegex: string
+        title: string
+        sourceRegex: string
+        imageStyle: string
+        imageDecode: string
+        webJs: string
+        payAction: string
+        callBackJs: string
     }
     searchUrl: string
     variableComment: string
