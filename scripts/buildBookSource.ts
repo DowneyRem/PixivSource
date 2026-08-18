@@ -123,6 +123,58 @@ function saveTextFile(folder:string, fileName:string, data:any):void {
     }
 }
 
+let sourceData = {
+    "pixiv": {
+        "bookSourceType": 0,
+        "enabled": true,
+        "enabledExplore": true,
+        "bookSourceUrl": "https://www.pixiv.net/novel",
+        "bookSourceName": "🅿️ Pixiv 小说",
+        "bookSourceGroup": "🔞 Pixiv",
+        "customOrder": 0
+    },
+    "pixivBackup": {
+        "bookSourceType": 0,
+        "enabled": false,
+        "enabledExplore": false,
+        "bookSourceUrl": "https://www.pixiv.net",
+        "bookSourceName": "🅿️ Pixiv 小说备用",
+        "bookSourceGroup": "🔞 Pixiv",
+        "customOrder": 1,
+        "checkKeyWord": "#测试页面",
+    },
+    "pixivIllust": {
+        "bookSourceType": 2,
+        "enabled": false,
+        "enabledExplore": true,
+        "bookSourceUrl": "https://www.pixiv.net/manga",
+        "bookSourceName": "🅿️ Pixiv 漫画",
+        "bookSourceGroup": "🔞 Pixiv 漫画",
+        "customOrder": 2,
+        "checkKeyWord": "#测试",
+    },
+    "linpx": {
+        "bookSourceType": 0,
+        "enabled": true,
+        "enabledExplore": true,
+        "bookSourceUrl": "https://furrynovel.ink",
+        "bookSourceName": "🦊 Linpx",
+        "bookSourceGroup": "🔞 Pixiv,🐲 Furry",
+        "customOrder": 3,
+        "checkKeyWord": "#测试页面",
+    },
+    "furryNovel": {
+        "bookSourceType": 0,
+        "enabled": true,
+        "enabledExplore": true,
+        "bookSourceUrl": "https://furrynovel.com",
+        "bookSourceName": "🐯 兽人小说站",
+        "bookSourceGroup": "🔞 Pixiv,🐲 Furry",
+        "customOrder": 4,
+        "checkKeyWord": "#测试页面",
+    }
+}
+
 function buildBookSource(sourceName:string, test:boolean|number =undefined): BookSource {
     // 需要在 项目根目录下执行
     let sourcePath = `src/bookSource/${sourceName}`
@@ -132,8 +184,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
 
     // 读取基础模板
     const BookSource: BookSource = JSON.parse(readTextFile(templatePath))[0]
-
-    // 读取各个构建后文件内容
+    // 读取基础构建文件
     let bookSourceComment = readTextFile(path.join(sourcePath, "ReadMe.txt"))
     const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
@@ -153,14 +204,16 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
 
     const detailContent = readTextFile(path.join(sourcePath, "detail.js"))
     const catalogContent = readTextFile(path.join(sourcePath, "catalog.js"))
+
     const contentContent = readTextFile(path.join(sourcePath, "content.js"))
     const callBackJS = readTextFile(path.join(sourcePath, "content.callBack.js"))
 
+
     // 更新书源更新时间
     let options = { year: "numeric", month: "2-digit", day: "2-digit"}
-
     let updateTimeNew = new Date(Date.now() + delayTime).toLocaleDateString("zh", options)
     let lastUpdateTime = Number(`${String(Date.parse(updateTimeNew)).slice(0, 10)}251`)
+
     if (!test) {
         let updateTimeOld = bookSourceComment.split("\n")[0].split("：")[1].replace("）", "")
         bookSourceComment = bookSourceComment.replace(updateTimeOld, updateTimeNew)
@@ -172,7 +225,16 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     }
 
     // 更新书源
+    BookSource.bookSourceType = sourceData[sourceName].bookSourceType
+    BookSource.enabled = sourceData[sourceName].enabled
+    BookSource.enabledExplore = sourceData[sourceName].enabledExplore
+    BookSource.customOrder = sourceData[sourceName].customOrder
+
+    BookSource.bookSourceUrl = sourceData[sourceName].bookSourceUrl
+    BookSource.bookSourceName = sourceData[sourceName].bookSourceName
+    BookSource.bookSourceGroup = sourceData[sourceName].bookSourceGroup
     BookSource.bookSourceComment = bookSourceComment
+
     BookSource.loginUrl = loginUrl
     BookSource.loginUi = loginUI? loginUI: `@js:\n${loginUIJS}`
     BookSource.loginCheckJs = loginCheckJsContent
@@ -185,6 +247,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
 
     BookSource.searchUrl = `@js:\n${searchUrlContent}`
     BookSource.ruleSearch.bookList = `@js:\n${searchContent}`
+    BookSource.ruleSearch.checkKeyWord = sourceData[sourceName].checkKeyWord
 
     BookSource.exploreUrl = `@js:\n${discoverAddressContent}`
     BookSource.ruleExplore.bookList = `@js:\n${discoverContent}`
@@ -198,19 +261,8 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     BookSource.lastUpdateTime = lastUpdateTime
     // console.log(lastUpdateTime)
 
-    if (sourceName === "pixiv") {
-        BookSource.customOrder = 0
-    } else if (sourceName === "pixivBackup") {
-        BookSource.customOrder = 1
-    } else if (sourceName === "pixivIllust") {
-        BookSource.customOrder = 2
-    } else if (sourceName === "linpx") {
-        BookSource.customOrder = 3
-    } else if (sourceName === "furryNovel") {
-        BookSource.customOrder = 4
-    }
-
     return BookSource
+    // 去除空键
 }
 
 function buildPixivSource(test:boolean|number =undefined) {
