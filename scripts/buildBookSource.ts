@@ -126,7 +126,7 @@ function saveTextFile(folder:string, fileName:string, data:any):void {
 function buildBookSource(sourceName:string, test:boolean|number =undefined): BookSource {
     // 需要在 项目根目录下执行
     let sourcePath = `src/bookSource/${sourceName}`
-    let templatePath = `scripts/${sourceName}.json`
+    let templatePath = `scripts/bookSource.json`
     // console.log(sourcePath)
     // console.log(templatePath)
 
