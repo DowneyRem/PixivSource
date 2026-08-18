@@ -82,14 +82,14 @@ interface BookSource {
 
     ruleContent: {
         content: string
-        nextContentUrl: string
         subContent: string
-        replaceRegex: string
         title: string
+        nextContentUrl: string
+        webJs: string
         sourceRegex: string
+        replaceRegex: string
         imageStyle: string
         imageDecode: string
-        webJs: string
         payAction: string
         callBackJs: string
     }
