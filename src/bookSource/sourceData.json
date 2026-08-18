@@ -1,0 +1,52 @@
+{
+	"pixiv": {
+		"bookSourceType": 0,
+		"enabled": true,
+		"enabledExplore": true,
+		"bookSourceUrl": "https://www.pixiv.net/novel",
+		"bookSourceName": "🅿️ Pixiv 小说",
+		"bookSourceGroup": "🔞 Pixiv",
+		"customOrder": 0,
+		"checkKeyWord": "#测试页面"
+	},
+	"pixivBackup": {
+		"bookSourceType": 0,
+		"enabled": false,
+		"enabledExplore": false,
+		"bookSourceUrl": "https://www.pixiv.net",
+		"bookSourceName": "🅿️ Pixiv 小说备用",
+		"bookSourceGroup": "🔞 Pixiv",
+		"customOrder": 1,
+		"checkKeyWord": "#测试页面"
+	},
+	"pixivIllust": {
+		"bookSourceType": 2,
+		"enabled": false,
+		"enabledExplore": true,
+		"bookSourceUrl": "https://www.pixiv.net/manga",
+		"bookSourceName": "🅿️ Pixiv 漫画",
+		"bookSourceGroup": "🔞 Pixiv 漫画",
+		"customOrder": 2,
+		"checkKeyWord": "#测试"
+	},
+	"linpx": {
+		"bookSourceType": 0,
+		"enabled": true,
+		"enabledExplore": true,
+		"bookSourceUrl": "https://furrynovel.ink",
+		"bookSourceName": "🦊 Linpx",
+		"bookSourceGroup": "🔞 Pixiv,🐲 Furry",
+		"customOrder": 3,
+		"checkKeyWord": "#测试页面"
+	},
+	"furryNovel": {
+		"bookSourceType": 0,
+		"enabled": true,
+		"enabledExplore": true,
+		"bookSourceUrl": "https://furrynovel.com",
+		"bookSourceName": "🐯 兽人小说站",
+		"bookSourceGroup": "🔞 Pixiv,🐲 Furry",
+		"customOrder": 4,
+		"checkKeyWord": "#测试页面"
+	}
+}

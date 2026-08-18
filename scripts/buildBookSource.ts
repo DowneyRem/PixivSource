@@ -139,68 +139,17 @@ function cleanEmpty(obj: any): any {
     return result
 }
 
-
-
-let sourceData = {
-    "pixiv": {
-        "bookSourceType": 0,
-        "enabled": true,
-        "enabledExplore": true,
-        "bookSourceUrl": "https://www.pixiv.net/novel",
-        "bookSourceName": "🅿️ Pixiv 小说",
-        "bookSourceGroup": "🔞 Pixiv",
-        "customOrder": 0
-    },
-    "pixivBackup": {
-        "bookSourceType": 0,
-        "enabled": false,
-        "enabledExplore": false,
-        "bookSourceUrl": "https://www.pixiv.net",
-        "bookSourceName": "🅿️ Pixiv 小说备用",
-        "bookSourceGroup": "🔞 Pixiv",
-        "customOrder": 1,
-        "checkKeyWord": "#测试页面",
-    },
-    "pixivIllust": {
-        "bookSourceType": 2,
-        "enabled": false,
-        "enabledExplore": true,
-        "bookSourceUrl": "https://www.pixiv.net/manga",
-        "bookSourceName": "🅿️ Pixiv 漫画",
-        "bookSourceGroup": "🔞 Pixiv 漫画",
-        "customOrder": 2,
-        "checkKeyWord": "#测试",
-    },
-    "linpx": {
-        "bookSourceType": 0,
-        "enabled": true,
-        "enabledExplore": true,
-        "bookSourceUrl": "https://furrynovel.ink",
-        "bookSourceName": "🦊 Linpx",
-        "bookSourceGroup": "🔞 Pixiv,🐲 Furry",
-        "customOrder": 3,
-        "checkKeyWord": "#测试页面",
-    },
-    "furryNovel": {
-        "bookSourceType": 0,
-        "enabled": true,
-        "enabledExplore": true,
-        "bookSourceUrl": "https://furrynovel.com",
-        "bookSourceName": "🐯 兽人小说站",
-        "bookSourceGroup": "🔞 Pixiv,🐲 Furry",
-        "customOrder": 4,
-        "checkKeyWord": "#测试页面",
-    }
-}
-
 function buildBookSource(sourceName:string, test:boolean|number =undefined): BookSource {
     // 需要在 项目根目录下执行
     let sourcePath = `src/bookSource/${sourceName}`
     let templatePath = `scripts/bookSource.json`
+    let defaultDataPath = `src/bookSource/sourceData.json`
     // console.log(sourcePath)
 
     // 读取基础模板
     const BookSource: BookSource = JSON.parse(readTextFile(templatePath))[0]
+    const sourceData = JSON.parse(readTextFile(defaultDataPath))
+
     // 读取基础构建文件
     let bookSourceComment = readTextFile(path.join(sourcePath, "ReadMe.txt"))
     const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
