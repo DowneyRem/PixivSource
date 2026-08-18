@@ -4,26 +4,27 @@ import path from "path"
 import { execSync } from 'node:child_process'
 
 interface BookSource {
-    bookSourceComment: string
-    bookSourceGroup: string
-    bookSourceName: string
     bookSourceType: number
-    bookSourceUrl: string
-    bookUrlPattern: string
-    concurrentRate: string
-    customButton: boolean
-    customOrder: number
     enabled: boolean
-    enabledCookieJar: boolean
     enabledExplore: boolean
+    enabledCookieJar: boolean
     eventListener: boolean
-    header: string
-    jsLib: string
-    lastUpdateTime: number
-    loginCheckJs: string
-    loginUi: string
+    customButton: boolean
+
+    bookSourceUrl: string
+    bookSourceName: string
+    bookSourceGroup: string
+    bookSourceComment: string
+
     loginUrl: string
-    respondTime: number
+    loginUi: string
+    loginCheckJs: string
+
+    bookUrlPattern: string
+    header: string
+    variableComment: string
+    concurrentRate: string
+    jsLib: string
 
     searchUrl: string
     ruleSearch: {
@@ -38,6 +39,7 @@ interface BookSource {
         coverUrl: string
         bookUrl: string
     }
+
     exploreUrl: string
     ruleExplore: {
         bookList: string
@@ -50,6 +52,7 @@ interface BookSource {
         coverUrl: string
         bookUrl: string
     }
+
     ruleBookInfo: {
         init: string
         name: string
@@ -63,6 +66,7 @@ interface BookSource {
         canReName: string
         downloadUrls: string
     }
+
     ruleToc: {
         preUpdateJs: string
         chapterList: string
@@ -75,6 +79,7 @@ interface BookSource {
         isVip: string
         nextTocUrl: string
     }
+
     ruleContent: {
         content: string
         nextContentUrl: string
@@ -88,7 +93,10 @@ interface BookSource {
         payAction: string
         callBackJs: string
     }
-    variableComment: string
+
+    customOrder: number
+    lastUpdateTime: number
+    respondTime: number
     weight: number
 }
 
