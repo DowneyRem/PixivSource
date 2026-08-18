@@ -17,7 +17,6 @@ interface BookSource {
     enabledCookieJar: boolean
     enabledExplore: boolean
     eventListener: boolean
-    exploreUrl: string
     header: string
     jsLib: string
     lastUpdateTime: number
@@ -25,40 +24,44 @@ interface BookSource {
     loginUi: string
     loginUrl: string
     respondTime: number
+
+    searchUrl: string
     ruleSearch: {
-        author: string
-        bookList: string
-        bookUrl: string
         checkKeyWord: string
-        coverUrl: string
-        intro: string
-        kind: string
-        lastChapter: string
-        name: string
-        wordCount: string
-    }
-    ruleExplore: {
-        author: string
         bookList: string
-        bookUrl: string
-        coverUrl: string
-        intro: string
-        kind: string
-        lastChapter: string
         name: string
+        author: string
+        kind: string
         wordCount: string
+        lastChapter: string
+        intro: string
+        coverUrl: string
+        bookUrl: string
+    }
+    exploreUrl: string
+    ruleExplore: {
+        bookList: string
+        name: string
+        author: string
+        kind: string
+        wordCount: string
+        lastChapter: string
+        intro: string
+        coverUrl: string
+        bookUrl: string
     }
     ruleBookInfo: {
-        author: string
-        canReName: string
-        coverUrl: string
         init: string
-        intro: string
-        kind: string
-        lastChapter: string
         name: string
-        tocUrl: string
+        author: string
+        kind: string
         wordCount: string
+        lastChapter: string
+        intro: string
+        coverUrl: string
+        bookUrl: string
+        canReName: string
+        downloadUrls: string
     }
     ruleToc: {
         preUpdateJs: string
@@ -85,7 +88,6 @@ interface BookSource {
         payAction: string
         callBackJs: string
     }
-    searchUrl: string
     variableComment: string
     weight: number
 }
