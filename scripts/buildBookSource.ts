@@ -123,6 +123,24 @@ function saveTextFile(folder:string, fileName:string, data:any):void {
     }
 }
 
+function cleanEmpty(obj: any): any {
+    if (obj === null || typeof obj !== "object") return obj
+
+    if (Array.isArray(obj)) {
+        return obj.map(cleanEmpty)
+    }
+
+    const result: any = {}
+    for (const key in obj) {
+        const value = cleanEmpty(obj[key])
+        if (value === false || value === "") continue
+        result[key] = value
+    }
+    return result
+}
+
+
+
 let sourceData = {
     "pixiv": {
         "bookSourceType": 0,
@@ -180,7 +198,6 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     let sourcePath = `src/bookSource/${sourceName}`
     let templatePath = `scripts/bookSource.json`
     // console.log(sourcePath)
-    // console.log(templatePath)
 
     // 读取基础模板
     const BookSource: BookSource = JSON.parse(readTextFile(templatePath))[0]
@@ -261,8 +278,8 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     BookSource.lastUpdateTime = lastUpdateTime
     // console.log(lastUpdateTime)
 
-    return BookSource
     // 去除空键
+    return cleanEmpty(BookSource)
 }
 
 function buildPixivSource(test:boolean|number =undefined) {
