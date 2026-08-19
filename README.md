@@ -27,30 +27,29 @@
 ### 📖 阅读体验
 | 功能 | Pixiv App | Pixiv 书源 |
 | :--- | :--- | :--- |
-| 📚 **小说书架** | ❌ 无 | ✅ 支持 |
-| 💾 **离线阅读** | ❌ 无 | ✅ 支持 |
-| ⏹️ **首行缩进** | ❌ 无 | ✅ 支持 |
-| 🀄️ **繁简通搜** | ❌ 无 | ✅ 支持 |
-| 🔀 **繁简转换** | ❌ 无 | ✅ 支持（软件功能） |
+`| 📚 **小说书架** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/BetterExperience#ShelfPage) |
+| 💾 **离线阅读** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/LegadoTips#OfflineCache) |
+| 🀄️ **繁简通搜** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/Pixiv#ConvertChinese) |
+| 🔀 **繁简转换** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/LegadoTips#ConvertChinese) |
 | 🔢 **阅读进度** | ☑️ 仅限系列 | ✅ 单篇和系列 |
-| 📜 **阅读记录** | 💰 会员功能 | ✅ 支持（软件功能） |
+| 📜 **阅读记录** | 💰 会员功能 | ✅ 支持 |
 | 🍃 **纯净无广** | 💰 会员功能 | ✅ 纯净无广 |
 
 
-### 🚫 小说过滤
+### 🚫 小说过滤 {#NovelFilter}
 | 功能 | Pixiv App | Pixiv 书源 |
-|------|-----------|-----------|
-| 🙅‍♂️ **屏蔽作者** | 💰 会员功能 | 🆓 免费支持 |
-| 🏷️ **屏蔽标签** | 💰 会员功能 | 🆓 免费支持 |
-| 📝 **屏蔽描述** | ❌ 无 | ✅ 支持 |
-| ❤️ **隐藏喜欢** | ❌ 无 | ✅ 支持 |
-| 📜 **隐藏追更** | ❌ 无 | ✅ 支持 |
+| :--- | :--- | :--- |
+| 👤️ **屏蔽作者** | 💰 会员功能 | 🆓 [免费支持](https://pixivsource.pages.dev/Pixiv#BlockAuthor) |
+| 🏷️ **屏蔽标签** | 💰 会员功能 | 🆓 [免费支持](https://pixivsource.pages.dev/Pixiv#BlockWords) |
+| 📝 **屏蔽描述** | ❌ 无 | ✅ [免费支持](https://pixivsource.pages.dev/Pixiv#BlockWords) |
+| ❤️ **隐藏喜欢** | ❌ 无 | ✅ [免费支持](https://pixivsource.pages.dev/Pixiv#HideNovels) |
+| 📜 **隐藏追更** | ❌ 无 | ✅ [免费支持](https://pixivsource.pages.dev/Pixiv#HideNovels) |
 </details>
 
 
 <details><summary> 🐞 调试书源 </summary>
 
-###  🐞 调试书源
+###  🐞 [调试书源](https://pixivsource.pages.dev/TroubleShoot#DebugSource)
 #### 1.阅读内部调试
 我的 - 书源管理 - 编辑书源 - 调试 - 输入内容
 
@@ -73,25 +72,25 @@
 <table>
 <th> btsrk 订阅源 </th> <th> 订阅源功能 </th>
 <tr>
-  <td><a href="https://www.pixiv.net/novel"> 1️⃣ Pixiv 小说</a></td>
+  <td> 1️⃣ <a href="https://www.pixiv.net/novel">Pixiv 小说</a></td>
   <td rowspan="3"> ✅ 添加小说<br>✅ 导入书源<br>✅ 登录界面 <br></td>
 </tr>
-<tr><td><a href="https://www.linpx.ink"> 2️⃣ Linpx 林匹克斯</a></td></tr>
-<tr><td><a href="https://www.furrynovel.com"> 3️⃣ 兽人控小说站</a></td></tr>
+<tr><td> 2️⃣ <a href="https://www.linpx.ink">Linpx 林匹克斯</a></td></tr>
+<tr><td> 3️⃣ <a href="https://www.furrynovel.com">兽人控小说站</a></td></tr>
 
 <tr>
-  <td><a href="https://pixivsource.pages.dev"> 4️⃣ Pixiv 书源 官网</a></td>
+  <td> 4️⃣ <a href="https://pixivsource.pages.dev">Pixiv 书源 官网</a></td>
   <td rowspan="2"> ✅ 快速导入<br>📖 阅读资源</td>
 </tr>
-<tr><td><a href="https://pixivsource.pages.dev/Import"> 5️⃣ 一键导入</a></td>
+<tr><td> 5️⃣ <a href="https://pixivsource.pages.dev/Import">一键导入</a></td>
 
 <tr>
-  <td><a href="https://furrygames.top/zh-cn/list.html"> 6️⃣ 兽人控游戏索引</a></td>
+  <td> 6️⃣ <a href="https://furrygames.top/zh-cn/list.html">兽人控游戏索引</a></td>
   <td  rowspan="4">✅ 快速访问<br>🐺 兽人网站</td>
 </tr>
-<tr><td><a href="https://kemono.games/zh-Hans"> 7️⃣ 兽人控游戏库</a></td></tr>
-<tr><td><a href="https://www.furryeventchina.com"> 8️⃣ 兽展日历</a></td></tr>
-<tr><td><a href="https://www.furryfusion.net"> 9️⃣ 兽聚汇总</a></td></tr>
+<tr><td> 7️⃣ <a href="https://kemono.games/zh-Hans">兽人控游戏库</a></td></tr>
+<tr><td> 8️⃣ <a href="https://www.furryeventchina.com">兽展日历</a></td></tr>
+<tr><td> 9️⃣ <a href="https://www.furryfusion.net">兽聚汇总</a></td></tr>
 </table>
 </details>
 
@@ -112,11 +111,9 @@
 
 <details><summary> 📄 import 订阅源 </summary>
 
-### 📄 import 订阅源 （非本项目的其他资源）
-- import 订阅源：导入本项目整理的书源、订阅源等
-
+### 📄 import 订阅源：导入本项目整理的书源、订阅源等
 | 名称         | 相关网址                                                                     |
-| ----------- | --------------------------------------------------------------------------- |
+| ------------ | --------------------------------------------------------------------------- |
 | 通用书源　　　 | https://raw.githubusercontent.com/DowneyRem/PixivSource/main/normal.json   |
 | 聚合搜索　　　 | https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json    |
 | 书源订阅　　　 | https://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json   |
@@ -132,6 +129,7 @@
 ## 🗃 杂类
 ### 🌱 [项目起源：为了更好的阅读体验](https://pixivsource.pages.dev/Beginning)
 ### ☕️ [支持开发](https://pixivsource.pages.dev/Sponsor)
+### 🔌 [Pixiv Web Api](https://pixivsource.pages.dev/PixivWebApi)
 
 <details><summary> ©️ 版权问题 </summary>
 
@@ -203,10 +201,12 @@
 
 <details><summary> ⭐️ Star History </summary>
 
-<picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DowneyRem/PixivSource&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DowneyRem/PixivSource&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=DowneyRem/PixivSource&type=Date" />
-</picture>
+<a href="https://star-history.dera.page/#DowneyRem/PixivSource">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=DowneyRem/PixivSource&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=DowneyRem/PixivSource" />
+   <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=DowneyRem/PixivSource" />
+ </picture>
+</a>
 </details>
 
