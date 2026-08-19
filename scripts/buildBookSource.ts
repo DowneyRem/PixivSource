@@ -133,7 +133,7 @@ function cleanEmpty(obj: any): any {
     const result: any = {}
     for (const key in obj) {
         const value = cleanEmpty(obj[key])
-        if (value === false || value === "") continue
+        if (value === "") continue
         result[key] = value
     }
     return result

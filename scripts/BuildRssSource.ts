@@ -69,6 +69,22 @@ function saveTextFile(folder:string, fileName:string, data:any):void {
     }
 }
 
+function cleanEmpty(obj: any): any {
+    if (obj === null || typeof obj !== "object") return obj
+
+    if (Array.isArray(obj)) {
+        return obj.map(cleanEmpty)
+    }
+
+    const result: any = {}
+    for (const key in obj) {
+        const value = cleanEmpty(obj[key])
+        if (value === false || value === "") continue
+        result[key] = value
+    }
+    return result
+}
+
 function buildRssSource(sourceName:string): RssSource[] {
     // 需要在 项目根目录下执行
     let templatePath = `src/rssSource/${sourceName}.json`
@@ -84,11 +100,9 @@ function buildRssSource(sourceName:string): RssSource[] {
         RssSource.lastUpdateTime = 1778342400251
         Object.keys(defaultData).forEach((key) => {
             if (RssSource[key] === undefined) RssSource[key] = defaultData[key]
-            if (RssSource[key] === false) delete RssSource[key]
-            if (RssSource[key] === "") delete RssSource[key]
         })
     })
-    return RssSources
+    return cleanEmpty(RssSources)
 }
 
 const sourceNames = {
