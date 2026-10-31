@@ -227,6 +227,17 @@ repos:
 | [Github Action](https://github.com/CCSSNE/legadoC/actions) | 需要代理，需要登录 |
 
 
+#### ⏺️ 【兼容】[阅读 SK](https://github.com/skxingyu/legado-sk) {#LegadoSK}
+
+> [!TIP]
+> **这是 skxingyu 基于 阅读 C 的改版仓库，针对阅读进度同步与朗读（听书）体验做了针对性优化**
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/skxingyu/legado-sk/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/skxingyu/legado-sk/actions) | 需要代理，需要登录 |
+
+
 #### ⏺️ 【兼容】[阅读 NG](https://github.com/joestar817/legado_NG) {#LegadoNG}
 > [!TIP]
 > **这是 joestar817 基于 阅读 Sigma 的改版阅读仓库**

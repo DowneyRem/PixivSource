@@ -77,6 +77,16 @@ legadoRepos:
     recommend: legado
     show_assets: 1
     hide: true
+      
+  - name: 阅读 SK
+    icon: /img/Legado.png
+    desc: 继承 C 版，针对阅读进度同步与朗读（听书）体验做了针对性优化，按个人使用习惯开发
+    link: https://github.com/skxingyu/legado-sk
+    prerelease: false
+    recommend: legado
+    show_assets: 1
+    hide: true
+    
     
   - name: 阅读 NG
     icon: /img/LegadoNG.png
@@ -120,15 +130,6 @@ legadoRepos:
     link: https://github.com/skybbk1001/legadoT
     prerelease: false
     recommend: arm64
-    show_assets: 1
-    hide: true
-
-  - name: 阅读 薯条版
-    icon: /img/LegadoShutiao.png
-    desc: 继承 官方版 的修改版
-    link: https://github.com/huajideshutiao/Legado
-    prerelease: false
-    recommend: arm64_releaseA.apk
     show_assets: 1
     hide: true
 
