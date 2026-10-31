@@ -44,7 +44,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [2023](#2023)；
 > [2021](#2021)；
 > [起源](#Beginning)；
-> 📜 [更新日志](UpdateLog.md)；
+> 📜 [更新日志](UpdateLog/index.md)；
 > 🌱 [项目起源](Beginning.md)
 
 

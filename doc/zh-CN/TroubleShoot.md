@@ -48,7 +48,7 @@ head:
 >  - **阅读分支版本（如：Sigma、MD3 等）**
 >  - **阅读软件版本（如：3.26.0101）**
 >  - **使用书源版本（如：251）**
->  - **阅读是否兼容当前书源版本，详见 [书源兼容性](UpdateLog.md#Pixiv)**
+>  - **阅读是否兼容当前书源版本，详见 [书源兼容性](UpdateLog/index.md#Pixiv)**
 >  - **如果是软件问题，请去 阅读对应 GitHub 仓库 反馈，详见：[下载阅读](Download.md)**
 >  - **如果是书源问题，请去 [书源 GitHub 仓库](https://github.com/DowneyRem/PixivSource/issues) 提交问题，并附加调试结果，调试方法见下方 调试书源**
 

@@ -98,7 +98,7 @@ jobs:
           }
           /^##/ { if (flag) exit }
           flag
-          ' doc/UpdateLog.md > RELEASE_NEXT.md
+          ' doc/zh-CN/UpdateLog/index.md > RELEASE_NEXT.md
           
           if [ -s RELEASE_NEXT.md ]; then
               echo "LOG_FOUND=true" >> $GITHUB_ENV

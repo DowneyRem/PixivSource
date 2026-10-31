@@ -44,7 +44,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 <div align="center">
-<img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+<img width="256" src="../pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 # 📜 更新日志 📜
 #### 🅿️ 开源阅读 Pixiv 书源

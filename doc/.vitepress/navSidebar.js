@@ -84,6 +84,7 @@ const logMenu = {
     base: "/UpdateLog/",
     collapsed: false,
     items: [
+        { text: "📜 更新日志", link: "/" },
         { text: "📜 日志 2026", link: "2026" },
         { text: "📜 日志 2025", link: "2025" },
         { text: "📜 日志 2024", link: "2024" }
