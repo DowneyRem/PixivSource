@@ -52,6 +52,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ### 📆 2026 {#2026}
 <br>
 
+::: timeline 2026-10-30
+> [!NOTE]
+> **FN `.JS` 书源，基础功能完成移植** #290
+:::
+
 ::: timeline 2026-10-24
 > [!TIP]
 > **Pixiv 书源 移除直连功能**
@@ -70,6 +75,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ::: timeline 2026-09-22
 > [!INFO]
 > **开始移植 Linpx `.JS` 书源**
+:::
+
+::: timeline 2026-07-18
+> [!NOTE]
+> **阅读 T 初步支持 `.JS` 书源**
 :::
 
 ::: timeline 2026-07-03

@@ -74,7 +74,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ## 📆 2026下半年 {#2026H2}
 
 
-### 📚 更新 290{#290}
+### 📚 更新 290 {#290}
 - 🐯 FN 书源：
   - 🔀 移植为新版 `.JS` 书源
     - ✅ 搜索、✅ 发现、✅ 添加网址
@@ -86,7 +86,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
   - 显示【加入书架】的按钮
 
 
-## 📃 更新 280-290 {#280+}
+## 📃 更新 280+ {#280+}
 ### 📚 更新 289 {#289}
 - 🅿️ Pixiv 书源、备用、漫画：
   - ✈️ 移除直连模式
@@ -231,7 +231,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
     - 🔢 章节编号、️❤️ 自动收藏、📚 整合系列
 
 
-## 📃 更新 270-280 {#270+}
+## 📃 更新 270+ {#270+}
 ### 📚 更新 279 {#279}
 - 🅿️ Pixiv 书源：
   - ⭐️ 发现：使用新 API 获取小说
