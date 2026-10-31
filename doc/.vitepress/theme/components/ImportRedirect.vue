@@ -187,6 +187,12 @@ function parseUrlLogic(url: string) {
   if (!u) return
   if (u.startsWith('{') || u.startsWith('[')) return
 
+  // 检测到 .js 书源，自动切换到「书源」
+  if (/\.js(\?|$|#)/i.test(u)) {
+    selectedType.value = 'bookSource'
+    return
+  }
+
   if (u.startsWith('legado://')) {
     const match = u.match(/legado:\/\/import\/([a-zA-Z]+)/)
     if (match?.[1]) {
