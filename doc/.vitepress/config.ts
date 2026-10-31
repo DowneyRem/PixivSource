@@ -28,6 +28,9 @@ export default withPwa(defineConfig({
     lastUpdated: true,
 
     head: getHeadConfig(BASE),
+    rewrites: {
+        'zh-CN/:path*': ':path*'
+    },
     locales: localesConfig,
     markdown: markdownConfig,
     transformPageData,

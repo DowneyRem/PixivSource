@@ -1,7 +1,7 @@
 ### 🀄️ [简体中文](README.md) 🀄️ [繁體中文](README.zh-TW.md)
 
 <div align="center">
-<img width="256" src="doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+<img width="256" src="doc/zh-CN/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 ## 🅿️ PixivSource — Read Pixiv Novels Properly
 ### The best third-party novel reader for Pixiv

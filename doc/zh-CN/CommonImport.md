@@ -8,7 +8,7 @@
 >
 > 🐲 [一键导入 Pixiv 订阅源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
 >
-> **轻悦时光导入方法、其他导入方法详见：** [导入书源](./ImportBookSource.md) 
+> **轻悦时光导入方法、其他导入方法详见：** [导入书源](ImportBookSource.md) 
 </div>
 
 
@@ -21,7 +21,7 @@
 >
 > 🐲 [一键导入 Linpx 订阅源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
 >
-> **轻悦时光导入方法、其他导入方法详见：** [导入书源](./ImportBookSource.md)
+> **轻悦时光导入方法、其他导入方法详见：** [导入书源](ImportBookSource.md)
 </div>
 
 
@@ -34,7 +34,7 @@
 >
 > 🐲 [一键导入 FurryNovel 订阅源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
 >
-> **轻悦时光导入方法、其他导入方法详见：** [导入书源](./ImportBookSource.md)
+> **轻悦时光导入方法、其他导入方法详见：** [导入书源](ImportBookSource.md)
 </div>
 
 
