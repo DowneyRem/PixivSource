@@ -1,7 +1,7 @@
 /**
  * ConvertChinese.js
  *
- * 将 doc/ 根目录下的简体中文 .md 文件转换为繁体中文
+ * 将 doc/zh-CN/ 目录下的简体中文 .md 文件转换为繁体中文
  * 输出到 doc/zh-TW/ 目录，并自动生成繁体导航栏与侧边栏配置
  *
  * 用法：
@@ -33,19 +33,16 @@ import { Converter } from 'opencc-js'
 // 这里去掉副档名，让 Node.js 自动相容 .ts 或 .js
 import { cnNav, cnSidebar } from '../.vitepress/navSidebar.js'
 
-// ─── 配置 ────────────────────────────────────────────────────────────────────
-
-const SOURCE_DIR = 'doc'          // 简体中文文档根目录
+// ─── 配置 ─────────────────────────────────────────────────────────────────
+const SOURCE_DIR = 'doc/zh-CN'   // 简体中文文档根目录
 const OUTPUT_DIR = 'doc/zh-TW'   // 繁体中文输出目录
 
 // 不需要转换的目录（这些目录下的内容会被跳过）
 const SKIP_DIRS = [
-    'zh-TW',    // 输出目录本身
-    'en',       // 英文目录
-    '.vitepress',
     'node_modules',
-    'pic',      // 图片目录
-    'pic.en',
+    '.vitepress',
+    'en',       // 英文目录
+    'zh-TW',    // 输出目录本身
 ]
 
 // 不需要转换的文件（文件名完全匹配）
@@ -54,9 +51,7 @@ const SKIP_FILES = [
 ]
 
 // ─── 初始化转换器 ─────────────────────────────────────────────────────────────
-
 const converter = Converter({ from: 'cn', to: 'twp' })
-
 // ─── 导航/侧边栏配置数据转换逻辑 ──────────────────────────────────────────────────
 
 /**
@@ -253,19 +248,15 @@ function convertLine(line) {
 }
 
 /**
- * 修正图片/链接路径
- * zh-TW/ 目录比根目录深一层，相对路径需要加 ../
- * ./pic/xxx.png  →  ../pic/xxx.png
- * ./QuickStart   →  ../QuickStart （站内链接不加，由 VitePress 路由处理）
+ * 修正图片路径
+ * ./pic/xxx.png  →  ../zh-CN/pic/xxx.png
  */
 function fixPaths(text) {
-    // Markdown 图片/链接：![...](./pic/...)  →  ![...](../pic/...)
-    text = text.replace(/\]\(\.\/(pic[^)]*)\)/g, '](../$1)')
+    text = text.replace(/\]\(\.\/(pic[^)]*)\)/g, '](../zh-CN/$1)')
     return text
 }
 
 // ─── 文件遍历 ─────────────────────────────────────────────────────────────────
-
 function getAllMdFiles(dir, baseDir = dir) {
     const files = []
     const entries = readdirSync(dir)
