@@ -79,7 +79,7 @@ function getUserNovelsByName() {
 }
 
 function getUserNovelsById(uid) {
-    return util.getUserNovelsById(getAjaxJson(urlUserAllWorks(uid)), true)
+    return util.getUserNovelsById(getAjaxJson(urlUserAllWorks(uid), true).body)
 }
 
 function getUserNovels() {

@@ -173,7 +173,7 @@ function handlerHome() {
 function handlerUserNovels() {
     return () => {
         let resp = JSON.parse(result)
-        return util.formatNovels(util.handNovels(util.getUserNovelsById(resp)))
+        return util.formatNovels(util.handNovels(util.getUserNovelsById(resp.body)))
     }
 }
 
