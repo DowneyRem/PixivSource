@@ -169,7 +169,7 @@ function handlerHome() {
     }
 }
 
-// 作者小说
+// 兽人作者小说
 function handlerUserNovels() {
     return () => {
         let resp = JSON.parse(result)
@@ -189,7 +189,7 @@ function handlerRegex() {
             }
         }
 
-        let novels = getAjaxJson(urlNovelsDetailed(getFromCache("pixivUid", novelIds))).body
+        let novels = getAjaxJson(urlNovelsDetailed(getFromCache("pixivUid"), novelIds)).body
         return util.formatNovels(util.handNovels(util.combineNovels(Object.values(novels).reverse())))
     }
 }

@@ -548,8 +548,8 @@ function publicFunc() {
         // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
         // java.log(JSON.stringify(novelIds.length))
 
-        if (novelIds) {
-            let singles = getAjaxJson(urlNovelsDetailed(getFromCache("pixivUid", novelIds))).body
+        if (novelIds.length >= 1) {
+            let singles = getAjaxJson(urlNovelsDetailed(getFromCache("pixivUid"), novelIds)).body
             novels = novels.concat(Object.values(singles).reverse())
         }
         return novels
