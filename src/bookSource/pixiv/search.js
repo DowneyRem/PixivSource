@@ -60,34 +60,35 @@ function getUserIdCache() {
 }
 
 // 搜索作者
-function getUserNovelsByName(full=false) {
-    const MAX_PAGE = 5
+function getUserNovelsByName(full = false) {
+    let novels = []; let userIds = new Set()
+    let MAX_PAGE = 5; let totalPages = 1
     let userName = String(java.get("keyword"))
-    let page = Number(java.get("page"))
+    let page = Number(java.get("page")) || 1
 
-    // cache.delete(urlSearchUser(userName, page, full))
-    java.log(urlSearchUser(userName, page, full))
-    let resp = getAjaxJson(urlSearchUser(userName, page, full)).body
-    let novels = resp.thumbnails.novel
-    let userIds = Array.from(new Set(novels.map(item => item.userId)))
-
-    java.log(`total:${resp.page.total}`)
-    // for (page=2; (page < resp.page.total/10 + 1); page++) {
-    for (page=2; (page < resp.page.total/10 + 1) && (page <= MAX_PAGE); page++) {
+    for (; page <= Math.min(totalPages, MAX_PAGE); page++) {
         java.log(urlSearchUser(userName, page, full))
         let resp = getAjaxJson(urlSearchUser(userName, page, full)).body
-        novels = novels.concat(resp.thumbnails.novel)
-        userIds = userIds.concat(Array.from(new Set(novels.map(item => item.userId))))
+
+        if (page === 1) {
+            totalPages = Math.ceil(resp.page.total / 10)
+            // java.log(`共有作者：${resp.page.total}`)
+        }
+
+        let pageNovels = resp.thumbnails.novel || []
+        novels = novels.concat(pageNovels)
+        pageNovels.forEach(item => userIds.add(item.userId))
     }
 
+    userIds = Array.from(userIds)
     // novels = novels.filter(item => item.userId.startsWith(userName))
     java.log(`👤 获取作者ID：${JSON.stringify(userIds)}`)
     if (userIds.length === 1) {
-        let pixivAuthors = getFromCacheObject("pixivAuthors")
+        let pixivAuthors = getFromCacheObject("pixivAuthors") || {}
         pixivAuthors[userName] = userIds[0]
         putInCacheObject("pixivAuthors", pixivAuthors)
     }
-    if (userIds.length === 0) sleepToast(`\n暂无名为【${userName}】的作者发布过小说\n请尝试其他关键词`)
+    if (userIds.length === 0) sleepToast(`👤 搜索作者\n暂无名为【${userName}】的作者发布过小说\n请尝试更换其他关键词`)
     return novels
 }
 
