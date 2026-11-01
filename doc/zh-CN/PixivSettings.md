@@ -46,6 +46,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 </div>
 
 
+> [!WARNING]
+> ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
+> [网页版](https://pixivsource.pages.dev/PixivSettings)
+> 内容更全面，排版更精美**
+
 
 > [!TIP]
 > **Pixiv 书源的设置介绍**
@@ -101,6 +106,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ### 3️⃣ 菜单设置
 菜单设置为 显示/隐藏 XX项目
+
 | 书源设置　　　　　　　 | 默认状态 | 常量名称　　       | 作用 |
 | ------------------- | ------- | ---------------- | --- |
 | 书源设置(书籍编辑界面) | ✅ 开启 | `SHOW_SETTINGS`  | 全局 |

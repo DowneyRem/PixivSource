@@ -33,4 +33,6 @@
 - ❌ Pixiv 漫画：暂无计划
 
 
+## ➕ 更多方法详见：[导入书源](https://pixivsource.pages.dev/ImportBookSource) & [导入订阅源](https://pixivsource.pages.dev/ImportRssSource)
+- `.JSON` 书源详见 [bookSource](../bookSource)
 ### 其他详见首页 [README](../../README.md)

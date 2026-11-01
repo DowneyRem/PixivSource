@@ -7,6 +7,5 @@
 
 
 ## ➕ 更多方法详见：[导入书源](https://pixivsource.pages.dev/ImportBookSource) & [导入订阅源](https://pixivsource.pages.dev/ImportRssSource)
-
 - `.JS` 书源详见 [bookSourceJS](../bookSourceJS)
 - 其他详见首页 [README](../../README.md)

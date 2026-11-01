@@ -1,21 +1,5 @@
----
-layout: doc
-#title: 开发团队 - PixivSource Pixiv 书源项目成员
-#description: PixivSource 项目开发团队介绍：核心开发者、站方协助与社区贡献者名单。
-
-#sidebar: false
-#aside: false
-editLink: false
-lastUpdated: false
-prev: false
-next: false
-comment: false
-#friendLink: false
----
-
-
 <div align="center">
-<img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+<img width="256" src="./zh-CN/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 #### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado-E) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
