@@ -46,7 +46,7 @@ var seriesSet = {
 };
 
 function getUserIdCache() {
-    let userId
+    let userIds = []
     let userName = String(java.get("keyword"))
     //cache.delete("pixivAuthors")
     let pixivAuthors = getFromCacheObject("pixivAuthors")
@@ -54,8 +54,9 @@ function getUserIdCache() {
     if (pixivAuthors) userId = pixivAuthors[userName]
     if (userId) {
         java.log(`👤 缓存作者ID：${userId}`)
-        return [userId]
+        userIds.push(userId)
     }
+    return userIds
 }
 
 // 模糊搜索作者
@@ -82,12 +83,11 @@ function getUserNovelsById(uid) {
     return util.getUserNovelsById(getAjaxJson(urlUserAllWorks(uid), true).body)
 }
 
+// 精确搜索
 function getUserNovels() {
-    let novels = []
     let uidList = getUserIdCache()
-    if (!uidList) [uidList, novels] = getUserNovelsByName()
-    if (uidList.length === 1 ) novels = getUserNovelsById(uidList[0])
-    return novels
+    if (uidList.length === 1 ) return getUserNovelsById(uidList[0])
+    else return getUserNovelsByName(true)
 }
 
 function search(name, type, page) {
