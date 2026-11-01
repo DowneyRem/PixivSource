@@ -515,13 +515,13 @@ function publicFunc() {
     u.getUserNovelsById = function(resp) {
         let novels = [], seriesIds = []
         // 获取系列小说，与 util.handNovels 系列详情兼容
-        if (resp.body.novelSeries.length >= 1) {
-            resp.body.novelSeries.forEach(novel =>{
+        if (resp.novelSeries.length >= 1) {
+            resp.novelSeries.forEach(novel =>{
                 seriesIds.push(novel.id)
                 novel.textCount = novel.publishedTotalCharacterCount
                 novel.description = novel.caption
             })
-            novels = novels.concat(resp.body.novelSeries)
+            novels = novels.concat(resp.novelSeries)
         }
 
         // 获取所有系列内部的小说 ID
@@ -543,13 +543,13 @@ function publicFunc() {
         // java.log(JSON.stringify(seriesNovelIds.length))
 
         // 获取单篇小说，默认过滤系列小说的 novelId，否则与系列重复
-        let novelIds = Object.keys(resp.body.novels)
+        let novelIds = Object.keys(resp.novels)
         novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
         // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
         // java.log(JSON.stringify(novelIds.length))
 
-        if (novelIds) {
-            let singles = getAjaxJson(urlNovelsDetailed(getFromCache("pixivUid", novelIds))).body
+        if (novelIds.length >= 1) {
+            let singles = getAjaxJson(urlNovelsDetailed(resp.userId, novelIds)).body
             novels = novels.concat(Object.values(singles).reverse())
         }
         return novels

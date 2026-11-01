@@ -46,7 +46,7 @@ var seriesSet = {
 };
 
 function getUserIdCache() {
-    let userId
+    let userIds = []
     let userName = String(java.get("keyword"))
     //cache.delete("pixivAuthors")
     let pixivAuthors = getFromCacheObject("pixivAuthors")
@@ -54,40 +54,53 @@ function getUserIdCache() {
     if (pixivAuthors) userId = pixivAuthors[userName]
     if (userId) {
         java.log(`👤 缓存作者ID：${userId}`)
-        return [userId]
+        userIds.push(userId)
     }
+    return userIds
 }
 
-// 模糊搜索作者
-function getUserNovelsByName() {
+// 搜索作者
+function getUserNovelsByName(full = false) {
+    let novels = []; let userIds = new Set()
+    let MAX_PAGE = 5; let totalPages = 1
     let userName = String(java.get("keyword"))
-    let page = Number(java.get("page"))
+    let page = Number(java.get("page")) || 1
 
-    // cache.delete(urlSearchUser(userName, page, full))
-    let resp = getAjaxJson(urlSearchUser(userName, page)).body
-    let novels = resp.thumbnails.novel
-    let userIds = resp.page.userIds
+    for (; page <= Math.min(totalPages, MAX_PAGE); page++) {
+        java.log(urlSearchUser(userName, page, full))
+        let resp = getAjaxJson(urlSearchUser(userName, page, full)).body
 
+        if (page === 1) {
+            totalPages = Math.ceil(resp.page.total / 10)
+            // java.log(`共有作者：${resp.page.total}`)
+        }
+
+        let pageNovels = resp.thumbnails.novel || []
+        novels = novels.concat(pageNovels)
+        pageNovels.forEach(item => userIds.add(item.userId))
+    }
+
+    userIds = Array.from(userIds)
+    // novels = novels.filter(item => item.userId.startsWith(userName))
     java.log(`👤 获取作者ID：${JSON.stringify(userIds)}`)
     if (userIds.length === 1) {
-        let pixivAuthors = getFromCacheObject("pixivAuthors")
+        let pixivAuthors = getFromCacheObject("pixivAuthors") || {}
         pixivAuthors[userName] = userIds[0]
         putInCacheObject("pixivAuthors", pixivAuthors)
     }
-    if (userIds.length === 0) sleepToast(`\n暂无名为【${userName}】的作者发布过小说\n请尝试其他关键词`)
-    return [userIds, novels]
+    if (userIds.length === 0) sleepToast(`👤 搜索作者\n暂无名为【${userName}】的作者发布过小说\n请尝试更换其他关键词`)
+    return novels
 }
 
 function getUserNovelsById(uid) {
-    return util.getUserNovelsById(getAjaxJson(urlUserAllWorks(uid)), true)
+    return util.getUserNovelsById(getAjaxJson(urlUserAllWorks(uid), true).body)
 }
 
+// 精确搜索
 function getUserNovels() {
-    let novels = []
     let uidList = getUserIdCache()
-    if (!uidList) [uidList, novels] = getUserNovelsByName()
-    if (uidList.length === 1 ) novels = getUserNovelsById(uidList[0])
-    return novels
+    if (uidList.length === 1 ) return getUserNovelsById(uidList[0])
+    else return getUserNovelsByName(true)
 }
 
 function search(name, type, page) {
@@ -217,7 +230,7 @@ function handlerFactory() {
     } else if (keyword.startsWith("$")) {
         keyword = keyword.slice(1)
         java.put("keyword", keyword)
-        novels = novels.concat(getUserNovelsByName()[1])
+        novels = novels.concat(getUserNovelsByName())
 
     } else {
         novels = novels.concat(getNovels())
