@@ -86,6 +86,31 @@ watch(() => route.path, () => nextTick(alignToContent))
 </script>
 
 <style scoped>
+/* ≥960px：有侧边栏，无大纲 */
+@media (min-width: 960px) {
+  .VPContent.has-sidebar ~ div .fixed-friend-footer .footer-container {
+    padding-left: calc(var(--vp-sidebar-width) + 32px);
+    padding-right: 32px;
+  }
+}
+
+/* ≥1280px：有侧边栏 + 大纲（aside 固定 256px） */
+@media (min-width: 1280px) {
+  .VPContent.has-sidebar ~ div .fixed-friend-footer .footer-container {
+    padding-right: calc(256px + 32px); /* 288px */
+  }
+}
+
+/* ≥1440px：整体布局居中，多余空间在最外层两侧 */
+@media (min-width: 1440px) {
+  .VPContent.has-sidebar ~ div .fixed-friend-footer .footer-container {
+    /* 左侧 = 居中左边空白 + 侧边栏 + 内容左边距 */
+    padding-left: calc((100vw - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width) + 32px);
+    /* 右侧 = 居中右边空白 + aside(256px) + 内容右边距 */
+    padding-right: calc((100vw - var(--vp-layout-max-width)) / 2 + 256px + 32px);
+  }
+}
+
 .fixed-friend-footer {
   width: 100%;
   padding-bottom: 20px;
