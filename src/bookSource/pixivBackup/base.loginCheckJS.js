@@ -549,7 +549,7 @@ function publicFunc() {
         // java.log(JSON.stringify(novelIds.length))
 
         if (novelIds.length >= 1) {
-            let singles = getAjaxJson(urlNovelsDetailed(resp.userId, novelIds)).body
+            let singles = getAjaxJson(urlNovelsDetailed(getFromCache("pixivUid"), novelIds)).body
             novels = novels.concat(Object.values(singles).reverse())
         }
         return novels
