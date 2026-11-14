@@ -60,35 +60,28 @@ function getUserIdCache() {
 }
 
 // 搜索作者
+// 模糊搜索：每页只取当前页，由阅读器翻页
+// 精确搜索：解析出作者ID后，取该作者全部小说
 function getUserNovelsByName(full = false) {
-    let novels = []; let userIds = new Set()
-    let MAX_PAGE = 5; let totalPages = 1
-    let userName = String(java.get("keyword"))
+    let userName = String(java.get("keyword")).trim()
     let page = Number(java.get("page")) || 1
 
-    for (; page <= Math.min(totalPages, MAX_PAGE); page++) {
-        java.log(urlSearchUser(userName, page, full))
-        let resp = getAjaxJson(urlSearchUser(userName, page, full)).body
+    java.log(urlSearchUser(userName, page, full))
+    let resp = getAjaxJson(urlSearchUser(userName, page, full))
+    if (resp.error === true || !resp.body) return []
 
-        if (page === 1) {
-            totalPages = Math.ceil(resp.page.total / 10)
-            // java.log(`共有作者：${resp.page.total}`)
-        }
-
-        let pageNovels = resp.thumbnails.novel || []
-        novels = novels.concat(pageNovels)
-        pageNovels.forEach(item => userIds.add(item.userId))
-    }
-
-    userIds = Array.from(userIds)
-    // novels = novels.filter(item => item.userId.startsWith(userName))
+    let novels = resp.body.thumbnails.novel || []
+    let userIdsOriginal = resp.body.page.userIds
+    let userIds = Array.from(new Set(novels.map(item => item.userId)))
     java.log(`👤 获取作者ID：${JSON.stringify(userIds)}`)
-    if (userIds.length === 1) {
+
+    if (page === 1 && userIds.length === 1) {
         let pixivAuthors = getFromCacheObject("pixivAuthors") || {}
         pixivAuthors[userName] = userIds[0]
         putInCacheObject("pixivAuthors", pixivAuthors)
     }
-    if (userIds.length === 0) sleepToast(`👤 搜索作者\n暂无名为【${userName}】的作者发布过小说\n请尝试更换其他关键词`)
+
+    if (userIdsOriginal.length === 0) sleepToast(`👤 搜索作者\n暂无名为【${userName}】的作者发布过小说\n请尝试更换其他关键词`)
     return novels
 }
 
@@ -99,6 +92,7 @@ function getUserNovelsById(uid) {
 }
 
 // 精确搜索：命中作者缓存则直接返回该作者全部小说
+// 精确搜索：否则精确搜索作者名称
 function getUserNovels() {
     let uidList = getUserIdCache()
     if (uidList.length === 1 ) return getUserNovelsById(uidList[0])
