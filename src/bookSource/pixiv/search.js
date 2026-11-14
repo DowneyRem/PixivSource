@@ -59,9 +59,8 @@ function getUserIdCache() {
     return userIds
 }
 
-// 搜索作者
-// 模糊搜索：每页只取当前页，由阅读器翻页
-// 精确搜索：解析出作者ID后，取该作者全部小说
+// 搜索作者：只保留当页小说（发布过小说的作者的小说）
+// 搜索作者：若当页没有小说，则添加【测试页面】的数据以便继续向后翻页
 function getUserNovelsByName(full = false) {
     let userName = String(java.get("keyword")).trim()
     let page = Number(java.get("page")) || 1
@@ -72,16 +71,22 @@ function getUserNovelsByName(full = false) {
 
     let novels = resp.body.thumbnails.novel || []
     let userIdsOriginal = resp.body.page.userIds
-    let userIds = Array.from(new Set(novels.map(item => item.userId)))
-    java.log(`👤 获取作者ID：${JSON.stringify(userIds)}`)
+    let userIdsNovels = Array.from(new Set(novels.map(item => item.userId)))
+    java.log(`👤 获取作者ID：${JSON.stringify(userIdsNovels)}`)
 
-    if (page === 1 && userIds.length === 1) {
+    if (page === 1 && userIdsNovels.length === 1) {
         let pixivAuthors = getFromCacheObject("pixivAuthors") || {}
-        pixivAuthors[userName] = userIds[0]
+        pixivAuthors[userName] = userIdsNovels[0]
         putInCacheObject("pixivAuthors", pixivAuthors)
     }
 
-    if (userIdsOriginal.length === 0) sleepToast(`👤 搜索作者\n暂无名为【${userName}】的作者发布过小说\n请尝试更换其他关键词`)
+    if (userIdsNovels.length === 0 && userIdsOriginal.length >= 1) {
+        novels = novels.concat(getAjaxJson(urlSearchNovel("测试页面", 1)).body.novel.data)
+        sleepToast(`👤 搜索作者\n\n点击按钮或向上滑动后，可向后翻页\n每次可获取10个作者`)
+    }
+    if (userIdsOriginal.length === 0) {
+        sleepToast(`👤 搜索作者\n\n暂无名为【${userName}】的作者\n请更换其他关键词`)
+    }
     return novels
 }
 
