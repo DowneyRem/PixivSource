@@ -46,8 +46,8 @@ var seriesSet = {
 };
 
 function getUserIdCache() {
-    let userIds = []
-    let userName = String(java.get("keyword"))
+    let userIds = [], userId
+    let userName = String(java.get("keyword")).trim()
     //cache.delete("pixivAuthors")
     let pixivAuthors = getFromCacheObject("pixivAuthors")
     // java.log(JSON.stringify(pixivAuthors))
@@ -93,10 +93,12 @@ function getUserNovelsByName(full = false) {
 }
 
 function getUserNovelsById(uid) {
-    return util.getUserNovelsById(getAjaxJson(urlUserAllWorks(uid), true).body)
+    let resp = getAjaxJson(urlUserAllWorks(uid), true)
+    if (resp.error === true || !resp.body) return []
+    return util.getUserNovelsById(resp.body)
 }
 
-// 精确搜索
+// 精确搜索：命中作者缓存则直接返回该作者全部小说
 function getUserNovels() {
     let uidList = getUserIdCache()
     if (uidList.length === 1 ) return getUserNovelsById(uidList[0])
